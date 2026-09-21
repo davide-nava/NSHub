@@ -1,0 +1,31 @@
+// <copyright file="PublishingStatus.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
+namespace NSHub.Domain.Cms.Enums;
+
+/// <summary>
+/// Lifecycle statuses for CMS content publishing workflows.
+/// </summary>
+public enum PublishingStatus
+{
+    /// <summary>
+    /// Content in draft stage, unpublished.
+    /// </summary>
+    DRAFT = 1,
+
+    /// <summary>
+    /// Under editorial review.
+    /// </summary>
+    REVIEW = 2,
+
+    /// <summary>
+    /// Published and publicly visible.
+    /// </summary>
+    PUBLISHED = 3,
+
+    /// <summary>
+    /// Deprecated or archived, no longer publicly active.
+    /// </summary>
+    ARCHIVED = 4
+}

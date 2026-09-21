@@ -1,0 +1,22 @@
+<Solution>
+    <Folder Name="/aspire/">
+        <Project Path="src/backend/NSHub.AppHost/NSHub.AppHost.csproj" Id="77dcc411-b025-4739-aede-2cd9310c291f" />
+        <Project Path="src/backend/NSHub.ServiceDefaults/NSHub.ServiceDefaults.csproj" />
+    </Folder>
+    <Folder Name="/Solution Items/">
+        <File Path=".editorconfig" />
+        <File Path="AGENTS.md" />
+        <File Path="Directory.Build.props" />
+        <File Path="README.md" />
+    </Folder>
+    <Folder Name="/src/">
+        <Project Path="src/backend/NSHub.Api/NSHub.Api.csproj" />
+        <Project Path="src/backend/NSHub.Application/NSHub.Application.csproj" />
+        <Project Path="src/backend/NSHub.Domain/NSHub.Domain.csproj" />
+        <Project Path="src/backend/NSHub.Infrastructure/NSHub.Infrastructure.csproj" />
+    </Folder>
+    <Folder Name="/tests/">
+        <Project Path="tests/backend/NSHub.Application.UnitTests/NSHub.Application.UnitTests.csproj" />
+    </Folder>
+
+</Solution>

@@ -1,0 +1,65 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 11 RC
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "11.0.x"
+          include-prerelease: true
+
+      - name: Extract Version
+        id: version
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}".TrimStart('v')
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+          echo "Version: $version"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Publish
+        shell: pwsh
+        run: |
+          dotnet publish src/AesEncryptor.Wpf/AesEncryptor.Wpf.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:DebugType=None `
+            -p:DebugSymbols=false `
+            -p:Version=${{ env.VERSION }} `
+            -p:AssemblyVersion=${{ env.VERSION }} `
+            -p:FileVersion=${{ env.VERSION }}
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          choco install innosetup -y
+
+      - name: Build Installer
+        shell: pwsh
+        env:
+          VERSION: ${{ env.VERSION }}
+        run: |
+          ISCC installer\AesEncryptor.iss
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ env.VERSION }}
+          tag_name: ${{ github.ref_name }}
+          files: |
+            AesEncryptor-Setup.exe

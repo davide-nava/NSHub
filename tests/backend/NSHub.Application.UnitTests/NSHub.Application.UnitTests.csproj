@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>NSHub.Application.UnitTests</Title>
+    <Product>NSHub.Application.UnitTests</Product>
+    <Description>NSHub.Application.UnitTests</Description>
+    <PackageId>NSHub.Application.UnitTests</PackageId>
+    <RootNamespace>NSHub.Application.UnitTests</RootNamespace>
+    <AssemblyName>NSHub.Application.UnitTests</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference
+        Include="coverlet.collector"
+        Version="10.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference
+        Include="coverlet.msbuild"
+        Version="10.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference
+        Include="FluentAssertions"
+        Version="8.11.0" />
+    <PackageReference
+        Include="Microsoft.AspNetCore.Mvc.Testing"
+        Version="11.0.0-rc.1.26425.128" />
+    <PackageReference
+        Include="Microsoft.EntityFrameworkCore.InMemory"
+        Version="11.0.0-rc.1.26425.128" />
+    <PackageReference
+        Include="Microsoft.NET.Test.Sdk"
+        Version="18.10.1" />
+    <PackageReference
+        Include="Moq"
+        Version="4.20.72" />
+    <PackageReference
+        Include="xunit"
+        Version="2.9.3" />
+    <PackageReference
+        Include="xunit.runner.visualstudio"
+        Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="FluentAssertions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\backend\NSHub.Domain\NSHub.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\backend\NSHub.Application\NSHub.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\backend\NSHub.Infrastructure\NSHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\backend\NSHub.Api\NSHub.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference
+        Update="Microsoft.CodeAnalysis.NetAnalyzers"
+        Version="11.0.100-rc.1.26425.128" />
+    <PackageReference
+        Update="Roslynator.Analyzers"
+        Version="5.0.0" />
+    <PackageReference
+        Update="Roslynator.CodeFixes"
+        Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
