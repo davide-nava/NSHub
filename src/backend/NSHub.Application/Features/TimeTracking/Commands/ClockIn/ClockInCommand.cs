@@ -1,0 +1,25 @@
+// <copyright file="ClockInCommand.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
+using MediatR;
+using NSHub.Application.Features.TimeTracking.DTOs;
+using NSHub.Domain.Common;
+
+namespace NSHub.Application.Features.TimeTracking.Commands.ClockIn;
+
+/// <summary>
+/// Command to register an employee's clock-in punch with optional punctual GPS coordinates.
+/// </summary>
+/// <param name="EmployeeId">The unique identifier of the employee.</param>
+/// <param name="Latitude">The optional GPS latitude coordinate.</param>
+/// <param name="Longitude">The optional GPS longitude coordinate.</param>
+/// <param name="AccuracyMeters">The optional GPS accuracy in meters.</param>
+/// <param name="Notes">Optional notes associated with the clock-in event.</param>
+public record ClockInCommand(
+    Guid EmployeeId,
+    double? Latitude = null,
+    double? Longitude = null,
+    double? AccuracyMeters = null,
+    string? Notes = null
+) : IRequest<Result<TimeEntryDto>>;

@@ -1,0 +1,23 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.5.4">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+      <Title>NSHub.AppHost</Title>
+      <Product>NSHub.AppHost</Product>
+      <Description>NSHub.AppHost</Description>
+      <PackageId>NSHub.AppHost</PackageId>
+      <RootNamespace>NSHub.AppHost</RootNamespace>
+      <AssemblyName>NSHub.AppHost</AssemblyName>
+    <AspireUseCliBundle>true</AspireUseCliBundle>
+    <UserSecretsId>5ed39563-8ab9-49c1-95d2-de97c3f637b9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NSHub.Api\NSHub.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
+  </ItemGroup>
+
+</Project>

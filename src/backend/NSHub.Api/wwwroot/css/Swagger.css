@@ -1,0 +1,68 @@
+.title {
+    color: #788bbd !important;
+}
+
+body.swagger-ui,
+body, div, .scheme-container
+html {
+    background-color: #3f3e3e !important;
+    font-family: system-ui !important;
+}
+
+select {
+    color: black !important;
+}
+
+/* Text color */
+div, h4, h3, .swagger-ui label, td,
+.swagger-ui span,
+.swagger-ui p,
+.col_header,
+.response *,
+.tab *, button,
+.parameters-col_name * {
+    color: #d8d8d8 !important;
+    font-family: system-ui !important;
+}
+
+svg {
+    fill: #d8d8d8 !important;
+}
+
+/*GET*/
+.opblock.opblock-get .opblock-summary-method {
+    background-color: #166dff !important;
+}
+
+.opblock.opblock-get .opblock-summary,
+.opblock.opblock-get {
+    border-color: #166dff !important;
+}
+
+/*POST*/
+.opblock.opblock-post .opblock-summary-method {
+    background-color: #10a939 !important;
+}
+
+.opblock.opblock-post .opblock-summary,
+.opblock.opblock-post {
+    border-color: #10a939 !important;
+}
+
+/* Headers and navigation bar */
+.topbar {
+    background-color: #333;
+}
+
+/* API paths and definitions */
+.path {
+    background-color: #2c2c2c;
+    border-color: #444;
+}
+
+/* Code blocks and responses */
+.opblock-summary-method,
+.opblock-summary {
+    background-color: #333;
+    border-color: #444;
+}

@@ -1,0 +1,42 @@
+// <copyright file="TicketRepository.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
+namespace NSHub.Infrastructure.Tickets.Persistence.Repositories;
+
+using Microsoft.EntityFrameworkCore;
+using NSHub.Domain.Tickets.Entities;
+using NSHub.Domain.Tickets.Repositories;
+using NSHub.Domain.Tickets.ValueObjects;
+using NSHub.Infrastructure.Persistence;
+
+/// <summary>
+/// EF Core implementation of <see cref="ITicketRepository"/>.
+/// </summary>
+public class TicketRepository(OpenXGestDbContext context) : ITicketRepository
+{
+    /// <inheritdoc />
+    public async Task<Ticket?> GetByIdAsync(TicketId id, CancellationToken cancellationToken = default)
+    {
+        return await context.Set<Ticket>()
+            .Include(t => t.Comments)
+            .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task AddAsync(Ticket ticket, CancellationToken cancellationToken = default)
+    {
+        _ = await context.Set<Ticket>().AddAsync(ticket, cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public void Update(Ticket ticket)
+    {
+        if (context.Entry(ticket).State == EntityState.Detached)
+        {
+            _ = context.Set<Ticket>().Attach(ticket);
+        }
+
+        context.Entry(ticket).State = EntityState.Modified;
+    }
+}

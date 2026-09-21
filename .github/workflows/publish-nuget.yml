@@ -1,0 +1,68 @@
+name: Publish NuGet
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 11
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "11.0.x"
+          include-prerelease: true
+
+      - name: Extract Version
+        shell: pwsh
+        run: |
+          $version = "${{ github.event.release.tag_name }}".TrimStart('v')
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+          echo "Version: $version"
+
+      - name: Show SDK Info
+        run: |
+          dotnet --version
+          dotnet --list-sdks
+
+      - name: Restore
+        run: dotnet restore src/AesEncryptor/AesEncryptor.csproj
+
+      - name: Build
+        shell: pwsh
+        run: |
+          dotnet build `
+            src/AesEncryptor/AesEncryptor.csproj `
+            -c Release `
+            --no-restore `
+            -p:Version=${{ env.VERSION }} `
+            -p:AssemblyVersion=${{ env.VERSION }} `
+            -p:FileVersion=${{ env.VERSION }}
+
+      - name: Pack
+        shell: pwsh
+        run: |
+          dotnet pack `
+            src/AesEncryptor/AesEncryptor.csproj `
+            -c Release `
+            --no-build `
+            -o ./artifacts `
+            -p:PackageVersion=${{ env.VERSION }} `
+            -p:Version=${{ env.VERSION }}
+
+      - name: Publish to NuGet (Trusted Publishing)
+        shell: pwsh
+        run: |
+          dotnet nuget push "./artifacts/*.nupkg" `
+            --source https://api.nuget.org/v3/index.json `
+            --skip-duplicate
