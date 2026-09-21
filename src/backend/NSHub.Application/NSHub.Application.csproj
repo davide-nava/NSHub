@@ -89,7 +89,7 @@
         <PackageReference
                 Include="Serilog.Sinks.SQLite"
                 Version="6.0.0" />
-        <PackageReference Include="MailKit" Version="4.14.1" />
+        <PackageReference Include="MailKit" Version="4.16.0" />
 
 		<PackageReference
         Include="FluentValidation"
