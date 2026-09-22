@@ -54,7 +54,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
     }
 
     /// <inheritdoc/>
-    public string GenerateUserToken(NSHub.Domain.Identity.Entities.User user, IEnumerable<string> roles)
+    public string GenerateUserToken(User user, IEnumerable<string> roles)
     {
         var secret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
         var issuer = configuration["Jwt:Issuer"] ?? "OpenXGest";

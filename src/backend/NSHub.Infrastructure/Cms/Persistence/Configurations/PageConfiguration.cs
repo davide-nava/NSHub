@@ -2,6 +2,8 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+
 namespace NSHub.Infrastructure.Cms.Persistence.Configurations;
 
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,7 @@ using NSHub.Domain.Cms.Entities;
 using NSHub.Domain.Cms.ValueObjects;
 
 /// <summary>
-/// EF Core configuration for <see cref="Page"/>.
+/// EF Core configuration for <see cref="Domain.Entities.Page"/>.
 /// </summary>
 public class PageConfiguration : IEntityTypeConfiguration<Page>
 {

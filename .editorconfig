@@ -149,6 +149,8 @@ resharper_pure_attribute_on_void_method_highlighting = error
 resharper_unassigned_readonly_field_highlighting = error
 resharper_redundant_using_directive_highlighting = error
 
+resharper_inconsistent_naming_highlighting = none
+
 ####################################################
 # C# LANGUAGE FORMATTING & CONVENTIONS
 ####################################################
@@ -167,7 +169,7 @@ csharp_new_line_before_open_brace = all
 csharp_new_line_between_query_expression_clauses = true
 
 csharp_preserve_single_line_statements = false
-csharp_preserve_single_line_blocks = false
+csharp_preserve_single_line_blocks = true
 csharp_prefer_braces = true:error
 
 # C# Modern Language Features
@@ -408,6 +410,10 @@ dotnet_diagnostic.sa1101.severity = none
 dotnet_diagnostic.ca1031.severity = none
 
 # ReSharper properties
+resharper_csharp_keep_existing_enum_arrangement = false
+resharper_empty_string = string_empty
+resharper_keep_existing_declaration_block_arrangement = false
+resharper_keep_existing_embedded_block_arrangement = false
 resharper_trailing_comma_in_multiline_lists = true
 
 
@@ -429,3 +435,6 @@ dotnet_diagnostic.ide1006.severity = none
 dotnet_diagnostic.sa1310.severity = none
 
 dotnet_diagnostic.sa1202.severity = none
+
+
+dotnet_diagnostic.S2094.severity = none

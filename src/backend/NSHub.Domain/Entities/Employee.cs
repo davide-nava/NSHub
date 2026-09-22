@@ -17,47 +17,47 @@ public class Employee : AggregateRoot<EmployeeId>
     /// <summary>
     /// Gets the employee's given first name.
     /// </summary>
-    public string FirstName { get; private set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the employee's surname or family name.
     /// </summary>
-    public string LastName { get; private set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the corporate email address.
     /// </summary>
-    public string Email { get; private set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the business department or operational unit.
     /// </summary>
-    public string Department { get; private set; } = string.Empty;
+    public string Department { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the contractual weekly working hours.
     /// </summary>
-    public decimal ContractualWeeklyHours { get; private set; }
+    public decimal ContractualWeeklyHours { get; set; }
 
     /// <summary>
     /// Gets the statutory weekly working hour ceiling under Swiss labor law.
     /// </summary>
-    public StatutoryWeeklyLimit StatutoryWeeklyLimit { get; private set; }
+    public StatutoryWeeklyLimit StatutoryWeeklyLimit { get; set; }
 
     /// <summary>
     /// Gets the applicable OLL 1 working time regulation regime.
     /// </summary>
-    public Oll1Regime Oll1Regime { get; private set; }
+    public Oll1Regime Oll1Regime { get; set; }
 
     /// <summary>
     /// Gets the preferred language for UI and notifications.
     /// </summary>
-    public LanguageCode PreferredLanguage { get; private set; }
+    public LanguageCode PreferredLanguage { get; set; }
 
     /// <summary>
     /// Gets a value indicating whether the employee is currently active in the organization.
     /// </summary>
-    public bool IsActive { get; private set; } = true;
+    public bool IsActive { get; set; } = true;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Employee"/> class.

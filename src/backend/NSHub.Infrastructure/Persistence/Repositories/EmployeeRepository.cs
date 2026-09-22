@@ -16,7 +16,7 @@ namespace NSHub.Infrastructure.Persistence.Repositories;
 /// Initializes a new instance of the <see cref="EmployeeRepository"/> class.
 /// </remarks>
 /// <param name="context">The database context.</param>
-public class EmployeeRepository(OpenXGestDbContext context) : IEmployeeRepository, NSHub.Domain.HR.Repositories.IEmployeeRepository
+public class EmployeeRepository(OpenXGestDbContext context) : IEmployeeRepository, Domain.Repositories.IEmployeeRepository
 {
     /// <inheritdoc/>
     public async Task<Employee?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)

@@ -2,11 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+using NSHub.Domain.Repositories;
+
 namespace NSHub.Infrastructure.Invoicing.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
-using NSHub.Domain.Invoicing.Entities;
-using NSHub.Domain.Invoicing.Repositories;
 using NSHub.Domain.Invoicing.ValueObjects;
 using NSHub.Infrastructure.Persistence;
 

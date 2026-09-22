@@ -2,15 +2,16 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+
 namespace NSHub.Infrastructure.Warehouse.Persistence.Configurations;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NSHub.Domain.Warehouse.Entities;
 using NSHub.Domain.Warehouse.ValueObjects;
 
 /// <summary>
-/// EF Core configuration for <see cref="Article"/>.
+/// EF Core configuration for <see cref="NSHub.Domain.Entities.Article"/>.
 /// </summary>
 public class ArticleConfiguration : IEntityTypeConfiguration<Article>
 {

@@ -2,9 +2,10 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Repositories;
+
 namespace NSHub.Infrastructure.Invoicing.Services;
 
-using NSHub.Domain.Invoicing.Repositories;
 using NSHub.Domain.Invoicing.Services;
 
 /// <summary>

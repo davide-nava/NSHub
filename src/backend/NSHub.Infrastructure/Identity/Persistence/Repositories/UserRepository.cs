@@ -2,11 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+using NSHub.Domain.Repositories;
+
 namespace NSHub.Infrastructure.Identity.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
-using NSHub.Domain.Identity.Entities;
-using NSHub.Domain.Identity.Repositories;
 using NSHub.Domain.Identity.ValueObjects;
 using NSHub.Infrastructure.Persistence;
 

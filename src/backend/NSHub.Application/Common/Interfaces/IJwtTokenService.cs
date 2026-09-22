@@ -3,7 +3,6 @@
 // </copyright>
 
 using NSHub.Domain.Entities;
-using NSHub.Domain.Identity.Entities;
 
 namespace NSHub.Application.Common.Interfaces;
 

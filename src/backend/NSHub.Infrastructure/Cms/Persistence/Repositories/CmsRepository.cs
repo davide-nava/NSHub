@@ -2,11 +2,13 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+using NSHub.Domain.Repositories;
+
 namespace NSHub.Infrastructure.Cms.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
 using NSHub.Domain.Cms.Entities;
-using NSHub.Domain.Cms.Repositories;
 using NSHub.Domain.Cms.ValueObjects;
 using NSHub.Infrastructure.Persistence;
 

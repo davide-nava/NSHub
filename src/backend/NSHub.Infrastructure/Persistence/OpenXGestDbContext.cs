@@ -33,33 +33,33 @@ public class OpenXGestDbContext : DbContext
     /// <summary>
     /// Gets the database set for IAM users.
     /// </summary>
-    public DbSet<NSHub.Domain.Identity.Entities.User> Users => Set<NSHub.Domain.Identity.Entities.User>();
+    public DbSet<User> Users => Set<User>();
 
     /// <summary>
     /// Gets the database set for IAM roles.
     /// </summary>
-    public DbSet<NSHub.Domain.Identity.Entities.Role> Roles => Set<NSHub.Domain.Identity.Entities.Role>();
+    public DbSet<Role> Roles => Set<Role>();
 
     /// <summary>
     /// Gets the database set for IAM user roles.
     /// </summary>
-    public DbSet<NSHub.Domain.Identity.Entities.UserRole> UserRoles => Set<NSHub.Domain.Identity.Entities.UserRole>();
+    public DbSet<UserRole> UserRoles => Set<UserRole>();
 
     /// <summary>
     /// Gets the database set for IAM user claims.
     /// </summary>
-    public DbSet<NSHub.Domain.Identity.Entities.UserClaim> UserClaims => Set<NSHub.Domain.Identity.Entities.UserClaim>();
+    public DbSet<UserClaim> UserClaims => Set<UserClaim>();
 
     // Tickets
     /// <summary>
     /// Gets the database set for tickets.
     /// </summary>
-    public DbSet<NSHub.Domain.Tickets.Entities.Ticket> Tickets => Set<NSHub.Domain.Tickets.Entities.Ticket>();
+    public DbSet<Ticket> Tickets => Set<Ticket>();
 
     /// <summary>
     /// Gets the database set for ticket comments.
     /// </summary>
-    public DbSet<NSHub.Domain.Tickets.Entities.TicketComment> TicketComments => Set<NSHub.Domain.Tickets.Entities.TicketComment>();
+    public DbSet<TicketComment> TicketComments => Set<TicketComment>();
 
     // Warehouse
     /// <summary>
@@ -70,39 +70,39 @@ public class OpenXGestDbContext : DbContext
     /// <summary>
     /// Gets the database set for warehouse stock locations.
     /// </summary>
-    public DbSet<NSHub.Domain.Warehouse.Entities.StockLocation> StockLocations => Set<NSHub.Domain.Warehouse.Entities.StockLocation>();
+    public DbSet<StockLocation> StockLocations => Set<StockLocation>();
 
     /// <summary>
     /// Gets the database set for warehouse inventory stocks.
     /// </summary>
-    public DbSet<NSHub.Domain.Warehouse.Entities.InventoryStock> InventoryStocks => Set<NSHub.Domain.Warehouse.Entities.InventoryStock>();
+    public DbSet<InventoryStock> InventoryStocks => Set<InventoryStock>();
 
     /// <summary>
     /// Gets the database set for warehouse inventory movements.
     /// </summary>
-    public DbSet<NSHub.Domain.Warehouse.Entities.InventoryMovement> InventoryMovements => Set<NSHub.Domain.Warehouse.Entities.InventoryMovement>();
+    public DbSet<InventoryMovement> InventoryMovements => Set<InventoryMovement>();
 
     // Invoicing
     /// <summary>
     /// Gets the database set for invoices.
     /// </summary>
-    public DbSet<NSHub.Domain.Invoicing.Entities.Invoice> Invoices => Set<NSHub.Domain.Invoicing.Entities.Invoice>();
+    public DbSet<Invoice> Invoices => Set<Invoice>();
 
     /// <summary>
     /// Gets the database set for invoice lines.
     /// </summary>
-    public DbSet<NSHub.Domain.Invoicing.Entities.InvoiceLine> InvoiceLines => Set<NSHub.Domain.Invoicing.Entities.InvoiceLine>();
+    public DbSet<InvoiceLine> InvoiceLines => Set<InvoiceLine>();
 
     // CMS
     /// <summary>
     /// Gets the database set for CMS pages.
     /// </summary>
-    public DbSet<NSHub.Domain.Cms.Entities.Page> CmsPages => Set<NSHub.Domain.Cms.Entities.Page>();
+    public DbSet<Page> CmsPages => Set<Page>();
 
     /// <summary>
     /// Gets the database set for CMS page tags.
     /// </summary>
-    public DbSet<NSHub.Domain.Cms.Entities.PageTag> CmsPageTags => Set<NSHub.Domain.Cms.Entities.PageTag>();
+    public DbSet<PageTag> CmsPageTags => Set<PageTag>();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OpenXGestDbContext"/> class.

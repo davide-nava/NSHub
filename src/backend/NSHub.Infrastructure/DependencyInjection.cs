@@ -10,10 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NSHub.Application.Common.Interfaces;
 using NSHub.Domain.Common;
+using NSHub.Domain.Repositories;
 using NSHub.Infrastructure.Persistence;
 using NSHub.Infrastructure.Persistence.Interceptors;
 using NSHub.Infrastructure.Persistence.Repositories;
 using NSHub.Infrastructure.Services;
+using IEmployeeRepository = NSHub.Application.Common.Interfaces.IEmployeeRepository;
+using ITimeEntryRepository = NSHub.Application.Common.Interfaces.ITimeEntryRepository;
 
 namespace NSHub.Infrastructure;
 
@@ -52,19 +55,19 @@ public static class DependencyInjection
 
         // Repositories & UnitOfWork
         _ = services.AddScoped<ITimeEntryRepository, TimeEntryRepository>();
-        _ = services.AddScoped<NSHub.Domain.TimeAttendance.Repositories.ITimeEntryRepository, TimeEntryRepository>();
+        _ = services.AddScoped<Domain.Repositories.ITimeEntryRepository, TimeEntryRepository>();
         _ = services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        _ = services.AddScoped<NSHub.Domain.HR.Repositories.IEmployeeRepository, EmployeeRepository>();
+        _ = services.AddScoped<Domain.Repositories.IEmployeeRepository, EmployeeRepository>();
         _ = services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Phase 1 Bounded Context Services & Repositories
         _ = services.AddSingleton<NSHub.Domain.Identity.Services.IPasswordHasher, NSHub.Infrastructure.Identity.Services.PasswordHasher>();
-        _ = services.AddScoped<NSHub.Domain.Identity.Repositories.IUserRepository, NSHub.Infrastructure.Identity.Persistence.Repositories.UserRepository>();
-        _ = services.AddScoped<NSHub.Domain.Tickets.Repositories.ITicketRepository, NSHub.Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
-        _ = services.AddScoped<NSHub.Domain.Warehouse.Repositories.IInventoryRepository, NSHub.Infrastructure.Warehouse.Persistence.Repositories.InventoryRepository>();
-        _ = services.AddScoped<NSHub.Domain.Invoicing.Repositories.IInvoiceRepository, NSHub.Infrastructure.Invoicing.Persistence.Repositories.InvoiceRepository>();
+        _ = services.AddScoped<IUserRepository, NSHub.Infrastructure.Identity.Persistence.Repositories.UserRepository>();
+        _ = services.AddScoped<ITicketRepository, NSHub.Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
+        _ = services.AddScoped<IInventoryRepository, NSHub.Infrastructure.Warehouse.Persistence.Repositories.InventoryRepository>();
+        _ = services.AddScoped<IInvoiceRepository, NSHub.Infrastructure.Invoicing.Persistence.Repositories.InvoiceRepository>();
         _ = services.AddScoped<NSHub.Domain.Invoicing.Services.IInvoiceNumberSequenceService, NSHub.Infrastructure.Invoicing.Services.InvoiceNumberSequenceService>();
-        _ = services.AddScoped<NSHub.Domain.Cms.Repositories.ICmsRepository, NSHub.Infrastructure.Cms.Persistence.Repositories.CmsRepository>();
+        _ = services.AddScoped<ICmsRepository, NSHub.Infrastructure.Cms.Persistence.Repositories.CmsRepository>();
 
         // Autenticazione JWT
         var jwtSecret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";

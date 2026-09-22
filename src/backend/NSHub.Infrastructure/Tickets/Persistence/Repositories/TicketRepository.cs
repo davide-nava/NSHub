@@ -2,11 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Entities;
+using NSHub.Domain.Repositories;
+
 namespace NSHub.Infrastructure.Tickets.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
-using NSHub.Domain.Tickets.Entities;
-using NSHub.Domain.Tickets.Repositories;
 using NSHub.Domain.Tickets.ValueObjects;
 using NSHub.Infrastructure.Persistence;
 

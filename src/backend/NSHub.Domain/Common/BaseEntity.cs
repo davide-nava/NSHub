@@ -7,29 +7,41 @@ namespace NSHub.Domain.Common;
 /// <summary>
 /// Represents the abstract base entity providing a unique identifier and domain event management capabilities.
 /// </summary>
-public abstract class BaseEntity
+public class BaseEntity
 {
-    private readonly List<object> _domainEvents = [];
+    /// <summary>
+    /// Gets or sets the unique identifier of the entity.
+    /// </summary>
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>
-    /// Gets the unique identifier for this entity.
+    /// Gets or sets the date and time when the entity was last updated.
     /// </summary>
-    public Guid Id { get; protected set; } = Guid.NewGuid();
+    public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
 
     /// <summary>
-    /// Gets the read-only collection of domain events dispatched by this entity.
+    /// Gets or sets the date and time when the entity was inserted.
     /// </summary>
-    public IReadOnlyCollection<object> DomainEvents => _domainEvents.AsReadOnly();
+    public DateTime DateInsert { get; set; } = DateTime.UtcNow;
 
     /// <summary>
-    /// Adds a domain event to the entity's event collection.
+    /// Gets or sets the date and time when the entity was deleted.
     /// </summary>
-    /// <param name="domainEvent">The domain event to append.</param>
-    public void AddDomainEvent(object domainEvent) => _domainEvents.Add(domainEvent);
+    public DateTime? DateDeleted { get; set; } = DateTime.UtcNow;
 
     /// <summary>
-    /// Clears all registered domain events from the entity.
+    ///  Gets or sets the user identifier who inserted the entity.
     /// </summary>
-    public void ClearDomainEvents() => _domainEvents.Clear();
+    public Guid UserInsertId
+    {
+        get; set;
+    }
+
+    /// <summary>
+    ///  Gets or sets the user identifier who updated the entity.
+    /// </summary>
+    public Guid UserUpdateId
+    {
+        get; set;
+    }
 }
-
