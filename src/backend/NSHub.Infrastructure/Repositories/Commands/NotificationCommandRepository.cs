@@ -2,11 +2,11 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Commands;
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Infrastructure.DbContexts;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces.Repositories.Commands;
+using NSHub.Caches.Interfaces;
+using NSHub.Infrastructure.DbContexts;
 
-namespace PlanetHub.Infrastructure.Repositories.Commands;
+namespace NSHub.Infrastructure.Repositories.Commands;
 
-public class NotificationCommandRepository(TenantDbContext dbContext, IPlanetHubMemoryCacheService? planetHubMemoryCacheService = null) : BaseCommandRepository<Notification>(dbContext, planetHubMemoryCacheService), INotificationCommandRepository;
+public class NotificationCommandRepository(TenantDbContext dbContext, INSHubMemoryCacheService? nSHubMemoryCacheService = null) : BaseCommandRepository<Notification>(dbContext, nSHubMemoryCacheService), INotificationCommandRepository;

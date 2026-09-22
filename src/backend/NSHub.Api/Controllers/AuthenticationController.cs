@@ -11,14 +11,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 
-using PlanetHub.Endpoints.Api;
-using PlanetHub.Exceptions;
-using PlanetHub.Localization;
-using PlanetHub.Models;
-using PlanetHub.Models.Requests;
-using PlanetHub.Models.Responses;
+using NSHub.Endpoints.Api;
+using NSHub.Exceptions;
+using NSHub.Localization;
+using NSHub.Models;
+using NSHub.Models.Requests;
+using NSHub.Models.Responses;
 
-namespace PlanetHub.Api.Controllers;
+namespace NSHub.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

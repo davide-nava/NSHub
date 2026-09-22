@@ -2,11 +2,14 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ConfirmEmailRequest
 {
-	public Guid UserId { get; set; }
+	public Guid UserId
+	{
+		get; set;
+	}
 
 	public string Code { get; set; } = string.Empty;
 }

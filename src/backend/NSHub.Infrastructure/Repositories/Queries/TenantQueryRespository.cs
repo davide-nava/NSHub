@@ -5,19 +5,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Queries;
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Infrastructure.DbContexts;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces.Repositories.Queries;
+using NSHub.Caches.Interfaces;
+using NSHub.Infrastructure.DbContexts;
 
-namespace PlanetHub.Infrastructure.Repositories.Queries;
+namespace NSHub.Infrastructure.Repositories.Queries;
 
-public class TenantQueryRespository(TenantDbContext dbContext, IPlanetHubMemoryCacheService? planetHubMemoryCacheService) : BaseQueryRepository<Tenant>(dbContext, planetHubMemoryCacheService), ITenantQueryRespository
+public class TenantQueryRespository(TenantDbContext dbContext, INSHubMemoryCacheService? nSHubMemoryCacheService) : BaseQueryRepository<Tenant>(dbContext, nSHubMemoryCacheService), ITenantQueryRespository
 {
     public async Task<IEnumerable<string>> GetConnectionStringAsync(CancellationToken cancellationToken = default)
     {
         const string tmpKey = "Tenant_GetConnectionStringAsync";
-        if (planetHubMemoryCacheService != null && planetHubMemoryCacheService.Cache.TryGetValue(tmpKey, out IEnumerable<string>? items))
+        if (nSHubMemoryCacheService != null && nSHubMemoryCacheService.Cache.TryGetValue(tmpKey, out IEnumerable<string>? items))
         {
             return items ?? [];
         }
@@ -26,10 +26,10 @@ public class TenantQueryRespository(TenantDbContext dbContext, IPlanetHubMemoryC
 
         items = await query.Select(e => e.ConnectionString).ToListAsync(cancellationToken);
 
-        if (planetHubMemoryCacheService != null && (items?.Any() ?? false))
+        if (nSHubMemoryCacheService != null && (items?.Any() ?? false))
         {
-            planetHubMemoryCacheService.SetKey(tmpKey);
-            planetHubMemoryCacheService.Cache.Set(tmpKey, items);
+            nSHubMemoryCacheService.SetKey(tmpKey);
+            nSHubMemoryCacheService.Cache.Set(tmpKey, items);
         }
 
         return items ?? [];
@@ -38,7 +38,7 @@ public class TenantQueryRespository(TenantDbContext dbContext, IPlanetHubMemoryC
     public async Task<string> GetConnectionStringAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var tmpKey = $"Tenant_GetConnectionStringAsync_Id:{id}";
-        if (planetHubMemoryCacheService != null && planetHubMemoryCacheService.Cache.TryGetValue(tmpKey, out string? item))
+        if (nSHubMemoryCacheService != null && nSHubMemoryCacheService.Cache.TryGetValue(tmpKey, out string? item))
         {
             return item ?? string.Empty;
         }
@@ -47,10 +47,10 @@ public class TenantQueryRespository(TenantDbContext dbContext, IPlanetHubMemoryC
 
         item = await query.Where(e => e.Id == id).Select(e => e.ConnectionString).FirstOrDefaultAsync(cancellationToken);
 
-        if (planetHubMemoryCacheService != null && !string.IsNullOrWhiteSpace(item))
+        if (nSHubMemoryCacheService != null && !string.IsNullOrWhiteSpace(item))
         {
-            planetHubMemoryCacheService.SetKey(tmpKey);
-            planetHubMemoryCacheService.Cache.Set(tmpKey, item);
+            nSHubMemoryCacheService.SetKey(tmpKey);
+            nSHubMemoryCacheService.Cache.Set(tmpKey, item);
         }
 
         return item ?? string.Empty;

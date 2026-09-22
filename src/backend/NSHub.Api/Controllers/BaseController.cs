@@ -7,16 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces;
-using PlanetHub.ApplicationCore.Interfaces.Services.Commands;
-using PlanetHub.ApplicationCore.Interfaces.Services.Queries;
-using PlanetHub.Constants;
-using PlanetHub.Enums;
-using PlanetHub.Models;
-using PlanetHub.Models.EntityModels;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces;
+using NSHub.ApplicationCore.Interfaces.Services.Commands;
+using NSHub.ApplicationCore.Interfaces.Services.Queries;
+using NSHub.Constants;
+using NSHub.Enums;
+using NSHub.Models;
+using NSHub.Models.EntityModels;
 
-namespace PlanetHub.Api.Controllers;
+namespace NSHub.Api.Controllers;
 
 [ApiController]
 [Authorize]

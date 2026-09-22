@@ -2,13 +2,16 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models.EntityModels.JsonModels;
+using NSHub.Application.NSHub.Models.EntityModels.JsonModels;
 
-namespace NSHub.Application.PlanetHub.Models;
+namespace NSHub.Application.NSHub.Models;
 
 public class UserLoggedModel
 {
-    public Guid UserId { get; set; }
+    public Guid UserId
+    {
+        get; set;
+    }
 
     public string UserName { get; set; } = string.Empty;
 
@@ -24,18 +27,36 @@ public class UserLoggedModel
 
     public string TenantName { get; set; } = string.Empty;
 
-    public bool IsActive { get; set; }
+    public bool IsActive
+    {
+        get; set;
+    }
 
-    public int BadgeCount { get; set; }
+    public int BadgeCount
+    {
+        get; set;
+    }
 
     public string FirstName { get; set; } = string.Empty;
 
-    public string? RefreshToken { get; set; }
+    public string? RefreshToken
+    {
+        get; set;
+    }
 
-    public string? Token { get; set; }
+    public string? Token
+    {
+        get; set;
+    }
 
-    public int TokenExpiresInSeconds { get; set; }
+    public int TokenExpiresInSeconds
+    {
+        get; set;
+    }
 
-    public string? AccessToken { get; set; }
+    public string? AccessToken
+    {
+        get; set;
+    }
 }
 

@@ -2,7 +2,7 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-namespace PlanetHub.Endpoints.Api.Tests;
+namespace NSHub.Endpoints.Api.Tests;
 
 public static class EfCoreEndpoint
 {

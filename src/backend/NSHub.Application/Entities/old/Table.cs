@@ -1,6 +1,6 @@
-using PlanetHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Table : BaseEntity
 {
@@ -18,7 +18,7 @@ public class Table : BaseEntity
 
     public bool IsCustom { get; set; }
 
-    public Guid  CleaningModeTypeId { get; set; }
+    public Guid CleaningModeTypeId { get; set; }
 
     public virtual CleaningModeType? CleaningModeType { get; set; }
 

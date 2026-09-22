@@ -1,6 +1,6 @@
 using System;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class WorkflowInstance : BaseEntity
 {
@@ -8,7 +8,7 @@ public class WorkflowInstance : BaseEntity
 
     public string BookmarkName { get; set; } = null!;
 
-    public Guid  ApprovationModeTypeId { get; set; }
+    public Guid ApprovationModeTypeId { get; set; }
 
     public virtual ApprovationModeType? ApprovationModeType { get; set; }
 
@@ -28,7 +28,7 @@ public class WorkflowInstance : BaseEntity
 
     public virtual TableModeType? TableModeType { get; set; }
 
-    public Guid  MarkTypeId { get; set; }
+    public Guid MarkTypeId { get; set; }
 
     public virtual MarkType? MarkType { get; set; }
 

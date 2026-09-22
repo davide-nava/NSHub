@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Bibliography;
 
-using PlanetHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class HistoricalRequestChange : BaseEntity
 {

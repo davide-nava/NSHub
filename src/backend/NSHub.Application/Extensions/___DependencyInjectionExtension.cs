@@ -5,11 +5,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-using PlanetHub.ApplicationCore.Interfaces;
+using NSHub.ApplicationCore.Interfaces;
 
 using Scrutor;
 
-namespace PlanetHub.ApplicationCore.Extensions;
+namespace NSHub.ApplicationCore.Extensions;
 
 public static class DependencyInjectionExtension
 {
@@ -23,7 +23,7 @@ public static class DependencyInjectionExtension
     {
         builder.Services.Scan(scan => scan
             .FromAssemblyOf<ProductMapper>()
-            //.AddClasses(c => c.Where(t => t.Name.EndsWith("Mapper")))
+             //.AddClasses(c => c.Where(t => t.Name.EndsWith("Mapper")))
              .AddClasses(c => c.AssignableTo(typeof(IMapper<,>)))
             .AsSelf()
             .WithSingletonLifetime());

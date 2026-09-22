@@ -2,7 +2,7 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-namespace PlanetHub.Endpoints;
+namespace NSHub.Endpoints;
 
 public static class HubsEndpoint
 {

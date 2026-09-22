@@ -2,11 +2,11 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Queries;
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Infrastructure.DbContexts;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces.Repositories.Queries;
+using NSHub.Caches.Interfaces;
+using NSHub.Infrastructure.DbContexts;
 
-namespace PlanetHub.Infrastructure.Repositories.Queries;
+namespace NSHub.Infrastructure.Repositories.Queries;
 
-public class LanguageQueryRepository(TenantDbContext dbContext, IPlanetHubMemoryCacheService? planetHubMemoryCacheService = null) : BaseQueryRepository<Language>(dbContext, planetHubMemoryCacheService), ILanguageQueryRepository;
+public class LanguageQueryRepository(TenantDbContext dbContext, INSHubMemoryCacheService? nSHubMemoryCacheService = null) : BaseQueryRepository<Language>(dbContext, nSHubMemoryCacheService), ILanguageQueryRepository;

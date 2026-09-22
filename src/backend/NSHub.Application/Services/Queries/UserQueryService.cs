@@ -7,7 +7,7 @@ using NSHub.Application.Entities.Json;
 using NSHub.Application.Interfaces;
 using NSHub.Application.Interfaces.Repositories.Queries;
 using NSHub.Application.Interfaces.Services.Queries;
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Services.Queries;
 

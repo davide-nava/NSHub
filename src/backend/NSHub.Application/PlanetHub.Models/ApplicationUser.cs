@@ -4,10 +4,13 @@
 
 using Microsoft.AspNetCore.Identity;
 
-namespace NSHub.Application.PlanetHub.Models;
+namespace NSHub.Application.NSHub.Models;
 
 public class ApplicationUser : IdentityUser<Guid>
 {
-	public Guid? TenantId { get; set; }
+	public Guid? TenantId
+	{
+		get; set;
+	}
 }
 

@@ -1,8 +1,8 @@
 using System;
 
-using PlanetHub.Models;
+using NSHub.Models;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class AttendanceStatistic : BaseEntity
 {
@@ -10,7 +10,7 @@ public class AttendanceStatistic : BaseEntity
 
     public ResultType ResultType { get; set; }
 
-    public PlanetHub.Enums.ValueType ValueType { get; set; }
+    public NSHub.Enums.ValueType ValueType { get; set; }
 
     public string FixedColumn { get; set; } = null!;
 

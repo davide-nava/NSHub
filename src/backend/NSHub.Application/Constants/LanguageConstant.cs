@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 
 namespace NSHub.Application.Constants;
 
@@ -16,11 +16,11 @@ public static class LanguageConstant
 
 	public static ConstantValue German => new() { Id = new("7C0EF1F3-ED01-4CFE-89B2-092D30FA6C05"), Name = "de", Index = 4 };
 
-    public static bool CheckId(Guid id) => languages.Any(e => e.Id == id);
+	public static bool CheckId(Guid id) => languages.Any(e => e.Id == id);
 
-    public static bool CheckName(string name) => languages.Any(e => e.Name == name);
+	public static bool CheckName(string name) => languages.Any(e => e.Name == name);
 
-    public static ConstantValue CheckOrDefaultName(string name)
+	public static ConstantValue CheckOrDefaultName(string name)
 	{
 		if (!CheckName(name))
 		{

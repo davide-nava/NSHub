@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using PlanetHub.ApplicationCore.Entities.Json;
+using NSHub.ApplicationCore.Entities.Json;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class TimeTable : BaseEntity
 {

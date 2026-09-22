@@ -4,7 +4,7 @@
 
 using NSHub.Domain.Enums;
 
-namespace NSHub.Application.PlanetHub.Models.EntityModels;
+namespace NSHub.Application.NSHub.Models.EntityModels;
 
 public class NotificationModel : BaseEntityModel
 {
@@ -16,7 +16,10 @@ public class NotificationModel : BaseEntityModel
 
     public string Page { get; set; } = null!;
 
-    public DateTime Date { get; set; }
+    public DateTime Date
+    {
+        get; set;
+    }
 
     public string ConnectionId { get; set; } = null!;
 

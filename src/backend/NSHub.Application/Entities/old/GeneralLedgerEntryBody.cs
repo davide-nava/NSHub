@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Vml.Office;
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class GeneralLedgerEntryBody : BaseEntity
 {

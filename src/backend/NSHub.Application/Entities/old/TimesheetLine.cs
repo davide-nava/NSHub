@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class TimesheetLine : BaseEntity
-{                                                
+{
 
     public Guid TimesheetId { get; set; }
 

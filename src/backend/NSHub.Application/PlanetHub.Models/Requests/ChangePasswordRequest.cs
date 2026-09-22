@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ChangePasswordRequest
 {
@@ -20,6 +20,6 @@ public class ChangePasswordRequest
 	[Compare("NewPassword", ErrorMessageResourceName = nameof(SharedResource.ErrorComparePawword), ErrorMessageResourceType = typeof(SharedResource))]
 	public string ConfirmPassword { get; set; } = string.Empty;
 
-    public ApplicationUser User { get; set; } = null!;
+	public ApplicationUser User { get; set; } = null!;
 }
 

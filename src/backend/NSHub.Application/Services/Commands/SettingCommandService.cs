@@ -6,7 +6,7 @@ using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
 using NSHub.Application.Interfaces.Repositories.Commands;
 using NSHub.Application.Interfaces.Services.Commands;
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Services.Commands;
 

@@ -6,11 +6,11 @@ using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
 using NSHub.Application.Interfaces.Repositories.Queries;
 using NSHub.Application.Interfaces.Services.Queries;
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Services.Queries;
 
-public class TenantQueryService(ITenantQueryRespository repo, IMapper<Tenant, TenantModel> mapper) : BaseQueryService<Tenant, TenantModel, ITenantQueryRespository>(repo,  mapper), ITenantQueryService
+public class TenantQueryService(ITenantQueryRespository repo, IMapper<Tenant, TenantModel> mapper) : BaseQueryService<Tenant, TenantModel, ITenantQueryRespository>(repo, mapper), ITenantQueryService
 {
     public async Task<IEnumerable<string>> GetConnectionStringAsync(CancellationToken cancellationToken = default) => await repo.GetConnectionStringAsync(cancellationToken);
 

@@ -2,10 +2,10 @@ using System;
 
 using DocumentFormat.OpenXml.Bibliography;
 
-using PlanetHub.Enums;
-using PlanetHub.Models;
+using NSHub.Enums;
+using NSHub.Models;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Accounting : BaseEntity
 {

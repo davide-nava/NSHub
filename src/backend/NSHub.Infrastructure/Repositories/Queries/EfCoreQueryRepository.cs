@@ -6,10 +6,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Queries;
-using PlanetHub.Infrastructure.DbContexts;
+using NSHub.ApplicationCore.Interfaces.Repositories.Queries;
+using NSHub.Infrastructure.DbContexts;
 
-namespace PlanetHub.Infrastructure.Repositories.Queries;
+namespace NSHub.Infrastructure.Repositories.Queries;
 
 public class EfCoreQueryRepository(TenantDbContext dbContext) : IEfCoreQueryRepository
 {

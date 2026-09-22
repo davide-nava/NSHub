@@ -3,7 +3,7 @@
 // </copyright>
 
 using NSHub.Application.Entities;
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 
 namespace NSHub.Application.Interfaces.Repositories.Queries;
 

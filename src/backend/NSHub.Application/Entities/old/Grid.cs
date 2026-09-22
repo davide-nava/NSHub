@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using PlanetHub.Models;
+using NSHub.Models;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Grid : BaseEntity
 {

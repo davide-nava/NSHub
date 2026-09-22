@@ -6,148 +6,259 @@ using System.Globalization;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.OpenApi;
+using NSHub.Api.ExceptionHandling.Extensions;
+using NSHub.Api.HostedServices;
+using NSHub.Api.Hubs;
+using NSHub.Api.Infrastructure.Extensions;
 using NSHub.Api.Middleware;
+using NSHub.Api.Middlewares;
 using NSHub.Application;
+using NSHub.ApplicationCore.Extensions;
+using NSHub.ApplicationCore.Helpers;
+using NSHub.ApplicationCore.Interfaces;
+using NSHub.Cryptographies.Services;
+using NSHub.Endpoints;
+using NSHub.Endpoints.Api;
 using NSHub.Infrastructure;
+using NSHub.Infrastructure.Extensions;
 using NSHub.Infrastructure.Persistence;
+using NSHub.Infrastructure.Services;
+using NSHub.Localization.Extensions;
+using NSHub.Logs.Extensions;
+using NSHub.Models;
+using NSHub.Swaggers.Extensions;
+using NSHub.Web.ApplicationCore.Extensions;
+using Scrutor;
 using Serilog;
+using Serilog;
+using Web.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Configurazione Serilog
-Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .WriteTo.Console()
-    .CreateLogger();
+builder.AddBuildConfig();
+builder.AddDefaultOptionsIfPrest();
 
-builder.Host.UseSerilog();
+var connectionString = AesService.Decrypt(builder.Configuration.GetConnectionString("NSHub") ?? throw new InvalidOperationException("Connection string NSHub not found."));
 
-// Layer Application & Infrastructure
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+Serilog.Debugging.SelfLog.Enable(Console.WriteLine);
+Log.Logger = builder.AddSerilogBuilder(connectionString);
 
-// Configurazione Internazionalizzazione & Localizzazione (i18n) a 4 lingue (it, de, fr, en)
-var supportedCultures = new[]
+try
 {
-    new CultureInfo("it-CH"),
-    new CultureInfo("de-CH"),
-    new CultureInfo("fr-CH"),
-    new CultureInfo("en-US"),
-    new CultureInfo("it"),
-    new CultureInfo("de"),
-    new CultureInfo("fr"),
-    new CultureInfo("en"),
-};
+    builder.Host.UseSerilog();
 
-builder.Services.Configure<RequestLocalizationOptions>(options =>
+    builder.Services.AddExceptionStrategy();
+
+    builder.AddApplicationMappers();
+    builder.AddApplicationCoreShareBuilder();
+    builder.AddApplicationCoreBuilder();
+    builder.AddInfrastructureShareBuilder(connectionString);
+    builder.AddInfrastructureBuilder();
+
+    builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+    builder.Services.AddHttpContextAccessor();
+
+    builder.Services.AddScoped<IRequestContext, RequestContext>();
+    builder.Services.AddTransient<HeaderMiddleware>();
+
+    builder.Services.AddLogServices();
+    builder.Services.AddLocalizationServices();
+
+    builder.Services.AddSwaggerServices("NSHub");
+
+    builder.AddDefaultConfigBuilder();
+
+    //builder.Services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
+    //builder.Services.AddValidatorsFromAssemblyContaining<CreateContrattoRequestValidator>();
+
+    builder.Services.AddSingleton<ApiHostedService>();
+    builder.Services.AddHostedService<ApiHostedService>();
+
+    builder.Services.Scan(scan => scan.FromAssemblyOf<Program>().AddClasses().UsingRegistrationStrategy(RegistrationStrategy.Skip).AsMatchingInterface().WithTransientLifetime());
+
+    var app = builder.Build();
+
+    app.AddDefaultConfigApp();
+
+    app.UseHttpsRedirection();
+
+    app.UseRouting();
+
+    app.UseMiddleware<HeaderMiddleware>();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.AddSwaggerApp();
+
+    app.MapDefaultEndpoints();
+    app.MapHealthChecks(NSHubEndpoint.GetHealth);
+    app.MapControllers();
+    app.MapHub<NSHubApiHub>(HubsEndpoint.Api);
+    app.MapIdentityApi<ApplicationUser>();
+
+    await app.UseMigrationsAsync();
+
+#pragma warning disable S6966 // Awaitable method should be used
+    app.Run();
+#pragma warning restore S6966 // Awaitable method should be used
+
+    app.Logger.LogInformation("NSHub.API started...");
+}
+catch (Exception ex)
 {
-    options.DefaultRequestCulture = new RequestCulture("it-CH");
-    options.SupportedCultures = supportedCultures;
-    options.SupportedUICultures = supportedCultures;
-    options.ApplyCurrentCultureToResponseHeaders = true;
-    options.RequestCultureProviders = new List<IRequestCultureProvider>
-    {
-        new QueryStringRequestCultureProvider { QueryStringKey = "culture", UIQueryStringKey = "ui-culture" },
-        new AcceptLanguageHeaderRequestCultureProvider(),
-    };
-});
-
-// Configurazione CORS per client Angular
-builder.Services.AddCors(options =>
+    Log.Fatal(ex, "NSHub.API application terminated unexpectedly");
+}
+finally
 {
-    options.AddPolicy("AllowClient", policy =>
-    {
-        _ = policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
-    });
-});
-
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    });
-
-builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-});
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Open-X Gest API - TimeTracking Core",
-        Version = "v1",
-        Description = "Piattaforma gestionale modulare conforme al Diritto del Lavoro Svizzero (LL art. 46, OLL 1 art. 73/73a/73b, OLL 3 art. 26 e nLPD) con supporto multilingua nativo (IT, DE, FR, EN).",
-    });
-
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = "Inserisci il token JWT nel formato: Bearer {token}",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
-    });
-
-    var securityScheme = new OpenApiSecuritySchemeReference("Bearer");
-    c.AddSecurityRequirement(_ => new OpenApiSecurityRequirement
-    {
-        [securityScheme] = []
-    });
-});
-
-var app = builder.Build();
-
-app.MapDefaultEndpoints();
-
-// Seeding del Database all'avvio
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<OpenXGestDbContext>();
-        // await DbInitializer.InitializeAsync(context);
-    }
-    catch (Exception ex)
-    {
-        Log.Error(ex, "Errore durante il popolamento iniziale del database.");
-    }
+    await Log.CloseAndFlushAsync();
 }
 
-// Middleware di localizzazione
-var locOptions = app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions>>().Value;
-app.UseRequestLocalization(locOptions);
 
-// Middleware ProblemDetails per eccezioni non gestite
-app.UseMiddleware<ProblemDetailsMiddleware>();
 
-if (app.Environment.IsDevelopment())
-{
-    _ = app.UseSwagger();
-    _ = app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Open-X Gest API v1");
-    });
-}
 
-app.UseSerilogRequestLogging();
 
-app.UseCors("AllowClient");
 
-app.UseAuthentication();
-app.UseAuthorization();
 
-app.MapControllers();
 
-await app.RunAsync();
+
+
+
+
+// // Configurazione Serilog
+// Log.Logger = new LoggerConfiguration()
+//     .ReadFrom.Configuration(builder.Configuration)
+//     .Enrich.FromLogContext()
+//     .WriteTo.Console()
+//     .CreateLogger();
+
+// builder.Host.UseSerilog();
+
+// // Layer Application & Infrastructure
+// builder.Services.AddApplication();
+// builder.Services.AddInfrastructure(builder.Configuration);
+
+// // Configurazione Internazionalizzazione & Localizzazione (i18n) a 4 lingue (it, de, fr, en)
+// var supportedCultures = new[]
+// {
+//     new CultureInfo("it-CH"),
+//     new CultureInfo("de-CH"),
+//     new CultureInfo("fr-CH"),
+//     new CultureInfo("en-US"),
+//     new CultureInfo("it"),
+//     new CultureInfo("de"),
+//     new CultureInfo("fr"),
+//     new CultureInfo("en"),
+// };
+
+// builder.Services.Configure<RequestLocalizationOptions>(options =>
+// {
+//     options.DefaultRequestCulture = new RequestCulture("it-CH");
+//     options.SupportedCultures = supportedCultures;
+//     options.SupportedUICultures = supportedCultures;
+//     options.ApplyCurrentCultureToResponseHeaders = true;
+//     options.RequestCultureProviders = new List<IRequestCultureProvider>
+//     {
+//         new QueryStringRequestCultureProvider { QueryStringKey = "culture", UIQueryStringKey = "ui-culture" },
+//         new AcceptLanguageHeaderRequestCultureProvider(),
+//     };
+// });
+
+// // Configurazione CORS per client Angular
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowClient", policy =>
+//     {
+//         _ = policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+//               .AllowAnyHeader()
+//               .AllowAnyMethod()
+//               .AllowCredentials();
+//     });
+// });
+
+// builder.Services.AddControllers()
+//     .AddJsonOptions(options =>
+//     {
+//         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+//         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+//     });
+
+// builder.Services.ConfigureHttpJsonOptions(options =>
+// {
+//     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+//     options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+// });
+
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen(c =>
+// {
+//     c.SwaggerDoc("v1", new OpenApiInfo
+//     {
+//         Title = "Open-X Gest API - TimeTracking Core",
+//         Version = "v1",
+//         Description = "Piattaforma gestionale modulare conforme al Diritto del Lavoro Svizzero (LL art. 46, OLL 1 art. 73/73a/73b, OLL 3 art. 26 e nLPD) con supporto multilingua nativo (IT, DE, FR, EN).",
+//     });
+
+//     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+//     {
+//         Description = "Inserisci il token JWT nel formato: Bearer {token}",
+//         Name = "Authorization",
+//         In = ParameterLocation.Header,
+//         Type = SecuritySchemeType.ApiKey,
+//         Scheme = "Bearer",
+//     });
+
+//     var securityScheme = new OpenApiSecuritySchemeReference("Bearer");
+//     c.AddSecurityRequirement(_ => new OpenApiSecurityRequirement
+//     {
+//         [securityScheme] = []
+//     });
+// });
+
+// var app = builder.Build();
+
+// app.MapDefaultEndpoints();
+
+// // Seeding del Database all'avvio
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//     try
+//     {
+//         var context = services.GetRequiredService<OpenXGestDbContext>();
+//         // await DbInitializer.InitializeAsync(context);
+//     }
+//     catch (Exception ex)
+//     {
+//         Log.Error(ex, "Errore durante il popolamento iniziale del database.");
+//     }
+// }
+
+// // Middleware di localizzazione
+// var locOptions = app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions>>().Value;
+// app.UseRequestLocalization(locOptions);
+
+// // Middleware ProblemDetails per eccezioni non gestite
+// app.UseMiddleware<ProblemDetailsMiddleware>();
+
+// if (app.Environment.IsDevelopment())
+// {
+//     _ = app.UseSwagger();
+//     _ = app.UseSwaggerUI(c =>
+//     {
+//         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Open-X Gest API v1");
+//     });
+// }
+
+// app.UseSerilogRequestLogging();
+
+// app.UseCors("AllowClient");
+
+// app.UseAuthentication();
+// app.UseAuthorization();
+
+// app.MapControllers();
+
+// await app.RunAsync();

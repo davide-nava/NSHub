@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 
 namespace NSHub.Application.Constants;
 
@@ -12,11 +12,11 @@ public static class CurrencyConstant
 
 	public static ConstantValue Eur => new() { Id = new("BEAE3795-0821-48D9-97B0-474F23B9858A"), Name = "eur", Index = 2 };
 
-    public static bool CheckId(Guid id) => currencies.Any(e => e.Id == id);
+	public static bool CheckId(Guid id) => currencies.Any(e => e.Id == id);
 
-    public static bool CheckName(string name) => currencies.Any(e => e.Name == name);
+	public static bool CheckName(string name) => currencies.Any(e => e.Name == name);
 
-    public static ConstantValue CheckOrDefaultName(string name)
+	public static ConstantValue CheckOrDefaultName(string name)
 	{
 		if (!CheckName(name))
 		{

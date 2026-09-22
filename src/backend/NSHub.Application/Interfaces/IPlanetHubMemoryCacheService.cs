@@ -1,4 +1,4 @@
-// <copyright file="IPlanetHubMemoryCacheService.cs" company="Davide Nava">
+// <copyright file="INSHubMemoryCacheService.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -9,11 +9,20 @@ namespace NSHub.Application.Interfaces;
 
 public interface INSHubMemoryCacheService
 {
-    MemoryCache Cache { get; set; }
+    MemoryCache Cache
+    {
+        get; set;
+    }
 
-    Collection<string> Keys { get; set; }
+    Collection<string> Keys
+    {
+        get; set;
+    }
 
-    MemoryCacheEntryOptions Options { get; }
+    MemoryCacheEntryOptions Options
+    {
+        get;
+    }
 
     void RemoveAll();
 

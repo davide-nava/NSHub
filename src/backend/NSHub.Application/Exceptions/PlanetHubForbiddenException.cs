@@ -1,4 +1,4 @@
-// <copyright file="PlanetHubForbiddenException.cs" company="Davide Nava">
+// <copyright file="NSHubForbiddenException.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 

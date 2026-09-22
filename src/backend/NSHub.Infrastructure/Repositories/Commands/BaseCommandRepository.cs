@@ -6,18 +6,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Commands;
-using PlanetHub.Caches.Interfaces;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces.Repositories.Commands;
+using NSHub.Caches.Interfaces;
 
-namespace PlanetHub.Infrastructure.Repositories.Commands;
+namespace NSHub.Infrastructure.Repositories.Commands;
 
-public class BaseCommandRepository<TEntity>(DbContext dbContext, IPlanetHubMemoryCacheService? planetHubMemoryCacheService = null) : IBaseCommandRepository<TEntity>
+public class BaseCommandRepository<TEntity>(DbContext dbContext, INSHubMemoryCacheService? nSHubMemoryCacheService = null) : IBaseCommandRepository<TEntity>
 		where TEntity : BaseEntity
 {
 	public virtual async Task<int> DeleteAsync(Guid id, Guid userId, Guid tenantId, CancellationToken cancellationToken = default)
 	{
-		planetHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
+		nSHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
 
 		var item = await dbContext.Set<TEntity>().Where(e => e.Id == id).FirstOrDefaultAsync(cancellationToken);
 
@@ -31,10 +31,10 @@ public class BaseCommandRepository<TEntity>(DbContext dbContext, IPlanetHubMemor
 		return await dbContext.SaveChangesAsync(cancellationToken);
 	}
 
-	public virtual async Task<TEntity> UpdateAsync(TEntity entity,  CancellationToken cancellationToken = default)
+	public virtual async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
 	{
 		ArgumentNullException.ThrowIfNull(entity);
-		planetHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
+		nSHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
 
 		var hasTx = dbContext.Database.CurrentTransaction != null;
 		var entry = dbContext.Entry(entity);
@@ -48,19 +48,19 @@ public class BaseCommandRepository<TEntity>(DbContext dbContext, IPlanetHubMemor
 			entry.State = EntityState.Detached;
 		}
 
-		if (planetHubMemoryCacheService != null)
+		if (nSHubMemoryCacheService != null)
 		{
-			planetHubMemoryCacheService.SetKey($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}");
-			planetHubMemoryCacheService.Cache.Set($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}", entity);
+			nSHubMemoryCacheService.SetKey($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}");
+			nSHubMemoryCacheService.Cache.Set($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}", entity);
 		}
 
 		return entry.Entity;
 	}
 
-	public virtual async Task<TEntity> CreateAsync(TEntity entity,  CancellationToken cancellationToken = default)
+	public virtual async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
 	{
 		ArgumentNullException.ThrowIfNull(entity);
-		planetHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
+		nSHubMemoryCacheService?.RemoveContainsKey($"{typeof(TEntity).Name}_");
 
 		var hasTx = dbContext.Database.CurrentTransaction != null;
 		var entry = dbContext.Entry(entity);
@@ -74,10 +74,10 @@ public class BaseCommandRepository<TEntity>(DbContext dbContext, IPlanetHubMemor
 			entry.State = EntityState.Detached;
 		}
 
-		if (planetHubMemoryCacheService != null)
+		if (nSHubMemoryCacheService != null)
 		{
-			planetHubMemoryCacheService.SetKey($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}");
-			planetHubMemoryCacheService.Cache.Set($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}", entity);
+			nSHubMemoryCacheService.SetKey($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}");
+			nSHubMemoryCacheService.Cache.Set($"{typeof(TEntity).Name}_Get_id:{entity.Id}_TenantId:{tenantId}", entity);
 		}
 
 		return entry.Entity;

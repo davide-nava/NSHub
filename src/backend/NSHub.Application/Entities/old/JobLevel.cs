@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Math;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class JobLevel : BaseEntity
 {

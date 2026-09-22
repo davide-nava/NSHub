@@ -1,4 +1,4 @@
-// <copyright file="IPlanetHubClient.cs" company="Davide Nava">
+// <copyright file="INSHubClient.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 

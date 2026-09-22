@@ -14,21 +14,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Caches.Services;
-using PlanetHub.Localization.Extensions;
-using PlanetHub.Logs.Middlewares;
-using PlanetHub.Options;
+using NSHub.Caches.Interfaces;
+using NSHub.Caches.Services;
+using NSHub.Localization.Extensions;
+using NSHub.Logs.Middlewares;
+using NSHub.Options;
 
 using Scrutor;
 
 using Serilog;
 
-namespace PlanetHub.ApplicationCore.Helpers;
+namespace NSHub.ApplicationCore.Helpers;
 
 public static class DependencyInjectionHelper
 {
-	//public static WebApplicationBuilder AddPlanetHubApiKeyFilter(this WebApplicationBuilder builder)
+	//public static WebApplicationBuilder AddNSHubApiKeyFilter(this WebApplicationBuilder builder)
 	//{
 	//	builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
 
@@ -56,9 +56,9 @@ public static class DependencyInjectionHelper
 	public static WebApplicationBuilder AddDefaultOptionsIfPrest(this WebApplicationBuilder builder)
 	{
 		ArgumentNullException.ThrowIfNull(builder);
-		if (builder.Configuration.GetSection("PlanetHub") != null)
+		if (builder.Configuration.GetSection("NSHub") != null)
 		{
-			builder.Services.AddOptionsWithValidateOnStart<PlanetHubOption>().Bind(builder.Configuration.GetSection("PlanetHub"));
+			builder.Services.AddOptionsWithValidateOnStart<NSHubOption>().Bind(builder.Configuration.GetSection("NSHub"));
 		}
 
 		if (builder.Configuration.GetSection("Smtp") != null)
@@ -66,22 +66,22 @@ public static class DependencyInjectionHelper
 			builder.Services.AddOptionsWithValidateOnStart<SmtpOption>().Bind(builder.Configuration.GetSection("Smtp"));
 		}
 
-        if (builder.Configuration.GetSection("Authentication") != null)
-        {
-            builder.Services.AddOptionsWithValidateOnStart<AuthenticationOption>().Bind(builder.Configuration.GetSection("Authentication"));
-        }
+		if (builder.Configuration.GetSection("Authentication") != null)
+		{
+			builder.Services.AddOptionsWithValidateOnStart<AuthenticationOption>().Bind(builder.Configuration.GetSection("Authentication"));
+		}
 
-        return builder;
+		return builder;
 	}
 
-	private static WebApplicationBuilder AddPlanetHubCors(this WebApplicationBuilder builder)
+	private static WebApplicationBuilder AddNSHubCors(this WebApplicationBuilder builder)
 	{
-		var tmpCors = Convert.ToString(value: builder.Configuration.GetSection("PlanetHub:Cors").Value ?? string.Empty, CultureInfo.InvariantCulture);
+		var tmpCors = Convert.ToString(value: builder.Configuration.GetSection("NSHub:Cors").Value ?? string.Empty, CultureInfo.InvariantCulture);
 
 		tmpCors = tmpCors.Replace(" ", string.Empty, StringComparison.InvariantCulture);
 
 		builder.Services.AddCors(options => options.AddPolicy(
-				name: "PlanetHub",
+				name: "NSHub",
 				corsPolicyBuilder =>
 				{
 					if (tmpCors.Equals("<any>", StringComparison.OrdinalIgnoreCase))
@@ -104,9 +104,9 @@ public static class DependencyInjectionHelper
 	public static WebApplicationBuilder AddDefaultConfigBuilder(this WebApplicationBuilder builder)
 	{
 		ArgumentNullException.ThrowIfNull(builder);
-		_ = builder.Services.AddSingleton<IPlanetHubMemoryCacheService, PlanetHubMemoryCacheService>();
+		_ = builder.Services.AddSingleton<INSHubMemoryCacheService, NSHubMemoryCacheService>();
 
-		builder.AddPlanetHubCors();
+		builder.AddNSHubCors();
 
 		_ = builder.Services.AddMemoryCache();
 		_ = builder.Services.AddOpenApi();
@@ -173,7 +173,7 @@ public static class DependencyInjectionHelper
 
 		app.UseSerilogRequestLogging();
 
-		// app.UseMiddleware<PlanetHubHeaderMiddleware>( );
+		// app.UseMiddleware<NSHubHeaderMiddleware>( );
 
 		if (app.Environment.IsDevelopment())
 		{
@@ -189,10 +189,10 @@ public static class DependencyInjectionHelper
 
 		_ = app.UseResponseCompression();
 
-		app.UseCors("PlanetHub");
+		app.UseCors("NSHub");
 		_ = app.MapStaticAssets();
 
-		//app.MapHealthChecks(PlanetHubEndpoint.GetHealth);
+		//app.MapHealthChecks(NSHubEndpoint.GetHealth);
 		_ = app.MapOpenApi();
 
 		app.UseResponseCaching();

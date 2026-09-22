@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using MimeKit;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class CheckListRunning : BaseEntity
 {

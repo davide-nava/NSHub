@@ -1,6 +1,6 @@
-using PlanetHub.ApplicationCore.Entities.Json;
+using NSHub.ApplicationCore.Entities.Json;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class SupportLotDetail : BaseEntity
 {

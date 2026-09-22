@@ -3,7 +3,7 @@
 // </copyright>
 
 using NSHub.Application.Entities.Json;
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 
 namespace NSHub.Application.Entities;
 
@@ -26,13 +26,25 @@ public class User : BaseEntity
 
     public string Note { get; set; } = null!;
 
-    public Guid? ApplicationUserId { get; set; }
+    public Guid? ApplicationUserId
+    {
+        get; set;
+    }
 
-    public virtual ApplicationUser? ApplicationUser { get; set; }
+    public virtual ApplicationUser? ApplicationUser
+    {
+        get; set;
+    }
 
-    public virtual Guid  TenantUsedId { get; set; }
+    public virtual Guid TenantUsedId
+    {
+        get; set;
+    }
 
-    public virtual Tenant? TenantUsed { get; set; }
+    public virtual Tenant? TenantUsed
+    {
+        get; set;
+    }
 
     public UserConfigurationJson Configuration { get; set; } = new();
 

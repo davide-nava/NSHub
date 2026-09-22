@@ -1,10 +1,10 @@
-// <copyright file="PlanetHubProblemDetails.cs" company="Davide Nava">
+// <copyright file="NSHubProblemDetails.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace NSHub.Application.PlanetHub.Models;
+namespace NSHub.Application.NSHub.Models;
 
 public class NSHubProblemDetails : ProblemDetails
 {

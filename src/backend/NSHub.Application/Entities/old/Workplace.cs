@@ -1,8 +1,8 @@
 using System;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
-public class Workplace  : BaseEntity
+public class Workplace : BaseEntity
 {
     public Guid WorkplaceTypeId { get; set; }
 

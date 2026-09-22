@@ -5,13 +5,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces;
-using PlanetHub.ApplicationCore.Interfaces.Services.Commands;
-using PlanetHub.ApplicationCore.Interfaces.Services.Queries;
-using PlanetHub.Models.EntityModels;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces;
+using NSHub.ApplicationCore.Interfaces.Services.Commands;
+using NSHub.ApplicationCore.Interfaces.Services.Queries;
+using NSHub.Models.EntityModels;
 
-namespace PlanetHub.Api.Controllers;
+namespace NSHub.Api.Controllers;
 
 [ApiController]
 [Authorize]

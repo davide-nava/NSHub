@@ -4,16 +4,25 @@
 
 using NSHub.Domain.Enums;
 
-namespace NSHub.Application.PlanetHub.Models;
+namespace NSHub.Application.NSHub.Models;
 
 public class PaginationModel
 {
-	public int? PageNumber { get; set; }
+	public int? PageNumber
+	{
+		get; set;
+	}
 
-	public int? PageSize { get; set; }
+	public int? PageSize
+	{
+		get; set;
+	}
 
 	public SortingDirectionType SortingDirectionType { get; set; } = SortingDirectionType.Asc;
 
-	public string? SortingBy { get; set; }
+	public string? SortingBy
+	{
+		get; set;
+	}
 }
 

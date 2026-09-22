@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.PlanetHub.Models.EntityModels;
+namespace NSHub.Application.NSHub.Models.EntityModels;
 
 public class SettingModel : BaseEntityModel
 {
@@ -12,18 +12,39 @@ public class SettingModel : BaseEntityModel
 
     public string Value { get; set; } = null!;
 
-    public bool IsEncrypted { get; set; }
+    public bool IsEncrypted
+    {
+        get; set;
+    }
 
-    public Guid DescriptionGroupId { get; set; }
+    public Guid DescriptionGroupId
+    {
+        get; set;
+    }
 
-    public virtual TranslationGroupModel? DescriptionGroup { get; set; }
+    public virtual TranslationGroupModel? DescriptionGroup
+    {
+        get; set;
+    }
 
-    public Guid DescriptionTitleId { get; set; }
+    public Guid DescriptionTitleId
+    {
+        get; set;
+    }
 
-    public virtual TranslationGroupModel? DescriptionTitle { get; set; }
+    public virtual TranslationGroupModel? DescriptionTitle
+    {
+        get; set;
+    }
 
-    public Guid DescriptionId { get; set; }
+    public Guid DescriptionId
+    {
+        get; set;
+    }
 
-    public virtual TranslationGroupModel? Description { get; set; }
+    public virtual TranslationGroupModel? Description
+    {
+        get; set;
+    }
 }
 

@@ -1,8 +1,8 @@
 using System;
 
-using PlanetHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class TechnicalReportType : BaseEntity
 {

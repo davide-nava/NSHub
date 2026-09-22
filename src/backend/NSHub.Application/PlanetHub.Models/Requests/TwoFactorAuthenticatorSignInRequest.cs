@@ -2,14 +2,20 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class TwoFactorAuthenticatorSignInRequest
 {
     public string Code { get; set; } = string.Empty;
 
-    public bool IsPersistent { get; set; }
+    public bool IsPersistent
+    {
+        get; set;
+    }
 
-    public bool RememberClient { get; set; }
+    public bool RememberClient
+    {
+        get; set;
+    }
 }
 

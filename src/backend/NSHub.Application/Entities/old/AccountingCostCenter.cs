@@ -2,9 +2,9 @@ using System;
 
 using DocumentFormat.OpenXml.Bibliography;
 
-using PlanetHub.Models;
+using NSHub.Models;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class AccountingCostCenter : BaseEntity
 {

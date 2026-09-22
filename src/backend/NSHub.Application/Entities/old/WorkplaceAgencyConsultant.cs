@@ -1,6 +1,6 @@
 using System;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class WorkplaceAgencyConsultant : BaseEntity
 {

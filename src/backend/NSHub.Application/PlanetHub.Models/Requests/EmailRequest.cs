@@ -5,13 +5,16 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class EmailRequest
 {
 	[Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
 	[EmailAddress]
 	[Display(Name = "New email")]
-	public string? NewEmail { get; set; }
+	public string? NewEmail
+	{
+		get; set;
+	}
 }
 

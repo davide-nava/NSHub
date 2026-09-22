@@ -1,7 +1,7 @@
 using System;
 
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class PaymentOrderSalaryIso20022 : BaseEntity
 {

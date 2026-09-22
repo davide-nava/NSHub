@@ -2,12 +2,18 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.PlanetHub.Models.Responses;
+namespace NSHub.Application.NSHub.Models.Responses;
 
 public class ConfirmEmailResponse
 {
-	public bool UserFound { get; set; }
+	public bool UserFound
+	{
+		get; set;
+	}
 
-	public bool Confirm { get; set; }
+	public bool Confirm
+	{
+		get; set;
+	}
 }
 

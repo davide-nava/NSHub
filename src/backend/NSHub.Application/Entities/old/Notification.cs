@@ -2,9 +2,9 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-using PlanetHub.Enums;
+using NSHub.Enums;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Notification : BaseEntity
 {

@@ -5,16 +5,22 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ExternalLoginSignInRequest
 {
-    public bool IsPersistent { get; set; }
+    public bool IsPersistent
+    {
+        get; set;
+    }
 
-    public bool BypassTwoFactor { get; set; }
+    public bool BypassTwoFactor
+    {
+        get; set;
+    }
 
-	[Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
-    public string ProviderKey { get; set; }= null!;
+    [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
+    public string ProviderKey { get; set; } = null!;
 
     [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired),
         ErrorMessageResourceType = typeof(SharedResource))]

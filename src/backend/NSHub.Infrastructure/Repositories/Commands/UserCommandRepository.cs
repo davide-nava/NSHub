@@ -4,21 +4,21 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Entities.Json;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Commands;
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Infrastructure.DbContexts;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities.Json;
+using NSHub.ApplicationCore.Interfaces.Repositories.Commands;
+using NSHub.Caches.Interfaces;
+using NSHub.Infrastructure.DbContexts;
 
-namespace PlanetHub.Infrastructure.Repositories.Commands;
+namespace NSHub.Infrastructure.Repositories.Commands;
 
-public class UserCommandRepository(TenantDbContext dbContext, IPlanetHubMemoryCacheService? planetHubMemoryCacheService = null) : BaseCommandRepository<User>(dbContext, planetHubMemoryCacheService), IUserCommandRepository
+public class UserCommandRepository(TenantDbContext dbContext, INSHubMemoryCacheService? nSHubMemoryCacheService = null) : BaseCommandRepository<User>(dbContext, nSHubMemoryCacheService), IUserCommandRepository
 {
     public async Task<UserConfigurationJson?> SetConfigurationAsync(UserConfigurationJson entity, Guid userId, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        planetHubMemoryCacheService?.RemoveContainsKey("User_");
+        nSHubMemoryCacheService?.RemoveContainsKey("User_");
 
         var tmpUser = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 

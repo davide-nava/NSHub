@@ -5,12 +5,12 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ResetPasswordRequest
 {
-    [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
-    public ApplicationUser User { get; set; } = null!;
+	[Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
+	public ApplicationUser User { get; set; } = null!;
 
 	public string Code { get; set; } = string.Empty;
 

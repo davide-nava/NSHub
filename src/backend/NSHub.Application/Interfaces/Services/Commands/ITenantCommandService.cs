@@ -2,9 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Interfaces.Services.Commands;
 
-public interface ITenantCommandService : IBaseCommandService< TenantModel>;
+public interface ITenantCommandService : IBaseCommandService<TenantModel>;
 

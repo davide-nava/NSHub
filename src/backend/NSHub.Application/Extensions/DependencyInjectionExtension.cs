@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-using PlanetHub.Cryptographies.Services;
-using PlanetHub.Logs.Enums;
-using PlanetHub.Logs.Handlers;
-using PlanetHub.Logs.Middlewares;
+using NSHub.Cryptographies.Services;
+using NSHub.Logs.Enums;
+using NSHub.Logs.Handlers;
+using NSHub.Logs.Middlewares;
 
 using Scrutor;
 
@@ -24,7 +24,7 @@ using Serilog.Formatting.Display;
 using Serilog.Sinks.Email;
 using Serilog.Sinks.MSSqlServer;
 
-namespace PlanetHub.Logs.Extensions;
+namespace NSHub.Logs.Extensions;
 
 public static class DependencyInjectionExtension
 {
@@ -60,12 +60,12 @@ public static class DependencyInjectionExtension
               //.Enrich.WithRequestHeader("User-Agent", "ClientAgent")
               ;
 
-        if (Convert.ToBoolean(builder.Configuration.GetSection("PlanetHub:SerilogEmail").Value))
+        if (Convert.ToBoolean(builder.Configuration.GetSection("NSHub:SerilogEmail").Value))
         {
             tmpLogger = tmpLogger.WriteTo.Email(
                 options: new EmailSinkOptions()
                 {
-                    Subject = new MessageTemplateTextFormatter("PlanetHub - {Level}"),
+                    Subject = new MessageTemplateTextFormatter("NSHub - {Level}"),
                     Body = new MessageTemplateTextFormatter("{Host} {Timestamp:HH:mm:ss} {Level:u3} <br/>TenantId:{TenantId} <br/>Email:{Email} <br/>Endpoint:{EndpointDisplayName} <br/>CorrelationId:{CorrelationId} <br/>RequestIp:{RequestIp} <br/>Host:{Host} <br/>MachineName:{MachineName}<br/><br/>{Message}<br/><br/>{Exception}"),
                     IsBodyHtml = true,
                     From = AesService.Decrypt(Convert.ToString(builder.Configuration.GetSection("Smtp:Sender").Value)!),
@@ -82,12 +82,12 @@ public static class DependencyInjectionExtension
                 });
         }
 
-        if (Convert.ToBoolean(builder.Configuration.GetSection("PlanetHub:SerilogSQLite").Value))
+        if (Convert.ToBoolean(builder.Configuration.GetSection("NSHub:SerilogSQLite").Value))
         {
             tmpLogger = tmpLogger.WriteTo.SQLite(@"Logs\log.db", "SerilogSQLite", LogEventLevel.Verbose, maxDatabaseSize: 10000);
         }
 
-        if (Convert.ToBoolean(builder.Configuration.GetSection("PlanetHub:SerilogMSSqlServer").Value) && !string.IsNullOrWhiteSpace(connectionStringMSSqlServerName))
+        if (Convert.ToBoolean(builder.Configuration.GetSection("NSHub:SerilogMSSqlServer").Value) && !string.IsNullOrWhiteSpace(connectionStringMSSqlServerName))
         {
             var columnOptions = new ColumnOptions();
             columnOptions.Store.Remove(StandardColumn.Id);

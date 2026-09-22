@@ -1,6 +1,6 @@
-using PlanetHub.ApplicationCore.Interfaces;
+using NSHub.ApplicationCore.Interfaces;
 
-namespace PlanetHub.Infrastructure.Pdfs.Generators;
+namespace NSHub.Infrastructure.Pdfs.Generators;
 
 public class PdfGenerator : IPdfGenerator
 {

@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class SetEmailUserStoreRequest
 {
@@ -14,6 +14,6 @@ public class SetEmailUserStoreRequest
 
     [EmailAddress]
     [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
-	public string Email { get; set; } = null!;
+    public string Email { get; set; } = null!;
 }
 

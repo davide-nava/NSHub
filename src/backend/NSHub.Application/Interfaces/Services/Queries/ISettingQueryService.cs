@@ -2,9 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Interfaces.Services.Queries;
 
-public interface ISettingQueryService : IBaseQueryService< SettingModel>;
+public interface ISettingQueryService : IBaseQueryService<SettingModel>;
 

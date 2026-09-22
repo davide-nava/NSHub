@@ -1,18 +1,18 @@
-// <copyright file="PlanetHubController.cs" company="Progel SA">
+// <copyright file="NSHubController.cs" company="Progel SA">
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using PlanetHub.Endpoints.Api;
+using NSHub.Endpoints.Api;
 
-namespace PlanetHub.Api.Controllers;
+namespace NSHub.Api.Controllers;
 
 [ApiController]
 [Authorize]
 [Route("api/[controller]")]
-public class PlanetHubController(ILogger<PlanetHubController> logger, IHostEnvironment hostEnvironment)
+public class NSHubController(ILogger<NSHubController> logger, IHostEnvironment hostEnvironment)
     : ControllerBase
 {
     [AllowAnonymous]
@@ -25,7 +25,7 @@ public class PlanetHubController(ILogger<PlanetHubController> logger, IHostEnvir
     }
 
     [AllowAnonymous]
-    [HttpGet(PlanetHubEndpoint.GetPing)]
+    [HttpGet(NSHubEndpoint.GetPing)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetPing()
     {

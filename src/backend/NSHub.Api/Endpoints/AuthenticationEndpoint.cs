@@ -2,7 +2,7 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-namespace PlanetHub.Endpoints.Api;
+namespace NSHub.Endpoints.Api;
 
 public class AuthenticationEndpoint
 {
@@ -99,7 +99,7 @@ public class AuthenticationEndpoint
     public const string PostExternalLoginSignIn = ConfigurationBase + "/externalloginsignin";
     public const string PostResetAuthenticatorKey = ConfigurationBase + "/resetauthenticatorkey";
     public const string PostRemoveLogin = ConfigurationBase + "/removelogin";
-    public const string PostVerifyTwoFactorToken= ConfigurationBase + "/verifytwofactortoken";
+    public const string PostVerifyTwoFactorToken = ConfigurationBase + "/verifytwofactortoken";
     public const string GetAuthenticatorTokenProvider = ConfigurationBase + "/authenticatortokenprovider";
     public const string GetSupportsUserEmail = ConfigurationBase + "/supportsuseremail";
     public const string GetSetEmail = ConfigurationBase + "/setemail";

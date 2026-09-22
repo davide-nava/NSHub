@@ -4,7 +4,7 @@
 
 using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 using Riok.Mapperly.Abstractions;
 
 namespace NSHub.Application.Mappers;

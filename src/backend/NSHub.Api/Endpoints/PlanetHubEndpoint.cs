@@ -1,14 +1,14 @@
-// <copyright file="PlanetHubEndpoint.cs" company="Progel SA">
+// <copyright file="NSHubEndpoint.cs" company="Progel SA">
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-namespace PlanetHub.Endpoints.Api;
+namespace NSHub.Endpoints.Api;
 
-public static class PlanetHubEndpoint
+public static class NSHubEndpoint
 {
     public const string GetRoot = "/";
 
-    public const string GetPing = "/api/planethub/ping";
+    public const string GetPing = "/api/nshub/ping";
 
-    public const string GetHealth = "/api/planethub/health";
+    public const string GetHealth = "/api/nshub/health";
 }

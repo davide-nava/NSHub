@@ -2,11 +2,11 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Interfaces.Services.Queries;
 
-public interface ITenantQueryService : IBaseQueryService< TenantModel>
+public interface ITenantQueryService : IBaseQueryService<TenantModel>
 {
     Task<IEnumerable<string>> GetConnectionStringAsync(CancellationToken cancellationToken = default);
 

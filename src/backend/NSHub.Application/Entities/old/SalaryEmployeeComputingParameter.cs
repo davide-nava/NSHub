@@ -1,8 +1,8 @@
 using System;
 
-using PlanetHub.Enums;
+using NSHub.Enums;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class SalaryEmployeeComputingParameter : BaseEntity
 {

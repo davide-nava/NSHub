@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.Enums;
-using PlanetHub.Models;
+using NSHub.ApplicationCore.Entities;
+using NSHub.Enums;
+using NSHub.Models;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Article : BaseEntity
 {

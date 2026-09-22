@@ -8,20 +8,20 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Interfaces.Repositories.Queries;
-using PlanetHub.Caches.Interfaces;
-using PlanetHub.Enums;
-using PlanetHub.Models;
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Interfaces.Repositories.Queries;
+using NSHub.Caches.Interfaces;
+using NSHub.Enums;
+using NSHub.Models;
 
-namespace PlanetHub.Infrastructure.Repositories.Queries;
+namespace NSHub.Infrastructure.Repositories.Queries;
 
-public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> factory, IPlanetHubMemoryCacheService? planetHubMemoryCacheService = null) : IBaseQueryRepository<TEntity>
+public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> factory, INSHubMemoryCacheService? nSHubMemoryCacheService = null) : IBaseQueryRepository<TEntity>
 		where TEntity : BaseEntity
 {
-	public virtual Task<IEnumerable<LookupModel>?> LookupAsync( CancellationToken cancellationToken = default) => throw new NotImplementedException("LookupAsync method is not implemented for this service.");
+	public virtual Task<IEnumerable<LookupModel>?> LookupAsync(CancellationToken cancellationToken = default) => throw new NotImplementedException("LookupAsync method is not implemented for this service.");
 
-    public virtual async Task<IEnumerable<TEntity>?> ListAsync( PaginationModel paginationModel, CancellationToken cancellationToken = default)
+	public virtual async Task<IEnumerable<TEntity>?> ListAsync(PaginationModel paginationModel, CancellationToken cancellationToken = default)
 	{
 		ArgumentNullException.ThrowIfNull(paginationModel);
 		//if (!string.IsNullOrWhiteSpace(baseListEntityParameter.OrderParameter?.AttributeName))
@@ -37,7 +37,7 @@ public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> fa
 		await using var dbContext = factory.CreateDbContext();
 		var tmpKey = $"{typeof(TEntity).Name}_List_TenantId:{tenantId}_PageNumber:{paginationModel.PageNumber ?? 0}_PageSize:{paginationModel.PageSize ?? 0}_SortingDirectionType:{Enum.GetName(paginationModel.SortingDirectionType)}_SortingBy:{paginationModel.SortingBy}";
 
-		if (planetHubMemoryCacheService != null && planetHubMemoryCacheService.Cache.TryGetValue(tmpKey, out IEnumerable<TEntity>? items))
+		if (nSHubMemoryCacheService != null && nSHubMemoryCacheService.Cache.TryGetValue(tmpKey, out IEnumerable<TEntity>? items))
 		{
 			return items;
 		}
@@ -56,20 +56,20 @@ public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> fa
 
 		items = await query.ToListAsync(cancellationToken);
 
-		if (planetHubMemoryCacheService != null && (items?.Any() ?? false))
+		if (nSHubMemoryCacheService != null && (items?.Any() ?? false))
 		{
-			planetHubMemoryCacheService.SetKey(tmpKey);
-			planetHubMemoryCacheService.Cache.Set(tmpKey, items);
+			nSHubMemoryCacheService.SetKey(tmpKey);
+			nSHubMemoryCacheService.Cache.Set(tmpKey, items);
 		}
 
 		return items;
 	}
 
-	public virtual async Task<int> CountAsync( CancellationToken cancellationToken = default)
+	public virtual async Task<int> CountAsync(CancellationToken cancellationToken = default)
 	{
 		var tmpKey = $"{typeof(TEntity).Name}_Count_TenantId:{tenantId}";
 
-		if (planetHubMemoryCacheService != null && planetHubMemoryCacheService.Cache.TryGetValue(tmpKey, out int item))
+		if (nSHubMemoryCacheService != null && nSHubMemoryCacheService.Cache.TryGetValue(tmpKey, out int item))
 		{
 			return item;
 		}
@@ -79,20 +79,20 @@ public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> fa
 
 		item = await query.CountAsync(cancellationToken);
 
-		if (planetHubMemoryCacheService != null)
+		if (nSHubMemoryCacheService != null)
 		{
-			planetHubMemoryCacheService.SetKey(tmpKey);
-			planetHubMemoryCacheService.Cache.Set(tmpKey, item);
+			nSHubMemoryCacheService.SetKey(tmpKey);
+			nSHubMemoryCacheService.Cache.Set(tmpKey, item);
 		}
 
 		return item;
 	}
 
-	public virtual async Task<TEntity?> GetAsync(Guid id,  CancellationToken cancellationToken = default)
+	public virtual async Task<TEntity?> GetAsync(Guid id, CancellationToken cancellationToken = default)
 	{
 		var tmpKey = $"{typeof(TEntity).Name}_Get_TenantId:{tenantId}_Id:{id}";
 
-		if (planetHubMemoryCacheService != null && planetHubMemoryCacheService.Cache.TryGetValue(tmpKey, out TEntity? item))
+		if (nSHubMemoryCacheService != null && nSHubMemoryCacheService.Cache.TryGetValue(tmpKey, out TEntity? item))
 		{
 			return item;
 		}
@@ -102,10 +102,10 @@ public class BaseQueryFactoryRepository<TEntity>(IDbContextFactory<DbContext> fa
 
 		item = await query.Where(e => e.Id == id).FirstOrDefaultAsync(cancellationToken);
 
-		if (planetHubMemoryCacheService != null)
+		if (nSHubMemoryCacheService != null)
 		{
-			planetHubMemoryCacheService.SetKey(tmpKey);
-			planetHubMemoryCacheService.Cache.Set(tmpKey, item);
+			nSHubMemoryCacheService.SetKey(tmpKey);
+			nSHubMemoryCacheService.Cache.Set(tmpKey, item);
 		}
 
 		return item;

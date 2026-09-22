@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.PlanetHub.Models.Responses;
+namespace NSHub.Application.NSHub.Models.Responses;
 
 public class LoginResponse
 {
@@ -12,6 +12,9 @@ public class LoginResponse
 
 	public string RefreshToken { get; set; } = string.Empty;
 
-	public int ExpiresIn { get; set; }
+	public int ExpiresIn
+	{
+		get; set;
+	}
 }
 

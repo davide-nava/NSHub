@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.EntityModels;
+namespace NSHub.Application.NSHub.Models.EntityModels;
 
 public class BaseEntityTypeModel : BaseEntityModel
 {
@@ -16,11 +16,17 @@ public class BaseEntityTypeModel : BaseEntityModel
 
     [Display(Name = nameof(SharedResource.Description_Display_Name), ResourceType = typeof(SharedResource), ShortName = nameof(SharedResource.Description_Display_ShortName), Description = nameof(SharedResource.Description_Display_Description), AutoGenerateFilter = true, Prompt = nameof(SharedResource.Description_Display_Prompt))]
     [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
-    public Guid DescriptionId { get; set; }
+    public Guid DescriptionId
+    {
+        get; set;
+    }
 
 
     [Display(Name = nameof(SharedResource.Description_Display_Name), ResourceType = typeof(SharedResource), ShortName = nameof(SharedResource.Description_Display_ShortName), Description = nameof(SharedResource.Description_Display_Description), AutoGenerateFilter = true, Prompt = nameof(SharedResource.Description_Display_Prompt))]
-    public virtual TranslationGroupModel? Description { get; set; }
+    public virtual TranslationGroupModel? Description
+    {
+        get; set;
+    }
 
 }
 

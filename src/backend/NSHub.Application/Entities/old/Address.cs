@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using PlanetHub.Models.EntityModels;
+using NSHub.Models.EntityModels;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Address : BaseEntityModel
 {

@@ -4,20 +4,38 @@
 
 using NSHub.Domain.Enums;
 
-namespace NSHub.Application.PlanetHub.Models;
+namespace NSHub.Application.NSHub.Models;
 
 public class BaseFilter
 {
-	public string? Text { get; set; }
+	public string? Text
+	{
+		get; set;
+	}
 
-	public int? PageSize { get; set; }
+	public int? PageSize
+	{
+		get; set;
+	}
 
-	public int? PageNumber { get; set; }
+	public int? PageNumber
+	{
+		get; set;
+	}
 
-	public SortingDirectionType? SortingDirectionType { get; set; }
+	public SortingDirectionType? SortingDirectionType
+	{
+		get; set;
+	}
 
-	public string? SortingBy { get; set; }
+	public string? SortingBy
+	{
+		get; set;
+	}
 
-	public List<Guid>? ExcludeIDs { get; set; }
+	public List<Guid>? ExcludeIDs
+	{
+		get; set;
+	}
 }
 

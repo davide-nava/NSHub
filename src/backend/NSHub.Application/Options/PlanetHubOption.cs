@@ -1,4 +1,4 @@
-// <copyright file="PlanetHubOption.cs" company="Davide Nava">
+// <copyright file="NSHubOption.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -6,13 +6,22 @@ namespace NSHub.Application.Options;
 
 public class NSHubOption
 {
-    public Guid? ApplicationId { get; set; }
+    public Guid? ApplicationId
+    {
+        get; set;
+    }
 
-    public string? ApiKey { get; set; }
+    public string? ApiKey
+    {
+        get; set;
+    }
 
     public string Cors { get; set; } = string.Empty;
 
-    public bool UseSwagger { get; set; }
+    public bool UseSwagger
+    {
+        get; set;
+    }
 
     public bool SerilogMSSqlServer { get; set; } = true;
 
@@ -20,11 +29,17 @@ public class NSHubOption
 
     public bool SerilogEmail { get; set; } = true;
 
-    public bool TestMode { get; set; }
+    public bool TestMode
+    {
+        get; set;
+    }
 
     public string Api { get; set; } = string.Empty;
 
-    public string? Hub { get; set; }
+    public string? Hub
+    {
+        get; set;
+    }
 
     public string Blazor { get; set; } = string.Empty;
 

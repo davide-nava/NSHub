@@ -64,8 +64,8 @@
     <None Remove="Controllers\SettingController.cs" />
     <Compile Remove="Controllers\TenantController.cs" />
     <None Remove="Controllers\TenantController.cs" />
-    <Compile Remove="Controllers\PlanetHubController.cs" />
-    <None Remove="Controllers\PlanetHubController.cs" />
+    <Compile Remove="Controllers\NSHubController.cs" />
+    <None Remove="Controllers\NSHubController.cs" />
     <Compile Remove="Controllers\AuthenticationController.cs" />
     <None Remove="Controllers\AuthenticationController.cs" />
     <Compile Remove="Endpoints\**" />

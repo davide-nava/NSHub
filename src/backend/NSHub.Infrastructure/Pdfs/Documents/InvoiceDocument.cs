@@ -1,7 +1,7 @@
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
-namespace PlanetHub.Infrastructure.Pdfs.Documents;
+namespace NSHub.Infrastructure.Pdfs.Documents;
 
 public class InvoiceDocument : IDocument
 {

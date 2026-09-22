@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Drawing;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class DocumentBody : BaseEntity
 {

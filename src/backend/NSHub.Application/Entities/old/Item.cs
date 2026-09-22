@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Item : BaseEntity
 {

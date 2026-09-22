@@ -4,7 +4,7 @@
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 using NSHub.Domain.Enums;
 
 namespace NSHub.Application.Helpers;

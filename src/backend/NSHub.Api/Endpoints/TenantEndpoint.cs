@@ -2,7 +2,7 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-namespace PlanetHub.Endpoints.Api;
+namespace NSHub.Endpoints.Api;
 
 public static class TenantEndpoint
 {

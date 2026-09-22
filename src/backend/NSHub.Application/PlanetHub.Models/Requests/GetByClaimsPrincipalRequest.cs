@@ -4,10 +4,13 @@
 
 using System.Security.Claims;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class GetByClaimsPrincipalRequest
 {
-	public ClaimsPrincipal? ClaimsPrincipal { get; set; }
+	public ClaimsPrincipal? ClaimsPrincipal
+	{
+		get; set;
+	}
 }
 

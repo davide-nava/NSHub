@@ -4,12 +4,15 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class AccountManageRequest
 {
 	[Phone]
 	[Display(Name = "Phone number")]
-	public string? PhoneNumber { get; set; }
+	public string? PhoneNumber
+	{
+		get; set;
+	}
 }
 

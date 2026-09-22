@@ -2,9 +2,9 @@
 // Copyright (c) Progel SA. All rights reserved.
 // </copyright>
 
-using PlanetHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class Setting : BaseEntity
 {

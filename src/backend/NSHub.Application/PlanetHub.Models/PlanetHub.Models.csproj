@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Title>PlanetHub.Models</Title>
-        <Product>PlanetHub.Models</Product>
-        <Description>PlanetHub.Models</Description>
-        <PackageId>PlanetHub.Models</PackageId>
-        <RootNamespace>PlanetHub.Models</RootNamespace>
-        <AssemblyName>PlanetHub.Models</AssemblyName>
-        <namespace>PlanetHub.Models</namespace>
+        <Title>NSHub.Models</Title>
+        <Product>NSHub.Models</Product>
+        <Description>NSHub.Models</Description>
+        <PackageId>NSHub.Models</PackageId>
+        <RootNamespace>NSHub.Models</RootNamespace>
+        <AssemblyName>NSHub.Models</AssemblyName>
+        <namespace>NSHub.Models</namespace>
 
     </PropertyGroup>
 
@@ -15,10 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="PlanetHub.Cryptographies" Version="2025.12.29.15" />
-        <PackageReference Include="PlanetHub.Enums" Version="2025.12.29.18" />
-        <PackageReference Include="PlanetHub.Localization" Version="2025.12.21.13" />
-        <ProjectReference Include="..\PlanetHub.Localization\PlanetHub.Localization.csproj" />
+        <PackageReference Include="NSHub.Cryptographies" Version="2025.12.29.15" />
+        <PackageReference Include="NSHub.Enums" Version="2025.12.29.18" />
+        <PackageReference Include="NSHub.Localization" Version="2025.12.21.13" />
+        <ProjectReference Include="..\NSHub.Localization\NSHub.Localization.csproj" />
         <PackageReference Update="SonarAnalyzer.CSharp" Version="10.17.0.131074" />
         <PackageReference Update="Roslynator.Core" Version="4.15.0" />
         <PackageReference Update="Microsoft.CodeAnalysis" Version="5.0.0" />

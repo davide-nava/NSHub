@@ -3,13 +3,13 @@
 // </copyright>
 
 using NSHub.Application.Entities.Json;
-using NSHub.Application.PlanetHub.Models.EntityModels;
+using NSHub.Application.NSHub.Models.EntityModels;
 
 namespace NSHub.Application.Interfaces.Services.Queries;
 
-public interface IUserQueryService : IBaseQueryService< UserModel>
+public interface IUserQueryService : IBaseQueryService<UserModel>
 {
-    Task<UserConfigurationJson?> GetUserConfigurationAsync(  CancellationToken cancellationToken = default);
+    Task<UserConfigurationJson?> GetUserConfigurationAsync(CancellationToken cancellationToken = default);
 
     Task<UserModel?> GetUserLoggedAsync(Guid userId, Guid tenantId, CancellationToken cancellationToken = default);
 }

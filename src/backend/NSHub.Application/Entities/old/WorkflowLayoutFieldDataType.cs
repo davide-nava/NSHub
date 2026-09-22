@@ -1,4 +1,4 @@
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class WorkflowLayoutFieldDataType : BaseEntityType;

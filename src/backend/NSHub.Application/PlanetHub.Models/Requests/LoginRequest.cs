@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class LoginRequest
 {
@@ -18,8 +18,14 @@ public class LoginRequest
 	public string Password { get; set; } = string.Empty;
 
 	[Display(Name = "Remember me?")]
-	public bool RememberMe { get; set; }
+	public bool RememberMe
+	{
+		get; set;
+	}
 
-	public PasskeyModel? Passkey { get; set; }
+	public PasskeyModel? Passkey
+	{
+		get; set;
+	}
 }
 

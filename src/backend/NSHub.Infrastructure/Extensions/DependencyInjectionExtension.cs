@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NSHub.Application.Constants;
 using NSHub.Application.Interfaces;
-using NSHub.Application.PlanetHub.Models;
+using NSHub.Application.NSHub.Models;
 using NSHub.Application.Services;
 using NSHub.Infrastructure.DbContexts;
 using NSHub.Infrastructure.Helpers;

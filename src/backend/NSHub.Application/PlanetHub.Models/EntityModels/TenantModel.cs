@@ -4,19 +4,31 @@
 
 using NSHub.Application.Services;
 
-namespace NSHub.Application.PlanetHub.Models.EntityModels;
+namespace NSHub.Application.NSHub.Models.EntityModels;
 
 public class TenantModel : BaseEntityModel
 {
     public string Name { get; set; } = null!;
 
-    public DateTime? To { get; set; }
+    public DateTime? To
+    {
+        get; set;
+    }
 
-    public DateTime? From { get; set; }
+    public DateTime? From
+    {
+        get; set;
+    }
 
-    public Guid DescriptionId { get; set; }
+    public Guid DescriptionId
+    {
+        get; set;
+    }
 
-    public virtual TranslationGroupModel? Description { get; set; }
+    public virtual TranslationGroupModel? Description
+    {
+        get; set;
+    }
 
     public string ConnectionString { get => AesService.Decrypt(field); set; } = null!;
 }

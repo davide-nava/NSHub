@@ -2,9 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.PlanetHub.Models.EntityModels.JsonModels;
+using NSHub.Application.NSHub.Models.EntityModels.JsonModels;
 
-namespace NSHub.Application.PlanetHub.Models.EntityModels;
+namespace NSHub.Application.NSHub.Models.EntityModels;
 
 public class UserModel : BaseEntityModel
 {
@@ -20,15 +20,30 @@ public class UserModel : BaseEntityModel
 
     public string Phone { get; set; } = null!;
 
-    public bool IsActive { get; set; }
+    public bool IsActive
+    {
+        get; set;
+    }
 
-    public Guid? TenantUsedId { get; set; }
+    public Guid? TenantUsedId
+    {
+        get; set;
+    }
 
-    public Guid? ApplicationUserId { get; set; }
+    public Guid? ApplicationUserId
+    {
+        get; set;
+    }
 
-    public virtual ApplicationUser? ApplicationUser { get; set; }
+    public virtual ApplicationUser? ApplicationUser
+    {
+        get; set;
+    }
 
-    public virtual TenantModel? TenantUsed { get; set; }
+    public virtual TenantModel? TenantUsed
+    {
+        get; set;
+    }
 
     public UserConfigurationJsonModel Configuration { get; set; } = new();
 }

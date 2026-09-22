@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Bibliography;
 
-using PlanetHub.Enums;
+using NSHub.Enums;
 
-namespace PlanetHub.ApplicationCore.Entities;
+namespace NSHub.ApplicationCore.Entities;
 
 public class QueryAccountingStatement : BaseEntity
 {

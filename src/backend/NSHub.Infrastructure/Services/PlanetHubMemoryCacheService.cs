@@ -1,4 +1,4 @@
-// <copyright file="PlanetHubMemoryCacheService.cs" company="Davide Nava">
+// <copyright file="NSHubMemoryCacheService.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -18,18 +18,24 @@ namespace NSHub.Infrastructure.Services;
 public class NSHubMemoryCacheService(IMemoryCache memoryCache) : INSHubMemoryCacheService
 {
     /// <inheritdoc/>
-    public MemoryCacheEntryOptions Options { get; } = new()
-                                                      {
-                                                          SlidingExpiration = TimeSpan.FromDays(365),
-                                                          AbsoluteExpiration = DateTimeOffset.Now.AddYears(1),
-                                                          AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(365),
-                                                      };
+    public MemoryCacheEntryOptions Options
+    {
+        get;
+    } = new()
+    {
+        SlidingExpiration = TimeSpan.FromDays(365),
+        AbsoluteExpiration = DateTimeOffset.Now.AddYears(1),
+        AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(365),
+    };
 
     /// <inheritdoc/>
     public Collection<string> Keys { get; set; } = [];
 
     /// <inheritdoc/>
-    public MemoryCache Cache { get; set; } = new(
+    public MemoryCache Cache
+    {
+        get; set;
+    } = new(
                                                  new MemoryCacheOptions
                                                  {
                                                      //SizeLimit = 1024,

@@ -4,11 +4,11 @@
 
 using Microsoft.AspNetCore.Builder;
 
-namespace PlanetHub.Api.ApplicationCore.Extensions;
+namespace NSHub.Api.ApplicationCore.Extensions;
 
 public static class DependencyInjectionExtension
 {
-    public static WebApplicationBuilder AddApplicationCoreBuilder(this WebApplicationBuilder builder )
+    public static WebApplicationBuilder AddApplicationCoreBuilder(this WebApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
 

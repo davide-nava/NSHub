@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ChangeEmailRequest
 {
@@ -14,9 +14,15 @@ public class ChangeEmailRequest
     public ApplicationUser User { get; set; } = null!;
 
     [EmailAddress]
-    public string? Email { get; set; }
+    public string? Email
+    {
+        get; set;
+    }
 
-    public string? Code { get; set; }
+    public string? Code
+    {
+        get; set;
+    }
 
 }
 

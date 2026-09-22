@@ -8,16 +8,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-using PlanetHub.ApplicationCore.Entities;
-using PlanetHub.ApplicationCore.Entities.Json;
-using PlanetHub.ApplicationCore.Interfaces;
-using PlanetHub.ApplicationCore.Interfaces.Services.Commands;
-using PlanetHub.ApplicationCore.Interfaces.Services.Queries;
-using PlanetHub.Endpoints.Api;
-using PlanetHub.Models;
-using PlanetHub.Models.EntityModels;                       
+using NSHub.ApplicationCore.Entities;
+using NSHub.ApplicationCore.Entities.Json;
+using NSHub.ApplicationCore.Interfaces;
+using NSHub.ApplicationCore.Interfaces.Services.Commands;
+using NSHub.ApplicationCore.Interfaces.Services.Queries;
+using NSHub.Endpoints.Api;
+using NSHub.Models;
+using NSHub.Models.EntityModels;
 
-namespace PlanetHub.Api.Controllers;
+namespace NSHub.Api.Controllers;
 
 [ApiController]
 [Authorize]

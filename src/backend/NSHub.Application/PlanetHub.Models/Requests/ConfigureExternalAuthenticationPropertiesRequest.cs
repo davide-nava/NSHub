@@ -4,15 +4,24 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class ConfigureExternalAuthenticationPropertiesRequest
 {
-    public string? Provider { get; set; }
+    public string? Provider
+    {
+        get; set;
+    }
 
     [StringSyntax(StringSyntaxAttribute.Uri)]
-    public string? RedirectUrl { get; set; }
+    public string? RedirectUrl
+    {
+        get; set;
+    }
 
-    public Guid UserId { get; set; }
+    public Guid UserId
+    {
+        get; set;
+    }
 }
 

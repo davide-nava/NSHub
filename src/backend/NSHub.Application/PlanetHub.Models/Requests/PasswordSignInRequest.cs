@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class PasswordSignInRequest
 {
@@ -19,8 +19,14 @@ public class PasswordSignInRequest
     [EmailAddress]
     public string Email { get; set; } = string.Empty;
 
-    public bool IsPersistent { get; set; }
+    public bool IsPersistent
+    {
+        get; set;
+    }
 
-    public bool LockoutOnFailure { get; set; }
+    public bool LockoutOnFailure
+    {
+        get; set;
+    }
 }
 

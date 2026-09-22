@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.PlanetHub.Models.Requests;
+namespace NSHub.Application.NSHub.Models.Requests;
 
 public class LoginWith2FaRequest
 {
@@ -13,9 +13,15 @@ public class LoginWith2FaRequest
 	[StringLength(7, MinimumLength = 6, ErrorMessageResourceName = nameof(SharedResource.ErrorDataTypePassword), ErrorMessageResourceType = typeof(SharedResource))]
 	[DataType(DataType.Text)]
 	[Display(Name = "Authenticator code")]
-	public string? TwoFactorCode { get; set; }
+	public string? TwoFactorCode
+	{
+		get; set;
+	}
 
 	[Display(Name = "Remember this machine")]
-	public bool RememberMachine { get; set; }
+	public bool RememberMachine
+	{
+		get; set;
+	}
 }
 
