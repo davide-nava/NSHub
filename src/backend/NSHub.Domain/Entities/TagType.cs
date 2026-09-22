@@ -7,6 +7,12 @@ using NSHub.Domain.Common;
 namespace NSHub.Domain.Entities;
 
 /// <summary>
-/// Domain entity representing a tag associated with a CMS page.
+/// Domain entity representing a tag.
 /// </summary>
-public class TagType : BaseLookup;
+public class TagType : BaseLookup
+{
+    /// <summary>
+    /// Gets or sets a value indicating whether the tag is associated with the CMS.
+    /// </summary>
+    public bool IsCms { get; set; }
+}

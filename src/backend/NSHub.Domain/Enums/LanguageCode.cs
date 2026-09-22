@@ -1,4 +1,4 @@
-// <copyright file="ClaimType.cs" company="Davide Nava">
+// <copyright file="LanguageCode.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -7,28 +7,28 @@ using System.Text.Json.Serialization;
 namespace NSHub.Domain.Enums;
 
 /// <summary>
-/// Security claim types used throughout user authentication and authorization.
+/// Supported national official languages.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum ClaimType
+public enum LanguageCode
 {
     /// <summary>
-    /// Tenant identifier claim.
+    /// Italian (Switzerland).
     /// </summary>
-    TenantId = 0,
+    It = 1,
 
     /// <summary>
-    /// User identifier claim.
+    /// German (Switzerland).
     /// </summary>
-    UserId = 1,
+    De = 2,
 
     /// <summary>
-    /// Active state flag claim.
+    /// French (Switzerland).
     /// </summary>
-    IsActive = 2,
+    Fr = 3,
 
     /// <summary>
-    /// System hub administrator claim.
+    /// English.
     /// </summary>
-    IsNsHub = 3,
+    En = 4,
 }

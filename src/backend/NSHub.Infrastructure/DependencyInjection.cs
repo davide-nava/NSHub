@@ -63,7 +63,7 @@ public static class DependencyInjection
         // Phase 1 Bounded Context Services & Repositories
         _ = services.AddSingleton<NSHub.Domain.Identity.Services.IPasswordHasher, NSHub.Infrastructure.Identity.Services.PasswordHasher>();
         _ = services.AddScoped<IUserRepository, NSHub.Infrastructure.Identity.Persistence.Repositories.UserRepository>();
-        _ = services.AddScoped<ITicketRepository, NSHub.Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
+        _ = services.AddScoped<ITicketCommandRepository, NSHub.Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
         _ = services.AddScoped<IInventoryRepository, NSHub.Infrastructure.Warehouse.Persistence.Repositories.InventoryRepository>();
         _ = services.AddScoped<IInvoiceRepository, NSHub.Infrastructure.Invoicing.Persistence.Repositories.InvoiceRepository>();
         _ = services.AddScoped<NSHub.Domain.Invoicing.Services.IInvoiceNumberSequenceService, NSHub.Infrastructure.Invoicing.Services.InvoiceNumberSequenceService>();

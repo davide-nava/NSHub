@@ -28,4 +28,12 @@ public class InvalidStateTransitionException : DomainException
         : base("InvalidStateTransition", message)
     {
     }
+
+    protected InvalidStateTransitionException(string code, string message) : base(code, message)
+    {
+    }
+
+    protected InvalidStateTransitionException(string code, string message, Exception innerException) : base(code, message, innerException)
+    {
+    }
 }

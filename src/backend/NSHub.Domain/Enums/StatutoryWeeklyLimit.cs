@@ -5,18 +5,17 @@
 namespace NSHub.Domain.Enums;
 
 /// <summary>
-/// Durata massima settimanale di lavoro stabilita dall'Art. 9 della Legge federale sul lavoro (LL).
+/// Represents the statutory weekly working hour limits.
 /// </summary>
 public enum StatutoryWeeklyLimit
 {
     /// <summary>
-    /// 45 ore settimanali per i lavoratori nelle aziende industriali, per il personale d'ufficio,
-    /// per il personale tecnico e per altro personale, compreso il personale di vendita nelle grandi aziende del commercio al dettaglio.
+    /// Represents the statutory weekly working hour limit of 45 hours.
     /// </summary>
     Hours45 = 45,
 
     /// <summary>
-    /// 50 ore settimanali per tutti gli altri lavoratori.
+    /// Represents the statutory weekly working hour limit of 50 hours.
     /// </summary>
     Hours50 = 50,
 }

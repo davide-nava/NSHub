@@ -7,17 +7,12 @@ namespace NSHub.Domain.Exceptions;
 /// <summary>
 /// Exception thrown when attempting to modify lines or properties of an invoice that has already been issued.
 /// </summary>
-public class InvoiceAlreadyIssuedException : DomainException
+/// <remarks>
+/// Initializes a new instance of the <see cref="InvoiceAlreadyIssuedException"/> class.
+/// </remarks>
+/// <param name="invoiceNumber">The issued invoice document number.</param>
+public class InvoiceAlreadyIssuedException(string invoiceNumber) : DomainException("Invoice.AlreadyIssued", $"Invoice '{invoiceNumber}' has already been issued and cannot be modified.")
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="InvoiceAlreadyIssuedException"/> class.
-    /// </summary>
-    /// <param name="invoiceNumber">The issued invoice document number.</param>
-    public InvoiceAlreadyIssuedException(string invoiceNumber)
-        : base("Invoice.AlreadyIssued", $"Invoice '{invoiceNumber}' has already been issued and cannot be modified.")
-    {
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="InvoiceAlreadyIssuedException"/> class.
     /// </summary>

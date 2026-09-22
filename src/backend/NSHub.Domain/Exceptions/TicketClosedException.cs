@@ -7,14 +7,8 @@ namespace NSHub.Domain.Exceptions;
 /// <summary>
 /// Exception thrown when attempting to mutate or modify a ticket that is already closed.
 /// </summary>
-public class TicketClosedException : DomainException
-{
-    /// <summary>
-    /// Initializes a new instance of the <see cref="TicketClosedException"/> class.
-    /// </summary>
-    /// <param name="ticketId">The ticket identifier.</param>
-    public TicketClosedException(Guid ticketId)
-        : base("Ticket.Closed", $"Ticket '{ticketId}' is closed and cannot be mutated or receive further comments.")
-    {
-    }
-}
+/// <remarks>
+/// Initializes a new instance of the <see cref="TicketClosedException"/> class.
+/// </remarks>
+/// <param name="ticketId">The ticket identifier.</param>
+public class TicketClosedException(Guid ticketId) : DomainException("Ticket.Closed", $"Ticket '{ticketId}' is closed and cannot be mutated or receive further comments.");

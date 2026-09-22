@@ -12,9 +12,9 @@ using NSHub.Domain.Tickets.ValueObjects;
 using NSHub.Infrastructure.Persistence;
 
 /// <summary>
-/// EF Core implementation of <see cref="ITicketRepository"/>.
+/// EF Core implementation of <see cref="ITicketCommandRepository"/>.
 /// </summary>
-public class TicketRepository(OpenXGestDbContext context) : ITicketRepository
+public class TicketRepository(OpenXGestDbContext context) : ITicketCommandRepository
 {
     /// <inheritdoc />
     public async Task<Ticket?> GetByIdAsync(TicketId id, CancellationToken cancellationToken = default)

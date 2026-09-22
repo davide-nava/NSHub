@@ -10,9 +10,88 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <None Remove="Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\Article.cs" />
+    <Compile Remove="Entities\CashLedger.cs" />
+    <Compile Remove="Entities\Company.cs" />
+    <Compile Remove="Entities\CountryLookup.cs" />
+    <Compile Remove="Entities\Customer.cs" />
+    <Compile Remove="Entities\DocumentRecord.cs" />
+    <Compile Remove="Entities\Employee.cs" />
+    <Compile Remove="Entities\GoodsAppearanceLookup.cs" />
+    <Compile Remove="Entities\InventoryMovement.cs" />
+    <Compile Remove="Entities\InventoryStock.cs" />
+    <Compile Remove="Entities\Invoice.cs" />
+    <Compile Remove="Entities\InvoiceLine.cs" />
+    <Compile Remove="Entities\InvoiceType.cs" />
+    <Compile Remove="Entities\Language.cs" />
+    <Compile Remove="Entities\MonthlyCost.cs" />
+    <Compile Remove="Entities\Page.cs" />
+    <Compile Remove="Entities\PageTag.cs" />
+    <Compile Remove="Entities\PaymentType.cs" />
+    <Compile Remove="Entities\PurchaseInvoice.cs" />
+    <Compile Remove="Entities\PurchaseInvoiceRow.cs" />
+    <Compile Remove="Entities\Quote.cs" />
+    <Compile Remove="Entities\QuoteLine.cs" />
+    <Compile Remove="Entities\SalesInvoice.cs" />
+    <Compile Remove="Entities\SalesInvoiceRow.cs" />
+    <Compile Remove="Entities\StockLocation.cs" />
+    <Compile Remove="Entities\Supplier.cs" />
+    <Compile Remove="Entities\SupplierPriceImport.cs" />
+    <Compile Remove="Entities\TimeCorrectionAudit.cs" />
+    <Compile Remove="Entities\TimeEntry.cs" />
+    <Compile Remove="Entities\TransportCareLookup.cs" />
+    <Compile Remove="Entities\TransportDocument.cs" />
+    <Compile Remove="Entities\TransportDocumentRow.cs" />
+    <Compile Remove="Entities\UnitOfMeasure.cs" />
+    <Compile Remove="Entities\User.cs" />
+    <Compile Remove="Entities\Vat.cs" />
+    <Compile Remove="Entities\Warehouse.cs" />
+    <Compile Remove="Enums\ArticleUnitOfMeasure.cs" />
+    <Compile Remove="Enums\ClaimType.cs" />
+    <Compile Remove="Enums\DayHourType.cs" />
+    <Compile Remove="Enums\DialogResultType.cs" />
+    <Compile Remove="Enums\HoursInDayType.cs" />
+    <Compile Remove="Enums\HourType.cs" />
+    <Compile Remove="Enums\InvoiceStatus.cs" />
+    <Compile Remove="Enums\LanguageCode.cs" />
+    <Compile Remove="Enums\MovementType.cs" />
+    <Compile Remove="Enums\NotificationType.cs" />
+    <Compile Remove="Enums\PasskeyOperationType.cs" />
+    <Compile Remove="Enums\PaymentTerm.cs" />
+    <Compile Remove="Enums\PublishingStatus.cs" />
+    <Compile Remove="Enums\SentResultType.cs" />
+    <Compile Remove="Enums\SortingDirectionType.cs" />
+    <Compile Remove="Enums\StatutoryWeeklyLimit.cs" />
+    <Compile Remove="Enums\ThemeType.cs" />
+    <Compile Remove="Enums\TicketPriority.cs" />
+    <Compile Remove="Enums\TicketStatus.cs" />
+    <Compile Remove="Enums\TimeType.cs" />
+    <Compile Remove="Enums\UserStatus.cs" />
+    <Compile Remove="Enums\ValidationErrorType.cs" />
+    <Compile Remove="Enums\ViolationType.cs" />
+    <Compile Remove="Repositories\ICmsRepository.cs" />
+    <Compile Remove="Repositories\IEmployeeRepository.cs" />
+    <Compile Remove="Repositories\IInventoryRepository.cs" />
+    <Compile Remove="Repositories\IInvoiceRepository.cs" />
+    <Compile Remove="Repositories\ITicketRepository.cs" />
+    <Compile Remove="Repositories\ITimeEntryRepository.cs" />
+    <Compile Remove="Repositories\IUserRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 				<PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
     <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
     <PackageReference Update="Roslynator.CodeFixes" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

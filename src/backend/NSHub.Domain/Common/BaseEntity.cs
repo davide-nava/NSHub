@@ -15,6 +15,11 @@ public class BaseEntity
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>
+    /// Gets or sets the tenant identifier.
+    /// </summary>
+    public Guid? TenantId { get; set; }
+
+    /// <summary>
     /// Gets or sets the date and time when the entity was last updated.
     /// </summary>
     public DateTime DateUpdate { get; set; } = DateTime.UtcNow;

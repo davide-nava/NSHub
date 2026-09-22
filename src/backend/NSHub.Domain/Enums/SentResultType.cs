@@ -2,9 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Domain.Enums;
-
 using System.Text.Json.Serialization;
+
+namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Represents the result type of a sent operation.

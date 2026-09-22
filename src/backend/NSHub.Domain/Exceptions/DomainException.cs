@@ -19,7 +19,8 @@ public abstract class DomainException : Exception
     /// </summary>
     /// <param name="code">The unique machine-readable error code.</param>
     /// <param name="message">The human-readable description of the violation.</param>
-    protected DomainException(string code, string message) : base(message)
+    protected DomainException(string code, string message)
+        : base(message)
     {
         Code = code;
     }
@@ -30,8 +31,21 @@ public abstract class DomainException : Exception
     /// <param name="code">The unique machine-readable error code.</param>
     /// <param name="message">The human-readable description of the violation.</param>
     /// <param name="innerException">The causing exception.</param>
-    protected DomainException(string code, string message, Exception innerException) : base(message, innerException)
+    protected DomainException(string code, string message, Exception innerException)
+        : base(message, innerException)
     {
         Code = code;
+    }
+
+    public DomainException() : base()
+    {
+    }
+
+    public DomainException(string? message) : base(message)
+    {
+    }
+
+    public DomainException(string? message, Exception? innerException) : base(message, innerException)
+    {
     }
 }

@@ -2,8 +2,6 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Domain.Entities;
-
 namespace NSHub.Domain.Repositories;
 
 /// <summary>
@@ -14,25 +12,38 @@ public interface ICmsRepository
     /// <summary>
     /// Retrieves a page by its identifier including tags.
     /// </summary>
-    Task<Page?> GetByIdAsync(PageId id, CancellationToken cancellationToken = default);
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<Page?> GetByIdAsync(PageId id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Retrieves a page by its unique slug including tags.
     /// </summary>
-    Task<Page?> GetBySlugAsync(string slug, CancellationToken cancellationToken = default);
+    /// <param name="slug"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<Page?> GetBySlugAsync(string slug, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Checks whether a page exists with the specified URL slug.
     /// </summary>
-    Task<bool> ExistsBySlugAsync(string slug, CancellationToken cancellationToken = default);
+    /// <param name="slug"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<bool> ExistsBySlugAsync(string slug, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Adds a new page aggregate.
     /// </summary>
-    Task AddAsync(Page page, CancellationToken cancellationToken = default);
+    /// <param name="page"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task AddAsync(Page page, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates an existing page aggregate.
     /// </summary>
-    void Update(Page page);
+    /// <param name="page"></param>
+    public void Update(Page page);
 }

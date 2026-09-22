@@ -2,8 +2,6 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Domain.Entities;
-
 namespace NSHub.Domain.Repositories;
 
 /// <summary>
@@ -14,25 +12,38 @@ public interface IUserRepository
     /// <summary>
     /// Retrieves a user by their strongly-typed identifier.
     /// </summary>
-    Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken = default);
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Retrieves a user by their unique email address.
     /// </summary>
-    Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+    /// <param name="email"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Checks whether an account exists with the specified email address.
     /// </summary>
-    Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default);
+    /// <param name="email"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Adds a new user aggregate to the repository.
     /// </summary>
-    Task AddAsync(User user, CancellationToken cancellationToken = default);
+    /// <param name="user"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><placeholder>A <see cref="Task"/> representing the asynchronous operation.</placeholder></returns>
+    public Task AddAsync(User user, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Marks the user aggregate as modified.
     /// </summary>
-    void Update(User user);
+    /// <param name="user"></param>
+    public void Update(User user);
 }

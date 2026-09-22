@@ -12,27 +12,22 @@ namespace NSHub.Domain.Entities;
 public class TicketComment : BaseEntity
 {
     /// <summary>
-    /// Gets the parent ticket identifier.
+    /// Gets or sets the parent ticket identifier.
     /// </summary>
     public Guid TicketId { get; set; }
 
     /// <summary>
-    /// Gets the identifier of the author who created the comment.
+    /// Gets or sets the identifier of the author who created the comment.
     /// </summary>
-    public Guid AuthorId { get; set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
-    /// Gets the message content.
+    /// Gets or sets the message content.
     /// </summary>
     public string Message { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the UTC creation timestamp.
-    /// </summary>
-    public DateTime CreatedAtUtc { get; set; }
-
-    /// <summary>
-    /// Gets a value indicating whether the comment is internal-only (staff-facing).
+    /// Gets or sets a value indicating whether the comment is internal-only (staff-facing).
     /// </summary>
     public bool IsInternalOnly { get; set; }
 }
