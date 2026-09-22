@@ -1,15 +1,68 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { Component, HostBinding } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService, ScreenService, AppInfoService } from './shared/services';
+import { DxHttpModule } from 'devextreme-angular/http';
+import { FooterComponent } from './shared/components';
+import { UnauthenticatedContentComponent } from './unauthenticated-content';
+import { SideNavOuterToolbarComponent as SideNavToolbarComponent } from './layouts';
+import { Component, computed, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { AppInfoService, AuthService, ScreenService } from '@core/services';
+import { SideNavOuterToolbarComponent } from '@layouts/index';
+import { FooterComponent } from '@shared/components';
+import { UnauthenticatedContainerComponent } from '@features/auth/index';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule],
   templateUrl: './app.html',
+  styleUrls: ['./app.scss'],
+  standalone: true,
   styleUrl: './app.scss',
+  imports: [
+    RouterModule,
+    RouterOutlet,
+    CommonModule,
+    DxHttpModule,
+    SideNavToolbarComponent,
+    SideNavOuterToolbarComponent,
+    FooterComponent,
+    UnauthenticatedContentComponent,
+    UnauthenticatedContainerComponent,
+  ],
+  providers: [],
+  host: {
+    '[class]': 'hostClasses()',
+  },
 })
 export class App {
-  isCollapsed = false;
+	protected readonly title = signal('nshub');
+	 
+  @HostBinding('class') get getClass() {
+    const sizeClassName = Object.keys(this.screen.sizes)
+      .filter((cl) => this.screen.sizes[cl])
+  private readonly authService = inject(AuthService);
+  private readonly screen = inject(ScreenService);
+  readonly appInfo = inject(AppInfoService);
+
+  readonly isAuthenticated = this.authService.isAuthenticated;
+
+  readonly hostClasses = computed(() => {
+    const sizes = this.screen.sizes();
+    const sizeClassName = Object.keys(sizes)
+      .filter((key) => sizes[key])
+      .join(' ');
+    return `${sizeClassName} app`;
+  }
+
+  constructor(
+    private authService: AuthService,
+    private screen: ScreenService,
+    public appInfo: AppInfoService,
+  ) {}
+
+  isAuthenticated() {
+    return this.authService.loggedIn;
+  }
+  });
 }

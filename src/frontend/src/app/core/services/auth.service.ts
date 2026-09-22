@@ -1,113 +1,100 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
-import { environment } from '@env/environment';
-import { AuthResponse, LoginCredentials, User } from '../models/user.model';
-import { ApiResponse } from '../models/api-response.model';
-import { TokenStorageService } from './token-storage.service';
+import { AuthResult, User } from '../models/user.model';
+
+const DEFAULT_PATH = '/';
+const DEFAULT_USER: User = {
+  email: 'sandra@example.com',
+  avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png',
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly tokenStorage = inject(TokenStorageService);
 
-  private readonly tokenSignal = signal<string | null>(this.tokenStorage.getToken());
-  private readonly currentUserSignal = signal<User | null>(this.tokenStorage.getUser());
+  readonly currentUser = signal<User | null>(DEFAULT_USER);
+  readonly isAuthenticated = computed(() => this.currentUser() !== null);
+  readonly lastAuthenticatedPath = signal<string>(DEFAULT_PATH);
 
-  public readonly token = this.tokenSignal.asReadonly();
-  public readonly currentUser = this.currentUserSignal.asReadonly();
-  public readonly isAuthenticated = computed<boolean>(() => !!this.tokenSignal());
-  public readonly userRole = computed<string | null>(() => this.currentUserSignal()?.role ?? null);
+  // Backward compatibility getter for existing usages if needed
+  get loggedIn(): boolean {
+    return this.isAuthenticated();
+  }
 
-  constructor() {
-    // If no token exists in fresh dev session, initialize mock session for seamless evaluation
-    if (!this.tokenSignal()) {
-      this.initDefaultSession();
+  setLastAuthenticatedPath(path: string): void {
+    this.lastAuthenticatedPath.set(path);
+  }
+
+  async logIn(email: string, _password?: string): Promise<AuthResult<User>> {
+    try {
+      const user: User = { ...DEFAULT_USER, email };
+      this.currentUser.set(user);
+      await this.router.navigate([this.lastAuthenticatedPath()]);
+
+      return {
+        isOk: true,
+        data: user,
+      };
+    } catch {
+      return {
+        isOk: false,
+        message: 'Authentication failed',
+      };
     }
   }
 
-  public login(credentials: LoginCredentials): Observable<AuthResponse> {
-    const url = `${environment.apiUrl}/auth/login`;
-
-    return this.http.post<ApiResponse<AuthResponse>>(url, credentials).pipe(
-      map((response) => response.data),
-      tap((authData) => {
-        this.setSession(authData);
-      }),
-      catchError((error: unknown) => {
-        // Fallback for standalone demo when backend is offline
-        if (credentials.email && credentials.password) {
-          const mockResponse: AuthResponse = {
-            token: 'sanctum_token_' + Math.random().toString(36).substring(2),
-            tokenType: 'Bearer',
-            user: {
-              id: 101,
-              name: credentials.email.split('@')[0] || 'Enterprise Admin',
-              email: credentials.email,
-              role: 'admin',
-              department: 'Engineering',
-              jobTitle: 'Senior Systems Architect'
-            }
-          };
-          this.setSession(mockResponse);
-          return of(mockResponse);
-        }
-        return throwError(() => error);
-      })
-    );
-  }
-
-  public logout(): Observable<void> {
-    const url = `${environment.apiUrl}/auth/logout`;
-
-    return this.http.post<ApiResponse<void>>(url, {}).pipe(
-      catchError(() => of(undefined)),
-      tap(() => {
-        this.clearSession();
-        void this.router.navigate(['/auth/login']);
-      })
-    ) as Observable<void>;
-  }
-
-  public handleUnauthorized(): void {
-    this.clearSession();
-    const currentUrl = this.router.url;
-    void this.router.navigate(['/auth/login'], {
-      queryParams: currentUrl && currentUrl !== '/auth/login' ? { returnUrl: currentUrl } : undefined
-    });
-  }
-
-  public setSession(authData: AuthResponse): void {
-    this.tokenStorage.setToken(authData.token);
-    this.tokenStorage.setUser(authData.user);
-    this.tokenSignal.set(authData.token);
-    this.currentUserSignal.set(authData.user);
-  }
-
-  public clearSession(): void {
-    this.tokenStorage.clearAll();
-    this.tokenSignal.set(null);
-    this.currentUserSignal.set(null);
-  }
-
-  private initDefaultSession(): void {
-    // Provide a default active enterprise session for seamless immediate usage
-    const defaultUser: User = {
-      id: 101,
-      name: 'Alex Mercer',
-      email: 'alex.mercer@NSHub.internal',
-      role: 'admin',
-      department: 'Platform Architecture',
-      jobTitle: 'Lead Software Architect'
+  async getUser(): Promise<AuthResult<User | null>> {
+    return {
+      isOk: true,
+      data: this.currentUser(),
     };
-    const defaultToken = 'open_x_gest_session_demo_bearer_token';
-    this.tokenStorage.setToken(defaultToken);
-    this.tokenStorage.setUser(defaultUser);
-    this.tokenSignal.set(defaultToken);
-    this.currentUserSignal.set(defaultUser);
+  }
+
+  async createAccount(_email: string, _password?: string): Promise<AuthResult> {
+    try {
+      await this.router.navigate(['/create-account']);
+      return {
+        isOk: true,
+      };
+    } catch {
+      return {
+        isOk: false,
+        message: 'Failed to create account',
+      };
+    }
+  }
+
+  async changePassword(_password: string, _recoveryCode: string): Promise<AuthResult> {
+    try {
+      return {
+        isOk: true,
+      };
+    } catch {
+      return {
+        isOk: false,
+        message: 'Failed to change password',
+      };
+    }
+  }
+
+  async resetPassword(_email: string): Promise<AuthResult> {
+    try {
+      return {
+        isOk: true,
+      };
+    } catch {
+      return {
+        isOk: false,
+        message: 'Failed to reset password',
+      };
+    }
+  }
+
+  async logOut(): Promise<void> {
+    this.currentUser.set(null);
+    await this.router.navigate(['/login-form']);
   }
 }
+

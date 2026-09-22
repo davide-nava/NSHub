@@ -1,35 +1,35 @@
-import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-/**
- * Functional Route Guard ensuring user is authenticated via Sanctum Bearer token.
- * Redirects unauthenticated users to /auth/login with returnUrl query parameter.
- */
-export const authGuard: CanActivateFn = (_route, state): boolean | UrlTree => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
+const AUTH_FORM_ROUTES = [
+  'login-form',
+  'reset-password',
+  'create-account',
+  'change-password/:recoveryCode',
+];
 
-  if (authService.isAuthenticated()) {
-    return true;
+export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
+  const router = inject(Router);
+  const authService = inject(AuthService);
+
+  const isLoggedIn = authService.isAuthenticated();
+  const routePath = route.routeConfig?.path || '';
+  const isAuthForm = AUTH_FORM_ROUTES.includes(routePath);
+
+  if (isLoggedIn && isAuthForm) {
+    authService.setLastAuthenticatedPath('/');
+    return router.parseUrl('/');
   }
 
-  return router.createUrlTree(['/auth/login'], {
-    queryParams: state.url && state.url !== '/' ? { returnUrl: state.url } : undefined
-  });
-};
-
-/**
- * Functional Route Guard for guest-only pages (e.g. login, forgot-password).
- * Redirects already logged-in users to the main attendance dashboard.
- */
-export const guestGuard: CanActivateFn = (): boolean | UrlTree => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
-
-  if (!authService.isAuthenticated()) {
-    return true;
+  if (!isLoggedIn && !isAuthForm) {
+    return router.parseUrl('/login-form');
   }
 
-  return router.createUrlTree(['/attendance']);
+  if (isLoggedIn) {
+    authService.setLastAuthenticatedPath(routePath || '/');
+  }
+
+  return true;
 };
+

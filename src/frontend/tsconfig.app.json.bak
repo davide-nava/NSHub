@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [],
+    "paths": {
+      "@core/*": [
+        "./src/app/core/*"
+      ],
+      "@infrastructure/*": [
+        "./src/app/infrastructure/*"
+      ],
+      "@presentation/*": [
+        "./src/app/presentation/*"
+      ],
+      "@features/*": [
+        "./src/app/presentation/features/*"
+      ],
+      "@shared/*": [
+        "./src/app/presentation/shared/*"
+      ],
+      "@layouts/*": [
+        "./src/app/presentation/layouts/*"
+      ],
+      "jszip": [
+        "./node_modules/jszip/dist/jszip.min.js"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}
