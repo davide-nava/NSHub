@@ -19,13 +19,13 @@ public static class SeedHelper
     /// </summary>
     /// <param name="dbContext">The tenant database context.</param>
     /// <returns>A task representing the asynchronous seed operation.</returns>
-    public static async Task<System.Threading.Tasks.Task> CheckSeedsAsync(TenantDbContext dbContext)
+    public static async Task<Task> CheckSeedsAsync(TenantDbContext dbContext)
 	{
 		ArgumentNullException.ThrowIfNull(dbContext);
 
 		await SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
 
-		return System.Threading.Tasks.Task.CompletedTask;
+		return Task.CompletedTask;
 	}
 
     /// <summary>
@@ -33,16 +33,16 @@ public static class SeedHelper
     /// </summary>
     /// <param name="dbContext">The application database context.</param>
     /// <returns>A task representing the asynchronous seed operation.</returns>
-    public static async Task<System.Threading.Tasks.Task> CheckSeedsAsync(ApplicationDbContext dbContext)
+    public static async Task<Task> CheckSeedsAsync(ApplicationDbContext dbContext)
     {
         ArgumentNullException.ThrowIfNull(dbContext);
 
         await SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
 
-        return System.Threading.Tasks.Task.CompletedTask;
+        return Task.CompletedTask;
     }
 
-    private static async System.Threading.Tasks.Task SeedAsync<T>(DbContext dbContext, IEnumerable<T> list)
+    private static async Task SeedAsync<T>(DbContext dbContext, IEnumerable<T> list)
 		where T : BaseEntity
 	{
 		var setAdd = false;

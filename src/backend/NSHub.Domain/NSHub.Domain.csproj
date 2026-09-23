@@ -49,26 +49,18 @@
     <Compile Remove="Entities\TransportDocument.cs" />
     <Compile Remove="Entities\TransportDocumentRow.cs" />
     <Compile Remove="Entities\UnitOfMeasure.cs" />
-    <Compile Remove="Entities\User.cs" />
-    <Compile Remove="Entities\Vat.cs" />
     <Compile Remove="Entities\Warehouse.cs" />
     <Compile Remove="Enums\ArticleUnitOfMeasure.cs" />
-    <Compile Remove="Enums\ClaimType.cs" />
     <Compile Remove="Enums\DayHourType.cs" />
     <Compile Remove="Enums\DialogResultType.cs" />
-    <Compile Remove="Enums\HoursInDayType.cs" />
-    <Compile Remove="Enums\HourType.cs" />
     <Compile Remove="Enums\InvoiceStatus.cs" />
     <Compile Remove="Enums\LanguageCode.cs" />
     <Compile Remove="Enums\MovementType.cs" />
     <Compile Remove="Enums\NotificationType.cs" />
-    <Compile Remove="Enums\PasskeyOperationType.cs" />
     <Compile Remove="Enums\PaymentTerm.cs" />
     <Compile Remove="Enums\PublishingStatus.cs" />
     <Compile Remove="Enums\SentResultType.cs" />
-    <Compile Remove="Enums\SortingDirectionType.cs" />
     <Compile Remove="Enums\StatutoryWeeklyLimit.cs" />
-    <Compile Remove="Enums\ThemeType.cs" />
     <Compile Remove="Enums\TicketPriority.cs" />
     <Compile Remove="Enums\TicketStatus.cs" />
     <Compile Remove="Enums\TimeType.cs" />
@@ -88,10 +80,6 @@
 				<PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
     <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
     <PackageReference Update="Roslynator.CodeFixes" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

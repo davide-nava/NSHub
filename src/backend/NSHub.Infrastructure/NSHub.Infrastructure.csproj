@@ -19,12 +19,54 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Cms\**" />
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="DbContexts\**" />
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="Identity\**" />
+    <Compile Remove="Interceptors\**" />
+    <Compile Remove="Invoicing\**" />
+    <Compile Remove="Persistence\**" />
     <Compile Remove="Repositories\**" />
+    <Compile Remove="Seeders\**" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="Tickets\**" />
+    <Compile Remove="Warehouse\**" />
+    <None Remove="Cms\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="DbContexts\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="Identity\**" />
+    <None Remove="Interceptors\**" />
+    <None Remove="Invoicing\**" />
+    <None Remove="Persistence\**" />
     <None Remove="Repositories\**" />
     <Compile Remove="Pdfs\**" />
+    <EmbeddedResource Remove="Cms\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="DbContexts\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Identity\**" />
+    <EmbeddedResource Remove="Interceptors\**" />
+    <EmbeddedResource Remove="Invoicing\**" />
+    <EmbeddedResource Remove="Persistence\**" />
+    <EmbeddedResource Remove="Seeders\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Tickets\**" />
+    <EmbeddedResource Remove="Warehouse\**" />
     <None Remove="Pdfs\**" />
-    <Compile Remove="Extensions\___DependencyInjectionExtension.cs" />
-    <None Remove="Extensions\___DependencyInjectionExtension.cs" />
+    <None Remove="Seeders\**" />
+    <None Remove="Services\**" />
+    <None Remove="Tickets\**" />
+    <None Remove="Warehouse\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DbContexts\ApplicationDbContext.cs" />
+    <Compile Include="DbContexts\HubDbContext.cs" />
+    <Compile Include="Helpers\JsonHelpers.cs" />
+    <Compile Include="Helpers\SeedHelper.cs" />
+    <Compile Include="Seeders\LanguageSeeder.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,15 +94,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference
-        Update="Microsoft.CodeAnalysis.NetAnalyzers"
-        Version="11.0.100-rc.1.26425.128" />
-    <PackageReference
-        Update="Roslynator.Analyzers"
-        Version="5.0.0" />
-    <PackageReference
-        Update="Roslynator.CodeFixes"
-        Version="5.0.0" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
+    <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
+    <PackageReference Update="Roslynator.CodeFixes" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

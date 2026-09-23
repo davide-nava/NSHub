@@ -24,9 +24,6 @@ public class TenantDbContext(DbContextOptions<TenantDbContext> options, ILogger 
     /// </summary>
     public virtual DbSet<Language> Languages { get; set; }
 
-    /// <summary>
-    /// Gets or sets the database set for tenants.
-    /// </summary>
     public virtual DbSet<Tenant> Tenants { get; set; }
 
     /// <summary>

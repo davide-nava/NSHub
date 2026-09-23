@@ -14,30 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference
-          Include="Swashbuckle.AspNetCore.Annotations"
-          Version="10.2.3" />
-      <PackageReference
-          Include="Scrutor"
-          Version="7.0.0" />
-    <PackageReference
-        Include="Microsoft.AspNetCore.OpenApi"
-        Version="11.0.0-rc.1.26425.128" />
-    <PackageReference
-        Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"
-        Version="1.24.2-preview.1" />
-    <PackageReference
-        Include="Microsoft.OpenApi"
-        Version="3.10.0" />
-    <PackageReference
-        Include="Swashbuckle.AspNetCore"
-        Version="10.2.3" />
-    <PackageReference
-        Include="Serilog.AspNetCore"
-        Version="10.0.1-dev-02312" />
-    <PackageReference
-        Include="Microsoft.EntityFrameworkCore.Design"
-        Version="11.0.0-rc.1.26425.128">
+      <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.2.3" />
+      <PackageReference Include="Scrutor" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="11.0.0-rc.1.26425.128" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.24.2-preview.1" />
+    <PackageReference Include="Microsoft.OpenApi" Version="3.10.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.1-dev-02312" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="11.0.0-rc.1.26425.128">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -69,19 +53,45 @@
     <Compile Remove="Controllers\AuthenticationController.cs" />
     <None Remove="Controllers\AuthenticationController.cs" />
     <Compile Remove="Endpoints\**" />
+    <Compile Remove="ExceptionHandling\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Filters\**" />
+    <Compile Remove="HostedServices\**" />
+    <Compile Remove="Middlewares\**" />
+    <Compile Remove="OperationFilters\**" />
+    <Compile Remove="ServiceFilterAttributes\**" />
+    <Compile Remove="Validators\**" />
+    <Content Remove="ExceptionHandling\**" />
+    <Content Remove="Extensions\**" />
+    <Content Remove="Filters\**" />
+    <Content Remove="HostedServices\**" />
+    <Content Remove="Middlewares\**" />
+    <Content Remove="OperationFilters\**" />
+    <Content Remove="ServiceFilterAttributes\**" />
+    <Content Remove="Validators\**" />
+    <EmbeddedResource Remove="ExceptionHandling\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Filters\**" />
+    <EmbeddedResource Remove="HostedServices\**" />
+    <EmbeddedResource Remove="Middlewares\**" />
+    <EmbeddedResource Remove="OperationFilters\**" />
+    <EmbeddedResource Remove="ServiceFilterAttributes\**" />
+    <EmbeddedResource Remove="Validators\**" />
     <None Remove="Endpoints\**" />
+    <None Remove="ExceptionHandling\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Filters\**" />
+    <None Remove="HostedServices\**" />
+    <None Remove="Middlewares\**" />
+    <None Remove="OperationFilters\**" />
+    <None Remove="ServiceFilterAttributes\**" />
+    <None Remove="Validators\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference
-        Update="Microsoft.CodeAnalysis.NetAnalyzers"
-        Version="11.0.100-rc.1.26425.128" />
-    <PackageReference
-        Update="Roslynator.Analyzers"
-        Version="5.0.0" />
-    <PackageReference
-        Update="Roslynator.CodeFixes"
-        Version="5.0.0" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
+    <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
+    <PackageReference Update="Roslynator.CodeFixes" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

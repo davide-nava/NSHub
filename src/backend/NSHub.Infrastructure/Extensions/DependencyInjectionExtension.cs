@@ -117,5 +117,80 @@ public static class DependencyInjectionExtension
 
         return builder;
     }
+
+
+
+    /// <summary>
+    /// Adds infrastructure services, repositories, database contexts, and authentication to the service collection.
+    /// </summary>
+    /// <param name="services">The service collection.</param>
+    /// <param name="configuration">The configuration instance.</param>
+    /// <returns>The updated service collection.</returns>
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    {
+        _ = services.AddHttpContextAccessor();
+
+        // Providers e Servizi
+        _ = services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        _ = services.AddScoped<ICurrentUserService, CurrentUserService>();
+        _ = services.AddScoped<IJwtTokenService, JwtTokenService>();
+        _ = services.AddScoped<ISecoComplianceExportService, SecoComplianceExportService>();
+
+        // Interceptor EF Core
+        _ = services.AddScoped<AuditLogInterceptor>();
+
+        // DbContext SQLite
+        var connectionString = configuration.GetConnectionString("DefaultConnection") ?? "Data Source=openx_gest.db";
+        _ = services.AddDbContext<OpenXGestDbContext>((sp, options) =>
+        {
+            var interceptor = sp.GetRequiredService<AuditLogInterceptor>();
+            _ = options.UseSqlite(connectionString)
+                   .AddInterceptors(interceptor);
+        });
+
+        // Repositories & UnitOfWork
+        _ = services.AddScoped<ITimeEntryRepository, TimeEntryRepository>();
+        _ = services.AddScoped<Domain.Repositories.ITimeEntryRepository, TimeEntryRepository>();
+        _ = services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        _ = services.AddScoped<Domain.Repositories.IEmployeeRepository, EmployeeRepository>();
+        _ = services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Phase 1 Bounded Context Services & Repositories
+        _ = services.AddSingleton<Domain.Identity.Services.IPasswordHasher, Infrastructure.Identity.Services.PasswordHasher>();
+        _ = services.AddScoped<IUserRepository, Infrastructure.Identity.Persistence.Repositories.UserRepository>();
+        _ = services.AddScoped<ITicketCommandRepository, Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
+        _ = services.AddScoped<IInventoryRepository, Infrastructure.Warehouse.Persistence.Repositories.InventoryRepository>();
+        _ = services.AddScoped<IInvoiceRepository, Infrastructure.Invoicing.Persistence.Repositories.InvoiceRepository>();
+        _ = services.AddScoped<Domain.Invoicing.Services.IInvoiceNumberSequenceService, Infrastructure.Invoicing.Services.InvoiceNumberSequenceService>();
+        _ = services.AddScoped<ICmsRepository, Infrastructure.Cms.Persistence.Repositories.CmsRepository>();
+
+        // Autenticazione JWT
+        var jwtSecret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
+        var jwtIssuer = configuration["Jwt:Issuer"] ?? "OpenXGest";
+        var jwtAudience = configuration["Jwt:Audience"] ?? "OpenXGestClient";
+
+        _ = services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.RequireHttpsMetadata = false;
+            options.SaveToken = true;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
+                ValidateIssuer = true,
+                ValidIssuer = jwtIssuer,
+                ValidateAudience = true,
+                ValidAudience = jwtAudience,
+                ClockSkew = TimeSpan.Zero,
+            };
+        });
+
+        return services;
+    }
 }
 
