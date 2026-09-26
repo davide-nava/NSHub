@@ -9,7 +9,7 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Domain entity representing a tag.
 /// </summary>
-public class TagType : BaseLookup
+public class TagType : AuditableLookupEntity
 {
     /// <summary>
     /// Gets or sets a value indicating whether the tag is associated with the CMS.

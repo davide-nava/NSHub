@@ -9,7 +9,7 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Domain entity representing a ticket state type.
 /// </summary>
-public class TicketStateType : BaseLookup
+public class TicketStateType : AuditableLookupEntity
 {
     /// <summary>
     /// Gets or sets a value indicating whether the ticket state is close.

@@ -32,11 +32,4 @@ public class Address : AuditableTenantEntity
 
     private readonly List<Warehouse> _warehouses = new();
     public virtual IReadOnlyCollection<Warehouse> Warehouses => _warehouses.AsReadOnly();
-
-    protected Address() { }
-
-    public static Address Create()
-    {
-        return new Address();
-    }
 }

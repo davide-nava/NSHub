@@ -1,4 +1,4 @@
-// <copyright file="BaseLookup.cs" company="Davide Nava">
+// <copyright file="AuditableLookupEntity.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace NSHub.Domain.Common;
 /// <summary>
 /// Represents a base class for lookup entities, providing common properties such as description, sort order, and default selection status.
 /// </summary>
-public class BaseLookup : BaseEntity
+public class AuditableLookupEntity : AuditableEntity, IAuditableLookupEntity
 {
     /// <summary>
     /// Gets or sets the name of the lookup item.

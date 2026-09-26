@@ -9,6 +9,6 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Domain lookup entity representing an invoice state type.
 /// </summary>
-public class InvoiceStateType : BaseLookup
+public class InvoiceStateType : AuditableLookupEntity
 {
 }

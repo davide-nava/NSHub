@@ -5,12 +5,12 @@
 namespace NSHub.Domain.Common;
 
 /// <summary>
-/// 
+/// Defines an entity that has a row version for concurrency control.
 /// </summary>
 public interface IHasRowVersion
 {
     /// <summary>
-    /// 
+    /// Gets or sets the row version for concurrency control.
     /// </summary>
     public byte[] RowVersion { get; set; }
 }
