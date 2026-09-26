@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.NSHub.Models.EntityModels;
+namespace NSHub.Application.Models.EntityModels;
 
 public class BaseEntityModel
 {

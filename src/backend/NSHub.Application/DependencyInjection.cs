@@ -10,24 +10,39 @@ using NSHub.Application.Common.Behaviors;
 
 namespace NSHub.Application;
 
+/// <summary>
+/// Extension methods for setting up application services in an <see cref="IServiceCollection"/>.
+/// </summary>
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    /// <summary>
+    /// Adds application services, MediatR, FluentValidation, and pipeline behaviors to the service collection.
+    /// </summary>
+    /// <param name="services">The service collection.</param>
+    /// <returns>The modified service collection.</returns>
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        _ = services.AddMediatR(cfg =>
+        services.AddValidatorsFromAssembly(assembly);
+
+        services.AddMediatR(cfg =>
         {
-            _ = cfg.RegisterServicesFromAssembly(assembly);
-            _ = cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            _ = cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            cfg.RegisterServicesFromAssembly(assembly);
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         });
 
-        _ = services.AddValidatorsFromAssembly(assembly);
-
-        // AddLocalization senza ResourcesPath affinché il namespace esatto del tipo ValidationMessages corrisponda
-        _ = services.AddLocalization();
-
         return services;
+    }
+
+    /// <summary>
+    /// Backward-compatible alias for <see cref="AddApplicationServices"/>.
+    /// </summary>
+    /// <param name="services">The service collection.</param>
+    /// <returns>The modified service collection.</returns>
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        return services.AddApplicationServices();
     }
 }

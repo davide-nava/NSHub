@@ -6,13 +6,20 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Represents a language entity.
-/// </summary>
-public class Language : BaseLookup
+public class Language : AuditableTenantEntity
 {
-    /// <summary>Gets or sets the abbreviation/code acronym.</summary>
+    public string Code { get; protected set; } = string.Empty;
+    public string Description { get; protected set; } = string.Empty;
 
-    /// <summary>Gets or sets the language code.</summary>
-    public string? CodLanguage { get; set; }
+    private readonly List<DncText> _dncTexts = new();
+    public virtual IReadOnlyCollection<DncText> DncTexts => _dncTexts.AsReadOnly();
+    private readonly List<FxText> _fxTexts = new();
+    public virtual IReadOnlyCollection<FxText> FxTexts => _fxTexts.AsReadOnly();
+
+    protected Language() { }
+
+    public static Language Create()
+    {
+        return new Language();
+    }
 }

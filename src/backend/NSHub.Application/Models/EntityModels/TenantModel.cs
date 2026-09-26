@@ -4,7 +4,7 @@
 
 using NSHub.Application.Services;
 
-namespace NSHub.Application.NSHub.Models.EntityModels;
+namespace NSHub.Application.Models.EntityModels;
 
 public class TenantModel : BaseEntityModel
 {

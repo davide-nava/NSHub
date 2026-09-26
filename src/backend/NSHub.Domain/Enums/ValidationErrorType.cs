@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Types of model validation errors.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum ValidationErrorType
 {
     /// <summary>

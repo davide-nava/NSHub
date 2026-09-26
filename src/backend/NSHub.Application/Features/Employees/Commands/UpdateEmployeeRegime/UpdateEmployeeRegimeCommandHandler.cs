@@ -2,40 +2,40 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Localization;
+using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Common.Interfaces;
-using NSHub.Application.Resources;
-using NSHub.Domain.Common;
+using NSHub.Application.Common.Models;
 
 namespace NSHub.Application.Features.Employees.Commands.UpdateEmployeeRegime;
 
 /// <summary>
-/// MediatR request handler for updating an employee's OLL 1 working time regime.
+/// MediatR request handler for updating an employee's Swiss OLL 1 regime.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="UpdateEmployeeRegimeCommandHandler"/> class.
-/// </remarks>
-/// <param name="employeeRepository">The employee repository.</param>
-/// <param name="unitOfWork">The unit of work.</param>
-/// <param name="localizer">The string localizer.</param>
-public class UpdateEmployeeRegimeCommandHandler(
-    IEmployeeRepository employeeRepository,
-    IUnitOfWork unitOfWork,
-    IStringLocalizer<ValidationMessages> localizer) : IRequestHandler<UpdateEmployeeRegimeCommand, Result>
+public class UpdateEmployeeRegimeCommandHandler : IRequestHandler<UpdateEmployeeRegimeCommand, Result>
 {
+    private readonly IApplicationDbContext _context;
+
+    public UpdateEmployeeRegimeCommandHandler(IApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     /// <inheritdoc/>
     public async Task<Result> Handle(UpdateEmployeeRegimeCommand request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByIdAsync(request.EmployeeId, cancellationToken);
-        if (employee == null)
+        var employee = await _context.Employees
+            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken);
+
+        if (employee is null)
         {
-            return Result.Failure(Error.NotFound("Employee.NotFound", localizer["EmployeeNotFound"]));
+            return Result.Failure([$"Employee with ID '{request.EmployeeId}' was not found."]);
         }
 
-        employee.UpdateOll1Regime(request.Regime);
-        employeeRepository.Update(employee);
-        _ = await unitOfWork.SaveChangesAsync(cancellationToken);
+        employee.SetRegime(request.Regime);
+        await _context.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

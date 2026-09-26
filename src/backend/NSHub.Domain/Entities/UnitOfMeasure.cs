@@ -6,11 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Represents a unit of measure lookup entity.
-/// </summary>
-public class UnitOfMeasure : BaseLookup
+public class UnitOfMeasure : AuditableTenantEntity
 {
-    /// <summary>Gets or sets the unit symbol/acronym.</summary>
-    public string? Symbol { get; set; }
+    public string Description { get; protected set; } = string.Empty;
+    public string Code { get; protected set; } = string.Empty;
+
+    private readonly List<Article> _articles = new();
+    public virtual IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
+
+    protected UnitOfMeasure() { }
+
+    public static UnitOfMeasure Create()
+    {
+        return new UnitOfMeasure();
+    }
 }

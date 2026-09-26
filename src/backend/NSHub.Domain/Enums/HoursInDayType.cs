@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Hour counts representation across normal and daylight saving transition days.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum HoursInDayType
 {
     /// <summary>

@@ -2,15 +2,13 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Labor law statutory violation flags according to Swiss Labor Law (LL/OLL).
 /// </summary>
 [Flags]
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum ViolationType
 {
     /// <summary>

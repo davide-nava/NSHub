@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Standard contractual payment terms.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum PaymentTerm
 {
     /// <summary>

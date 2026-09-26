@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.NSHub.Models.EntityModels;
+namespace NSHub.Application.Models.EntityModels;
 
 public class TranslationModel : BaseEntityModel
 {

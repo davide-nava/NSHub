@@ -6,13 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Aggregate root representing an enterprise user identity, authentication invariants, and roles.
-/// </summary>
-public class Nation : BaseLookup
+public class Nation : AuditableTenantEntity
 {
-    /// <summary>
-    /// Gets or sets the VAT value.
-    /// </summary>
-    public decimal Value { get; set; }
+    public string Code { get; protected set; } = string.Empty;
+    public string? Name { get; protected set; }
+
+    private readonly List<Address> _addresses = new();
+    public virtual IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
+
+    protected Nation() { }
+
+    public static Nation Create()
+    {
+        return new Nation();
+    }
 }

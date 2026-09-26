@@ -2,46 +2,51 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Localization;
+using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Common.Interfaces;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.Auth.DTOs;
-using NSHub.Application.Resources;
-using NSHub.Domain.Common;
 
 namespace NSHub.Application.Features.Auth.Commands;
 
 /// <summary>
 /// MediatR request handler for processing employee login requests.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="LoginCommandHandler"/> class.
-/// </remarks>
-/// <param name="employeeRepository">The employee repository.</param>
-/// <param name="jwtTokenService">The JWT token service.</param>
-/// <param name="localizer">The string localizer.</param>
-public class LoginCommandHandler(
-    IEmployeeRepository employeeRepository,
-    IJwtTokenService jwtTokenService,
-    IStringLocalizer<ValidationMessages> localizer) : IRequestHandler<LoginCommand, Result<AuthResponseDto>>
+public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<AuthResponseDto>>
 {
+    private readonly IApplicationDbContext _context;
+    private readonly IJwtTokenService _jwtTokenService;
+
+    public LoginCommandHandler(IApplicationDbContext context, IJwtTokenService jwtTokenService)
+    {
+        _context = context;
+        _jwtTokenService = jwtTokenService;
+    }
+
     /// <inheritdoc/>
     public async Task<Result<AuthResponseDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByEmailAsync(request.Email.Trim().ToLowerInvariant(), cancellationToken);
+        var email = request.Email.Trim().ToLowerInvariant();
+        var employee = await _context.Employees
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Email.ToLower() == email, cancellationToken);
+
         if (employee == null)
         {
-            return Result<AuthResponseDto>.Failure(Error.Unauthorized("Auth.InvalidCredentials", localizer["InvalidCredentials"]));
+            return Result<AuthResponseDto>.Failure(["Invalid email or password."]);
         }
 
-        // Determine role based on department or email identifier
         var role = employee.Email.Contains("admin", StringComparison.OrdinalIgnoreCase) || employee.Email.Contains("hr", StringComparison.OrdinalIgnoreCase) ? "HRManager" : "Employee";
-        var token = jwtTokenService.GenerateToken(employee, role);
+        var token = _jwtTokenService.GenerateToken(employee, role);
 
         var dto = new AuthResponseDto(
             token,
             employee.Id,
-            $"{employee.FirstName} {employee.LastName}",
+            $"{employee.FirstName} {employee.LastName}".Trim(),
             employee.Email,
             role,
             employee.PreferredLanguage,

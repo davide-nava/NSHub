@@ -2,13 +2,17 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Localization;
+using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Common.Interfaces;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.TimeTracking.DTOs;
 using NSHub.Application.Features.TimeTracking.Mapping;
-using NSHub.Application.Resources;
-using NSHub.Domain.Common;
 using NSHub.Domain.Services;
 
 namespace NSHub.Application.Features.TimeTracking.Queries.GetTimesheet;
@@ -16,39 +20,40 @@ namespace NSHub.Application.Features.TimeTracking.Queries.GetTimesheet;
 /// <summary>
 /// MediatR request handler for computing and projecting employee timesheets.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="GetTimesheetQueryHandler"/> class.
-/// </remarks>
-/// <param name="employeeRepository">The employee repository.</param>
-/// <param name="timeEntryRepository">The time entry repository.</param>
-/// <param name="dateTimeProvider">The date and time provider.</param>
-/// <param name="localizer">The string localizer.</param>
-public class GetTimesheetQueryHandler(
-    IEmployeeRepository employeeRepository,
-    ITimeEntryRepository timeEntryRepository,
-    IDateTimeProvider dateTimeProvider,
-    IStringLocalizer<ValidationMessages> localizer) : IRequestHandler<GetTimesheetQuery, Result<TimesheetDto>>
+public class GetTimesheetQueryHandler : IRequestHandler<GetTimesheetQuery, Result<TimesheetDto>>
 {
-    private readonly SwissWorktimePolicy policy = new SwissWorktimePolicy();
+    private readonly IApplicationDbContext _context;
+    private readonly IDateTimeService _dateTimeService;
+    private readonly SwissWorktimePolicy _policy = new();
+
+    public GetTimesheetQueryHandler(IApplicationDbContext context, IDateTimeService dateTimeService)
+    {
+        _context = context;
+        _dateTimeService = dateTimeService;
+    }
 
     /// <inheritdoc/>
     public async Task<Result<TimesheetDto>> Handle(GetTimesheetQuery request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByIdAsync(request.EmployeeId, cancellationToken);
+        var employee = await _context.Employees
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken);
+
         if (employee == null)
         {
-            return Result<TimesheetDto>.Failure(Error.NotFound("Employee.NotFound", localizer["EmployeeNotFound"]));
+            return Result<TimesheetDto>.Failure([$"Employee with ID '{request.EmployeeId}' was not found."]);
         }
 
-        var entries = await timeEntryRepository.GetEntriesForEmployeeRangeAsync(
-            request.EmployeeId,
-            request.StartDateUtc,
-            request.EndDateUtc,
-            cancellationToken);
+        var startDate = request.StartDateUtc.Date;
+        var endDate = request.EndDateUtc.Date;
 
-        // Group punches by Swiss local calendar date
+        var entries = await _context.TimeEntries
+            .AsNoTracking()
+            .Where(e => e.EmployeeId == request.EmployeeId && e.WorkDate >= startDate && e.WorkDate <= endDate)
+            .ToListAsync(cancellationToken);
+
         var groupedByDate = entries
-            .GroupBy(e => dateTimeProvider.ToSwissTime(e.ClockInUtc).Date)
+            .GroupBy(e => _dateTimeService.ToSwissTime(e.ClockInUtc).Date)
             .OrderBy(g => g.Key);
 
         var days = new List<DaySummaryDto>();
@@ -76,33 +81,21 @@ public class GetTimesheetQueryHandler(
                 if (entry.ClockOutUtc.HasValue)
                 {
                     var gross = (entry.ClockOutUtc.Value - entry.ClockInUtc).TotalHours;
-                    var net = gross - (entry.BreakDurationMinutes / 60.0);
+                    var breakMin = entry.BreakDurationMinutes ?? 0;
+                    var net = gross - (breakMin / 60.0);
                     dayGross += gross;
-                    dayBreak += entry.BreakDurationMinutes;
+                    dayBreak += breakMin;
                     dayNet += Math.Max(0, net);
 
-                    dayNight += policy.CalculateNightHours(entry.ClockInUtc, entry.ClockOutUtc.Value);
-                    daySunday += policy.CalculateSundayHours(entry.ClockInUtc, entry.ClockOutUtc.Value);
+                    dayNight += _policy.CalculateNightHours(entry.ClockInUtc, entry.ClockOutUtc.Value);
+                    daySunday += _policy.CalculateSundayHours(entry.ClockInUtc, entry.ClockOutUtc.Value);
                 }
 
-                if (entry.DailyRestPeriodViolated)
-                {
-                    hasRestViolation = true;
-                    totalRestViolations++;
-                }
-
-                if (entry.DailyAmplitudeExceeded)
-                {
-                    hasAmplitudeViolation = true;
-                    totalAmplitudeViolations++;
-                }
-
-                entryDtos.Add(entry.ToDto(dateTimeProvider));
+                entryDtos.Add(entry.ToDto(_dateTimeService));
             }
 
-            // Calculation of daily statutory breakdown
             var dailyContractual = employee.ContractualWeeklyHours / 5.0m;
-            var dailyBreakdown = policy.SplitWorkHours((decimal)dayNet, dailyContractual, employee.StatutoryWeeklyLimit);
+            var dailyBreakdown = _policy.SplitWorkHours((decimal)dayNet, dailyContractual, employee.StatutoryWeeklyLimit);
 
             totalNet += dayNet;
             totalNight += dayNight;
@@ -125,15 +118,14 @@ public class GetTimesheetQueryHandler(
             ));
         }
 
-        // Global period breakdown
-        var periodBreakdown = policy.SplitWorkHours(
+        var periodBreakdown = _policy.SplitWorkHours(
             (decimal)totalNet,
             employee.ContractualWeeklyHours,
             employee.StatutoryWeeklyLimit);
 
         var dto = new TimesheetDto(
             employee.Id,
-            $"{employee.FirstName} {employee.LastName}",
+            $"{employee.FirstName} {employee.LastName}".Trim(),
             employee.Oll1Regime,
             employee.ContractualWeeklyHours,
             employee.StatutoryWeeklyLimit,

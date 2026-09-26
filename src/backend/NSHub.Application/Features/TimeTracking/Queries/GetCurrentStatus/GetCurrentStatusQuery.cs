@@ -2,9 +2,10 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
 using MediatR;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.TimeTracking.DTOs;
-using NSHub.Domain.Common;
 
 namespace NSHub.Application.Features.TimeTracking.Queries.GetCurrentStatus;
 

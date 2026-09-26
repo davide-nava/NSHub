@@ -4,7 +4,7 @@
 
 using NSHub.Domain.Enums;
 
-namespace NSHub.Application.NSHub.Models.EntityModels;
+namespace NSHub.Application.Models.EntityModels;
 
 public class NotificationModel : BaseEntityModel
 {

@@ -5,7 +5,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using NSHub.Application.Interfaces;
+using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Models;
 using NSHub.Application.Options;
 
@@ -13,7 +13,7 @@ namespace NSHub.Application.Services;
 
 public class EmailSenderService(IOptionsMonitor<SmtpOption> smtpOption, ILogger<EmailSenderService> logger) : IEmailSenderService
 {
-	public async Task<Task> SendEmailAsync(string recipient, string subject, string body, IEnumerable<MinePartContentTypeAttachmentModel>? attachments = null, string cc = "", string bcc = "")
+	public async Task SendEmailAsync(string recipient, string subject, string body, IEnumerable<MinePartContentTypeAttachmentModel>? attachments = null, string cc = "", string bcc = "")
 	{
 		if (smtpOption.CurrentValue.Enable)
 		{
@@ -32,8 +32,6 @@ public class EmailSenderService(IOptionsMonitor<SmtpOption> smtpOption, ILogger<
 				await client.DisconnectAsync(true);
 			}
 		}
-
-		return Task.CompletedTask;
 	}
 
 	private static BodyBuilder CreateBuilder(IEnumerable<MinePartContentTypeAttachmentModel>? attachments, BodyBuilder builder)

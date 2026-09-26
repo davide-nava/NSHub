@@ -1,3 +1,7 @@
+// <copyright file="CreateTicketCommand.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using System;
 using System.Threading;
 using System.Threading.Tasks;

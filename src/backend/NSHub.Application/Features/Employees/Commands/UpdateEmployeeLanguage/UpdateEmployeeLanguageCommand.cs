@@ -2,8 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
 using MediatR;
-using NSHub.Domain.Common;
+using NSHub.Application.Common.Models;
 using NSHub.Domain.Enums;
 
 namespace NSHub.Application.Features.Employees.Commands.UpdateEmployeeLanguage;

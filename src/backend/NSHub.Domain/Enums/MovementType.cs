@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Operational movement types for inventory tracking.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum MovementType
 {
     /// <summary>

@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Operational classifications for hour types.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum HourType
 {
     /// <summary>

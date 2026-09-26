@@ -3,8 +3,8 @@
 // </copyright>
 
 using MediatR;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.Auth.DTOs;
-using NSHub.Domain.Common;
 
 namespace NSHub.Application.Features.Auth.Commands;
 

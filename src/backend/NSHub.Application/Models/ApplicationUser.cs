@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Identity;
 
-namespace NSHub.Application.NSHub.Models;
+namespace NSHub.Application.Models;
 
 public class ApplicationUser : IdentityUser<Guid>
 {

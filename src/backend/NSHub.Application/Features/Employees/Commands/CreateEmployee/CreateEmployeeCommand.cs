@@ -6,7 +6,7 @@ namespace NSHub.Application.Features.Employees.Commands.CreateEmployee;
 
 using MediatR;
 using NSHub.Application.Features.Employees.DTOs;
-using NSHub.Domain.Common;
+using NSHub.Application.Common.Models;
 using NSHub.Domain.Enums;
 
 /// <summary>

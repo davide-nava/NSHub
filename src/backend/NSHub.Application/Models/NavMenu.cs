@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.NSHub.Models;
+namespace NSHub.Application.Models;
 
 public class NavMenu
 {

@@ -9,7 +9,7 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Domain entity representing a ticket priority.
 /// </summary>
-internal class TicketPriority : BaseLookup
+public class TicketPriority : BaseLookup
 {
     /// <summary>
     /// Gets or sets the priority.

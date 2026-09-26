@@ -2,73 +2,37 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using NSHub.Domain.Common;
+
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Represents a supplier entity.
-/// </summary>
-public class Supplier
+public class Supplier : AuditableTenantEntity
 {
-    /// <summary>Gets or sets the supplier code (Primary Key, Identity).</summary>
-    public int CodSupplier { get; set; }
+    public string Name { get; protected set; } = string.Empty;
+    public string? Search { get; protected set; }
+    public string? Number { get; protected set; }
+    public string? VatNumber { get; protected set; }
+    public string? TaxCode { get; protected set; }
+    public string? SdiCode { get; protected set; }
+    public string? PecEmail { get; protected set; }
+    public string? Email { get; protected set; }
+    public string? Phone { get; protected set; }
+    public Guid? AddressId { get; protected set; }
+    public Guid? PaymentId { get; protected set; }
+    public Guid? BankAccountId { get; protected set; }
+    public bool IsActive { get; protected set; }
+    public virtual BankAccount? BankAccount { get; protected set; }
+    public virtual Payment? Payment { get; protected set; }
 
-    /// <summary>Gets or sets the supplier denomination/name.</summary>
-    public string? Denomination { get; set; }
+    private readonly List<Invoice> _invoices = new();
+    public virtual IReadOnlyCollection<Invoice> Invoices => _invoices.AsReadOnly();
+    private readonly List<Order> _orders = new();
+    public virtual IReadOnlyCollection<Order> Orders => _orders.AsReadOnly();
 
-    /// <summary>Gets or sets the VAT number.</summary>
-    public string? VatNumber { get; set; }
+    protected Supplier() { }
 
-    /// <summary>Gets or sets the address.</summary>
-    public string? Address { get; set; }
-
-    /// <summary>Gets or sets the postal code.</summary>
-    public string? PostalCode { get; set; }
-
-    /// <summary>Gets or sets the city.</summary>
-    public string? City { get; set; }
-
-    /// <summary>Gets or sets the province.</summary>
-    public string? Province { get; set; }
-
-    /// <summary>Gets or sets the phone number.</summary>
-    public string? Phone { get; set; }
-
-    /// <summary>Gets or sets the fax number.</summary>
-    public string? Fax { get; set; }
-
-    /// <summary>Gets or sets the website.</summary>
-    public string? Website { get; set; }
-
-    /// <summary>Gets or sets the email address.</summary>
-    public string? Email { get; set; }
-
-    /// <summary>Gets or sets the insertion date.</summary>
-    public DateTime? InsertionDate { get; set; }
-
-    /// <summary>Gets or sets the photo.</summary>
-    public IEnumerable<byte>? Photo { get; set; }
-
-    /// <summary>Gets or sets the mobile phone number.</summary>
-    public string? MobilePhone { get; set; }
-
-    /// <summary>Gets or sets the ABI bank code.</summary>
-    public string? Abi { get; set; }
-
-    /// <summary>Gets or sets the CAB bank code.</summary>
-    public string? Cab { get; set; }
-
-    /// <summary>Gets or sets the IBAN.</summary>
-    public string? Iban { get; set; }
-
-    /// <summary>Gets or sets the country.</summary>
-    public string? Country { get; set; }
-
-    /// <summary>Gets or sets notes.</summary>
-    public string? Notes { get; set; }
-
-    /// <summary>Gets or sets miscellaneous details.</summary>
-    public string? Miscellaneous { get; set; }
-
-    /// <summary>Gets or sets who introduced this supplier.</summary>
-    public string? IntroducedBy { get; set; }
+    public static Supplier Create()
+    {
+        return new Supplier();
+    }
 }

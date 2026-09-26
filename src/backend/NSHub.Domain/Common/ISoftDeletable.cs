@@ -1,9 +1,21 @@
-using System;
+// <copyright file="ISoftDeletable.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
 
 namespace NSHub.Domain.Common;
 
+/// <summary>
+/// 
+/// </summary>
 public interface ISoftDeletable
 {
-    DateTime? DateDelete { get; set; }
-    Guid? UserDeleteId { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DateTime? DateDelete { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public Guid? UserDeleteId { get; set; }
 }

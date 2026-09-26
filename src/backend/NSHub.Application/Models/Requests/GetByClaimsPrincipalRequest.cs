@@ -4,7 +4,7 @@
 
 using System.Security.Claims;
 
-namespace NSHub.Application.NSHub.Models.Requests;
+namespace NSHub.Application.Models.Requests;
 
 public class GetByClaimsPrincipalRequest
 {

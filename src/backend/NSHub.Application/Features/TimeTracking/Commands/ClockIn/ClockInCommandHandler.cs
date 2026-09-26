@@ -2,77 +2,57 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Localization;
+using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Common.Interfaces;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.TimeTracking.DTOs;
 using NSHub.Application.Features.TimeTracking.Mapping;
-using NSHub.Application.Resources;
-using NSHub.Domain.Common;
 using NSHub.Domain.Entities;
-using NSHub.Domain.Enums;
-using NSHub.Domain.Services;
-using NSHub.Domain.ValueObjects;
 
 namespace NSHub.Application.Features.TimeTracking.Commands.ClockIn;
 
 /// <summary>
 /// MediatR request handler for processing employee clock-in punches.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="ClockInCommandHandler"/> class.
-/// </remarks>
-/// <param name="timeEntryRepository">The time entry repository.</param>
-/// <param name="employeeRepository">The employee repository.</param>
-/// <param name="unitOfWork">The unit of work.</param>
-/// <param name="dateTimeProvider">The date and time provider.</param>
-/// <param name="localizer">The string localizer.</param>
-public class ClockInCommandHandler(
-    ITimeEntryRepository timeEntryRepository,
-    IEmployeeRepository employeeRepository,
-    IUnitOfWork unitOfWork,
-    IDateTimeProvider dateTimeProvider,
-    IStringLocalizer<ValidationMessages> localizer) : IRequestHandler<ClockInCommand, Result<TimeEntryDto>>
+public class ClockInCommandHandler : IRequestHandler<ClockInCommand, Result<TimeEntryDto>>
 {
-    private readonly SwissWorktimePolicy policy = new SwissWorktimePolicy();
+    private readonly IApplicationDbContext _context;
+    private readonly IDateTimeService _dateTimeService;
+
+    public ClockInCommandHandler(IApplicationDbContext context, IDateTimeService dateTimeService)
+    {
+        _context = context;
+        _dateTimeService = dateTimeService;
+    }
 
     /// <inheritdoc/>
     public async Task<Result<TimeEntryDto>> Handle(ClockInCommand request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByIdAsync(request.EmployeeId, cancellationToken);
-        if (employee == null)
+        var employee = await _context.Employees
+            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken);
+
+        if (employee is null)
         {
-            return Result<TimeEntryDto>.Failure(Error.NotFound("Employee.NotFound", localizer["EmployeeNotFound"]));
+            return Result<TimeEntryDto>.Failure([$"Employee with ID '{request.EmployeeId}' was not found."]);
         }
 
-        var activeEntry = await timeEntryRepository.GetActiveEntryForEmployeeAsync(request.EmployeeId, cancellationToken);
+        var activeEntry = await _context.TimeEntries
+            .FirstOrDefaultAsync(t => t.EmployeeId == request.EmployeeId && t.EndTime == null, cancellationToken);
+
         if (activeEntry != null)
         {
-            return Result<TimeEntryDto>.Failure(Error.Conflict("TimeEntry.ActiveExists", localizer["ActiveShiftAlreadyExists"]));
+            return Result<TimeEntryDto>.Failure(["An active shift already exists for this employee."]);
         }
 
-        var nowUtc = dateTimeProvider.UtcNow;
+        var nowUtc = _dateTimeService.UtcNow;
+        var entry = TimeEntry.Create(request.EmployeeId, nowUtc, request.Notes);
 
-        GpsCoordinate? gps = null;
-        if (request.Latitude.HasValue && request.Longitude.HasValue)
-        {
-            gps = new GpsCoordinate(request.Latitude.Value, request.Longitude.Value, request.AccuracyMeters, nowUtc);
-        }
+        _context.TimeEntries.Add(entry);
+        await _context.SaveChangesAsync(cancellationToken);
 
-        var entry = new TimeEntry(Guid.NewGuid(), employee.Id, nowUtc, gps, request.Notes);
-
-        // Swiss legal check: 11 consecutive hours daily rest period (Art. 15a LL / Art. 19 OLL 1)
-        var prevEntry = await timeEntryRepository.GetPreviousEntryBeforeAsync(request.EmployeeId, nowUtc, cancellationToken);
-        if (prevEntry?.ClockOutUtc != null)
-        {
-            var (restHours, restViolated) = policy.EvaluateDailyRestPeriod(prevEntry.ClockOutUtc.Value, nowUtc);
-            var violations = restViolated ? ViolationType.DailyRestPeriodViolated : ViolationType.None;
-            entry.SetComplianceMetrics(restHours, restViolated, null, false, violations);
-        }
-
-        await timeEntryRepository.AddAsync(entry, cancellationToken);
-        _ = await unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return Result<TimeEntryDto>.Success(entry.ToDto(dateTimeProvider));
+        return Result<TimeEntryDto>.Success(entry.ToDto(_dateTimeService));
     }
 }

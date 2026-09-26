@@ -1,10 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+// <copyright file="InvoiceStateType.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-internal class InvoiceStateType : BaseLookup
+/// <summary>
+/// Domain lookup entity representing an invoice state type.
+/// </summary>
+public class InvoiceStateType : BaseLookup
 {
 }

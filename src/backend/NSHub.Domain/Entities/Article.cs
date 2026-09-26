@@ -3,97 +3,116 @@
 // </copyright>
 
 using NSHub.Domain.Common;
-using NSHub.Domain.Enums;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Aggregate root representing an inventory article or product.
-/// </summary>
-public class Article : BaseEntity
+public class Article : AuditableTenantEntity
 {
-    /// <summary>
-    /// Gets or sets the unique SKU or article code.
-    /// </summary>
-    public string Code { get; set; } = string.Empty;
+    public Guid? ParentArticleId { get; protected set; }
+    public Guid? ArticleBrandId { get; protected set; }
+    public Guid? ArticleCategoryId { get; protected set; }
+    public Guid? WarehouseId { get; protected set; }
+    public Guid? ArticleTypeId { get; protected set; }
+    public Guid UnitOfMeasureId { get; protected set; }
+    public Guid? SupplierId { get; protected set; }
+    public string Description { get; protected set; } = string.Empty;
+    public string Number { get; protected set; } = string.Empty;
+    public decimal Quantity { get; protected set; }
+    public string Image { get; protected set; } = string.Empty;
+    public decimal? Amount { get; protected set; }
+    public decimal? MinimumStock { get; protected set; }
+    public decimal? PurchasePrice { get; protected set; }
+    public decimal? SalePrice { get; protected set; }
+    public string? InternalArticleCode { get; protected set; }
+    public string? SupplierArticleCode { get; protected set; }
+    public string? FsFolder { get; protected set; }
+    public string? Website { get; protected set; }
+    public string? Notes { get; protected set; }
+    public string? FamilyCode { get; protected set; }
+    public string? Barcode { get; protected set; }
+    public string? Location { get; protected set; }
+    public string? Program { get; protected set; }
+    public string? ProcessingTime { get; protected set; }
+    public string? Search { get; protected set; }
+    public bool IsBatchManaged { get; protected set; }
+    public bool IsSerialNumberManaged { get; protected set; }
+    public bool IsActive { get; protected set; }
+    public virtual ArticleBrand? ArticleBrand { get; protected set; }
+    public virtual ArticleCategory? ArticleCategory { get; protected set; }
+    public virtual ArticleType? ArticleType { get; protected set; }
+    public virtual Article? ParentArticle { get; protected set; }
+    public virtual UnitOfMeasure? UnitOfMeasure { get; protected set; }
+    public virtual Warehouse? Warehouse { get; protected set; }
 
-    /// <summary>
-    /// Gets or sets the name of the article.
-    /// </summary>
-    public string Name { get; set; } = string.Empty;
+    private readonly List<Article> _childArticles = new();
+    public virtual IReadOnlyCollection<Article> ChildArticles => _childArticles.AsReadOnly();
+    private readonly List<ArticleCategoryMap> _articleCategoryMaps = new();
+    public virtual IReadOnlyCollection<ArticleCategoryMap> ArticleCategoryMaps => _articleCategoryMaps.AsReadOnly();
+    private readonly List<ArticleGroupMap> _articleGroupMaps = new();
+    public virtual IReadOnlyCollection<ArticleGroupMap> ArticleGroupMaps => _articleGroupMaps.AsReadOnly();
+    private readonly List<ArticleMachine> _articleMachines = new();
+    public virtual IReadOnlyCollection<ArticleMachine> ArticleMachines => _articleMachines.AsReadOnly();
+    private readonly List<DeliveryNoteRow> _deliveryNoteRows = new();
+    public virtual IReadOnlyCollection<DeliveryNoteRow> DeliveryNoteRows => _deliveryNoteRows.AsReadOnly();
+    private readonly List<InvoiceRow> _invoiceRows = new();
+    public virtual IReadOnlyCollection<InvoiceRow> InvoiceRows => _invoiceRows.AsReadOnly();
+    private readonly List<OrderRow> _orderRows = new();
+    public virtual IReadOnlyCollection<OrderRow> OrderRows => _orderRows.AsReadOnly();
+    private readonly List<PriceListItem> _priceListItems = new();
+    public virtual IReadOnlyCollection<PriceListItem> PriceListItems => _priceListItems.AsReadOnly();
+    private readonly List<QuotationRow> _quotationRows = new();
+    public virtual IReadOnlyCollection<QuotationRow> QuotationRows => _quotationRows.AsReadOnly();
+    private readonly List<ShipmentArticle> _shipmentArticles = new();
+    public virtual IReadOnlyCollection<ShipmentArticle> ShipmentArticles => _shipmentArticles.AsReadOnly();
+    private readonly List<StockMovement> _stockMovements = new();
+    public virtual IReadOnlyCollection<StockMovement> StockMovements => _stockMovements.AsReadOnly();
 
-    /// <summary>
-    /// Gets or sets the description.
-    /// </summary>
-    public string Description { get; set; } = string.Empty;
+    protected Article() { }
 
-    /// <summary>
-    /// Gets or sets the primary unit of measure.
-    /// </summary>
-    public ArticleUnitOfMeasure UnitOfMeasure { get; set; }
+    public static Article Create(
+        string number,
+        string description,
+        decimal quantity,
+        string image,
+        Guid unitOfMeasureId,
+        decimal? purchasePrice = null,
+        decimal? salePrice = null,
+        Guid? supplierId = null,
+        Guid? warehouseId = null)
+    {
+        return new Article
+        {
+            Number = number,
+            Description = description,
+            Quantity = quantity,
+            Image = image,
+            UnitOfMeasureId = unitOfMeasureId,
+            PurchasePrice = purchasePrice,
+            SalePrice = salePrice,
+            SupplierId = supplierId,
+            WarehouseId = warehouseId,
+            IsActive = true
+        };
+    }
 
-    /// <summary>
-    /// Gets or sets a value indicating whether the article is active for sales and stock.
-    /// </summary>
-    public bool IsActive { get; set; } = true;
+    public void UpdatePricing(decimal? purchasePrice, decimal? salePrice)
+    {
+        PurchasePrice = purchasePrice;
+        SalePrice = salePrice;
+    }
 
-    /// <summary>Gets or sets the amount/price.</summary>
-    public decimal? Amount { get; set; }
+    public void UpdateStock(decimal quantity)
+    {
+        Quantity = quantity;
+    }
 
-    /// <summary>Gets or sets the quantity.</summary>
-    public decimal? Quantity { get; set; }
+    public void Deactivate()
+    {
+        IsActive = false;
+    }
 
-    /// <summary>Gets or sets the photo binary data.</summary>
-    public IEnumerable<byte>? Photo { get; set; }
-
-    /// <summary>Gets or sets the unit of measure code.</summary>
-    public int? CodUdm { get; set; }
-
-    /// <summary>Gets or sets the brand code.</summary>
-    public int? CodBrand { get; set; }
-
-    /// <summary>Gets or sets the category code.</summary>
-    public int? CodCategory { get; set; }
-
-    /// <summary>Gets or sets the minimum stock threshold.</summary>
-    public decimal? MinimumStock { get; set; }
-
-    /// <summary>Gets or sets the purchase price.</summary>
-    public decimal? PurchasePrice { get; set; }
-
-    /// <summary>Gets or sets the internal article code.</summary>
-    public string? InternalArticleCode { get; set; }
-
-    /// <summary>Gets or sets the supplier article code.</summary>
-    public string? SupplierArticleCode { get; set; }
-
-    /// <summary>Gets or sets the warehouse code.</summary>
-    public int? CodWarehouse { get; set; }
-
-    /// <summary>Gets or sets the article type code.</summary>
-    public int? CodArticleType { get; set; }
-
-    /// <summary>Gets or sets the filesystem folder path.</summary>
-    public string? FileSystemFolder { get; set; }
-
-    /// <summary>Gets or sets the website link or path.</summary>
-    public string? Website { get; set; }
-
-    /// <summary>Gets or sets additional notes.</summary>
-    public string? Notes { get; set; }
-
-    /// <summary>Gets or sets the family code.</summary>
-    public string? CodFamily { get; set; }
-
-    /// <summary>Gets or sets the barcode.</summary>
-    public string? Barcode { get; set; }
-
-    /// <summary>Gets or sets the physical location.</summary>
-    public string? Location { get; set; }
-
-    /// <summary>Gets or sets the program details.</summary>
-    public string? Program { get; set; }
-
-    /// <summary>Gets or sets the processing time.</summary>
-    public string? ProcessingTime { get; set; }
+    public void Activate()
+    {
+        IsActive = true;
+    }
 }

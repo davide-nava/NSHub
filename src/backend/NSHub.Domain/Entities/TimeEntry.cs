@@ -8,72 +8,51 @@ using NSHub.Domain.Enums;
 namespace NSHub.Domain.Entities;
 
 /// <summary>
-/// Aggregate root representing a working time record compliant with Swiss Labor Law (LL art. 46, OLL 1 art. 73).
+/// Domain entity representing a work time entry.
 /// </summary>
-public class TimeEntry : BaseEntity
+public class TimeEntry : AuditableTenantEntity
 {
-    /// <summary>
-    /// Gets or sets the unique identifier of the employee.
-    /// </summary>
-    public Guid EmployeeId { get; set; }
-
-    /// <summary>
-    /// Gets or sets the UTC timestamp when the employee clocked in.
-    /// </summary>
-    public DateTime ClockInUtc { get; set; }
-
-    /// <summary>
-    /// Gets or sets the UTC timestamp when the employee clocked out, or null if the shift is active.
-    /// </summary>
-    public DateTime? ClockOutUtc { get; set; }
-
-    /// <summary>
-    /// Gets or sets the total break duration taken during the shift in minutes.
-    /// </summary>
-    public int BreakDurationMinutes { get; set; }
-
-    /*/// <summary>
-    /// Gets punctual GPS coordinates recorded at the moment of clock-in (no continuous tracking).
-    /// </summary>
-    public GpsCoordinate? PunctualClockInGps { get;  set; }
-
-    /// <summary>
-    /// Gets punctual GPS coordinates recorded at the moment of clock-out (no continuous tracking).
-    /// </summary>
-    public GpsCoordinate? PunctualClockOutGps { get;  set; }*/
-
-    /// <summary>
-    /// Gets consecutive rest hours elapsed between the previous shift end and this shift start.
-    /// </summary>
-    public double? RestPeriodHoursBeforeShift { get; set; }
-
-    /// <summary>
-    /// Gets a value indicating whether the statutory minimum daily rest period of 11 consecutive hours was violated (Art. 15a LL / Art. 19 OLL 1).
-    /// </summary>
-    public bool DailyRestPeriodViolated { get; set; }
-
-    /// <summary>
-    /// Gets or sets the total daily amplitude of the working day in hours (span from first start to final finish including breaks).
-    /// </summary>
-    public double? DailyAmplitudeHours { get; set; }
-
-    /// <summary>
-    /// Gets a value indicating whether the statutory maximum daily amplitude of 14 hours was exceeded (Art. 10 LL / Art. 13 OLL 1).
-    /// </summary>
-    public bool DailyAmplitudeExceeded { get; set; }
-
-    /// <summary>
-    /// Gets optional notes attached to this time entry.
-    /// </summary>
+    public Guid? EmployeeId { get; set; }
+    public DateTime WorkDate { get; set; }
+    public TimeSpan? StartTime { get; set; }
+    public TimeSpan? EndTime { get; set; }
+    public int? BreakDurationMinutes { get; set; }
+    public decimal TotalHoursWorked { get; set; }
+    public bool IsNightWork { get; set; }
+    public bool IsSundayWork { get; set; }
     public string? Notes { get; set; }
-
-    /// <summary>
-    /// Gets or sets the current operational status of the time entry.
-    /// </summary>
-    public TimeEntryStatus Status { get; set; }
-
-    /// <summary>
-    /// Gets or sets the statutory labor compliance violations detected for this entry.
-    /// </summary>
+    public TimeEntryStatus Status { get; set; } = TimeEntryStatus.Active;
     public ViolationType Violations { get; set; }
+    public virtual Employee? Employee { get; set; }
+
+    public DateTime ClockInUtc => WorkDate.Date + (StartTime ?? TimeSpan.Zero);
+    public DateTime? ClockOutUtc => EndTime.HasValue ? WorkDate.Date + EndTime.Value : null;
+
+    public static TimeEntry Create(
+        Guid employeeId,
+        DateTime clockInUtc,
+        string? notes = null)
+    {
+        return new TimeEntry
+        {
+            Id = Guid.NewGuid(),
+            EmployeeId = employeeId,
+            WorkDate = clockInUtc.Date,
+            StartTime = clockInUtc.TimeOfDay,
+            Status = TimeEntryStatus.Active,
+            Notes = notes,
+        };
+    }
+
+    public void ClockOut(DateTime clockOutUtc, int breakDurationMinutes)
+    {
+        var endTime = clockOutUtc.TimeOfDay;
+        EndTime = endTime;
+        BreakDurationMinutes = breakDurationMinutes;
+        Status = TimeEntryStatus.Completed;
+
+        var start = StartTime ?? TimeSpan.Zero;
+        var totalMinutes = (endTime - start).TotalMinutes - breakDurationMinutes;
+        TotalHoursWorked = (decimal)Math.Max(0, totalMinutes / 60.0);
+    }
 }

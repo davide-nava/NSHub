@@ -2,14 +2,15 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
 using MediatR;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.TimeTracking.DTOs;
-using NSHub.Domain.Common;
 
 namespace NSHub.Application.Features.TimeTracking.Commands.CorrectTimeEntry;
 
 /// <summary>
-/// Command for retroactive manual correction of a time entry with legally mandatory justification (Art. 73 OLL 1).
+/// Command for retroactive manual correction of a time entry with legally mandatory justification.
 /// </summary>
 /// <param name="TimeEntryId">The unique identifier of the time entry being corrected.</param>
 /// <param name="OperatorId">The unique identifier of the operator applying the correction.</param>

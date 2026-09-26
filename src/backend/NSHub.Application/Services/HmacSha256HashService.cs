@@ -4,7 +4,7 @@
 
 using System.Security.Cryptography;
 using System.Text;
-using NSHub.Application.Interfaces;
+using NSHub.Application.Common.Interfaces;
 
 namespace NSHub.Application.Services;
 

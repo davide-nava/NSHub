@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Security claim types used throughout user authentication and authorization.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum ClaimType
 {
     /// <summary>

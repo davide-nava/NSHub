@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.NSHub.Models.EntityModels.JsonModels;
+namespace NSHub.Application.Models.EntityModels.JsonModels;
 
 public class UserConfigurationJsonModel
 {

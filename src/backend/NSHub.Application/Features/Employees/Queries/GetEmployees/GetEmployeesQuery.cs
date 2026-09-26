@@ -2,9 +2,10 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
 using MediatR;
+using NSHub.Application.Common.Models;
 using NSHub.Application.Features.Employees.DTOs;
-using NSHub.Domain.Common;
 
 namespace NSHub.Application.Features.Employees.Queries.GetEmployees;
 

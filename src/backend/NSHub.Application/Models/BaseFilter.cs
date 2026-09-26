@@ -4,7 +4,7 @@
 
 using NSHub.Domain.Enums;
 
-namespace NSHub.Application.NSHub.Models;
+namespace NSHub.Application.Models;
 
 public class BaseFilter
 {

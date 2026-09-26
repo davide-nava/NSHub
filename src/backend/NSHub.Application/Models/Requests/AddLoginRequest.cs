@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using NSHub.Application.Localizations;
 
-namespace NSHub.Application.NSHub.Models.Requests;
+namespace NSHub.Application.Models.Requests;
 
 public class AddLoginRequest
 {

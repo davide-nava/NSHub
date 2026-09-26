@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Application.NSHub.Models.Responses;
+namespace NSHub.Application.Models.Responses;
 
 public class DownloadFileResponse
 {

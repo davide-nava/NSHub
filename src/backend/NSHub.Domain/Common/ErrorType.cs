@@ -2,14 +2,11 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Common;
 
 /// <summary>
 /// Categorization of domain and application errors.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ErrorType
 {
     /// <summary>

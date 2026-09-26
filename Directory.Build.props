@@ -137,7 +137,7 @@
             RCS*;
             CS*
         </WarningsAsErrors>
-        <NoWarn>$(NoWarn);</NoWarn>
+        <NoWarn>$(NoWarn);NETSDK1206;</NoWarn>
     </PropertyGroup>
 
 <!--    <ItemGroup>-->

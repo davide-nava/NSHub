@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.NSHub.Models;
+using NSHub.Application.Models;
 
 namespace NSHub.Application.Constants;
 

@@ -6,65 +6,91 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Represents a customer entity.
-/// </summary>
-public class Customer : BaseEntity
+public class Customer : AuditableTenantEntity
 {
-    /// <summary>Gets or sets the customer denomination/name.</summary>
-    public string? Denomination { get; set; }
+    public string Code { get; protected set; } = string.Empty;
+    public string CompanyName { get; protected set; } = string.Empty;
+    public string? VatNumber { get; protected set; }
+    public string? TaxCode { get; protected set; }
+    public string? SdiCode { get; protected set; }
+    public string? PecEmail { get; protected set; }
+    public string? Email { get; protected set; }
+    public string? Phone { get; protected set; }
+    public string? Website { get; protected set; }
+    public Guid? LegalAddressId { get; protected set; }
+    public Guid? ShippingAddressId { get; protected set; }
+    public Guid? PaymentId { get; protected set; }
+    public Guid? VatId { get; protected set; }
+    public Guid? BankAccountId { get; protected set; }
+    public decimal? CreditLimit { get; protected set; }
+    public bool IsActive { get; protected set; }
+    public string? Notes { get; protected set; }
+    public virtual BankAccount? BankAccount { get; protected set; }
+    public virtual Payment? Payment { get; protected set; }
+    public virtual Vat? Vat { get; protected set; }
 
-    /// <summary>Gets or sets the VAT number.</summary>
-    public string? VatNumber { get; set; }
+    private readonly List<DeliveryNote> _goodsDeliveryNotes = new();
+    public virtual IReadOnlyCollection<DeliveryNote> GoodsDeliveryNotes => _goodsDeliveryNotes.AsReadOnly();
+    private readonly List<DeliveryNote> _invoiceDeliveryNotes = new();
+    public virtual IReadOnlyCollection<DeliveryNote> InvoiceDeliveryNotes => _invoiceDeliveryNotes.AsReadOnly();
+    private readonly List<Document> _documents = new();
+    public virtual IReadOnlyCollection<Document> Documents => _documents.AsReadOnly();
+    private readonly List<Invoice> _invoices = new();
+    public virtual IReadOnlyCollection<Invoice> Invoices => _invoices.AsReadOnly();
+    private readonly List<Machine> _machines = new();
+    public virtual IReadOnlyCollection<Machine> Machines => _machines.AsReadOnly();
+    private readonly List<Order> _orders = new();
+    public virtual IReadOnlyCollection<Order> Orders => _orders.AsReadOnly();
+    private readonly List<Quotation> _quotations = new();
+    public virtual IReadOnlyCollection<Quotation> Quotations => _quotations.AsReadOnly();
+    private readonly List<Shipment> _shipments = new();
+    public virtual IReadOnlyCollection<Shipment> Shipments => _shipments.AsReadOnly();
+    private readonly List<Ticket> _tickets = new();
+    public virtual IReadOnlyCollection<Ticket> Tickets => _tickets.AsReadOnly();
 
-    /// <summary>Gets or sets the address.</summary>
-    public string? Address { get; set; }
+    protected Customer() { }
 
-    /// <summary>Gets or sets the postal code.</summary>
-    public string? PostalCode { get; set; }
+    public static Customer Create(
+        string code,
+        string companyName,
+        string? vatNumber = null,
+        string? taxCode = null,
+        string? email = null,
+        string? phone = null,
+        decimal? creditLimit = null)
+    {
+        return new Customer
+        {
+            Code = code,
+            CompanyName = companyName,
+            VatNumber = vatNumber,
+            TaxCode = taxCode,
+            Email = email,
+            Phone = phone,
+            CreditLimit = creditLimit,
+            IsActive = true
+        };
+    }
 
-    /// <summary>Gets or sets the city.</summary>
-    public string? City { get; set; }
+    public void UpdateContactInfo(string? email, string? phone, string? website)
+    {
+        Email = email;
+        Phone = phone;
+        Website = website;
+    }
 
-    /// <summary>Gets or sets the province.</summary>
-    public string? Province { get; set; }
+    public void UpdateCreditLimit(decimal? creditLimit)
+    {
+        CreditLimit = creditLimit;
+    }
 
-    /// <summary>Gets or sets the phone number.</summary>
-    public string? Phone { get; set; }
+    public void Deactivate()
+    {
+        IsActive = false;
+    }
 
-    /// <summary>Gets or sets the fax number.</summary>
-    public string? Fax { get; set; }
-
-    /// <summary>Gets or sets the website.</summary>
-    public string? Website { get; set; }
-
-    /// <summary>Gets or sets the email address.</summary>
-    public string? Email { get; set; }
-
-    /// <summary>Gets or sets the photo.</summary>
-    public IEnumerable<byte>? Photo { get; set; }
-
-    /// <summary>Gets or sets the mobile phone number.</summary>
-    public string? MobilePhone { get; set; }
-
-    /// <summary>Gets or sets the ABI bank code.</summary>
-    public string? Abi { get; set; }
-
-    /// <summary>Gets or sets the CAB bank code.</summary>
-    public string? Cab { get; set; }
-
-    /// <summary>Gets or sets the IBAN.</summary>
-    public string? Iban { get; set; }
-
-    /// <summary>Gets or sets general notes.</summary>
-    public string? Notes { get; set; }
-
-    /// <summary>Gets or sets miscellaneous details.</summary>
-    public string? Miscellaneous { get; set; }
-
-    /// <summary>Gets or sets the country.</summary>
-    public string? Country { get; set; }
-
-    /// <summary>Gets or sets who introduced this customer.</summary>
-    public string? IntroducedBy { get; set; }
+    public void Activate()
+    {
+        IsActive = true;
+    }
 }

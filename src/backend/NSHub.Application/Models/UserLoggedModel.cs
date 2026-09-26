@@ -2,9 +2,9 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using NSHub.Application.NSHub.Models.EntityModels.JsonModels;
+using NSHub.Application.Models.EntityModels.JsonModels;
 
-namespace NSHub.Application.NSHub.Models;
+namespace NSHub.Application.Models;
 
 public class UserLoggedModel
 {

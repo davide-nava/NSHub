@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// System and user notification severities.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum NotificationType
 {
     /// <summary>

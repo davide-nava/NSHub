@@ -2,14 +2,12 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System.Text.Json.Serialization;
-
 namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Possible user response results from interactive dialog prompts.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+
 public enum DialogResultType
 {
     /// <summary>

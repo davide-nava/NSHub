@@ -5,48 +5,52 @@
 namespace NSHub.Domain.Common;
 
 /// <summary>
-/// Represents the abstract base entity providing a unique identifier and domain event management capabilities.
+/// Generic base entity providing a strongly-typed identifier.
 /// </summary>
-public class BaseEntity
+/// <typeparam name="TKey">The primary key type.</typeparam>
+public abstract class BaseEntity<TKey>
 {
     /// <summary>
     /// Gets or sets the unique identifier of the entity.
     /// </summary>
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public virtual TKey Id { get; set; } = default!;
 
     /// <summary>
-    /// Gets or sets the tenant identifier.
+    /// Initializes a new instance of the <see cref="BaseEntity{TKey}"/> class.
     /// </summary>
-    public Guid? TenantId { get; set; }
-
-    /// <summary>
-    /// Gets or sets the date and time when the entity was last updated.
-    /// </summary>
-    public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
-
-    /// <summary>
-    /// Gets or sets the date and time when the entity was inserted.
-    /// </summary>
-    public DateTime DateInsert { get; set; } = DateTime.UtcNow;
-
-    /// <summary>
-    /// Gets or sets the date and time when the entity was deleted.
-    /// </summary>
-    public DateTime? DateDeleted { get; set; } = DateTime.UtcNow;
-
-    /// <summary>
-    ///  Gets or sets the user identifier who inserted the entity.
-    /// </summary>
-    public Guid UserInsertId
+    protected BaseEntity()
     {
-        get; set;
     }
 
     /// <summary>
-    ///  Gets or sets the user identifier who updated the entity.
+    /// Initializes a new instance of the <see cref="BaseEntity{TKey}"/> class with an identifier.
     /// </summary>
-    public Guid UserUpdateId
+    /// <param name="id">The unique identifier.</param>
+    protected BaseEntity(TKey id)
     {
-        get; set;
+        Id = id;
+    }
+}
+
+/// <summary>
+/// Base entity providing a Guid identifier.
+/// </summary>
+public abstract class BaseEntity : BaseEntity<Guid>
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BaseEntity"/> class.
+    /// </summary>
+    protected BaseEntity()
+        : base(Guid.NewGuid())
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BaseEntity"/> class with an identifier.
+    /// </summary>
+    /// <param name="id">The unique identifier.</param>
+    protected BaseEntity(Guid id)
+        : base(id)
+    {
     }
 }

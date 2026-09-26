@@ -4,7 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace NSHub.Application.NSHub.Models.Requests;
+namespace NSHub.Application.Models.Requests;
 
 public class AccountManageRequest
 {

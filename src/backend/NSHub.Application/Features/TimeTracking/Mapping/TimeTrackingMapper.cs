@@ -2,6 +2,8 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
 using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Features.TimeTracking.DTOs;
 using NSHub.Domain.Entities;
@@ -17,45 +19,35 @@ public static class TimeTrackingMapper
     /// Maps a <see cref="TimeEntry"/> domain entity to a <see cref="TimeEntryDto"/>.
     /// </summary>
     /// <param name="entry">The time entry entity.</param>
-    /// <param name="dateTimeProvider">The date and time provider for timezone conversions.</param>
+    /// <param name="dateTimeService">The date and time service for timezone conversions.</param>
     /// <returns>A populated <see cref="TimeEntryDto"/> instance.</returns>
-    public static TimeEntryDto ToDto(this TimeEntry entry, IDateTimeProvider dateTimeProvider)
+    public static TimeEntryDto ToDto(this TimeEntry entry, IDateTimeService dateTimeService)
     {
-        var endUtc = entry.ClockOutUtc ?? dateTimeProvider.UtcNow;
+        var endUtc = entry.ClockOutUtc ?? dateTimeService.UtcNow;
         var totalMinutes = (endUtc - entry.ClockInUtc).TotalMinutes;
-        var netMinutes = Math.Max(0, totalMinutes - entry.BreakDurationMinutes);
+        var breakMinutes = entry.BreakDurationMinutes ?? 0;
+        var netMinutes = Math.Max(0, totalMinutes - breakMinutes);
         var netWorkedHours = Math.Round(netMinutes / 60.0, 2);
 
         return new TimeEntryDto(
             entry.Id,
-            entry.EmployeeId,
+            entry.EmployeeId ?? Guid.Empty,
             entry.ClockInUtc,
             entry.ClockOutUtc,
-            dateTimeProvider.ToSwissTime(entry.ClockInUtc),
-            entry.ClockOutUtc.HasValue ? dateTimeProvider.ToSwissTime(entry.ClockOutUtc.Value) : null,
-            entry.BreakDurationMinutes,
+            dateTimeService.ToSwissTime(entry.ClockInUtc),
+            entry.ClockOutUtc.HasValue ? dateTimeService.ToSwissTime(entry.ClockOutUtc.Value) : null,
+            breakMinutes,
             netWorkedHours,
-            entry.PunctualClockInGps != null,
-            entry.PunctualClockOutGps != null,
-            entry.RestPeriodHoursBeforeShift,
-            entry.DailyRestPeriodViolated,
-            entry.DailyAmplitudeHours,
-            entry.DailyAmplitudeExceeded,
+            false,
+            false,
+            null,
+            false,
+            null,
+            false,
             entry.Notes,
             entry.Status,
             entry.Violations,
-            entry.AuditTrail.Select(a => new TimeCorrectionAuditDto(
-                a.Id,
-                a.OperatorId,
-                a.TimestampUtc,
-                a.PreCorrectionClockInUtc,
-                a.PreCorrectionClockOutUtc,
-                a.PreCorrectionBreakMinutes,
-                a.PostCorrectionClockInUtc,
-                a.PostCorrectionClockOutUtc,
-                a.PostCorrectionBreakMinutes,
-                a.MandatoryReason
-            )).ToList()
+            new List<TimeCorrectionAuditDto>()
         );
     }
 }

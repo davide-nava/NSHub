@@ -2,40 +2,40 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Localization;
+using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Common.Interfaces;
-using NSHub.Application.Resources;
-using NSHub.Domain.Common;
+using NSHub.Application.Common.Models;
 
 namespace NSHub.Application.Features.Employees.Commands.UpdateEmployeeLanguage;
 
 /// <summary>
 /// MediatR request handler for updating an employee's preferred language.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="UpdateEmployeeLanguageCommandHandler"/> class.
-/// </remarks>
-/// <param name="employeeRepository">The employee repository.</param>
-/// <param name="unitOfWork">The unit of work.</param>
-/// <param name="localizer">The string localizer.</param>
-public class UpdateEmployeeLanguageCommandHandler(
-    IEmployeeRepository employeeRepository,
-    IUnitOfWork unitOfWork,
-    IStringLocalizer<ValidationMessages> localizer) : IRequestHandler<UpdateEmployeeLanguageCommand, Result>
+public class UpdateEmployeeLanguageCommandHandler : IRequestHandler<UpdateEmployeeLanguageCommand, Result>
 {
+    private readonly IApplicationDbContext _context;
+
+    public UpdateEmployeeLanguageCommandHandler(IApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     /// <inheritdoc/>
     public async Task<Result> Handle(UpdateEmployeeLanguageCommand request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByIdAsync(request.EmployeeId, cancellationToken);
-        if (employee == null)
+        var employee = await _context.Employees
+            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken);
+
+        if (employee is null)
         {
-            return Result.Failure(Error.NotFound("Employee.NotFound", localizer["EmployeeNotFound"]));
+            return Result.Failure([$"Employee with ID '{request.EmployeeId}' was not found."]);
         }
 
         employee.SetPreferredLanguage(request.Language);
-        employeeRepository.Update(employee);
-        _ = await unitOfWork.SaveChangesAsync(cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

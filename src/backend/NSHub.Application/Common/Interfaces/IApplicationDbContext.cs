@@ -1,3 +1,7 @@
+// <copyright file="IApplicationDbContext.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;

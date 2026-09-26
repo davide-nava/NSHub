@@ -6,53 +6,34 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-/// <summary>
-/// Represents a warehouse entity.
-/// </summary>
-public class Warehouse : BaseEntity
+public class Warehouse : AuditableTenantEntity
 {
-    /// <summary>Gets or sets the warehouse code (Primary Key, Identity).</summary>
-    public int CodWarehouse { get; set; }
+    public Guid PersonId { get; protected set; }
+    public Guid AddressId { get; protected set; }
+    public string Description { get; protected set; } = string.Empty;
+    public bool? IsExternal { get; protected set; }
+    public string? OpeningTime { get; protected set; }
+    public string? ClosingTime { get; protected set; }
+    public string? Name { get; protected set; }
+    public string? Notes { get; protected set; }
+    public virtual Address? Address { get; protected set; }
+    public virtual Person? Person { get; protected set; }
 
-    /// <summary>Gets or sets the phone number.</summary>
-    public string? Phone { get; set; }
+    private readonly List<Article> _articles = new();
+    public virtual IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
+    private readonly List<OrderRow> _orderRows = new();
+    public virtual IReadOnlyCollection<OrderRow> OrderRows => _orderRows.AsReadOnly();
+    private readonly List<StockMovement> _targetStockMovements = new();
+    public virtual IReadOnlyCollection<StockMovement> TargetStockMovements => _targetStockMovements.AsReadOnly();
+    private readonly List<StockMovement> _stockMovements = new();
+    public virtual IReadOnlyCollection<StockMovement> StockMovements => _stockMovements.AsReadOnly();
+    private readonly List<WarehouseOrganization> _warehouseOrganizations = new();
+    public virtual IReadOnlyCollection<WarehouseOrganization> WarehouseOrganizations => _warehouseOrganizations.AsReadOnly();
 
-    /// <summary>Gets or sets the fax number.</summary>
-    public string? Fax { get; set; }
+    protected Warehouse() { }
 
-    /// <summary>Gets or sets the address.</summary>
-    public string? Address { get; set; }
-
-    /// <summary>Gets or sets the postal code.</summary>
-    public string? PostalCode { get; set; }
-
-    /// <summary>Gets or sets the province.</summary>
-    public string? Province { get; set; }
-
-    /// <summary>Gets or sets the city.</summary>
-    public string? City { get; set; }
-
-    /// <summary>Gets or sets the state/region.</summary>
-    public string? State { get; set; }
-
-    /// <summary>Gets or sets the person in charge.</summary>
-    public string? Manager { get; set; }
-
-    /// <summary>Gets or sets the description.</summary>
-    public string? Description { get; set; }
-
-    /// <summary>Gets or sets a value indicating whether it is an external warehouse.</summary>
-    public bool? IsExternal { get; set; }
-
-    /// <summary>Gets or sets the opening time.</summary>
-    public string? OpeningTime { get; set; }
-
-    /// <summary>Gets or sets the closing time.</summary>
-    public string? ClosingTime { get; set; }
-
-    /// <summary>Gets or sets the email address.</summary>
-    public string? Email { get; set; }
-
-    /// <summary>Gets or sets the name/denomination.</summary>
-    public string? Denomination { get; set; }
+    public static Warehouse Create()
+    {
+        return new Warehouse();
+    }
 }
