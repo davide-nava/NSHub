@@ -116,6 +116,8 @@
         <PackageReference Include="Serilog.Sinks.SQLite" Version="6.0.0" />
         <PackageReference Include="MailKit" Version="4.16.0" />
 
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="11.0.100-rc.1.26425.128" />
+	
 		<PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />

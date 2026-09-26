@@ -1,6 +1,7 @@
 @use 'sass:meta';
 @use 'sass:color';
 @use 'sass:map';
+
 @use './themes/generated/variables.base.scss' as variablesBase;
 @use './themes/generated/variables.base.dark.scss' as variablesBaseDark;
 @use './themes/generated/variables.additional.scss' as variablesAdditional;
@@ -8,14 +9,26 @@
 
 @mixin theme-variables($theme-name) {
   $theme: meta.module-variables($theme-name);
+
   $base-text-color: map.get($theme, 'base-text-color');
   $base-bg: map.get($theme, 'base-bg');
+  $base-accent: map.get($theme, 'base-accent');
 
   --base-text-color: #{$base-text-color};
   --base-bg: #{$base-bg};
-  --base-bg-darken-5: #{color.adjust($base-bg, $lightness: -5%)};
-  --base-accent: #{map.get($theme, 'base-accent')};
-  --base-text-color-alpha-7: #{rgba($base-text-color, color.alpha($base-text-color) * 0.7)};
+
+  --base-bg-darken-5: #{color.adjust(
+      $base-bg,
+      $lightness: -5%
+    )};
+
+  --base-accent: #{$base-accent};
+
+  // Riduce l'alpha al 70%
+  --base-text-color-alpha-7: #{color.change(
+      $base-text-color,
+      $alpha: color.alpha($base-text-color) * 0.7
+    )};
 }
 
 :root {

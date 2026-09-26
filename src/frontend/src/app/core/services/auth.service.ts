@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthResult, User } from '../models/user.model';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { AuthResult, User } from '@core/models';
 
 const DEFAULT_PATH = '/';
 const DEFAULT_USER: User = {
@@ -98,3 +98,36 @@ export class AuthService {
   }
 }
 
+@Injectable()
+export class AuthGuardService implements CanActivate {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
+
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    const isLoggedIn = this.authService.loggedIn;
+    const isAuthForm = [
+      'login-form',
+      'reset-password',
+      'create-account',
+      'change-password/:recoveryCode',
+    ].includes(route.routeConfig?.path || DEFAULT_PATH);
+
+    if (isLoggedIn && isAuthForm) {
+      this.authService.setLastAuthenticatedPath(DEFAULT_PATH);
+      this.router.navigate([DEFAULT_PATH]);
+      return false;
+    }
+
+    if (!isLoggedIn && !isAuthForm) {
+      this.router.navigate(['/login-form']);
+    }
+
+    if (isLoggedIn) {
+      this.authService.setLastAuthenticatedPath(route.routeConfig?.path || DEFAULT_PATH);
+    }
+
+    return isLoggedIn || isAuthForm;
+  }
+}

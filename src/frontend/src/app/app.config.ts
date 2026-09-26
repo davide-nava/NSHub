@@ -1,14 +1,16 @@
-import { ApplicationConfig, provideZoneChangeDetection , provideBrowserGlobalErrorListeners} from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { provideRouter, withComponentInputBinding, withHashLocation } from '@angular/router';
 import { routes } from './app.routes';
-import { AppInfoService, AuthGuardService, AuthService, ScreenService } from './shared/services';
+import { AppInfoService, AuthService, AuthGuardService, ScreenService } from '@core/services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-  	provideBrowserGlobalErrorListeners(),
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withHashLocation()),
     AuthGuardService,
     AuthService,
     ScreenService,

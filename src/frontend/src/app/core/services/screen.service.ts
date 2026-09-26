@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { ScreenSizes } from '../models/screen.model';
+import { ScreenSizes } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class ScreenService {
   private readonly mediumMatch = signal(this.breakpointObserver.isMatched(Breakpoints.Medium));
   private readonly largeMatch = signal(
     this.breakpointObserver.isMatched(Breakpoints.Large) ||
-    this.breakpointObserver.isMatched(Breakpoints.XLarge),
+      this.breakpointObserver.isMatched(Breakpoints.XLarge),
   );
 
   readonly sizes = computed<ScreenSizes>(() => ({
@@ -41,9 +41,8 @@ export class ScreenService {
         this.mediumMatch.set(this.breakpointObserver.isMatched(Breakpoints.Medium));
         this.largeMatch.set(
           this.breakpointObserver.isMatched(Breakpoints.Large) ||
-          this.breakpointObserver.isMatched(Breakpoints.XLarge),
+            this.breakpointObserver.isMatched(Breakpoints.XLarge),
         );
       });
   }
 }
-

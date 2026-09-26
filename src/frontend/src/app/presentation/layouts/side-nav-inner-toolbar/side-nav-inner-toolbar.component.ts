@@ -3,8 +3,8 @@ import { DxDrawerModule } from 'devextreme-angular/ui/drawer';
 import { DxScrollViewComponent, DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
 import { DxToolbarModule, DxToolbarTypes } from 'devextreme-angular/ui/toolbar';
 import { DxTreeViewTypes } from 'devextreme-angular/ui/tree-view';
-import { HeaderComponent, SideNavigationMenuComponent } from '../../shared/components';
-import { LayoutDrawerState } from '../layout-drawer.state';
+import { HeaderComponent, SideNavigationMenuComponent } from '@shared/components';
+import { LayoutDrawerState } from '@presentation/layouts';
 
 @Component({
   selector: 'app-side-nav-inner-toolbar',
@@ -33,4 +33,3 @@ export class SideNavInnerToolbarComponent {
     this.drawerState.handleNavigationChange(event, this.scrollView());
   }
 }
-

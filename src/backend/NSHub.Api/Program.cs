@@ -87,6 +87,7 @@ try
     app.UseRouting();
 
     app.UseMiddleware<HeaderMiddleware>();
+	app.UseMiddleware<ExceptionHandlingMiddleware>();
 
     app.UseAuthentication();
     app.UseAuthorization();
