@@ -12,24 +12,24 @@ namespace NSHub.Domain.Entities;
 public class PartyType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the party type code.
+    /// Gets or sets the party type code.
     /// </summary>
     public string PartyTypeCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the party type name.
+    /// Gets or sets the party type name.
     /// </summary>
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the party type description.
+    /// Gets or sets the party type description.
     /// </summary>
     public string? Description { get; set; }
 
     /// <summary>
-    /// Gets the parties associated with this party type.
+    /// Gets or sets the parties associated with this party type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Party> Parties { get; protected set; }
-        = new List<Party>();
+    public virtual ICollection<Party> Parties { get; set; }
+        = [];
 }

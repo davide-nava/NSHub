@@ -12,25 +12,25 @@ namespace NSHub.Domain.Entities;
 public class DocumentGroup : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the document type identifier.
+    /// Gets or sets the document type identifier.
     /// </summary>
-    public Guid DocumentTypeId { get; protected set; }
+    public Guid DocumentTypeId { get; set; }
 
     /// <summary>
-    /// Gets the document group title.
+    /// Gets or sets the document group title.
     /// </summary>
-    public string Title { get; protected set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated document type.
+    /// Gets or sets the associated document type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual DocumentType? DocumentType { get; protected set; }
+    public virtual DocumentType? DocumentType { get; set; }
 
     /// <summary>
-    /// Gets the documents associated with this group.
+    /// Gets or sets the documents associated with this group.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Document> Documents { get; protected set; }
-        = new List<Document>();
+    public virtual ICollection<Document> Documents { get; set; }
+        = [];
 }

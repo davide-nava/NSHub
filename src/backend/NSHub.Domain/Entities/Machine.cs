@@ -12,227 +12,227 @@ namespace NSHub.Domain.Entities;
 public class Machine : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the machine notes.
+    /// Gets or sets the machine notes.
     /// </summary>
-    public string Notes { get; protected set; } = string.Empty;
+    public string Notes { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the machine number.
+    /// Gets or sets the machine number.
     /// </summary>
-    public string Number { get; protected set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the warranty expiration date.
+    /// Gets or sets the warranty expiration date.
     /// </summary>
-    public DateTime WarrantyEndDate { get; protected set; }
+    public DateTime WarrantyEndDate { get; set; }
 
     /// <summary>
-    /// Gets the machine acceptance date.
+    /// Gets or sets the machine acceptance date.
     /// </summary>
-    public DateTime AcceptanceDate { get; protected set; }
+    public DateTime AcceptanceDate { get; set; }
 
     /// <summary>
-    /// Gets the delivery date.
+    /// Gets or sets the delivery date.
     /// </summary>
-    public DateTime DeliveryDate { get; protected set; }
+    public DateTime DeliveryDate { get; set; }
 
     /// <summary>
-    /// Gets the machine description.
+    /// Gets or sets the machine description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the customer code.
+    /// Gets or sets the customer code.
     /// </summary>
-    public string CustomerCode { get; protected set; } = string.Empty;
+    public string CustomerCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the customer name.
+    /// Gets or sets the customer name.
     /// </summary>
-    public string Customer { get; protected set; } = string.Empty;
+    public string Customer { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the pneumatic configuration.
+    /// Gets or sets the pneumatic configuration.
     /// </summary>
-    public string Pneumatic { get; protected set; } = string.Empty;
+    public string Pneumatic { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the hydraulic configuration.
+    /// Gets or sets the hydraulic configuration.
     /// </summary>
-    public string Hydraulic { get; protected set; } = string.Empty;
+    public string Hydraulic { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the workpiece probe configuration.
+    /// Gets or sets the workpiece probe configuration.
     /// </summary>
-    public string WorkpieceProbe { get; protected set; } = string.Empty;
+    public string WorkpieceProbe { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the wheel probe configuration.
+    /// Gets or sets the wheel probe configuration.
     /// </summary>
-    public string WheelProbe { get; protected set; } = string.Empty;
+    public string WheelProbe { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the Nakanishi configuration.
+    /// Gets or sets the Nakanishi configuration.
     /// </summary>
-    public string Nakanishi { get; protected set; } = string.Empty;
+    public string Nakanishi { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the HH configuration.
+    /// Gets or sets the HH configuration.
     /// </summary>
-    public string Hh { get; protected set; } = string.Empty;
+    public string Hh { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the timing belt configuration.
+    /// Gets or sets the timing belt configuration.
     /// </summary>
-    public string TBelt { get; protected set; } = string.Empty;
+    public string TBelt { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the clutch configuration.
+    /// Gets or sets the clutch configuration.
     /// </summary>
-    public string Clutch { get; protected set; } = string.Empty;
+    public string Clutch { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the axis U configuration.
+    /// Gets or sets the axis U configuration.
     /// </summary>
-    public string AxisU { get; protected set; } = string.Empty;
+    public string AxisU { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the spindle code.
+    /// Gets or sets the spindle code.
     /// </summary>
-    public string SpindleCode { get; protected set; } = string.Empty;
+    public string SpindleCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the wheel motor code.
+    /// Gets or sets the wheel motor code.
     /// </summary>
-    public string WheelMotorCode { get; protected set; } = string.Empty;
+    public string WheelMotorCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the PC configuration.
+    /// Gets or sets the PC configuration.
     /// </summary>
-    public string Pc { get; protected set; } = string.Empty;
+    public string Pc { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the PC box configuration.
+    /// Gets or sets the PC box configuration.
     /// </summary>
-    public string PcBox { get; protected set; } = string.Empty;
+    public string PcBox { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the module code.
+    /// Gets or sets the module code.
     /// </summary>
-    public string ModuleCode { get; protected set; } = string.Empty;
+    public string ModuleCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the axis modules configuration.
+    /// Gets or sets the axis modules configuration.
     /// </summary>
-    public string AxisModules { get; protected set; } = string.Empty;
+    public string AxisModules { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the safety module configuration.
+    /// Gets or sets the safety module configuration.
     /// </summary>
-    public string SafetyMod { get; protected set; } = string.Empty;
+    public string SafetyMod { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the inverter configuration.
+    /// Gets or sets the inverter configuration.
     /// </summary>
-    public string Inverters { get; protected set; } = string.Empty;
+    public string Inverters { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the machine builder identifier.
+    /// Gets or sets the machine builder identifier.
     /// </summary>
-    public Guid MachineBuilderId { get; protected set; }
+    public Guid MachineBuilderId { get; set; }
 
     /// <summary>
-    /// Gets the machine type identifier.
+    /// Gets or sets the machine type identifier.
     /// </summary>
-    public Guid MachineTypeId { get; protected set; }
+    public Guid MachineTypeId { get; set; }
 
     /// <summary>
-    /// Gets the PLC type identifier.
+    /// Gets or sets the PLC type identifier.
     /// </summary>
-    public Guid PlcTypeId { get; protected set; }
+    public Guid PlcTypeId { get; set; }
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid? CustomerId { get; protected set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the address identifier.
+    /// Gets or sets the address identifier.
     /// </summary>
-    public Guid AddressId { get; protected set; }
+    public Guid AddressId { get; set; }
 
     /// <summary>
-    /// Gets the machine temperature.
+    /// Gets or sets the machine temperature.
     /// </summary>
-    public decimal Temperature { get; protected set; }
+    public decimal Temperature { get; set; }
 
     /// <summary>
-    /// Gets the job order.
+    /// Gets or sets the job order.
     /// </summary>
-    public string? JobOrder { get; protected set; }
+    public string? JobOrder { get; set; }
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? CustomerEntity { get; protected set; }
+    public virtual Customer? CustomerEntity { get; set; }
 
     /// <summary>
-    /// Gets the associated machine builder.
+    /// Gets or sets the associated machine builder.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual MachineBuilder? MachineBuilder { get; protected set; }
+    public virtual MachineBuilder? MachineBuilder { get; set; }
 
     /// <summary>
-    /// Gets the associated machine type.
+    /// Gets or sets the associated machine type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual MachineType? MachineType { get; protected set; }
+    public virtual MachineType? MachineType { get; set; }
 
     /// <summary>
-    /// Gets the associated PLC type.
+    /// Gets or sets the associated PLC type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PlcType? PlcType { get; protected set; }
+    public virtual PlcType? PlcType { get; set; }
 
     /// <summary>
-    /// Gets the machine address.
+    /// Gets or sets the machine address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? Address { get; protected set; }
+    public virtual Address? Address { get; set; }
 
     /// <summary>
-    /// Gets the tickets associated with this machine.
+    /// Gets or sets the tickets associated with this machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Ticket> Tickets { get; protected set; }
-        = new List<Ticket>();
+    public virtual ICollection<Ticket> Tickets { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the interventions associated with this machine.
+    /// Gets or sets the interventions associated with this machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Intervention> Interventions { get; protected set; }
-        = new List<Intervention>();
+    public virtual ICollection<Intervention> Interventions { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the shipments associated with this machine.
+    /// Gets or sets the shipments associated with this machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Shipment> Shipments { get; protected set; }
-        = new List<Shipment>();
+    public virtual ICollection<Shipment> Shipments { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the documents associated with this machine.
+    /// Gets or sets the documents associated with this machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Document> Documents { get; protected set; }
-        = new List<Document>();
+    public virtual ICollection<Document> Documents { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the ticket status entries associated with this machine.
+    /// Gets or sets the ticket status entries associated with this machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<TicketStatus> TicketStatuses { get; protected set; }
-        = new List<TicketStatus>();
+    public virtual ICollection<TicketStatus> TicketStatuses { get; set; }
+        = [];
 }

@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class OrganizationConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Organization>
+public class OrganizationConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<Organization>
 {
     public void Configure(EntityTypeBuilder<Organization> builder)
     {
@@ -22,6 +24,5 @@ public class OrganizationConfiguration : AuditableTenantEntityConfiguration, IEn
         builder.Property(e => e.CommercialRegisterNumber).HasMaxLength(50).IsRequired(false);
         builder.Property(e => e.ShareCapital).HasPrecision(18, 2).IsRequired(false);
         builder.Property(e => e.CurrencyCode).HasMaxLength(3).IsUnicode(false).IsRequired(false).HasDefaultValueSql("('CHF')");
-
     }
 }

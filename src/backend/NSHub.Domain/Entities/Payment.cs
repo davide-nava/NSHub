@@ -12,33 +12,33 @@ namespace NSHub.Domain.Entities;
 public class Payment : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the payment term description.
+    /// Gets or sets the payment term description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the number of days before payment is due.
+    /// Gets or sets the number of days before payment is due.
     /// </summary>
-    public int? Days { get; protected set; }
+    public int? Days { get; set; }
 
     /// <summary>
-    /// Gets the suppliers associated with this payment term.
+    /// Gets or sets the suppliers associated with this payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Supplier> Suppliers { get; protected set; }
-        = new List<Supplier>();
+    public virtual ICollection<Supplier> Suppliers { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the quotations associated with this payment term.
+    /// Gets or sets the quotations associated with this payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Quotation> Quotations { get; protected set; }
-        = new List<Quotation>();
+    public virtual ICollection<Quotation> Quotations { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the invoices associated with this payment term.
+    /// Gets or sets the invoices associated with this payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Invoice> Invoices { get; protected set; }
-        = new List<Invoice>();
+    public virtual ICollection<Invoice> Invoices { get; set; }
+        = [];
 }

@@ -12,97 +12,97 @@ namespace NSHub.Domain.Entities;
 public class StockMovement : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the movement date.
+    /// Gets or sets the movement date.
     /// </summary>
-    public DateTime MovementDate { get; protected set; }
+    public DateTime MovementDate { get; set; }
 
     /// <summary>
-    /// Gets the movement type.
+    /// Gets or sets the movement type.
     /// </summary>
-    public string MovementType { get; protected set; } = string.Empty;
+    public string MovementType { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid ArticleId { get; protected set; }
+    public Guid ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the source warehouse identifier.
+    /// Gets or sets the source warehouse identifier.
     /// </summary>
-    public Guid WarehouseId { get; protected set; }
+    public Guid WarehouseId { get; set; }
 
     /// <summary>
-    /// Gets the target warehouse identifier.
+    /// Gets or sets the target warehouse identifier.
     /// </summary>
-    public Guid? TargetWarehouseId { get; protected set; }
+    public Guid? TargetWarehouseId { get; set; }
 
     /// <summary>
-    /// Gets the movement quantity.
+    /// Gets or sets the movement quantity.
     /// </summary>
-    public decimal Quantity { get; protected set; }
+    public decimal Quantity { get; set; }
 
     /// <summary>
-    /// Gets the unit cost associated with the movement.
+    /// Gets or sets the unit cost associated with the movement.
     /// </summary>
-    public decimal? UnitCost { get; protected set; }
+    public decimal? UnitCost { get; set; }
 
     /// <summary>
-    /// Gets the related delivery note row identifier.
+    /// Gets or sets the related delivery note row identifier.
     /// </summary>
-    public Guid? DeliveryNoteRowId { get; protected set; }
+    public Guid? DeliveryNoteRowId { get; set; }
 
     /// <summary>
-    /// Gets the related invoice row identifier.
+    /// Gets or sets the related invoice row identifier.
     /// </summary>
-    public Guid? InvoiceRowId { get; protected set; }
+    public Guid? InvoiceRowId { get; set; }
 
     /// <summary>
-    /// Gets the related order row identifier.
+    /// Gets or sets the related order row identifier.
     /// </summary>
-    public Guid? OrderRowId { get; protected set; }
+    public Guid? OrderRowId { get; set; }
 
     /// <summary>
-    /// Gets the batch number.
+    /// Gets or sets the batch number.
     /// </summary>
-    public string? BatchNumber { get; protected set; }
+    public string? BatchNumber { get; set; }
 
     /// <summary>
-    /// Gets the serial code.
+    /// Gets or sets the serial code.
     /// </summary>
-    public string? SerialCode { get; protected set; }
+    public string? SerialCode { get; set; }
 
     /// <summary>
-    /// Gets the movement notes.
+    /// Gets or sets the movement notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated delivery note row.
+    /// Gets or sets the associated delivery note row.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual DeliveryNoteRow? DeliveryNoteRow { get; protected set; }
+    public virtual DeliveryNoteRow? DeliveryNoteRow { get; set; }
 
     /// <summary>
-    /// Gets the associated order row.
+    /// Gets or sets the associated order row.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual OrderRow? OrderRow { get; protected set; }
+    public virtual OrderRow? OrderRow { get; set; }
 
     /// <summary>
-    /// Gets the target warehouse.
+    /// Gets or sets the target warehouse.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Warehouse? TargetWarehouse { get; protected set; }
+    public virtual Warehouse? TargetWarehouse { get; set; }
 
     /// <summary>
-    /// Gets the source warehouse.
+    /// Gets or sets the source warehouse.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Warehouse? Warehouse { get; protected set; }
+    public virtual Warehouse? Warehouse { get; set; }
 }

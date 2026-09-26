@@ -12,27 +12,27 @@ namespace NSHub.Domain.Entities;
 public class Dressing3 : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets a value indicating whether the high-frequency spindle is enabled.
+    /// Gets or sets a value indicating whether the high-frequency spindle is enabled.
     /// </summary>
-    public bool IsHfSpindle { get; protected set; }
+    public bool IsHfSpindle { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the standard spindle is enabled.
+    /// Gets or sets a value indicating whether the standard spindle is enabled.
     /// </summary>
-    public bool IsNormalSpindle { get; protected set; }
+    public bool IsNormalSpindle { get; set; }
 
     /// <summary>
-    /// Gets the working speed.
+    /// Gets or sets the working speed.
     /// </summary>
-    public decimal WorkSpeed { get; protected set; }
+    public decimal WorkSpeed { get; set; }
 
     /// <summary>
-    /// Gets the high-frequency spindle speed.
+    /// Gets or sets the high-frequency spindle speed.
     /// </summary>
-    public decimal HfSpeed { get; protected set; }
+    public decimal HfSpeed { get; set; }
 
     /// <summary>
-    /// Gets the standard spindle speed.
+    /// Gets or sets the standard spindle speed.
     /// </summary>
-    public decimal NormalSpeed { get; protected set; }
+    public decimal NormalSpeed { get; set; }
 }

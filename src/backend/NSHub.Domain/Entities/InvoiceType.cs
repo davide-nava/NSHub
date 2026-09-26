@@ -12,19 +12,19 @@ namespace NSHub.Domain.Entities;
 public class InvoiceType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the invoice type description.
+    /// Gets or sets the invoice type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the invoice type code.
+    /// Gets or sets the invoice type code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the invoices associated with this invoice type.
+    /// Gets or sets the invoices associated with this invoice type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Invoice> Invoices { get; protected set; }
-        = new List<Invoice>();
+    public virtual ICollection<Invoice> Invoices { get; set; }
+        = [];
 }

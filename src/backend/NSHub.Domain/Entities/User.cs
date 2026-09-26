@@ -13,34 +13,34 @@ namespace NSHub.Domain.Entities;
 public class User : AuditableEntity
 {
     /// <summary>
-    /// Gets the current tenant identifier.
+    /// Gets or sets the current tenant identifier.
     /// </summary>
-    public Guid? CurrentTenantId { get; protected set; }
+    public Guid? CurrentTenantId { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the user is active.
+    /// Gets or sets a value indicating whether the user is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets the ASP.NET Identity user identifier.
+    /// Gets or sets the ASP.NET Identity user identifier.
     /// </summary>
-    public string? AspNetUserId { get; protected set; }
+    public string? AspNetUserId { get; set; }
 
     /// <summary>
-    /// Gets the user email address.
+    /// Gets or sets the user email address.
     /// </summary>
-    public string? Email { get; protected set; }
+    public string? Email { get; set; }
 
     /// <summary>
-    /// Gets the associated ASP.NET Identity user.
+    /// Gets or sets the associated ASP.NET Identity user.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual IdentityUser? AspNetUser { get; protected set; }
+    public virtual IdentityUser? AspNetUser { get; set; }
 
     /// <summary>
-    /// Gets the user's current tenant.
+    /// Gets or sets the user's current tenant.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Tenant? CurrentTenant { get; protected set; }
+    public virtual Tenant? CurrentTenant { get; set; }
 }

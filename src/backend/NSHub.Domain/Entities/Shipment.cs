@@ -12,85 +12,85 @@ namespace NSHub.Domain.Entities;
 public class Shipment : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the shipment notes.
+    /// Gets or sets the shipment notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the courier identifier.
+    /// Gets or sets the courier identifier.
     /// </summary>
-    public Guid CourierId { get; protected set; }
+    public Guid CourierId { get; set; }
 
     /// <summary>
-    /// Gets the user identifier.
+    /// Gets or sets the user identifier.
     /// </summary>
-    public Guid UserId { get; protected set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid? MachineId { get; protected set; }
+    public Guid? MachineId { get; set; }
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid CustomerId { get; protected set; }
+    public Guid CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the shipment creation date.
+    /// Gets or sets the shipment creation date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the shipment arrival date.
+    /// Gets or sets the shipment arrival date.
     /// </summary>
-    public DateTime ArrivalDate { get; protected set; }
+    public DateTime ArrivalDate { get; set; }
 
     /// <summary>
-    /// Gets the shipment dispatch date.
+    /// Gets or sets the shipment dispatch date.
     /// </summary>
-    public DateTime SendDate { get; protected set; }
+    public DateTime SendDate { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the shipment is closed.
+    /// Gets or sets a value indicating whether the shipment is closed.
     /// </summary>
-    public bool IsClosed { get; protected set; }
+    public bool IsClosed { get; set; }
 
     /// <summary>
-    /// Gets the associated courier.
+    /// Gets or sets the associated courier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Courier? Courier { get; protected set; }
+    public virtual Courier? Courier { get; set; }
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? Customer { get; protected set; }
+    public virtual Customer? Customer { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 
     /// <summary>
-    /// Gets the user responsible for the shipment.
+    /// Gets or sets the user responsible for the shipment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual User? User { get; protected set; }
+    public virtual User? User { get; set; }
 
     /// <summary>
-    /// Gets the articles associated with this shipment.
+    /// Gets or sets the articles associated with this shipment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<ShipmentArticle> ShipmentArticles { get; protected set; }
-        = new List<ShipmentArticle>();
+    public virtual ICollection<ShipmentArticle> ShipmentArticles { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the tickets associated with this shipment.
+    /// Gets or sets the tickets associated with this shipment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<TicketShipment> TicketShipments { get; protected set; }
-        = new List<TicketShipment>();
+    public virtual ICollection<TicketShipment> TicketShipments { get; set; }
+        = [];
 }

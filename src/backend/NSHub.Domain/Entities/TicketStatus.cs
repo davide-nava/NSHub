@@ -12,56 +12,56 @@ namespace NSHub.Domain.Entities;
 public class TicketStatus : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the ticket identifier.
+    /// Gets or sets the ticket identifier.
     /// </summary>
-    public Guid TicketId { get; protected set; }
+    public Guid TicketId { get; set; }
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid MachineId { get; protected set; }
+    public Guid MachineId { get; set; }
 
     /// <summary>
-    /// Gets the user identifier.
+    /// Gets or sets the user identifier.
     /// </summary>
-    public Guid UserId { get; protected set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
-    /// Gets the ticket status type identifier.
+    /// Gets or sets the ticket status type identifier.
     /// </summary>
-    public Guid TicketStatusTypeId { get; protected set; }
+    public Guid TicketStatusTypeId { get; set; }
 
     /// <summary>
-    /// Gets the status change date.
+    /// Gets or sets the status change date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the status notes.
+    /// Gets or sets the status notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 
     /// <summary>
-    /// Gets the associated ticket.
+    /// Gets or sets the associated ticket.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Ticket? Ticket { get; protected set; }
+    public virtual Ticket? Ticket { get; set; }
 
     /// <summary>
-    /// Gets the ticket status type.
+    /// Gets or sets the ticket status type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual TicketStatusType? TicketStatusType { get; protected set; }
+    public virtual TicketStatusType? TicketStatusType { get; set; }
 
     /// <summary>
-    /// Gets the user who performed the status change.
+    /// Gets or sets the user who performed the status change.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual User? User { get; protected set; }
+    public virtual User? User { get; set; }
 }

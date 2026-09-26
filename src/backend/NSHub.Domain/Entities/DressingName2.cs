@@ -12,63 +12,63 @@ namespace NSHub.Domain.Entities;
 public class DressingName2 : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the language identifier.
+    /// Gets or sets the language identifier.
     /// </summary>
-    public Guid LanguageId { get; protected set; }
+    public Guid LanguageId { get; set; }
 
     /// <summary>
-    /// Gets the localized label for the retreat parameter.
+    /// Gets or sets the localized label for the retreat parameter.
     /// </summary>
-    public string Retreat { get; protected set; } = string.Empty;
+    public string Retreat { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the chip parameter.
+    /// Gets or sets the localized label for the chip parameter.
     /// </summary>
-    public string Chip { get; protected set; } = string.Empty;
+    public string Chip { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the ANCL parameter.
+    /// Gets or sets the localized label for the ANCL parameter.
     /// </summary>
-    public string Ancl { get; protected set; } = string.Empty;
+    public string Ancl { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the internal allowance parameter.
+    /// Gets or sets the localized label for the internal allowance parameter.
     /// </summary>
-    public string AllInt { get; protected set; } = string.Empty;
+    public string AllInt { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the external allowance parameter.
+    /// Gets or sets the localized label for the external allowance parameter.
     /// </summary>
-    public string AllExt { get; protected set; } = string.Empty;
+    public string AllExt { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the output velocity parameter.
+    /// Gets or sets the localized label for the output velocity parameter.
     /// </summary>
-    public string OutVel { get; protected set; } = string.Empty;
+    public string OutVel { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the velocity parameter.
+    /// Gets or sets the localized label for the velocity parameter.
     /// </summary>
-    public string Vel { get; protected set; } = string.Empty;
+    public string Vel { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the removal parameter.
+    /// Gets or sets the localized label for the removal parameter.
     /// </summary>
-    public string Removal { get; protected set; } = string.Empty;
+    public string Removal { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for cycle 2.
+    /// Gets or sets the localized label for cycle 2.
     /// </summary>
-    public string Cycle2 { get; protected set; } = string.Empty;
+    public string Cycle2 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for cycle 3.
+    /// Gets or sets the localized label for cycle 3.
     /// </summary>
-    public string Cycle3 { get; protected set; } = string.Empty;
+    public string Cycle3 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated language.
+    /// Gets or sets the associated language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Language? Language { get; protected set; }
+    public virtual Language? Language { get; set; }
 }

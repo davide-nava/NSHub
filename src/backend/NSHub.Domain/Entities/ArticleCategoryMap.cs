@@ -12,24 +12,24 @@ namespace NSHub.Domain.Entities;
 public class ArticleCategoryMap : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid ArticleId { get; protected set; }
+    public Guid ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the category identifier.
+    /// Gets or sets the category identifier.
     /// </summary>
-    public Guid ArticleCategoryId { get; protected set; }
+    public Guid ArticleCategoryId { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated category.
+    /// Gets or sets the associated category.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ArticleCategory? ArticleCategory { get; protected set; }
+    public virtual ArticleCategory? ArticleCategory { get; set; }
 }

@@ -12,22 +12,22 @@ namespace NSHub.Domain.Entities;
 public class Setting : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the unique setting key.
+    /// Gets or sets the unique setting key.
     /// </summary>
-    public string Key { get; protected set; } = string.Empty;
+    public string Key { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the setting value.
+    /// Gets or sets the setting value.
     /// </summary>
-    public string? Value { get; protected set; }
+    public string? Value { get; set; }
 
     /// <summary>
-    /// Gets the setting group.
+    /// Gets or sets the setting group.
     /// </summary>
-    public string Group { get; protected set; } = string.Empty;
+    public string Group { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the setting description.
+    /// Gets or sets the setting description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

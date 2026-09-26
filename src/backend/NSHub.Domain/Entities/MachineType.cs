@@ -12,54 +12,54 @@ namespace NSHub.Domain.Entities;
 public class MachineType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the machine type number.
+    /// Gets or sets the machine type number.
     /// </summary>
-    public string Number { get; protected set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the image path or URL.
+    /// Gets or sets the image path or URL.
     /// </summary>
-    public string? Image { get; protected set; }
+    public string? Image { get; set; }
 
     /// <summary>
-    /// Gets the machine type description.
+    /// Gets or sets the machine type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the creation or registration date.
+    /// Gets or sets the creation or registration date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the number of machine axes.
+    /// Gets or sets the number of machine axes.
     /// </summary>
-    public int Axes { get; protected set; }
+    public int Axes { get; set; }
 
     /// <summary>
-    /// Gets the number of spindles.
+    /// Gets or sets the number of spindles.
     /// </summary>
-    public int Spindles { get; protected set; }
+    public int Spindles { get; set; }
 
     /// <summary>
-    /// Gets the CNC type.
+    /// Gets or sets the CNC type.
     /// </summary>
-    public string? Cnc { get; protected set; }
+    public string? Cnc { get; set; }
 
     /// <summary>
-    /// Gets the machine specialty.
+    /// Gets or sets the machine specialty.
     /// </summary>
-    public string? Specialty { get; protected set; }
+    public string? Specialty { get; set; }
 
     /// <summary>
-    /// Gets additional machine details.
+    /// Gets or sets additional machine details.
     /// </summary>
-    public string? Details { get; protected set; }
+    public string? Details { get; set; }
 
     /// <summary>
-    /// Gets the machines associated with this machine type.
+    /// Gets or sets the machines associated with this machine type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Machine> Machines { get; protected set; }
-        = new List<Machine>();
+    public virtual ICollection<Machine> Machines { get; set; }
+        = [];
 }

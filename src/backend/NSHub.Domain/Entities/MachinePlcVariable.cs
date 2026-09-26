@@ -12,38 +12,38 @@ namespace NSHub.Domain.Entities;
 public class MachinePlcVariable : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the PLC variable identifier.
+    /// Gets or sets the PLC variable identifier.
     /// </summary>
-    public Guid PlcVariableId { get; protected set; }
+    public Guid PlcVariableId { get; set; }
 
     /// <summary>
-    /// Gets the variable name.
+    /// Gets or sets the variable name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets the variable value.
+    /// Gets or sets the variable value.
     /// </summary>
-    public string? Value { get; protected set; }
+    public string? Value { get; set; }
 
     /// <summary>
-    /// Gets the machine number.
+    /// Gets or sets the machine number.
     /// </summary>
-    public string? MachineNumber { get; protected set; }
+    public string? MachineNumber { get; set; }
 
     /// <summary>
-    /// Gets the acquisition date.
+    /// Gets or sets the acquisition date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the associated program.
+    /// Gets or sets the associated program.
     /// </summary>
-    public string? Program { get; protected set; }
+    public string? Program { get; set; }
 
     /// <summary>
-    /// Gets the associated PLC variable.
+    /// Gets or sets the associated PLC variable.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PlcVariable? PlcVariable { get; protected set; }
+    public virtual PlcVariable? PlcVariable { get; set; }
 }

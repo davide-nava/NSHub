@@ -4,24 +4,25 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class UnitOfMeasureConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<UnitOfMeasure>
+public class UnitOfMeasureConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<UnitOfMeasure>
 {
     public void Configure(EntityTypeBuilder<UnitOfMeasure> builder)
     {
-        builder.ToTable("UnitOfMeasure", "dbo");
+        _ = builder.ToTable("UnitOfMeasure", "dbo");
 
+        _ = builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
+        _ = builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
 
-        builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
-        builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
     }
 }

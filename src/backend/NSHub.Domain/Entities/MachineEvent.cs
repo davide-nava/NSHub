@@ -12,28 +12,28 @@ namespace NSHub.Domain.Entities;
 public class MachineEvent : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the event notes.
+    /// Gets or sets the event notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the machine event type identifier.
+    /// Gets or sets the machine event type identifier.
     /// </summary>
-    public Guid MachineEventTypeId { get; protected set; }
+    public Guid MachineEventTypeId { get; set; }
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid MachineId { get; protected set; }
+    public Guid MachineId { get; set; }
 
     /// <summary>
-    /// Gets the event date.
+    /// Gets or sets the event date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 }

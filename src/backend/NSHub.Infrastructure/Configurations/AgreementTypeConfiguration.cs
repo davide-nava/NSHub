@@ -4,17 +4,18 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class AgreementTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<AgreementType>
+public class AgreementTypeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<AgreementType>
 {
     public void Configure(EntityTypeBuilder<AgreementType> builder)
     {
         builder.ToTable("AgreementType", "dbo");
-
 
         builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
         builder.Property(e => e.Code).HasMaxLength(256).IsRequired();

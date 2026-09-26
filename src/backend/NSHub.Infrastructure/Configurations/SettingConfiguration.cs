@@ -8,6 +8,7 @@ using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
+using IRequestContext = NSHub.Application.Interfaces.IRequestContext;
 
 namespace NSHub.Infrastructure.Configurations;
 

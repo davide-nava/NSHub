@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class PartyRelationshipConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<PartyRelationship>
+public class PartyRelationshipConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<PartyRelationship>
 {
     public void Configure(EntityTypeBuilder<PartyRelationship> builder)
     {

@@ -14,10 +14,10 @@ public class AgreementType : AuditableTenantEntity
     /// <summary>
     /// Gets or sets the description of the agreement type.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the code of the agreement type.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

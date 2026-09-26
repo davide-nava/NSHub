@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class CncError : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the error code.
+    /// Gets or sets the error code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the error description.
+    /// Gets or sets the error description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

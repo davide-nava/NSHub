@@ -12,14 +12,12 @@ namespace NSHub.Domain.Entities;
 public class MachineBuilder : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the machine builder code.
+    /// Gets or sets the machine builder code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the machine builder description.
+    /// Gets or sets the machine builder description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
-
-
+    public string Description { get; set; } = string.Empty;
 }

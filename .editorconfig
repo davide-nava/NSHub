@@ -405,9 +405,6 @@ dotnet_public_api_analyzer.require_api_files = true
 # severity none
 ####################################################
 
-dotnet_diagnostic.ma0004.severity = none
-dotnet_diagnostic.sa1101.severity = none
-dotnet_diagnostic.ca1031.severity = none
 
 # ReSharper properties
 resharper_csharp_keep_existing_enum_arrangement = false
@@ -416,134 +413,17 @@ resharper_keep_existing_declaration_block_arrangement = false
 resharper_keep_existing_embedded_block_arrangement = false
 resharper_trailing_comma_in_multiline_lists = true
 
+[*.cs]
+dotnet_diagnostic.S125.severity = none
 
-dotnet_diagnostic.ca1707.severity = none
-
-dotnet_diagnostic.s125.severity = none
-
-dotnet_diagnostic.sa1625.severity = none
-
-dotnet_diagnostic.sa1515.severity = none
-
-dotnet_diagnostic.sa1005.severity = none
-
-dotnet_diagnostic.sa1512.severity = none
-
-dotnet_diagnostic.ide1006.severity = none
-
-dotnet_diagnostic.sa1310.severity = none
-
-dotnet_diagnostic.sa1202.severity = none
-
+dotnet_diagnostic.SA1101.severity = none
 
 dotnet_diagnostic.S2094.severity = none
 
-# Documentation & Style rules for pragmatic development
-dotnet_diagnostic.cs1591.severity = none
-dotnet_diagnostic.sa1600.severity = none
-dotnet_diagnostic.sa1601.severity = none
-dotnet_diagnostic.sa1633.severity = none
-dotnet_diagnostic.sa1201.severity = none
-dotnet_diagnostic.sa1309.severity = none
-dotnet_diagnostic.sa1502.severity = none
-dotnet_diagnostic.sa1413.severity = none
-dotnet_diagnostic.sa1128.severity = none
-dotnet_diagnostic.sa1402.severity = none
-dotnet_diagnostic.ca1819.severity = none
-dotnet_diagnostic.ca1852.severity = none
-dotnet_diagnostic.ca1812.severity = none
-dotnet_diagnostic.ma0048.severity = none
-dotnet_diagnostic.ma0053.severity = none
-dotnet_diagnostic.ma0182.severity = none
-dotnet_diagnostic.ma0007.severity = none
-dotnet_diagnostic.rcs1160.severity = none
-dotnet_diagnostic.s3442.severity = none
-dotnet_diagnostic.rcs1251.severity = none
-dotnet_diagnostic.sa1516.severity = none
-dotnet_diagnostic.ide0005.severity = none
-dotnet_diagnostic.ide0028.severity = none
-dotnet_diagnostic.ide0022.severity = none
-dotnet_diagnostic.sa1606.severity = none
-dotnet_diagnostic.sa1028.severity = none
-dotnet_diagnostic.rcs1037.severity = none
-dotnet_diagnostic.rcs1138.severity = none
-dotnet_diagnostic.sa1623.severity = none
-dotnet_diagnostic.rcs1228.severity = none
-dotnet_diagnostic.sa1614.severity = none
-dotnet_diagnostic.sa1642.severity = none
-dotnet_diagnostic.ma0206.severity = none
-dotnet_diagnostic.sa1505.severity = none
-dotnet_diagnostic.ma0056.severity = none
-dotnet_diagnostic.ide0301.severity = none
-dotnet_diagnostic.sa1622.severity = none
+dotnet_diagnostic.SA1625.severity = none
 
-dotnet_diagnostic.bl0016.severity = none
-dotnet_diagnostic.ca1000.severity = none
-dotnet_diagnostic.ca1062.severity = none
-dotnet_diagnostic.ca1304.severity = none
-dotnet_diagnostic.ca1305.severity = none
-dotnet_diagnostic.ca1311.severity = none
-dotnet_diagnostic.ca1724.severity = none
-dotnet_diagnostic.ca1822.severity = none
-dotnet_diagnostic.ca1848.severity = none
-dotnet_diagnostic.ca1862.severity = none
-dotnet_diagnostic.ca1873.severity = none
-dotnet_diagnostic.ide0007.severity = none
-dotnet_diagnostic.ide0011.severity = none
-dotnet_diagnostic.ide0032.severity = none
-dotnet_diagnostic.ide0036.severity = none
-dotnet_diagnostic.ide0040.severity = none
-dotnet_diagnostic.ide0046.severity = none
-dotnet_diagnostic.ide0055.severity = none
-dotnet_diagnostic.ide0058.severity = none
-dotnet_diagnostic.ide0059.severity = none
-dotnet_diagnostic.ide0065.severity = none
-dotnet_diagnostic.ide0078.severity = none
-dotnet_diagnostic.ide0130.severity = none
-dotnet_diagnostic.ide0290.severity = none
-dotnet_diagnostic.idisp001.severity = none
-dotnet_diagnostic.idisp004.severity = none
-dotnet_diagnostic.ma0002.severity = none
-dotnet_diagnostic.ma0003.severity = none
-dotnet_diagnostic.ma0006.severity = none
-dotnet_diagnostic.ma0011.severity = none
-dotnet_diagnostic.ma0015.severity = none
-dotnet_diagnostic.ma0016.severity = none
-dotnet_diagnostic.ma0018.severity = none
-dotnet_diagnostic.ma0020.severity = none
-dotnet_diagnostic.ma0038.severity = none
-dotnet_diagnostic.ma0051.severity = none
-dotnet_diagnostic.ma0076.severity = none
-dotnet_diagnostic.ma0176.severity = none
-dotnet_diagnostic.ma0193.severity = none
-dotnet_diagnostic.rcs1077.severity = none
-dotnet_diagnostic.rcs1089.severity = none
-dotnet_diagnostic.rcs1118.severity = none
-dotnet_diagnostic.rcs1141.severity = none
-dotnet_diagnostic.rcs1146.severity = none
-dotnet_diagnostic.rcs1194.severity = none
-dotnet_diagnostic.rcs1201.severity = none
-dotnet_diagnostic.s2325.severity = none
-dotnet_diagnostic.s4136.severity = none
-dotnet_diagnostic.s8969.severity = none
-dotnet_diagnostic.sa1009.severity = none
-dotnet_diagnostic.sa1027.severity = none
-dotnet_diagnostic.sa1111.severity = none
-dotnet_diagnostic.sa1116.severity = none
-dotnet_diagnostic.sa1117.severity = none
-dotnet_diagnostic.sa1137.severity = none
-dotnet_diagnostic.sa1200.severity = none
-dotnet_diagnostic.sa1206.severity = none
-dotnet_diagnostic.sa1210.severity = none
-dotnet_diagnostic.sa1311.severity = none
-dotnet_diagnostic.sa1316.severity = none
-dotnet_diagnostic.sa1503.severity = none
-dotnet_diagnostic.sa1507.severity = none
-dotnet_diagnostic.sa1508.severity = none
-dotnet_diagnostic.sa1513.severity = none
-dotnet_diagnostic.sa1518.severity = none
-dotnet_diagnostic.sa1602.severity = none
-dotnet_diagnostic.sa1611.severity = none
-dotnet_diagnostic.sa1615.severity = none
-dotnet_diagnostic.sa1629.severity = none
-dotnet_diagnostic.sa1649.severity = none
+dotnet_diagnostic.SA1512.severity = none
+
+dotnet_diagnostic.SA1310.severity = none
+
+dotnet_diagnostic.SA1515.severity = none

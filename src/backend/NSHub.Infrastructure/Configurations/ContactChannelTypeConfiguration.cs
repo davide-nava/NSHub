@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ContactChannelTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ContactChannelType>
+public class ContactChannelTypeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ContactChannelType>
 {
     public void Configure(EntityTypeBuilder<ContactChannelType> builder)
     {
@@ -21,6 +23,5 @@ public class ContactChannelTypeConfiguration : AuditableTenantEntityConfiguratio
         builder.Property(e => e.ContactChannelTypeCode).HasMaxLength(20).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
         builder.Property(e => e.Description).HasMaxLength(250).IsRequired(false);
-
     }
 }

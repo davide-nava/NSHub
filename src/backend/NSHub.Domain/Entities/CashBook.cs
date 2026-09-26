@@ -12,27 +12,27 @@ namespace NSHub.Domain.Entities;
 public class CashBook : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the transaction date.
+    /// Gets or sets the transaction date.
     /// </summary>
-    public DateTime? Date { get; protected set; }
+    public DateTime? Date { get; set; }
 
     /// <summary>
-    /// Gets the balance after the transaction.
+    /// Gets or sets the balance after the transaction.
     /// </summary>
-    public decimal? Balance { get; protected set; }
+    public decimal? Balance { get; set; }
 
     /// <summary>
-    /// Gets the transaction notes.
+    /// Gets or sets the transaction notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the credited amount.
+    /// Gets or sets the credited amount.
     /// </summary>
-    public decimal? Credit { get; protected set; }
+    public decimal? Credit { get; set; }
 
     /// <summary>
-    /// Gets the debited amount.
+    /// Gets or sets the debited amount.
     /// </summary>
-    public decimal? Debit { get; protected set; }
+    public decimal? Debit { get; set; }
 }

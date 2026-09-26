@@ -12,28 +12,28 @@ namespace NSHub.Domain.Entities;
 public class ArticleGroup : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the group code.
+    /// Gets or sets the group code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the group description.
+    /// Gets or sets the group description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the group number.
+    /// Gets or sets the group number.
     /// </summary>
-    public string Number { get; protected set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the image path or URL associated with the group.
+    /// Gets or sets the image path or URL associated with the group.
     /// </summary>
-    public string Image { get; protected set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the articles associated with this group.
+    /// Gets or sets the articles associated with this group.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Article> Articles { get; protected set; } = [];
+    public virtual ICollection<Article> Articles { get; set; } = [];
 }

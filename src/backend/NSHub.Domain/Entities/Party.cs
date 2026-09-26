@@ -12,79 +12,79 @@ namespace NSHub.Domain.Entities;
 public class Party : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the internal code.
+    /// Gets or sets the internal code.
     /// </summary>
-    public string? InternalCode { get; protected set; }
+    public string? InternalCode { get; set; }
 
     /// <summary>
-    /// Gets the party type code.
+    /// Gets or sets the party type code.
     /// </summary>
-    public string PartyTypeCode { get; protected set; } = string.Empty;
+    public string PartyTypeCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the display name.
+    /// Gets or sets the display name.
     /// </summary>
-    public string DisplayName { get; protected set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the tax identification number.
+    /// Gets or sets the tax identification number.
     /// </summary>
-    public string? TaxIdentificationNumber { get; protected set; }
+    public string? TaxIdentificationNumber { get; set; }
 
     /// <summary>
-    /// Gets the VAT number.
+    /// Gets or sets the VAT number.
     /// </summary>
-    public string? VatNumber { get; protected set; }
+    public string? VatNumber { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the party is active.
+    /// Gets or sets a value indicating whether the party is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets the creation date.
+    /// Gets or sets the creation date.
     /// </summary>
-    public DateTimeOffset CreatedOn { get; protected set; }
+    public DateTimeOffset CreatedOn { get; set; }
 
     /// <summary>
-    /// Gets the last update date.
+    /// Gets or sets the last update date.
     /// </summary>
-    public DateTimeOffset UpdatedOn { get; protected set; }
+    public DateTimeOffset UpdatedOn { get; set; }
 
     /// <summary>
-    /// Gets the associated person.
+    /// Gets or sets the associated person.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Person? Person { get; protected set; }
+    public virtual Person? Person { get; set; }
 
     /// <summary>
-    /// Gets the associated organization.
+    /// Gets or sets the associated organization.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Organization? Organization { get; protected set; }
+    public virtual Organization? Organization { get; set; }
 
     /// <summary>
-    /// Gets the associated party type.
+    /// Gets or sets the associated party type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PartyType? PartyType { get; protected set; }
+    public virtual PartyType? PartyType { get; set; }
 
     /// <summary>
-    /// Gets the relationships where this party is the source.
+    /// Gets or sets the relationships where this party is the source.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<PartyRelationship> SourceRelationships { get; protected set; }
-        = new List<PartyRelationship>();
+    public virtual ICollection<PartyRelationship> SourceRelationships { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the relationships where this party is the target.
+    /// Gets or sets the relationships where this party is the target.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<PartyRelationship> TargetRelationships { get; protected set; }
-        = new List<PartyRelationship>();
+    public virtual ICollection<PartyRelationship> TargetRelationships { get; set; }
+        = [];
 }

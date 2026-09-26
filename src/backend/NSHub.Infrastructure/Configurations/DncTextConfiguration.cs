@@ -4,27 +4,28 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class DncTextConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<DncText>
+public class DncTextConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<DncText>
 {
     public void Configure(EntityTypeBuilder<DncText> builder)
     {
-        builder.ToTable("DncText", "dbo");
+        _ = builder.ToTable("DncText", "dbo");
 
+        _ = builder.Property(e => e.LanguageId).IsRequired();
+        _ = builder.Property(e => e.Number).IsRequired();
+        _ = builder.Property(e => e.Text).IsRequired();
 
-        builder.Property(e => e.LanguageId).IsRequired();
-        builder.Property(e => e.Number).IsRequired();
-        builder.Property(e => e.Text).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne(e => e.Language)
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne(e => e.Language)
             .WithMany(p => p.DncTexts)
             .HasForeignKey(e => e.LanguageId)
             .OnDelete(DeleteBehavior.Restrict);

@@ -12,54 +12,54 @@ namespace NSHub.Domain.Entities;
 public class ContactMechanism : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the party identifier.
+    /// Gets or sets the party identifier.
     /// </summary>
-    public Guid PartyId { get; protected set; }
+    public Guid PartyId { get; set; }
 
     /// <summary>
-    /// Gets the contact channel type code.
+    /// Gets or sets the contact channel type code.
     /// </summary>
-    public string ContactChannelTypeCode { get; protected set; } = string.Empty;
+    public string ContactChannelTypeCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the contact value.
+    /// Gets or sets the contact value.
     /// </summary>
-    public string ContactValue { get; protected set; } = string.Empty;
+    public string ContactValue { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the usage description.
+    /// Gets or sets the usage description.
     /// </summary>
-    public string? UsageDescription { get; protected set; }
+    public string? UsageDescription { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether this is the default contact mechanism.
+    /// Gets or sets a value indicating whether this is the default contact mechanism.
     /// </summary>
-    public bool IsDefault { get; protected set; }
+    public bool IsDefault { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the contact mechanism has been verified.
+    /// Gets or sets a value indicating whether the contact mechanism has been verified.
     /// </summary>
-    public bool IsVerified { get; protected set; }
+    public bool IsVerified { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the creation date.
+    /// Gets or sets the creation date.
     /// </summary>
-    public DateTimeOffset CreatedOn { get; protected set; }
+    public DateTimeOffset CreatedOn { get; set; }
 
     /// <summary>
-    /// Gets the contact channel type.
+    /// Gets or sets the contact channel type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ContactChannelType? ContactChannelType { get; protected set; }
+    public virtual ContactChannelType? ContactChannelType { get; set; }
 
     /// <summary>
-    /// Gets the associated party.
+    /// Gets or sets the associated party.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Party? Party { get; protected set; }
+    public virtual Party? Party { get; set; }
 }

@@ -12,103 +12,103 @@ namespace NSHub.Domain.Entities;
 public class OrderRow : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the order identifier.
+    /// Gets or sets the order identifier.
     /// </summary>
-    public Guid OrderId { get; protected set; }
+    public Guid OrderId { get; set; }
 
     /// <summary>
-    /// Gets the row number.
+    /// Gets or sets the row number.
     /// </summary>
-    public int RowNumber { get; protected set; }
+    public int RowNumber { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid? ArticleId { get; protected set; }
+    public Guid? ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the article code.
+    /// Gets or sets the article code.
     /// </summary>
-    public string? ArticleCode { get; protected set; }
+    public string? ArticleCode { get; set; }
 
     /// <summary>
-    /// Gets the row description.
+    /// Gets or sets the row description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the ordered quantity.
+    /// Gets or sets the ordered quantity.
     /// </summary>
-    public decimal Quantity { get; protected set; }
+    public decimal Quantity { get; set; }
 
     /// <summary>
-    /// Gets the delivered quantity.
+    /// Gets or sets the delivered quantity.
     /// </summary>
-    public decimal DeliveredQuantity { get; protected set; }
+    public decimal DeliveredQuantity { get; set; }
 
     /// <summary>
-    /// Gets the invoiced quantity.
+    /// Gets or sets the invoiced quantity.
     /// </summary>
-    public decimal InvoicedQuantity { get; protected set; }
+    public decimal InvoicedQuantity { get; set; }
 
     /// <summary>
-    /// Gets the unit price.
+    /// Gets or sets the unit price.
     /// </summary>
-    public decimal UnitPrice { get; protected set; }
+    public decimal UnitPrice { get; set; }
 
     /// <summary>
-    /// Gets the discount percentage.
+    /// Gets or sets the discount percentage.
     /// </summary>
-    public decimal DiscountPercentage { get; protected set; }
+    public decimal DiscountPercentage { get; set; }
 
     /// <summary>
-    /// Gets the line total amount.
+    /// Gets or sets the line total amount.
     /// </summary>
-    public decimal LineTotal { get; protected set; }
+    public decimal LineTotal { get; set; }
 
     /// <summary>
-    /// Gets the VAT identifier.
+    /// Gets or sets the VAT identifier.
     /// </summary>
-    public Guid? VatId { get; protected set; }
+    public Guid? VatId { get; set; }
 
     /// <summary>
-    /// Gets the warehouse identifier.
+    /// Gets or sets the warehouse identifier.
     /// </summary>
-    public Guid? WarehouseId { get; protected set; }
+    public Guid? WarehouseId { get; set; }
 
     /// <summary>
-    /// Gets the expected delivery date.
+    /// Gets or sets the expected delivery date.
     /// </summary>
-    public DateTime? ExpectedDeliveryDate { get; protected set; }
+    public DateTime? ExpectedDeliveryDate { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated order.
+    /// Gets or sets the associated order.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Order? Order { get; protected set; }
+    public virtual Order? Order { get; set; }
 
     /// <summary>
-    /// Gets the associated VAT rate.
+    /// Gets or sets the associated VAT rate.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Vat? Vat { get; protected set; }
+    public virtual Vat? Vat { get; set; }
 
     /// <summary>
-    /// Gets the associated warehouse.
+    /// Gets or sets the associated warehouse.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Warehouse? Warehouse { get; protected set; }
+    public virtual Warehouse? Warehouse { get; set; }
 
     /// <summary>
-    /// Gets the stock movements associated with this order row.
+    /// Gets or sets the stock movements associated with this order row.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<StockMovement> StockMovements { get; protected set; }
-        = new List<StockMovement>();
+    public virtual ICollection<StockMovement> StockMovements { get; set; }
+        = [];
 }

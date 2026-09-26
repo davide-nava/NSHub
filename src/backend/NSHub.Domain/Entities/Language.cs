@@ -22,30 +22,30 @@ public class Language : AuditableTenantEntity
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the DNC texts associated with this language.
+    /// Gets or sets the DNC texts associated with this language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<DncText> DncTexts { get; protected set; }
-        = new List<DncText>();
+    public virtual ICollection<DncText> DncTexts { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the dressing configuration 1 translations associated with this language.
+    /// Gets or sets the dressing configuration 1 translations associated with this language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<DressingName1> DressingName1s { get; protected set; }
-        = new List<DressingName1>();
+    public virtual ICollection<DressingName1> DressingName1s { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the dressing configuration 2 translations associated with this language.
+    /// Gets or sets the dressing configuration 2 translations associated with this language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<DressingName2> DressingName2s { get; protected set; }
-        = new List<DressingName2>();
+    public virtual ICollection<DressingName2> DressingName2s { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the dressing configuration 3 translations associated with this language.
+    /// Gets or sets the dressing configuration 3 translations associated with this language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<DressingName3> DressingName3s { get; protected set; }
-        = new List<DressingName3>();
+    public virtual ICollection<DressingName3> DressingName3s { get; set; }
+        = [];
 }

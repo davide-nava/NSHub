@@ -14,10 +14,10 @@ public class UnitOfMeasure : AuditableTenantEntity
     /// <summary>
     /// Gets or sets the description of the unit of measure.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the code of the unit of measure.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

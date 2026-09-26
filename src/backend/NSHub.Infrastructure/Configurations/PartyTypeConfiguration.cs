@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class PartyTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<PartyType>
+public class PartyTypeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<PartyType>
 {
     public void Configure(EntityTypeBuilder<PartyType> builder)
     {
@@ -21,6 +23,5 @@ public class PartyTypeConfiguration : AuditableTenantEntityConfiguration, IEntit
         builder.Property(e => e.PartyTypeCode).HasMaxLength(20).IsRequired();
         builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
         builder.Property(e => e.Description).HasMaxLength(250).IsRequired(false);
-
     }
 }

@@ -12,54 +12,54 @@ namespace NSHub.Domain.Entities;
 public class PaymentSchedule : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the invoice identifier.
+    /// Gets or sets the invoice identifier.
     /// </summary>
-    public Guid InvoiceId { get; protected set; }
+    public Guid InvoiceId { get; set; }
 
     /// <summary>
-    /// Gets the installment number.
+    /// Gets or sets the installment number.
     /// </summary>
-    public int InstallmentNumber { get; protected set; }
+    public int InstallmentNumber { get; set; }
 
     /// <summary>
-    /// Gets the payment due date.
+    /// Gets or sets the payment due date.
     /// </summary>
-    public DateTime DueDate { get; protected set; }
+    public DateTime DueDate { get; set; }
 
     /// <summary>
-    /// Gets the installment amount.
+    /// Gets or sets the installment amount.
     /// </summary>
-    public decimal Amount { get; protected set; }
+    public decimal Amount { get; set; }
 
     /// <summary>
-    /// Gets the amount already paid.
+    /// Gets or sets the amount already paid.
     /// </summary>
-    public decimal PaidAmount { get; protected set; }
+    public decimal PaidAmount { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the installment has been paid.
+    /// Gets or sets a value indicating whether the installment has been paid.
     /// </summary>
-    public bool IsPaid { get; protected set; }
+    public bool IsPaid { get; set; }
 
     /// <summary>
-    /// Gets the payment date.
+    /// Gets or sets the payment date.
     /// </summary>
-    public DateTime? PaymentDate { get; protected set; }
+    public DateTime? PaymentDate { get; set; }
 
     /// <summary>
-    /// Gets the bank account identifier.
+    /// Gets or sets the bank account identifier.
     /// </summary>
-    public Guid? BankAccountId { get; protected set; }
+    public Guid? BankAccountId { get; set; }
 
     /// <summary>
-    /// Gets the bank account associated with the payment.
+    /// Gets or sets the bank account associated with the payment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual BankAccount? BankAccount { get; protected set; }
+    public virtual BankAccount? BankAccount { get; set; }
 
     /// <summary>
-    /// Gets the invoice associated with the payment schedule.
+    /// Gets or sets the invoice associated with the payment schedule.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Invoice? Invoice { get; protected set; }
+    public virtual Invoice? Invoice { get; set; }
 }

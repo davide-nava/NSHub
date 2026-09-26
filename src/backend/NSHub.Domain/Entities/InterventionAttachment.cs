@@ -12,23 +12,23 @@ namespace NSHub.Domain.Entities;
 public class InterventionAttachment : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the intervention identifier.
+    /// Gets or sets the intervention identifier.
     /// </summary>
-    public Guid InterventionId { get; protected set; }
+    public Guid InterventionId { get; set; }
 
     /// <summary>
-    /// Gets the attachment source path or URL.
+    /// Gets or sets the attachment source path or URL.
     /// </summary>
-    public string Src { get; protected set; } = string.Empty;
+    public string Src { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the attachment title.
+    /// Gets or sets the attachment title.
     /// </summary>
-    public string Title { get; protected set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated intervention.
+    /// Gets or sets the associated intervention.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Intervention? Intervention { get; protected set; }
+    public virtual Intervention? Intervention { get; set; }
 }

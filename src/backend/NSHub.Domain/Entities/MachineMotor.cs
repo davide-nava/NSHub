@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class MachineMotor : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the machine axis.
+    /// Gets or sets the machine axis.
     /// </summary>
-    public string Axis { get; protected set; } = string.Empty;
+    public string Axis { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the motor code.
+    /// Gets or sets the motor code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

@@ -12,133 +12,133 @@ namespace NSHub.Domain.Entities;
 public class Document : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the purchase invoice identifier.
+    /// Gets or sets the purchase invoice identifier.
     /// </summary>
-    public Guid PurchaseInvoiceId { get; protected set; }
+    public Guid PurchaseInvoiceId { get; set; }
 
     /// <summary>
-    /// Gets the document identifier.
+    /// Gets or sets the document identifier.
     /// </summary>
-    public Guid DocumentId { get; protected set; }
+    public Guid DocumentId { get; set; }
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid CustomerId { get; protected set; }
+    public Guid CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the document group identifier.
+    /// Gets or sets the document group identifier.
     /// </summary>
-    public Guid DocumentGroupId { get; protected set; }
+    public Guid DocumentGroupId { get; set; }
 
     /// <summary>
-    /// Gets the supplier identifier.
+    /// Gets or sets the supplier identifier.
     /// </summary>
-    public Guid SupplierId { get; protected set; }
+    public Guid SupplierId { get; set; }
 
     /// <summary>
-    /// Gets the machine type identifier.
+    /// Gets or sets the machine type identifier.
     /// </summary>
-    public Guid? MachineTypeId { get; protected set; }
+    public Guid? MachineTypeId { get; set; }
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid? MachineId { get; protected set; }
+    public Guid? MachineId { get; set; }
 
     /// <summary>
-    /// Gets the document type identifier.
+    /// Gets or sets the document type identifier.
     /// </summary>
-    public Guid DocumentTypeId { get; protected set; }
+    public Guid DocumentTypeId { get; set; }
 
     /// <summary>
-    /// Gets the document name.
+    /// Gets or sets the document name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime? InsertionDate { get; protected set; }
+    public DateTime? InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets the document description.
+    /// Gets or sets the document description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the document file content.
+    /// Gets or sets the document file content.
     /// </summary>
-    public byte[]? FileData { get; protected set; }
+    public IEnumerable<byte>? FileData { get; set; }
 
     /// <summary>
-    /// Gets the file extension.
+    /// Gets or sets the file extension.
     /// </summary>
-    public string? Extension { get; protected set; }
+    public string? Extension { get; set; }
 
     /// <summary>
-    /// Gets the article code.
+    /// Gets or sets the article code.
     /// </summary>
-    public string ArticleCode { get; protected set; } = string.Empty;
+    public string ArticleCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets a value indicating whether the document is enabled.
+    /// Gets or sets a value indicating whether the document is enabled.
     /// </summary>
-    public bool? IsEnabled { get; protected set; }
+    public bool? IsEnabled { get; set; }
 
     /// <summary>
-    /// Gets the document title.
+    /// Gets or sets the document title.
     /// </summary>
-    public string Title { get; protected set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the document URL.
+    /// Gets or sets the document URL.
     /// </summary>
-    public string Url { get; protected set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the document date.
+    /// Gets or sets the document date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the source information.
+    /// Gets or sets the source information.
     /// </summary>
-    public string Src { get; protected set; } = string.Empty;
+    public string Src { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? Customer { get; protected set; }
+    public virtual Customer? Customer { get; set; }
 
     /// <summary>
-    /// Gets the associated document group.
+    /// Gets or sets the associated document group.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual DocumentGroup? DocumentGroup { get; protected set; }
+    public virtual DocumentGroup? DocumentGroup { get; set; }
 
     /// <summary>
-    /// Gets the associated document type.
+    /// Gets or sets the associated document type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual DocumentType? DocumentType { get; protected set; }
+    public virtual DocumentType? DocumentType { get; set; }
 
     /// <summary>
-    /// Gets the associated supplier.
+    /// Gets or sets the associated supplier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Supplier? Supplier { get; protected set; }
+    public virtual Supplier? Supplier { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 
     /// <summary>
-    /// Gets the associated machine type.
+    /// Gets or sets the associated machine type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual MachineType? MachineType { get; protected set; }
+    public virtual MachineType? MachineType { get; set; }
 }

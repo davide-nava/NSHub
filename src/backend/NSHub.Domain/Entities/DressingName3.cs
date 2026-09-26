@@ -12,43 +12,43 @@ namespace NSHub.Domain.Entities;
 public class DressingName3 : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the language identifier.
+    /// Gets or sets the language identifier.
     /// </summary>
-    public Guid LanguageId { get; protected set; }
+    public Guid LanguageId { get; set; }
 
     /// <summary>
-    /// Gets the localized label for the work spindle.
+    /// Gets or sets the localized label for the work spindle.
     /// </summary>
-    public string WorkSpiende { get; protected set; } = string.Empty;
+    public string WorkSpiende { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the optional high-frequency spindle.
+    /// Gets or sets the localized label for the optional high-frequency spindle.
     /// </summary>
-    public string OptHfSpindle { get; protected set; } = string.Empty;
+    public string OptHfSpindle { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the optional normal spindle.
+    /// Gets or sets the localized label for the optional normal spindle.
     /// </summary>
-    public string OptNormSpendle { get; protected set; } = string.Empty;
+    public string OptNormSpendle { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the wheel direction.
+    /// Gets or sets the localized label for the wheel direction.
     /// </summary>
-    public string Direction { get; protected set; } = string.Empty;
+    public string Direction { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the high-frequency spindle.
+    /// Gets or sets the localized label for the high-frequency spindle.
     /// </summary>
-    public string Hf { get; protected set; } = string.Empty;
+    public string Hf { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for the wheel hand.
+    /// Gets or sets the localized label for the wheel hand.
     /// </summary>
-    public string WheelHand { get; protected set; } = string.Empty;
+    public string WheelHand { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated language.
+    /// Gets or sets the associated language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Language? Language { get; protected set; }
+    public virtual Language? Language { get; set; }
 }

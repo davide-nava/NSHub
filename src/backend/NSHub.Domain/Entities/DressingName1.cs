@@ -12,58 +12,58 @@ namespace NSHub.Domain.Entities;
 public class DressingName1 : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the language identifier.
+    /// Gets or sets the language identifier.
     /// </summary>
-    public Guid LanguageId { get; protected set; }
+    public Guid LanguageId { get; set; }
 
     /// <summary>
-    /// Gets the localized label for position 1.
+    /// Gets or sets the localized label for position 1.
     /// </summary>
-    public string Pos { get; protected set; } = string.Empty;
+    public string Pos { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for position 2.
+    /// Gets or sets the localized label for position 2.
     /// </summary>
-    public string Pos2 { get; protected set; } = string.Empty;
+    public string Pos2 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for position 3.
+    /// Gets or sets the localized label for position 3.
     /// </summary>
-    public string Pos3 { get; protected set; } = string.Empty;
+    public string Pos3 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for cycle 1.
+    /// Gets or sets the localized label for cycle 1.
     /// </summary>
-    public string Cycle1 { get; protected set; } = string.Empty;
+    public string Cycle1 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for cycle 2.
+    /// Gets or sets the localized label for cycle 2.
     /// </summary>
-    public string Cycle2 { get; protected set; } = string.Empty;
+    public string Cycle2 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for cycle 3.
+    /// Gets or sets the localized label for cycle 3.
     /// </summary>
-    public string Cycle3 { get; protected set; } = string.Empty;
+    public string Cycle3 { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for oil off mode.
+    /// Gets or sets the localized label for oil off mode.
     /// </summary>
-    public string OilOff { get; protected set; } = string.Empty;
+    public string OilOff { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for internal oil mode.
+    /// Gets or sets the localized label for internal oil mode.
     /// </summary>
-    public string OilInt { get; protected set; } = string.Empty;
+    public string OilInt { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the localized label for oil on mode.
+    /// Gets or sets the localized label for oil on mode.
     /// </summary>
-    public string OilOn { get; protected set; } = string.Empty;
+    public string OilOn { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated language.
+    /// Gets or sets the associated language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Language? Language { get; protected set; }
+    public virtual Language? Language { get; set; }
 }

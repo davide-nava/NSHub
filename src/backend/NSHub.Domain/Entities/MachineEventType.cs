@@ -12,19 +12,19 @@ namespace NSHub.Domain.Entities;
 public class MachineEventType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the event type code.
+    /// Gets or sets the event type code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the event type description.
+    /// Gets or sets the event type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the machine events associated with this event type.
+    /// Gets or sets the machine events associated with this event type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<MachineEvent> MachineEvents { get; protected set; }
-        = new List<MachineEvent>();
+    public virtual ICollection<MachineEvent> MachineEvents { get; set; }
+        = [];
 }

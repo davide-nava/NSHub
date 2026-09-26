@@ -12,113 +12,113 @@ namespace NSHub.Domain.Entities;
 public class Order : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the order number.
+    /// Gets or sets the order number.
     /// </summary>
-    public string OrderNumber { get; protected set; } = string.Empty;
+    public string OrderNumber { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the order year.
+    /// Gets or sets the order year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the order date.
+    /// Gets or sets the order date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the order type.
+    /// Gets or sets the order type.
     /// </summary>
-    public string OrderType { get; protected set; } = string.Empty;
+    public string OrderType { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid? CustomerId { get; protected set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the supplier identifier.
+    /// Gets or sets the supplier identifier.
     /// </summary>
-    public Guid? SupplierId { get; protected set; }
+    public Guid? SupplierId { get; set; }
 
     /// <summary>
-    /// Gets the quotation identifier.
+    /// Gets or sets the quotation identifier.
     /// </summary>
-    public Guid? QuotationId { get; protected set; }
+    public Guid? QuotationId { get; set; }
 
     /// <summary>
-    /// Gets the payment term identifier.
+    /// Gets or sets the payment term identifier.
     /// </summary>
-    public Guid? PaymentId { get; protected set; }
+    public Guid? PaymentId { get; set; }
 
     /// <summary>
-    /// Gets the shipping address identifier.
+    /// Gets or sets the shipping address identifier.
     /// </summary>
-    public Guid? ShippingAddressId { get; protected set; }
+    public Guid? ShippingAddressId { get; set; }
 
     /// <summary>
-    /// Gets the order currency code.
+    /// Gets or sets the order currency code.
     /// </summary>
-    public string CurrencyCode { get; protected set; } = string.Empty;
+    public string CurrencyCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the exchange rate.
+    /// Gets or sets the exchange rate.
     /// </summary>
-    public decimal ExchangeRate { get; protected set; }
+    public decimal ExchangeRate { get; set; }
 
     /// <summary>
-    /// Gets the total net amount.
+    /// Gets or sets the total net amount.
     /// </summary>
-    public decimal TotalNetAmount { get; protected set; }
+    public decimal TotalNetAmount { get; set; }
 
     /// <summary>
-    /// Gets the total VAT amount.
+    /// Gets or sets the total VAT amount.
     /// </summary>
-    public decimal TotalVatAmount { get; protected set; }
+    public decimal TotalVatAmount { get; set; }
 
     /// <summary>
-    /// Gets the total gross amount.
+    /// Gets or sets the total gross amount.
     /// </summary>
-    public decimal TotalGrossAmount { get; protected set; }
+    public decimal TotalGrossAmount { get; set; }
 
     /// <summary>
-    /// Gets the order status code.
+    /// Gets or sets the order status code.
     /// </summary>
-    public string StatusCode { get; protected set; } = string.Empty;
+    public string StatusCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? Customer { get; protected set; }
+    public virtual Customer? Customer { get; set; }
 
     /// <summary>
-    /// Gets the associated payment term.
+    /// Gets or sets the associated payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Payment? Payment { get; protected set; }
+    public virtual Payment? Payment { get; set; }
 
     /// <summary>
-    /// Gets the originating quotation.
+    /// Gets or sets the originating quotation.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Quotation? Quotation { get; protected set; }
+    public virtual Quotation? Quotation { get; set; }
 
     /// <summary>
-    /// Gets the associated supplier.
+    /// Gets or sets the associated supplier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Supplier? Supplier { get; protected set; }
+    public virtual Supplier? Supplier { get; set; }
 
     /// <summary>
-    /// Gets the rows associated with this order.
+    /// Gets or sets the rows associated with this order.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<OrderRow> OrderRows { get; protected set; }
-        = new List<OrderRow>();
+    public virtual ICollection<OrderRow> OrderRows { get; set; }
+        = [];
 }

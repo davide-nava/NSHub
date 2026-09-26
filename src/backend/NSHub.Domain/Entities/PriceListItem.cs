@@ -12,39 +12,39 @@ namespace NSHub.Domain.Entities;
 public class PriceListItem : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the price list identifier.
+    /// Gets or sets the price list identifier.
     /// </summary>
-    public Guid PriceListId { get; protected set; }
+    public Guid PriceListId { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid ArticleId { get; protected set; }
+    public Guid ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the price applied to the article.
+    /// Gets or sets the price applied to the article.
     /// </summary>
-    public decimal Price { get; protected set; }
+    public decimal Price { get; set; }
 
     /// <summary>
-    /// Gets the minimum quantity required for this price.
+    /// Gets or sets the minimum quantity required for this price.
     /// </summary>
-    public decimal MinQuantity { get; protected set; }
+    public decimal MinQuantity { get; set; }
 
     /// <summary>
-    /// Gets the discount percentage applied to the price.
+    /// Gets or sets the discount percentage applied to the price.
     /// </summary>
-    public decimal DiscountPercentage { get; protected set; }
+    public decimal DiscountPercentage { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated price list.
+    /// Gets or sets the associated price list.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PriceList? PriceList { get; protected set; }
+    public virtual PriceList? PriceList { get; set; }
 }

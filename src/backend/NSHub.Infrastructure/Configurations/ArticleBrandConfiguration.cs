@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ArticleBrandConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ArticleBrand>
+public class ArticleBrandConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ArticleBrand>
 {
     public void Configure(EntityTypeBuilder<ArticleBrand> builder)
     {

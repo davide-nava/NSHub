@@ -12,19 +12,19 @@ namespace NSHub.Domain.Entities;
 public class Nation : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the nation code.
+    /// Gets or sets the nation code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the nation name.
+    /// Gets or sets the nation name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets the addresses associated with this nation.
+    /// Gets or sets the addresses associated with this nation.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Address> Addresses { get; protected set; }
-        = new List<Address>();
+    public virtual ICollection<Address> Addresses { get; set; }
+        = [];
 }

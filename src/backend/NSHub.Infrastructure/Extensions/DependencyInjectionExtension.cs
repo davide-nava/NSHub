@@ -57,7 +57,7 @@ public static class DependencyInjectionExtension
 
         _ = builder.Services.AddHttpContextAccessor();
         _ = builder.Services.AddScoped<ITenantProvider, HttpTenantProvider>();
-        //builder.Services.AddScoped<IDbContextFactory<TenantDbContext>, TenantDbContextFactory>();
+        // builder.Services.AddScoped<IDbContextFactory<TenantDbContext>, TenantDbContextFactory>();
         _ = builder.Services.AddScoped<SoftDeleteInterceptor>();
 
         _ = builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
@@ -88,16 +88,16 @@ public static class DependencyInjectionExtension
                     _ = optionActions.UseCompatibilityLevel(170);
                 }).AddInterceptors(sp.GetRequiredService<SoftDeleteInterceptor>()));
 
-        //{
-        //	"Name": "ApplicationInsights",
-        //	"Args": {
-        //		"instrumentationKey": "YOUR_AI_KEY",
-        //		"telemetryConverter": "Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
-        //	}
-        //},
+        // {
+        // "Name": "ApplicationInsights",
+        // "Args": {
+        // "instrumentationKey": "YOUR_AI_KEY",
+        // "telemetryConverter": "Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
+        // }
+        // },
         _ = builder.Services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
-        //services.AddSingleton<Ixxxx, xxxx>();
+        // services.AddSingleton<Ixxxx, xxxx>();
 
         _ = builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
         _ = builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
@@ -132,8 +132,6 @@ public static class DependencyInjectionExtension
 
         return builder;
     }
-
-
 
     /// <summary>
     /// Adds infrastructure services, repositories, database contexts, and authentication to the service collection.
@@ -175,12 +173,12 @@ public static class DependencyInjectionExtension
         _ = services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Phase 1 Bounded Context Services & Repositories
-        _ = services.AddSingleton<Domain.Identity.Services.IPasswordHasher, Infrastructure.Identity.Services.PasswordHasher>();
+        _ = services.AddSingleton<IPasswordHasher, Infrastructure.Identity.Services.PasswordHasher>();
         _ = services.AddScoped<IUserRepository, Infrastructure.Identity.Persistence.Repositories.UserRepository>();
         _ = services.AddScoped<ITicketCommandRepository, Infrastructure.Tickets.Persistence.Repositories.TicketRepository>();
         _ = services.AddScoped<IInventoryRepository, Infrastructure.Warehouse.Persistence.Repositories.InventoryRepository>();
         _ = services.AddScoped<IInvoiceRepository, Infrastructure.Invoicing.Persistence.Repositories.InvoiceRepository>();
-        _ = services.AddScoped<Domain.Invoicing.Services.IInvoiceNumberSequenceService, Infrastructure.Invoicing.Services.InvoiceNumberSequenceService>();
+        _ = services.AddScoped<IInvoiceNumberSequenceService, Infrastructure.Invoicing.Services.InvoiceNumberSequenceService>();
         _ = services.AddScoped<ICmsRepository, Infrastructure.Cms.Persistence.Repositories.CmsRepository>();
 
         // Autenticazione JWT

@@ -12,24 +12,24 @@ namespace NSHub.Domain.Entities;
 public class Tenant : AuditableEntity
 {
     /// <summary>
-    /// Gets the tenant description.
+    /// Gets or sets the tenant description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the tenant name.
+    /// Gets or sets the tenant name.
     /// </summary>
-    public string Name { get; protected set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets a value indicating whether the tenant is active.
+    /// Gets or sets a value indicating whether the tenant is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets the users associated with this tenant.
+    /// Gets or sets the users associated with this tenant.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<User> Users { get; protected set; }
-        = new List<User>();
+    public virtual ICollection<User> Users { get; set; }
+        = [];
 }

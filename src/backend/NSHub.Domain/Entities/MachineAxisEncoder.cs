@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class MachineAxisEncoder : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the machine axis identifier.
+    /// Gets or sets the machine axis identifier.
     /// </summary>
-    public string Axis { get; protected set; } = string.Empty;
+    public string Axis { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the encoder code.
+    /// Gets or sets the encoder code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

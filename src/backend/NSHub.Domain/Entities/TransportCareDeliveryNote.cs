@@ -12,19 +12,19 @@ namespace NSHub.Domain.Entities;
 public class TransportCareDeliveryNote : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the carrier description.
+    /// Gets or sets the carrier description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the carrier notes.
+    /// Gets or sets the carrier notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the delivery notes associated with this carrier.
+    /// Gets or sets the delivery notes associated with this carrier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<DeliveryNote> DeliveryNotes { get; protected set; }
-        = new List<DeliveryNote>();
+    public virtual ICollection<DeliveryNote> DeliveryNotes { get; set; }
+        = [];
 }

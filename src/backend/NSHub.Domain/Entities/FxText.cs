@@ -12,39 +12,39 @@ namespace NSHub.Domain.Entities;
 public class FxText : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the FX text number.
+    /// Gets or sets the FX text number.
     /// </summary>
-    public string? Number { get; protected set; }
+    public string? Number { get; set; }
 
     /// <summary>
-    /// Gets the FX text description.
+    /// Gets or sets the FX text description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the language identifier.
+    /// Gets or sets the language identifier.
     /// </summary>
-    public Guid LanguageId { get; protected set; }
+    public Guid LanguageId { get; set; }
 
     /// <summary>
-    /// Gets the FX text type identifier.
+    /// Gets or sets the FX text type identifier.
     /// </summary>
-    public Guid FxTextTypeId { get; protected set; }
+    public Guid FxTextTypeId { get; set; }
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime InsertionDate { get; protected set; }
+    public DateTime InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets the associated FX text type.
+    /// Gets or sets the associated FX text type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual FxTextType? FxTextType { get; protected set; }
+    public virtual FxTextType? FxTextType { get; set; }
 
     /// <summary>
-    /// Gets the associated language.
+    /// Gets or sets the associated language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Language? Language { get; protected set; }
+    public virtual Language? Language { get; set; }
 }

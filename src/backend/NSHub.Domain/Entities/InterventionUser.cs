@@ -12,39 +12,39 @@ namespace NSHub.Domain.Entities;
 public class InterventionUser : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the intervention notes.
+    /// Gets or sets the intervention notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the user identifier.
+    /// Gets or sets the user identifier.
     /// </summary>
-    public Guid UserId { get; protected set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
-    /// Gets the intervention identifier.
+    /// Gets or sets the intervention identifier.
     /// </summary>
-    public Guid InterventionId { get; protected set; }
+    public Guid InterventionId { get; set; }
 
     /// <summary>
-    /// Gets the intervention end date.
+    /// Gets or sets the intervention end date.
     /// </summary>
-    public DateTime EndDate { get; protected set; }
+    public DateTime EndDate { get; set; }
 
     /// <summary>
-    /// Gets the intervention start date.
+    /// Gets or sets the intervention start date.
     /// </summary>
-    public DateTime StartDate { get; protected set; }
+    public DateTime StartDate { get; set; }
 
     /// <summary>
-    /// Gets the associated intervention.
+    /// Gets or sets the associated intervention.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Intervention? Intervention { get; protected set; }
+    public virtual Intervention? Intervention { get; set; }
 
     /// <summary>
-    /// Gets the associated user.
+    /// Gets or sets the associated user.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual User? User { get; protected set; }
+    public virtual User? User { get; set; }
 }

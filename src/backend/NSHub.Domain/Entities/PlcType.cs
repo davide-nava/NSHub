@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class PlcType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the PLC type description.
+    /// Gets or sets the PLC type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the PLC type code.
+    /// Gets or sets the PLC type code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

@@ -12,21 +12,21 @@ namespace NSHub.Domain.Entities;
 public class TicketStatusType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets a value indicating whether the status represents a closed ticket.
+    /// Gets or sets a value indicating whether the status represents a closed ticket.
     /// </summary>
-    public bool IsClosed { get; protected set; }
+    public bool IsClosed { get; set; }
 
     /// <summary>
-    /// Gets the tickets associated with this status type.
+    /// Gets or sets the tickets associated with this status type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Ticket> Tickets { get; protected set; }
-        = new List<Ticket>();
+    public virtual ICollection<Ticket> Tickets { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the ticket status history entries associated with this status type.
+    /// Gets or sets the ticket status history entries associated with this status type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<TicketStatus> TicketStatuses { get; protected set; }
-        = new List<TicketStatus>();
+    public virtual ICollection<TicketStatus> TicketStatuses { get; set; }
+        = [];
 }

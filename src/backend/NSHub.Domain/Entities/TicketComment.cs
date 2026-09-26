@@ -12,34 +12,34 @@ namespace NSHub.Domain.Entities;
 public class TicketComment : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the ticket identifier.
+    /// Gets or sets the ticket identifier.
     /// </summary>
-    public Guid TicketId { get; protected set; }
+    public Guid TicketId { get; set; }
 
     /// <summary>
-    /// Gets the comment description.
+    /// Gets or sets the comment description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the comment date.
+    /// Gets or sets the comment date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the author user identifier.
+    /// Gets or sets the author user identifier.
     /// </summary>
-    public Guid UserId { get; protected set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
-    /// Gets the associated ticket.
+    /// Gets or sets the associated ticket.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Ticket? Ticket { get; protected set; }
+    public virtual Ticket? Ticket { get; set; }
 
     /// <summary>
-    /// Gets the user who created the comment.
+    /// Gets or sets the user who created the comment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual User? User { get; protected set; }
+    public virtual User? User { get; set; }
 }

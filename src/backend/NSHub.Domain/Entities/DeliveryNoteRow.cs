@@ -12,82 +12,82 @@ namespace NSHub.Domain.Entities;
 public class DeliveryNoteRow : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the delivery note year.
+    /// Gets or sets the delivery note year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the delivery note identifier.
+    /// Gets or sets the delivery note identifier.
     /// </summary>
-    public Guid DeliveryNoteId { get; protected set; }
+    public Guid DeliveryNoteId { get; set; }
 
     /// <summary>
-    /// Gets the related order row identifier.
+    /// Gets or sets the related order row identifier.
     /// </summary>
-    public Guid? OrderRowId { get; protected set; }
+    public Guid? OrderRowId { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid? ArticleId { get; protected set; }
+    public Guid? ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the article code.
+    /// Gets or sets the article code.
     /// </summary>
-    public string? ArticleCode { get; protected set; }
+    public string? ArticleCode { get; set; }
 
     /// <summary>
-    /// Gets the delivered quantity.
+    /// Gets or sets the delivered quantity.
     /// </summary>
-    public decimal? Quantity { get; protected set; }
+    public decimal? Quantity { get; set; }
 
     /// <summary>
-    /// Gets the unit price.
+    /// Gets or sets the unit price.
     /// </summary>
-    public decimal? UnitPrice { get; protected set; }
+    public decimal? UnitPrice { get; set; }
 
     /// <summary>
-    /// Gets the row description.
+    /// Gets or sets the row description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the unit of measure code.
+    /// Gets or sets the unit of measure code.
     /// </summary>
-    public string UnitOfMeasureCode { get; protected set; } = string.Empty;
+    public string UnitOfMeasureCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the row number.
+    /// Gets or sets the row number.
     /// </summary>
-    public decimal? RowNumber { get; protected set; }
+    public decimal? RowNumber { get; set; }
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime? InsertionDate { get; protected set; }
+    public DateTime? InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated delivery note.
+    /// Gets or sets the associated delivery note.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual DeliveryNote? DeliveryNote { get; protected set; }
+    public virtual DeliveryNote? DeliveryNote { get; set; }
 
     /// <summary>
-    /// Gets the associated order row.
+    /// Gets or sets the associated order row.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual OrderRow? OrderRow { get; protected set; }
+    public virtual OrderRow? OrderRow { get; set; }
 
     /// <summary>
-    /// Gets the stock movements generated from this delivery note row.
+    /// Gets or sets the stock movements generated from this delivery note row.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<StockMovement> StockMovements { get; protected set; }
-        = new List<StockMovement>();
+    public virtual ICollection<StockMovement> StockMovements { get; set; }
+        = [];
 }

@@ -5,6 +5,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NSHub.Domain.Common;
+using NSHub.Domain.Enums;
 
 namespace NSHub.Api.Controllers;
 
@@ -18,7 +19,7 @@ public abstract class ApiControllerBase : ControllerBase
     private ISender? mediator;
 
     /// <summary>
-    /// Gets the MediatR sender instance resolved from the current HTTP request services.
+    /// Gets or sets the MediatR sender instance resolved from the current HTTP request services.
     /// </summary>
     protected ISender Mediator => mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 

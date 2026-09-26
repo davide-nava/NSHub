@@ -12,22 +12,22 @@ namespace NSHub.Domain.Entities;
 public class MonthlyCost : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the cost description.
+    /// Gets or sets the cost description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the recurring amount.
+    /// Gets or sets the recurring amount.
     /// </summary>
-    public decimal? Amount { get; protected set; }
+    public decimal? Amount { get; set; }
 
     /// <summary>
-    /// Gets the date from which the cost becomes effective.
+    /// Gets or sets the date from which the cost becomes effective.
     /// </summary>
-    public DateTime? StartDate { get; protected set; }
+    public DateTime? StartDate { get; set; }
 
     /// <summary>
-    /// Gets the date until which the cost remains effective.
+    /// Gets or sets the date until which the cost remains effective.
     /// </summary>
-    public DateTime? EndDate { get; protected set; }
+    public DateTime? EndDate { get; set; }
 }

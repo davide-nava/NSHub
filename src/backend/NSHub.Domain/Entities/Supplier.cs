@@ -12,99 +12,99 @@ namespace NSHub.Domain.Entities;
 public class Supplier : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the supplier name.
+    /// Gets or sets the supplier name.
     /// </summary>
-    public string Name { get; protected set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the search text used for filtering and lookup.
+    /// Gets or sets the search text used for filtering and lookup.
     /// </summary>
-    public string? Search { get; protected set; }
+    public string? Search { get; set; }
 
     /// <summary>
-    /// Gets the supplier number.
+    /// Gets or sets the supplier number.
     /// </summary>
-    public string? Number { get; protected set; }
+    public string? Number { get; set; }
 
     /// <summary>
-    /// Gets the VAT number.
+    /// Gets or sets the VAT number.
     /// </summary>
-    public string? VatNumber { get; protected set; }
+    public string? VatNumber { get; set; }
 
     /// <summary>
-    /// Gets the tax code.
+    /// Gets or sets the tax code.
     /// </summary>
-    public string? TaxCode { get; protected set; }
+    public string? TaxCode { get; set; }
 
     /// <summary>
-    /// Gets the SDI code.
+    /// Gets or sets the SDI code.
     /// </summary>
-    public string? SdiCode { get; protected set; }
+    public string? SdiCode { get; set; }
 
     /// <summary>
-    /// Gets the PEC email address.
+    /// Gets or sets the PEC email address.
     /// </summary>
-    public string? PecEmail { get; protected set; }
+    public string? PecEmail { get; set; }
 
     /// <summary>
-    /// Gets the email address.
+    /// Gets or sets the email address.
     /// </summary>
-    public string? Email { get; protected set; }
+    public string? Email { get; set; }
 
     /// <summary>
-    /// Gets the phone number.
+    /// Gets or sets the phone number.
     /// </summary>
-    public string? Phone { get; protected set; }
+    public string? Phone { get; set; }
 
     /// <summary>
-    /// Gets the address identifier.
+    /// Gets or sets the address identifier.
     /// </summary>
-    public Guid? AddressId { get; protected set; }
+    public Guid? AddressId { get; set; }
 
     /// <summary>
-    /// Gets the payment method identifier.
+    /// Gets or sets the payment method identifier.
     /// </summary>
-    public Guid? PaymentId { get; protected set; }
+    public Guid? PaymentId { get; set; }
 
     /// <summary>
-    /// Gets the bank account identifier.
+    /// Gets or sets the bank account identifier.
     /// </summary>
-    public Guid? BankAccountId { get; protected set; }
+    public Guid? BankAccountId { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the supplier is active.
+    /// Gets or sets a value indicating whether the supplier is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets the associated bank account.
+    /// Gets or sets the associated bank account.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual BankAccount? BankAccount { get; protected set; }
+    public virtual BankAccount? BankAccount { get; set; }
 
     /// <summary>
-    /// Gets the associated payment method.
+    /// Gets or sets the associated payment method.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Payment? Payment { get; protected set; }
+    public virtual Payment? Payment { get; set; }
 
     /// <summary>
-    /// Gets the supplier address.
+    /// Gets or sets the supplier address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? Address { get; protected set; }
+    public virtual Address? Address { get; set; }
 
     /// <summary>
-    /// Gets the articles associated with this supplier.
+    /// Gets or sets the articles associated with this supplier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Article> Articles { get; protected set; }
-        = new List<Article>();
+    public virtual ICollection<Article> Articles { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the purchase orders associated with this supplier.
+    /// Gets or sets the purchase orders associated with this supplier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Order> Orders { get; protected set; }
-        = new List<Order>();
+    public virtual ICollection<Order> Orders { get; set; }
+        = [];
 }

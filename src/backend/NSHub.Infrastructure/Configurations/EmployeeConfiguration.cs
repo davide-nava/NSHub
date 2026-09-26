@@ -4,27 +4,28 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class EmployeeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Employee>
+public class EmployeeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<Employee>
 {
     public void Configure(EntityTypeBuilder<Employee> builder)
     {
-        builder.ToTable("Employee", "dbo");
+        _ = builder.ToTable("Employee", "dbo");
 
+        _ = builder.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
+        _ = builder.Property(e => e.LastName).HasMaxLength(100).IsRequired();
+        _ = builder.Property(e => e.AnnualGrossSalary).HasPrecision(18, 8).IsRequired();
+        _ = builder.Property(e => e.TimeTrackingMode).HasMaxLength(20).IsRequired();
+        _ = builder.Property(e => e.IsActive).IsRequired();
 
-        builder.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
-        builder.Property(e => e.LastName).HasMaxLength(100).IsRequired();
-        builder.Property(e => e.AnnualGrossSalary).HasPrecision(18, 8).IsRequired();
-        builder.Property(e => e.TimeTrackingMode).HasMaxLength(20).IsRequired();
-        builder.Property(e => e.IsActive).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
     }
 }

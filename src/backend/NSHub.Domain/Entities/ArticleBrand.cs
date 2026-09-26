@@ -12,36 +12,35 @@ namespace NSHub.Domain.Entities;
 public class ArticleBrand : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the parent brand identifier.
+    /// Gets or sets the parent brand identifier.
     /// Used for hierarchical brand structures.
     /// </summary>
-    public Guid? ArticleBrandId { get; protected set; }
+    public Guid? ArticleBrandId { get; set; }
 
     /// <summary>
-    /// Gets the brand code.
+    /// Gets or sets the brand code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the brand description.
+    /// Gets or sets the brand description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
-
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the articles associated with this brand.
+    /// Gets or sets the articles associated with this brand.
     /// Virtual navigation property used by EF Core.
     /// </summary>
     public virtual ICollection<Article> Articles { get; set; } = [];
 
     /// <summary>
-    /// Gets the parent brand.
+    /// Gets or sets the parent brand.
     /// Virtual navigation property used by EF Core.
     /// </summary>
     public virtual ArticleBrand? ParentArticleBrand { get; set; }
 
     /// <summary>
-    /// Gets the child brands.
+    /// Gets or sets the child brands.
     /// Virtual navigation property used by EF Core.
     /// </summary>
     public virtual ICollection<ArticleBrand> ChildArticleBrands { get; set; } = [];

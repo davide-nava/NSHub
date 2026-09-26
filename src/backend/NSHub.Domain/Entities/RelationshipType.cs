@@ -12,28 +12,27 @@ namespace NSHub.Domain.Entities;
 public class RelationshipType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the relationship type code.
+    /// Gets or sets the relationship type code.
     /// </summary>
     public string RelationshipTypeCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the relationship type name.
+    /// Gets or sets the relationship type name.
     /// </summary>
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the role of the source entity within the relationship.
+    /// Gets or sets the role of the source entity within the relationship.
     /// </summary>
     public string SourceRole { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the role of the target entity within the relationship.
+    /// Gets or sets the role of the target entity within the relationship.
     /// </summary>
     public string TargetRole { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the relationship description.
+    /// Gets or sets the relationship description.
     /// </summary>
     public string? Description { get; set; }
-
 }

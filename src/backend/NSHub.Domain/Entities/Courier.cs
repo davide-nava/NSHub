@@ -12,35 +12,35 @@ namespace NSHub.Domain.Entities;
 public class Courier : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the address identifier.
+    /// Gets or sets the address identifier.
     /// </summary>
-    public Guid? AddressId { get; protected set; }
+    public Guid? AddressId { get; set; }
 
     /// <summary>
-    /// Gets the contact identifier.
+    /// Gets or sets the contact identifier.
     /// </summary>
-    public Guid? ContactId { get; protected set; }
+    public Guid? ContactId { get; set; }
 
     /// <summary>
-    /// Gets the courier name.
+    /// Gets or sets the courier name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the courier address.
+    /// Gets or sets the courier address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? Address { get; protected set; }
+    public virtual Address? Address { get; set; }
 
     /// <summary>
-    /// Gets the shipments associated with this courier.
+    /// Gets or sets the shipments associated with this courier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Shipment> Shipments { get; protected set; }
-        = new List<Shipment>();
+    public virtual ICollection<Shipment> Shipments { get; set; }
+        = [];
 }

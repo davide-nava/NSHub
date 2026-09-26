@@ -12,55 +12,55 @@ namespace NSHub.Domain.Entities;
 public class PartyRelationship : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the source party identifier.
+    /// Gets or sets the source party identifier.
     /// </summary>
-    public Guid SourcePartyId { get; protected set; }
+    public Guid SourcePartyId { get; set; }
 
     /// <summary>
-    /// Gets the target party identifier.
+    /// Gets or sets the target party identifier.
     /// </summary>
-    public Guid TargetPartyId { get; protected set; }
+    public Guid TargetPartyId { get; set; }
 
     /// <summary>
-    /// Gets the relationship type code.
+    /// Gets or sets the relationship type code.
     /// </summary>
-    public string RelationshipTypeCode { get; protected set; } = string.Empty;
+    public string RelationshipTypeCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the date from which the relationship is valid.
+    /// Gets or sets the date from which the relationship is valid.
     /// </summary>
-    public DateTime ValidFrom { get; protected set; }
+    public DateTime ValidFrom { get; set; }
 
     /// <summary>
-    /// Gets the date until which the relationship is valid.
+    /// Gets or sets the date until which the relationship is valid.
     /// </summary>
-    public DateTime? ValidTo { get; protected set; }
+    public DateTime? ValidTo { get; set; }
 
     /// <summary>
-    /// Gets the relationship notes.
+    /// Gets or sets the relationship notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the relationship creation date.
+    /// Gets or sets the relationship creation date.
     /// </summary>
-    public DateTimeOffset CreatedOn { get; protected set; }
+    public DateTimeOffset CreatedOn { get; set; }
 
     /// <summary>
-    /// Gets the source party.
+    /// Gets or sets the source party.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Party? SourceParty { get; protected set; }
+    public virtual Party? SourceParty { get; set; }
 
     /// <summary>
-    /// Gets the target party.
+    /// Gets or sets the target party.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Party? TargetParty { get; protected set; }
+    public virtual Party? TargetParty { get; set; }
 
     /// <summary>
-    /// Gets the relationship type.
+    /// Gets or sets the relationship type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual RelationshipType? RelationshipType { get; protected set; }
+    public virtual RelationshipType? RelationshipType { get; set; }
 }

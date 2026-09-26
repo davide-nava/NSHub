@@ -12,29 +12,29 @@ namespace NSHub.Domain.Entities;
 public class Bank : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the bank name.
+    /// Gets or sets the bank name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets the SWIFT/BIC code.
+    /// Gets or sets the SWIFT/BIC code.
     /// </summary>
-    public string? SwiftBic { get; protected set; }
+    public string? SwiftBic { get; set; }
 
     /// <summary>
-    /// Gets the ABI code.
+    /// Gets or sets the ABI code.
     /// </summary>
-    public string? Abi { get; protected set; }
+    public string? Abi { get; set; }
 
     /// <summary>
-    /// Gets the country code.
+    /// Gets or sets the country code.
     /// </summary>
-    public string? CountryCode { get; protected set; }
+    public string? CountryCode { get; set; }
 
     /// <summary>
-    /// Gets the bank accounts associated with this bank.
+    /// Gets or sets the bank accounts associated with this bank.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<BankAccount> BankAccounts { get; protected set; }
-        = new List<BankAccount>();
+    public virtual ICollection<BankAccount> BankAccounts { get; set; }
+        = [];
 }

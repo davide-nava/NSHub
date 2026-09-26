@@ -12,5 +12,5 @@ public interface IHasRowVersion
     /// <summary>
     /// Gets or sets the row version for concurrency control.
     /// </summary>
-    public byte[] RowVersion { get; set; }
+    public IEnumerable<byte> RowVersion { get; set; }
 }

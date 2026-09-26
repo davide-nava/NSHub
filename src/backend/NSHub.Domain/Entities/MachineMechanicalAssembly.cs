@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class MachineMechanicalAssembly : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the assembly reference.
+    /// Gets or sets the assembly reference.
     /// </summary>
-    public string Ref { get; protected set; } = string.Empty;
+    public string Ref { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the assembly code.
+    /// Gets or sets the assembly code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 }

@@ -6,7 +6,13 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a transport reason associated with a delivery note.
+/// </summary>
 public class TransportReasonDeliveryNote : AuditableTenantEntity
 {
-    public string Description { get; protected set; } = string.Empty;
+    /// <summary>
+    /// Gets or sets the description of the transport reason.
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
 }

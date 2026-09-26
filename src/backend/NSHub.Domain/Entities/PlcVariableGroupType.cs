@@ -12,14 +12,14 @@ namespace NSHub.Domain.Entities;
 public class PlcVariableGroupType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the group type description.
+    /// Gets or sets the group type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the PLC variables associated with this group type.
+    /// Gets or sets the PLC variables associated with this group type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<PlcVariable> PlcVariables { get; protected set; }
-        = new List<PlcVariable>();
+    public virtual ICollection<PlcVariable> PlcVariables { get; set; }
+        = [];
 }

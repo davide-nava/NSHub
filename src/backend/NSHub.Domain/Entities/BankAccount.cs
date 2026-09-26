@@ -12,53 +12,53 @@ namespace NSHub.Domain.Entities;
 public class BankAccount : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the bank identifier.
+    /// Gets or sets the bank identifier.
     /// </summary>
-    public Guid BankId { get; protected set; }
+    public Guid BankId { get; set; }
 
     /// <summary>
-    /// Gets the account holder name.
+    /// Gets or sets the account holder name.
     /// </summary>
-    public string? AccountHolder { get; protected set; }
+    public string? AccountHolder { get; set; }
 
     /// <summary>
-    /// Gets the IBAN.
+    /// Gets or sets the IBAN.
     /// </summary>
-    public string Iban { get; protected set; } = string.Empty;
+    public string Iban { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the ABI code.
+    /// Gets or sets the ABI code.
     /// </summary>
-    public string? Abi { get; protected set; }
+    public string? Abi { get; set; }
 
     /// <summary>
-    /// Gets the CAB code.
+    /// Gets or sets the CAB code.
     /// </summary>
-    public string? Cab { get; protected set; }
+    public string? Cab { get; set; }
 
     /// <summary>
-    /// Gets the CIN code.
+    /// Gets or sets the CIN code.
     /// </summary>
-    public string? Cin { get; protected set; }
+    public string? Cin { get; set; }
 
     /// <summary>
-    /// Gets the account number.
+    /// Gets or sets the account number.
     /// </summary>
-    public string? AccountNumber { get; protected set; }
+    public string? AccountNumber { get; set; }
 
     /// <summary>
-    /// Gets the account currency code.
+    /// Gets or sets the account currency code.
     /// </summary>
-    public string CurrencyCode { get; protected set; } = string.Empty;
+    public string CurrencyCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets a value indicating whether the account belongs to the company.
+    /// Gets or sets a value indicating whether the account belongs to the company.
     /// </summary>
-    public bool IsCompanyAccount { get; protected set; }
+    public bool IsCompanyAccount { get; set; }
 
     /// <summary>
-    /// Gets the associated bank.
+    /// Gets or sets the associated bank.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Bank? Bank { get; protected set; }
+    public virtual Bank? Bank { get; set; }
 }

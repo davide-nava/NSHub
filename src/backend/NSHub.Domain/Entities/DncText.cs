@@ -12,23 +12,23 @@ namespace NSHub.Domain.Entities;
 public class DncText : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the language identifier.
+    /// Gets or sets the language identifier.
     /// </summary>
-    public Guid LanguageId { get; protected set; }
+    public Guid LanguageId { get; set; }
 
     /// <summary>
-    /// Gets the DNC text number.
+    /// Gets or sets the DNC text number.
     /// </summary>
-    public string Number { get; protected set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the DNC text content.
+    /// Gets or sets the DNC text content.
     /// </summary>
-    public string Text { get; protected set; } = string.Empty;
+    public string Text { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated language.
+    /// Gets or sets the associated language.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Language? Language { get; protected set; }
+    public virtual Language? Language { get; set; }
 }

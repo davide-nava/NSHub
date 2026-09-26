@@ -12,34 +12,34 @@ namespace NSHub.Domain.Entities;
 public class TicketShipment : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the shipment date.
+    /// Gets or sets the shipment date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the shipment identifier.
+    /// Gets or sets the shipment identifier.
     /// </summary>
-    public Guid ShipmentId { get; protected set; }
+    public Guid ShipmentId { get; set; }
 
     /// <summary>
-    /// Gets the ticket identifier.
+    /// Gets or sets the ticket identifier.
     /// </summary>
-    public Guid TicketId { get; protected set; }
+    public Guid TicketId { get; set; }
 
     /// <summary>
-    /// Gets the shipment notes.
+    /// Gets or sets the shipment notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated shipment.
+    /// Gets or sets the associated shipment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Shipment? Shipment { get; protected set; }
+    public virtual Shipment? Shipment { get; set; }
 
     /// <summary>
-    /// Gets the associated ticket.
+    /// Gets or sets the associated ticket.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Ticket? Ticket { get; protected set; }
+    public virtual Ticket? Ticket { get; set; }
 }

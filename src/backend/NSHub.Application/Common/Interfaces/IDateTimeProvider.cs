@@ -10,12 +10,12 @@ namespace NSHub.Application.Common.Interfaces;
 public interface IDateTimeProvider
 {
     /// <summary>
-    /// Gets the current date and time in UTC.
+    /// Gets or sets the current date and time in UTC.
     /// </summary>
     DateTime UtcNow { get; }
 
     /// <summary>
-    /// Gets the current date in UTC, with the time component set to 00:00:00.
+    /// Gets or sets the current date in UTC, with the time component set to 00:00:00.
     /// </summary>
     DateTime TodayUtc { get; }
 

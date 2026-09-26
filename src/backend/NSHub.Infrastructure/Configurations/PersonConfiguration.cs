@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class PersonConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Person>
+public class PersonConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
@@ -23,6 +25,5 @@ public class PersonConfiguration : AuditableTenantEntityConfiguration, IEntityTy
         builder.Property(e => e.BirthPlace).HasMaxLength(100).IsRequired(false);
         builder.Property(e => e.BirthCountryCode).HasMaxLength(2).IsUnicode(false).IsRequired(false).HasDefaultValueSql("('CH')");
         builder.Property(e => e.CivilStatus).HasMaxLength(30).IsRequired(false);
-
     }
 }

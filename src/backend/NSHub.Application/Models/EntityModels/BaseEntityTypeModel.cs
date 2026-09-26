@@ -27,5 +27,4 @@ public class AuditableTenantEntityTypeModel : AuditableTenantEntityModel
     {
         get; set;
     }
-
 }

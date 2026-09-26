@@ -12,57 +12,57 @@ namespace NSHub.Domain.Entities;
 public class Intervention : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the intervention description.
+    /// Gets or sets the intervention description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the intervention end date.
+    /// Gets or sets the intervention end date.
     /// </summary>
-    public DateTime? EndDate { get; protected set; }
+    public DateTime? EndDate { get; set; }
 
     /// <summary>
-    /// Gets the intervention start date.
+    /// Gets or sets the intervention start date.
     /// </summary>
-    public DateTime StartDate { get; protected set; }
+    public DateTime StartDate { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the operator responsible for the intervention.
+    /// Gets or sets the operator responsible for the intervention.
     /// </summary>
-    public string Operator { get; protected set; } = string.Empty;
+    public string Operator { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the intervention title.
+    /// Gets or sets the intervention title.
     /// </summary>
-    public string Title { get; protected set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid MachineId { get; protected set; }
+    public Guid MachineId { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 
     /// <summary>
-    /// Gets the attachments associated with this intervention.
+    /// Gets or sets the attachments associated with this intervention.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<InterventionAttachment> InterventionAttachments { get; protected set; }
-        = new List<InterventionAttachment>();
+    public virtual ICollection<InterventionAttachment> InterventionAttachments { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the ticket associations related to this intervention.
+    /// Gets or sets the ticket associations related to this intervention.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<TicketIntervention> TicketInterventions { get; protected set; }
-        = new List<TicketIntervention>();
+    public virtual ICollection<TicketIntervention> TicketInterventions { get; set; }
+        = [];
 }

@@ -4,27 +4,28 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class MachineEventConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<MachineEvent>
+public class MachineEventConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<MachineEvent>
 {
     public void Configure(EntityTypeBuilder<MachineEvent> builder)
     {
-        builder.ToTable("MachineEvent", "dbo");
+        _ = builder.ToTable("MachineEvent", "dbo");
 
+        _ = builder.Property(e => e.Notes).IsUnicode(false).IsRequired(false);
+        _ = builder.Property(e => e.MachineEventTypeId).IsRequired();
+        _ = builder.Property(e => e.MachineId).IsRequired();
+        _ = builder.Property(e => e.Date).HasColumnType("datetime").IsRequired();
 
-        builder.Property(e => e.Notes).IsUnicode(false).IsRequired(false);
-        builder.Property(e => e.MachineEventTypeId).IsRequired();
-        builder.Property(e => e.MachineId).IsRequired();
-        builder.Property(e => e.Date).HasColumnType("datetime").IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
         builder.HasOne(e => e.Machine)
             .WithMany(p => p.MachineEvents)
             .HasForeignKey(e => e.MachineId)

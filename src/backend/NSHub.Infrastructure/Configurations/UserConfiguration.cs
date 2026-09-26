@@ -8,6 +8,7 @@ using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
+using IRequestContext = NSHub.Application.Interfaces.IRequestContext;
 
 namespace NSHub.Infrastructure.Configurations;
 
@@ -25,7 +26,6 @@ public class UserConfiguration(IRequestContext requestContext) : BaseConfigurati
     {
         builder = base.Configure(builder, requestContext);
         ArgumentNullException.ThrowIfNull(builder);
-
 
         _ = builder.ComplexProperty(b => b.Configuration, b => b.ToJson());
         _ = Configure(builder, requestContext);

@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class RelationshipTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<RelationshipType>
+public class RelationshipTypeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<RelationshipType>
 {
     public void Configure(EntityTypeBuilder<RelationshipType> builder)
     {
@@ -23,6 +25,5 @@ public class RelationshipTypeConfiguration : AuditableTenantEntityConfiguration,
         builder.Property(e => e.SourceRole).HasMaxLength(50).IsRequired();
         builder.Property(e => e.TargetRole).HasMaxLength(50).IsRequired();
         builder.Property(e => e.Description).HasMaxLength(250).IsRequired(false);
-
     }
 }

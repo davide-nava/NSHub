@@ -12,69 +12,69 @@ namespace NSHub.Domain.Entities;
 public class QuotationRow : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the quotation year.
+    /// Gets or sets the quotation year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the quotation identifier.
+    /// Gets or sets the quotation identifier.
     /// </summary>
-    public Guid QuotationId { get; protected set; }
+    public Guid QuotationId { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid? ArticleId { get; protected set; }
+    public Guid? ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the article code.
+    /// Gets or sets the article code.
     /// </summary>
-    public string? ArticleCode { get; protected set; }
+    public string? ArticleCode { get; set; }
 
     /// <summary>
-    /// Gets the quoted quantity.
+    /// Gets or sets the quoted quantity.
     /// </summary>
-    public decimal? Quantity { get; protected set; }
+    public decimal? Quantity { get; set; }
 
     /// <summary>
-    /// Gets the unit price.
+    /// Gets or sets the unit price.
     /// </summary>
-    public decimal UnitPrice { get; protected set; }
+    public decimal UnitPrice { get; set; }
 
     /// <summary>
-    /// Gets the discount percentage.
+    /// Gets or sets the discount percentage.
     /// </summary>
-    public decimal DiscountPercentage { get; protected set; }
+    public decimal DiscountPercentage { get; set; }
 
     /// <summary>
-    /// Gets the row amount.
+    /// Gets or sets the row amount.
     /// </summary>
-    public decimal? Amount { get; protected set; }
+    public decimal? Amount { get; set; }
 
     /// <summary>
-    /// Gets the row description.
+    /// Gets or sets the row description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime? InsertionDate { get; protected set; }
+    public DateTime? InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the row refers to a sale.
+    /// Gets or sets a value indicating whether the row refers to a sale.
     /// </summary>
-    public bool IsSale { get; protected set; }
+    public bool IsSale { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated quotation.
+    /// Gets or sets the associated quotation.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Quotation? Quotation { get; protected set; }
+    public virtual Quotation? Quotation { get; set; }
 }

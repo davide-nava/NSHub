@@ -4,25 +4,26 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ArticleGroupMapConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ArticleGroupMap>
+public class ArticleGroupMapConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ArticleGroupMap>
 {
     public void Configure(EntityTypeBuilder<ArticleGroupMap> builder)
     {
-        builder.ToTable("ArticleGroupMap", "dbo");
+        _ = builder.ToTable("ArticleGroupMap", "dbo");
 
+        _ = builder.Property(e => e.ArticleId).IsRequired();
+        _ = builder.Property(e => e.ArticleGroupId).IsRequired();
 
-        builder.Property(e => e.ArticleId).IsRequired();
-        builder.Property(e => e.ArticleGroupId).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
         builder.HasOne(e => e.Article)
             .WithMany(p => p.ArticleGroupMaps)
             .HasForeignKey(e => e.ArticleId)

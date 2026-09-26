@@ -12,178 +12,178 @@ namespace NSHub.Domain.Entities;
 public class Invoice : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the invoice number.
+    /// Gets or sets the invoice number.
     /// </summary>
-    public string InvoiceNumber { get; protected set; } = string.Empty;
+    public string InvoiceNumber { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the invoice year.
+    /// Gets or sets the invoice year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the invoice date.
+    /// Gets or sets the invoice date.
     /// </summary>
-    public DateTime? Date { get; protected set; }
+    public DateTime? Date { get; set; }
 
     /// <summary>
-    /// Gets the invoice type identifier.
+    /// Gets or sets the invoice type identifier.
     /// </summary>
-    public Guid? InvoiceTypeId { get; protected set; }
+    public Guid? InvoiceTypeId { get; set; }
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid? CustomerId { get; protected set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the supplier identifier.
+    /// Gets or sets the supplier identifier.
     /// </summary>
-    public Guid? SupplierId { get; protected set; }
+    public Guid? SupplierId { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the invoice is a purchase invoice.
+    /// Gets or sets a value indicating whether the invoice is a purchase invoice.
     /// </summary>
-    public bool IsPurchase { get; protected set; }
+    public bool IsPurchase { get; set; }
 
     /// <summary>
-    /// Gets the invoice amount.
+    /// Gets or sets the invoice amount.
     /// </summary>
-    public decimal? Amount { get; protected set; }
+    public decimal? Amount { get; set; }
 
     /// <summary>
-    /// Gets the total quantity.
+    /// Gets or sets the total quantity.
     /// </summary>
-    public decimal? Quantity { get; protected set; }
+    public decimal? Quantity { get; set; }
 
     /// <summary>
-    /// Gets the total taxable amount.
+    /// Gets or sets the total taxable amount.
     /// </summary>
-    public decimal TotalTaxableAmount { get; protected set; }
+    public decimal TotalTaxableAmount { get; set; }
 
     /// <summary>
-    /// Gets the total VAT amount.
+    /// Gets or sets the total VAT amount.
     /// </summary>
-    public decimal TotalVatAmount { get; protected set; }
+    public decimal TotalVatAmount { get; set; }
 
     /// <summary>
-    /// Gets the currency code.
+    /// Gets or sets the currency code.
     /// </summary>
-    public string CurrencyCode { get; protected set; } = string.Empty;
+    public string CurrencyCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the exchange rate.
+    /// Gets or sets the exchange rate.
     /// </summary>
-    public decimal ExchangeRate { get; protected set; }
+    public decimal ExchangeRate { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether split payment is enabled.
+    /// Gets or sets a value indicating whether split payment is enabled.
     /// </summary>
-    public bool IsSplitPayment { get; protected set; }
+    public bool IsSplitPayment { get; set; }
 
     /// <summary>
-    /// Gets the SDI status.
+    /// Gets or sets the SDI status.
     /// </summary>
-    public string? SdiStatus { get; protected set; }
+    public string? SdiStatus { get; set; }
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime? InsertionDate { get; protected set; }
+    public DateTime? InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the invoice is closed.
+    /// Gets or sets a value indicating whether the invoice is closed.
     /// </summary>
-    public bool? IsClosed { get; protected set; }
+    public bool? IsClosed { get; set; }
 
     /// <summary>
-    /// Gets the VAT identifier.
+    /// Gets or sets the VAT identifier.
     /// </summary>
-    public Guid? VatId { get; protected set; }
+    public Guid? VatId { get; set; }
 
     /// <summary>
-    /// Gets the payment term identifier.
+    /// Gets or sets the payment term identifier.
     /// </summary>
-    public Guid? PaymentId { get; protected set; }
+    public Guid? PaymentId { get; set; }
 
     /// <summary>
-    /// Gets the invoice closing date.
+    /// Gets or sets the invoice closing date.
     /// </summary>
-    public DateTime? ClosingDate { get; protected set; }
+    public DateTime? ClosingDate { get; set; }
 
     /// <summary>
-    /// Gets the delivery note reference.
+    /// Gets or sets the delivery note reference.
     /// </summary>
-    public string? DeliveryNoteReference { get; protected set; }
+    public string? DeliveryNoteReference { get; set; }
 
     /// <summary>
-    /// Gets the customer reference.
+    /// Gets or sets the customer reference.
     /// </summary>
-    public string? TheirReference { get; protected set; }
+    public string? TheirReference { get; set; }
 
     /// <summary>
-    /// Gets our reference.
+    /// Gets or sets our reference.
     /// </summary>
-    public string? OurReference { get; protected set; }
+    public string? OurReference { get; set; }
 
     /// <summary>
-    /// Gets the order reference.
+    /// Gets or sets the order reference.
     /// </summary>
-    public string? OrderReference { get; protected set; }
+    public string? OrderReference { get; set; }
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? Customer { get; protected set; }
+    public virtual Customer? Customer { get; set; }
 
     /// <summary>
-    /// Gets the associated invoice type.
+    /// Gets or sets the associated invoice type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual InvoiceType? InvoiceType { get; protected set; }
+    public virtual InvoiceType? InvoiceType { get; set; }
 
     /// <summary>
-    /// Gets the associated payment term.
+    /// Gets or sets the associated payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Payment? Payment { get; protected set; }
+    public virtual Payment? Payment { get; set; }
 
     /// <summary>
-    /// Gets the associated supplier.
+    /// Gets or sets the associated supplier.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Supplier? Supplier { get; protected set; }
+    public virtual Supplier? Supplier { get; set; }
 
     /// <summary>
-    /// Gets the associated VAT rate.
+    /// Gets or sets the associated VAT rate.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Vat? Vat { get; protected set; }
+    public virtual Vat? Vat { get; set; }
 
     /// <summary>
-    /// Gets the invoice rows associated with this invoice.
+    /// Gets or sets the invoice rows associated with this invoice.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<InvoiceRow> InvoiceRows { get; protected set; }
-        = new List<InvoiceRow>();
+    public virtual ICollection<InvoiceRow> InvoiceRows { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the payment schedules associated with this invoice.
+    /// Gets or sets the payment schedules associated with this invoice.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<PaymentSchedule> PaymentSchedules { get; protected set; }
-        = new List<PaymentSchedule>();
+    public virtual ICollection<PaymentSchedule> PaymentSchedules { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the documents associated with this invoice.
+    /// Gets or sets the documents associated with this invoice.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Document> Documents { get; protected set; }
-        = new List<Document>();
+    public virtual ICollection<Document> Documents { get; set; }
+        = [];
 }

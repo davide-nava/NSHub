@@ -12,44 +12,44 @@ namespace NSHub.Domain.Entities;
 public class TimeTrackingAgreement : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the employee identifier.
+    /// Gets or sets the employee identifier.
     /// </summary>
-    public Guid EmployeeId { get; protected set; }
+    public Guid EmployeeId { get; set; }
 
     /// <summary>
-    /// Gets the agreement type identifier.
+    /// Gets or sets the agreement type identifier.
     /// </summary>
-    public Guid AgreementTypeId { get; protected set; }
+    public Guid AgreementTypeId { get; set; }
 
     /// <summary>
-    /// Gets the date from which the agreement is valid.
+    /// Gets or sets the date from which the agreement is valid.
     /// </summary>
-    public DateTime ValidFrom { get; protected set; }
+    public DateTime ValidFrom { get; set; }
 
     /// <summary>
-    /// Gets the date until which the agreement is valid.
+    /// Gets or sets the date until which the agreement is valid.
     /// </summary>
-    public DateTime? ValidTo { get; protected set; }
+    public DateTime? ValidTo { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the agreement has been revoked.
+    /// Gets or sets a value indicating whether the agreement has been revoked.
     /// </summary>
-    public bool IsRevoked { get; protected set; }
+    public bool IsRevoked { get; set; }
 
     /// <summary>
-    /// Gets the reference to the associated document.
+    /// Gets or sets the reference to the associated document.
     /// </summary>
-    public string? DocumentReference { get; protected set; }
+    public string? DocumentReference { get; set; }
 
     /// <summary>
-    /// Gets the agreement type.
+    /// Gets or sets the agreement type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual AgreementType? AgreementType { get; protected set; }
+    public virtual AgreementType? AgreementType { get; set; }
 
     /// <summary>
-    /// Gets the employee associated with the agreement.
+    /// Gets or sets the employee associated with the agreement.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Employee? Employee { get; protected set; }
+    public virtual Employee? Employee { get; set; }
 }

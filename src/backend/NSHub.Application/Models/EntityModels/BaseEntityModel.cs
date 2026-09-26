@@ -38,5 +38,4 @@ public class AuditableTenantEntityModel
     {
         get; set;
     }
-
 }

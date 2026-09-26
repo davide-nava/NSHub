@@ -18,6 +18,5 @@ public class AddLoginRequest
     {
         get; set;
     }
-
 }
 

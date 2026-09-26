@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class SystemBootMessage : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the boot message code.
+    /// Gets or sets the boot message code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the boot message description.
+    /// Gets or sets the boot message description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

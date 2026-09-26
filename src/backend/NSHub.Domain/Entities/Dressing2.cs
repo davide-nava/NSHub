@@ -12,82 +12,82 @@ namespace NSHub.Domain.Entities;
 public class Dressing2 : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the retraction value.
+    /// Gets or sets the retraction value.
     /// </summary>
-    public decimal Retraction { get; protected set; }
+    public decimal Retraction { get; set; }
 
     /// <summary>
-    /// Gets the chip value for cycle 1.
+    /// Gets or sets the chip value for cycle 1.
     /// </summary>
-    public decimal Chip { get; protected set; }
+    public decimal Chip { get; set; }
 
     /// <summary>
-    /// Gets the chip value for cycle 2.
+    /// Gets or sets the chip value for cycle 2.
     /// </summary>
-    public decimal Chip2 { get; protected set; }
+    public decimal Chip2 { get; set; }
 
     /// <summary>
-    /// Gets the chip value for cycle 3.
+    /// Gets or sets the chip value for cycle 3.
     /// </summary>
-    public decimal Chip3 { get; protected set; }
+    public decimal Chip3 { get; set; }
 
     /// <summary>
-    /// Gets the ANCL parameter.
+    /// Gets or sets the ANCL parameter.
     /// </summary>
-    public decimal Ancl { get; protected set; }
+    public decimal Ancl { get; set; }
 
     /// <summary>
-    /// Gets the internal allowance value.
+    /// Gets or sets the internal allowance value.
     /// </summary>
-    public decimal AllInt { get; protected set; }
+    public decimal AllInt { get; set; }
 
     /// <summary>
-    /// Gets the external allowance value.
+    /// Gets or sets the external allowance value.
     /// </summary>
-    public decimal AllExt { get; protected set; }
+    public decimal AllExt { get; set; }
 
     /// <summary>
-    /// Gets the working advance value.
+    /// Gets or sets the working advance value.
     /// </summary>
-    public decimal WorkAdv { get; protected set; }
+    public decimal WorkAdv { get; set; }
 
     /// <summary>
-    /// Gets the external axis velocity for cycle 1.
+    /// Gets or sets the external axis velocity for cycle 1.
     /// </summary>
-    public decimal ExtAxVel { get; protected set; }
+    public decimal ExtAxVel { get; set; }
 
     /// <summary>
-    /// Gets the external axis velocity for cycle 2.
+    /// Gets or sets the external axis velocity for cycle 2.
     /// </summary>
-    public decimal ExtAxVel2 { get; protected set; }
+    public decimal ExtAxVel2 { get; set; }
 
     /// <summary>
-    /// Gets the external axis velocity for cycle 3.
+    /// Gets or sets the external axis velocity for cycle 3.
     /// </summary>
-    public decimal ExtAxVel3 { get; protected set; }
+    public decimal ExtAxVel3 { get; set; }
 
     /// <summary>
-    /// Gets the material removal value for cycle 1.
+    /// Gets or sets the material removal value for cycle 1.
     /// </summary>
-    public decimal Removal { get; protected set; }
+    public decimal Removal { get; set; }
 
     /// <summary>
-    /// Gets the material removal value for cycle 2.
+    /// Gets or sets the material removal value for cycle 2.
     /// </summary>
-    public decimal Removal2 { get; protected set; }
+    public decimal Removal2 { get; set; }
 
     /// <summary>
-    /// Gets the material removal value for cycle 3.
+    /// Gets or sets the material removal value for cycle 3.
     /// </summary>
-    public decimal Removal3 { get; protected set; }
+    public decimal Removal3 { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether cycle 2 is enabled.
+    /// Gets or sets a value indicating whether cycle 2 is enabled.
     /// </summary>
-    public bool IsCycle2 { get; protected set; }
+    public bool IsCycle2 { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether cycle 3 is enabled.
+    /// Gets or sets a value indicating whether cycle 3 is enabled.
     /// </summary>
-    public bool IsCycle3 { get; protected set; }
+    public bool IsCycle3 { get; set; }
 }

@@ -10,12 +10,12 @@ namespace NSHub.Application.Common.Interfaces;
 public interface IDateTimeService
 {
     /// <summary>
-    /// Gets the current local date and time.
+    /// Gets or sets the current local date and time.
     /// </summary>
     DateTime Now { get; }
 
     /// <summary>
-    /// Gets the current UTC date and time.
+    /// Gets or sets the current UTC date and time.
     /// </summary>
     DateTime UtcNow { get; }
 

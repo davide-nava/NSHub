@@ -12,68 +12,68 @@ namespace NSHub.Domain.Entities;
 public class Warehouse : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the responsible person identifier.
+    /// Gets or sets the responsible person identifier.
     /// </summary>
-    public Guid PersonId { get; protected set; }
+    public Guid PersonId { get; set; }
 
     /// <summary>
-    /// Gets the address identifier.
+    /// Gets or sets the address identifier.
     /// </summary>
-    public Guid AddressId { get; protected set; }
+    public Guid AddressId { get; set; }
 
     /// <summary>
-    /// Gets the warehouse description.
+    /// Gets or sets the warehouse description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets a value indicating whether the warehouse is external.
+    /// Gets or sets a value indicating whether the warehouse is external.
     /// </summary>
-    public bool? IsExternal { get; protected set; }
+    public bool? IsExternal { get; set; }
 
     /// <summary>
-    /// Gets the opening time.
+    /// Gets or sets the opening time.
     /// </summary>
-    public string? OpeningTime { get; protected set; }
+    public string? OpeningTime { get; set; }
 
     /// <summary>
-    /// Gets the closing time.
+    /// Gets or sets the closing time.
     /// </summary>
-    public string? ClosingTime { get; protected set; }
+    public string? ClosingTime { get; set; }
 
     /// <summary>
-    /// Gets the warehouse name.
+    /// Gets or sets the warehouse name.
     /// </summary>
-    public string? Name { get; protected set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// Gets the warehouse notes.
+    /// Gets or sets the warehouse notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the warehouse address.
+    /// Gets or sets the warehouse address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? Address { get; protected set; }
+    public virtual Address? Address { get; set; }
 
     /// <summary>
-    /// Gets the responsible person.
+    /// Gets or sets the responsible person.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Person? Person { get; protected set; }
+    public virtual Person? Person { get; set; }
 
     /// <summary>
-    /// Gets the articles stored in this warehouse.
+    /// Gets or sets the articles stored in this warehouse.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Article> Articles { get; protected set; }
-        = new List<Article>();
+    public virtual ICollection<Article> Articles { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the organization associations for this warehouse.
+    /// Gets or sets the organization associations for this warehouse.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<WarehouseOrganization> WarehouseOrganizations { get; protected set; }
-        = new List<WarehouseOrganization>();
+    public virtual ICollection<WarehouseOrganization> WarehouseOrganizations { get; set; }
+        = [];
 }

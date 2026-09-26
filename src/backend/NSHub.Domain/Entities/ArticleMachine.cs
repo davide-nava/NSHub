@@ -12,45 +12,45 @@ namespace NSHub.Domain.Entities;
 public class ArticleMachine : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid ArticleId { get; protected set; }
+    public Guid ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the article group identifier.
+    /// Gets or sets the article group identifier.
     /// </summary>
-    public Guid? ArticleGroupId { get; protected set; }
+    public Guid? ArticleGroupId { get; set; }
 
     /// <summary>
-    /// Gets the machine identifier.
+    /// Gets or sets the machine identifier.
     /// </summary>
-    public Guid? MachineId { get; protected set; }
+    public Guid? MachineId { get; set; }
 
     /// <summary>
-    /// Gets the quantity associated with the machine.
+    /// Gets or sets the quantity associated with the machine.
     /// </summary>
-    public decimal Quantity { get; protected set; }
+    public decimal Quantity { get; set; }
 
     /// <summary>
-    /// Gets the additional notes.
+    /// Gets or sets the additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated article group.
+    /// Gets or sets the associated article group.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ArticleGroup? ArticleGroup { get; protected set; }
+    public virtual ArticleGroup? ArticleGroup { get; set; }
 
     /// <summary>
-    /// Gets the associated machine.
+    /// Gets or sets the associated machine.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Machine? Machine { get; protected set; }
+    public virtual Machine? Machine { get; set; }
 }

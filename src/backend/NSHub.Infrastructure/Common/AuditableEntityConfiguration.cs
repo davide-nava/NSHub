@@ -6,7 +6,7 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Infrastructure.Common;
 
-public sealed class AuditableEntityConfiguration
+public class AuditableEntityConfiguration
     : AuditableEntityConfigurationBase<AuditableEntity>
 {
 }

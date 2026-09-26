@@ -12,80 +12,80 @@ namespace NSHub.Domain.Entities;
 public class InvoiceRow : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the invoice year.
+    /// Gets or sets the invoice year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the invoice identifier.
+    /// Gets or sets the invoice identifier.
     /// </summary>
-    public Guid InvoiceId { get; protected set; }
+    public Guid InvoiceId { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid? ArticleId { get; protected set; }
+    public Guid? ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the article code.
+    /// Gets or sets the article code.
     /// </summary>
-    public string? ArticleCode { get; protected set; }
+    public string? ArticleCode { get; set; }
 
     /// <summary>
-    /// Gets the invoiced quantity.
+    /// Gets or sets the invoiced quantity.
     /// </summary>
-    public decimal? Quantity { get; protected set; }
+    public decimal? Quantity { get; set; }
 
     /// <summary>
-    /// Gets the unit price.
+    /// Gets or sets the unit price.
     /// </summary>
-    public decimal UnitPrice { get; protected set; }
+    public decimal UnitPrice { get; set; }
 
     /// <summary>
-    /// Gets the discount percentage.
+    /// Gets or sets the discount percentage.
     /// </summary>
-    public decimal DiscountPercentage { get; protected set; }
+    public decimal DiscountPercentage { get; set; }
 
     /// <summary>
-    /// Gets the row amount.
+    /// Gets or sets the row amount.
     /// </summary>
-    public decimal? Amount { get; protected set; }
+    public decimal? Amount { get; set; }
 
     /// <summary>
-    /// Gets the VAT identifier.
+    /// Gets or sets the VAT identifier.
     /// </summary>
-    public Guid? VatId { get; protected set; }
+    public Guid? VatId { get; set; }
 
     /// <summary>
-    /// Gets the line total amount.
+    /// Gets or sets the line total amount.
     /// </summary>
-    public decimal LineTotal { get; protected set; }
+    public decimal LineTotal { get; set; }
 
     /// <summary>
-    /// Gets the row description.
+    /// Gets or sets the row description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the row number.
+    /// Gets or sets the row number.
     /// </summary>
-    public decimal? RowNumber { get; protected set; }
+    public decimal? RowNumber { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated invoice.
+    /// Gets or sets the associated invoice.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Invoice? Invoice { get; protected set; }
+    public virtual Invoice? Invoice { get; set; }
 
     /// <summary>
-    /// Gets the associated VAT rate.
+    /// Gets or sets the associated VAT rate.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Vat? Vat { get; protected set; }
+    public virtual Vat? Vat { get; set; }
 }

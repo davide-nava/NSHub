@@ -12,84 +12,84 @@ namespace NSHub.Domain.Entities;
 public class PlcVariable : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the PLC variable type identifier.
+    /// Gets or sets the PLC variable type identifier.
     /// </summary>
-    public Guid PlcVariableTypeId { get; protected set; }
+    public Guid PlcVariableTypeId { get; set; }
 
     /// <summary>
-    /// Gets the PLC variable group type identifier.
+    /// Gets or sets the PLC variable group type identifier.
     /// </summary>
-    public Guid PlcVariableGroupTypeId { get; protected set; }
+    public Guid PlcVariableGroupTypeId { get; set; }
 
     /// <summary>
-    /// Gets the variable name.
+    /// Gets or sets the variable name.
     /// </summary>
-    public string Name { get; protected set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the icon displayed when the variable is active.
+    /// Gets or sets the icon displayed when the variable is active.
     /// </summary>
-    public string? IconOn { get; protected set; }
+    public string? IconOn { get; set; }
 
     /// <summary>
-    /// Gets the image associated with the variable.
+    /// Gets or sets the image associated with the variable.
     /// </summary>
-    public string? Image { get; protected set; }
+    public string? Image { get; set; }
 
     /// <summary>
-    /// Gets the icon displayed when the variable is inactive.
+    /// Gets or sets the icon displayed when the variable is inactive.
     /// </summary>
-    public string? IconOff { get; protected set; }
+    public string? IconOff { get; set; }
 
     /// <summary>
-    /// Gets the variable description.
+    /// Gets or sets the variable description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime InsertionDate { get; protected set; }
+    public DateTime InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets the access rights associated with the variable.
+    /// Gets or sets the access rights associated with the variable.
     /// </summary>
-    public string? AccessRights { get; protected set; }
+    public string? AccessRights { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the variable supports write operations.
+    /// Gets or sets a value indicating whether the variable supports write operations.
     /// </summary>
-    public bool IsWriting { get; protected set; }
+    public bool IsWriting { get; set; }
 
     /// <summary>
-    /// Gets the additional notes.
+    /// Gets or sets the additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the variable values are historized.
+    /// Gets or sets a value indicating whether the variable values are historized.
     /// </summary>
-    public bool IsHistorize { get; protected set; }
+    public bool IsHistorize { get; set; }
 
     /// <summary>
-    /// Gets the display order.
+    /// Gets or sets the display order.
     /// </summary>
-    public int Order { get; protected set; }
+    public int Order { get; set; }
 
     /// <summary>
-    /// Gets the machine number associated with the variable.
+    /// Gets or sets the machine number associated with the variable.
     /// </summary>
-    public string? MachineNumber { get; protected set; }
+    public string? MachineNumber { get; set; }
 
     /// <summary>
-    /// Gets the PLC variable group type.
+    /// Gets or sets the PLC variable group type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PlcVariableGroupType? PlcVariableGroupType { get; protected set; }
+    public virtual PlcVariableGroupType? PlcVariableGroupType { get; set; }
 
     /// <summary>
-    /// Gets the PLC variable type.
+    /// Gets or sets the PLC variable type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual PlcVariableType? PlcVariableType { get; protected set; }
+    public virtual PlcVariableType? PlcVariableType { get; set; }
 }

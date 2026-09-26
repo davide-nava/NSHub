@@ -4,17 +4,18 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ArticleCategoryConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ArticleCategory>
+public class ArticleCategoryConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ArticleCategory>
 {
     public void Configure(EntityTypeBuilder<ArticleCategory> builder)
     {
         builder.ToTable("ArticleCategory", "dbo");
-
 
         builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
         builder.Property(e => e.Description).HasMaxLength(512).IsRequired();

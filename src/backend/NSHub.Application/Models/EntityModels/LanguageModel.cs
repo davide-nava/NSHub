@@ -6,5 +6,4 @@ namespace NSHub.Application.Models.EntityModels;
 
 public class LanguageModel : AuditableTenantEntityTypeModel
 {
-
 }

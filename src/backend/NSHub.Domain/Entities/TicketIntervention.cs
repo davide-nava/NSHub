@@ -12,34 +12,34 @@ namespace NSHub.Domain.Entities;
 public class TicketIntervention : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the intervention identifier.
+    /// Gets or sets the intervention identifier.
     /// </summary>
-    public Guid InterventionId { get; protected set; }
+    public Guid InterventionId { get; set; }
 
     /// <summary>
-    /// Gets the ticket identifier.
+    /// Gets or sets the ticket identifier.
     /// </summary>
-    public Guid TicketId { get; protected set; }
+    public Guid TicketId { get; set; }
 
     /// <summary>
-    /// Gets the intervention date.
+    /// Gets or sets the intervention date.
     /// </summary>
-    public DateTime Date { get; protected set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
-    /// Gets the intervention notes.
+    /// Gets or sets the intervention notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated intervention.
+    /// Gets or sets the associated intervention.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Intervention? Intervention { get; protected set; }
+    public virtual Intervention? Intervention { get; set; }
 
     /// <summary>
-    /// Gets the associated ticket.
+    /// Gets or sets the associated ticket.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Ticket? Ticket { get; protected set; }
+    public virtual Ticket? Ticket { get; set; }
 }

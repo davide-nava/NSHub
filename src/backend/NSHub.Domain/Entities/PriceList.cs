@@ -12,39 +12,38 @@ namespace NSHub.Domain.Entities;
 public class PriceList : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the price list code.
+    /// Gets or sets the price list code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the price list name.
+    /// Gets or sets the price list name.
     /// </summary>
-    public string Name { get; protected set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the currency code associated with the price list.
+    /// Gets or sets the currency code associated with the price list.
     /// </summary>
-    public string CurrencyCode { get; protected set; } = string.Empty;
+    public string CurrencyCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the date from which the price list is valid.
+    /// Gets or sets the date from which the price list is valid.
     /// </summary>
-    public DateTime ValidFrom { get; protected set; }
+    public DateTime ValidFrom { get; set; }
 
     /// <summary>
-    /// Gets the date until which the price list is valid.
+    /// Gets or sets the date until which the price list is valid.
     /// </summary>
-    public DateTime? ValidTo { get; protected set; }
+    public DateTime? ValidTo { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the price list is active.
+    /// Gets or sets a value indicating whether the price list is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets the price list items associated with this price list.
+    /// Gets or sets the price list items associated with this price list.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<PriceListItem> PriceListItems { get; protected set; }
-        = new List<PriceListItem>();
+    public virtual ICollection<PriceListItem> PriceListItems { get; set; } = [];
 }

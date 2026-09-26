@@ -9,20 +9,21 @@ using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ArticleGroupTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ArticleGroupType>
+public class ArticleGroupTypeConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ArticleGroupType>
 {
     public void Configure(EntityTypeBuilder<ArticleGroupType> builder)
     {
-        builder.ToTable("ArticleGroupType", "dbo");
+        _ = builder.ToTable("ArticleGroupType", "dbo");
 
+        _ = builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
+        _ = builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
+        _ = builder.Property(e => e.ProductionOrder).HasMaxLength(255).IsRequired(false);
 
-        builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
-        builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
-        builder.Property(e => e.ProductionOrder).HasMaxLength(255).IsRequired(false);
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
     }
+}
 }

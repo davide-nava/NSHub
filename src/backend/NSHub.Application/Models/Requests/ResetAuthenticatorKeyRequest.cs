@@ -12,6 +12,5 @@ public class ResetAuthenticatorKeyRequest
 {
     [Required(ErrorMessageResourceName = nameof(SharedResource.ErrorRequired), ErrorMessageResourceType = typeof(SharedResource))]
     public ApplicationUser User { get; set; } = null!;
-
 }
 

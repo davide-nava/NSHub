@@ -2,10 +2,10 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Domain.Entities;
-
 using NSHub.Domain.Common;
 using NSHub.Domain.Enums;
+
+namespace NSHub.Domain.Entities;
 
 /// <summary>
 /// Represents the OLL 1 / ArGV 1 recording regime applicable to an employee under Swiss labor law.
@@ -15,32 +15,32 @@ public class Oll1Regime : AuditableTenantEntity
     /// <summary>
     /// Gets or sets the identifier of the employee to whom this OLL 1 / ArGV 1 recording regime applies.
     /// </summary>
-    public Guid EmployeeId { get;   set; }
+    public Guid EmployeeId { get; set; }
 
     /// <summary>
     /// Gets or sets the type of OLL 1 / ArGV 1 recording regime applicable to the employee.
     /// </summary>
-    public Oll1RegimeType RegimeType { get;   set; }
+    public Oll1RegimeType RegimeType { get; set; }
 
     /// <summary>
     /// Gets or sets the start date of the OLL 1 / ArGV 1 recording regime in UTC.
     /// </summary>
-    public DateTime ValidFromUtc { get;   set; }
+    public DateTime ValidFromUtc { get; set; }
 
     /// <summary>
     /// Gets or sets the end date of the OLL 1 / ArGV 1 recording regime in UTC.
     /// </summary>
-    public DateTime? ValidToUtc { get;   set; }
+    public DateTime? ValidToUtc { get; set; }
 
     /// <summary>
     /// Gets or sets the reference to the collective agreement.
     /// </summary>
-    public string? CollectiveAgreementRef { get;   set; }
+    public string? CollectiveAgreementRef { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the individual agreement has been signed by the employee.
     /// </summary>
-    public bool IndividualAgreementSigned { get;   set; }
+    public bool IndividualAgreementSigned { get; set; }
 
     // public override string ToString() => RegimeType switch
     // {

@@ -12,117 +12,117 @@ namespace NSHub.Domain.Entities;
 public class Quotation : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the quotation number.
+    /// Gets or sets the quotation number.
     /// </summary>
-    public string QuotationNumber { get; protected set; } = string.Empty;
+    public string QuotationNumber { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the quotation year.
+    /// Gets or sets the quotation year.
     /// </summary>
-    public int Year { get; protected set; }
+    public int Year { get; set; }
 
     /// <summary>
-    /// Gets the quotation date.
+    /// Gets or sets the quotation date.
     /// </summary>
-    public DateTime? Date { get; protected set; }
+    public DateTime? Date { get; set; }
 
     /// <summary>
-    /// Gets the customer identifier.
+    /// Gets or sets the customer identifier.
     /// </summary>
-    public Guid? CustomerId { get; protected set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
-    /// Gets the quotation amount.
+    /// Gets or sets the quotation amount.
     /// </summary>
-    public decimal? Amount { get; protected set; }
+    public decimal? Amount { get; set; }
 
     /// <summary>
-    /// Gets the total quantity.
+    /// Gets or sets the total quantity.
     /// </summary>
-    public decimal? Quantity { get; protected set; }
+    public decimal? Quantity { get; set; }
 
     /// <summary>
-    /// Gets the insertion date.
+    /// Gets or sets the insertion date.
     /// </summary>
-    public DateTime? InsertionDate { get; protected set; }
+    public DateTime? InsertionDate { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the quotation is closed.
+    /// Gets or sets a value indicating whether the quotation is closed.
     /// </summary>
-    public bool? IsClosed { get; protected set; }
+    public bool? IsClosed { get; set; }
 
     /// <summary>
-    /// Gets the VAT identifier.
+    /// Gets or sets the VAT identifier.
     /// </summary>
-    public Guid? VatId { get; protected set; }
+    public Guid? VatId { get; set; }
 
     /// <summary>
-    /// Gets the payment method identifier.
+    /// Gets or sets the payment method identifier.
     /// </summary>
-    public Guid PaymentId { get; protected set; }
+    public Guid PaymentId { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether this is a sales quotation.
+    /// Gets or sets a value indicating whether this is a sales quotation.
     /// </summary>
-    public bool IsSale { get; protected set; }
+    public bool IsSale { get; set; }
 
     /// <summary>
-    /// Gets our reference.
+    /// Gets or sets our reference.
     /// </summary>
-    public string? OurReference { get; protected set; }
+    public string? OurReference { get; set; }
 
     /// <summary>
-    /// Gets the customer's reference.
+    /// Gets or sets the customer's reference.
     /// </summary>
-    public string? TheirReference { get; protected set; }
+    public string? TheirReference { get; set; }
 
     /// <summary>
-    /// Gets the validity period in days.
+    /// Gets or sets the validity period in days.
     /// </summary>
-    public int ValidityDays { get; protected set; }
+    public int ValidityDays { get; set; }
 
     /// <summary>
-    /// Gets the total net amount.
+    /// Gets or sets the total net amount.
     /// </summary>
-    public decimal TotalNetAmount { get; protected set; }
+    public decimal TotalNetAmount { get; set; }
 
     /// <summary>
-    /// Gets the total gross amount.
+    /// Gets or sets the total gross amount.
     /// </summary>
-    public decimal TotalGrossAmount { get; protected set; }
+    public decimal TotalGrossAmount { get; set; }
 
     /// <summary>
-    /// Gets the quotation status code.
+    /// Gets or sets the quotation status code.
     /// </summary>
-    public string StatusCode { get; protected set; } = string.Empty;
+    public string StatusCode { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the associated customer.
+    /// Gets or sets the associated customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Customer? Customer { get; protected set; }
+    public virtual Customer? Customer { get; set; }
 
     /// <summary>
-    /// Gets the associated payment method.
+    /// Gets or sets the associated payment method.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Payment? Payment { get; protected set; }
+    public virtual Payment? Payment { get; set; }
 
     /// <summary>
-    /// Gets the associated VAT rate.
+    /// Gets or sets the associated VAT rate.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Vat? Vat { get; protected set; }
+    public virtual Vat? Vat { get; set; }
 
     /// <summary>
-    /// Gets the rows associated with this quotation.
+    /// Gets or sets the rows associated with this quotation.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<QuotationRow> QuotationRows { get; protected set; }
-        = new List<QuotationRow>();
+    public virtual ICollection<QuotationRow> QuotationRows { get; set; }
+        = [];
 }

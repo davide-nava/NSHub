@@ -12,12 +12,12 @@ namespace NSHub.Domain.Entities;
 public class FxTextType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the FX text type title.
+    /// Gets or sets the FX text type title.
     /// </summary>
-    public string Title { get; protected set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the FX text type description.
+    /// Gets or sets the FX text type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

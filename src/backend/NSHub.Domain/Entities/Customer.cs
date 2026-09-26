@@ -12,145 +12,145 @@ namespace NSHub.Domain.Entities;
 public class Customer : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the customer code.
+    /// Gets or sets the customer code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the company name.
+    /// Gets or sets the company name.
     /// </summary>
-    public string CompanyName { get; protected set; } = string.Empty;
+    public string CompanyName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the VAT number.
+    /// Gets or sets the VAT number.
     /// </summary>
-    public string? VatNumber { get; protected set; }
+    public string? VatNumber { get; set; }
 
     /// <summary>
-    /// Gets the tax code.
+    /// Gets or sets the tax code.
     /// </summary>
-    public string? TaxCode { get; protected set; }
+    public string? TaxCode { get; set; }
 
     /// <summary>
-    /// Gets the SDI code.
+    /// Gets or sets the SDI code.
     /// </summary>
-    public string? SdiCode { get; protected set; }
+    public string? SdiCode { get; set; }
 
     /// <summary>
-    /// Gets the PEC email address.
+    /// Gets or sets the PEC email address.
     /// </summary>
-    public string? PecEmail { get; protected set; }
+    public string? PecEmail { get; set; }
 
     /// <summary>
-    /// Gets the email address.
+    /// Gets or sets the email address.
     /// </summary>
-    public string? Email { get; protected set; }
+    public string? Email { get; set; }
 
     /// <summary>
-    /// Gets the phone number.
+    /// Gets or sets the phone number.
     /// </summary>
-    public string? Phone { get; protected set; }
+    public string? Phone { get; set; }
 
     /// <summary>
-    /// Gets the website URL.
+    /// Gets or sets the website URL.
     /// </summary>
-    public string? Website { get; protected set; }
+    public string? Website { get; set; }
 
     /// <summary>
-    /// Gets the legal address identifier.
+    /// Gets or sets the legal address identifier.
     /// </summary>
-    public Guid? LegalAddressId { get; protected set; }
+    public Guid? LegalAddressId { get; set; }
 
     /// <summary>
-    /// Gets the shipping address identifier.
+    /// Gets or sets the shipping address identifier.
     /// </summary>
-    public Guid? ShippingAddressId { get; protected set; }
+    public Guid? ShippingAddressId { get; set; }
 
     /// <summary>
-    /// Gets the payment term identifier.
+    /// Gets or sets the payment term identifier.
     /// </summary>
-    public Guid? PaymentId { get; protected set; }
+    public Guid? PaymentId { get; set; }
 
     /// <summary>
-    /// Gets the default VAT identifier.
+    /// Gets or sets the default VAT identifier.
     /// </summary>
-    public Guid? VatId { get; protected set; }
+    public Guid? VatId { get; set; }
 
     /// <summary>
-    /// Gets the bank account identifier.
+    /// Gets or sets the bank account identifier.
     /// </summary>
-    public Guid? BankAccountId { get; protected set; }
+    public Guid? BankAccountId { get; set; }
 
     /// <summary>
-    /// Gets the customer credit limit.
+    /// Gets or sets the customer credit limit.
     /// </summary>
-    public decimal? CreditLimit { get; protected set; }
+    public decimal? CreditLimit { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the customer is active.
+    /// Gets or sets a value indicating whether the customer is active.
     /// </summary>
-    public bool IsActive { get; protected set; }
+    public bool IsActive { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the associated bank account.
+    /// Gets or sets the associated bank account.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual BankAccount? BankAccount { get; protected set; }
+    public virtual BankAccount? BankAccount { get; set; }
 
     /// <summary>
-    /// Gets the associated payment term.
+    /// Gets or sets the associated payment term.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Payment? Payment { get; protected set; }
+    public virtual Payment? Payment { get; set; }
 
     /// <summary>
-    /// Gets the associated VAT rate.
+    /// Gets or sets the associated VAT rate.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Vat? Vat { get; protected set; }
+    public virtual Vat? Vat { get; set; }
 
     /// <summary>
-    /// Gets the legal address.
+    /// Gets or sets the legal address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? LegalAddress { get; protected set; }
+    public virtual Address? LegalAddress { get; set; }
 
     /// <summary>
-    /// Gets the shipping address.
+    /// Gets or sets the shipping address.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Address? ShippingAddress { get; protected set; }
+    public virtual Address? ShippingAddress { get; set; }
 
     /// <summary>
-    /// Gets the quotations associated with this customer.
+    /// Gets or sets the quotations associated with this customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Quotation> Quotations { get; protected set; }
-        = new List<Quotation>();
+    public virtual ICollection<Quotation> Quotations { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the orders associated with this customer.
+    /// Gets or sets the orders associated with this customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Order> Orders { get; protected set; }
-        = new List<Order>();
+    public virtual ICollection<Order> Orders { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the shipments associated with this customer.
+    /// Gets or sets the shipments associated with this customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Shipment> Shipments { get; protected set; }
-        = new List<Shipment>();
+    public virtual ICollection<Shipment> Shipments { get; set; }
+        = [];
 
     /// <summary>
-    /// Gets the tickets associated with this customer.
+    /// Gets or sets the tickets associated with this customer.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Ticket> Tickets { get; protected set; }
-        = new List<Ticket>();
+    public virtual ICollection<Ticket> Tickets { get; set; }
+        = [];
 }

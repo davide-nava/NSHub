@@ -9,7 +9,7 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Infrastructure.Common;
 
-public sealed class AuditableTenantEntityConfiguration(
+public class AuditableTenantEntityConfiguration(
     IRequestContext requestContext)
     : AuditableEntityConfigurationBase<AuditableTenantEntity>
 {

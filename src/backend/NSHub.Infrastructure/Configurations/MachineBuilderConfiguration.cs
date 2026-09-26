@@ -9,19 +9,20 @@ using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class MachineBuilderConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<MachineBuilder>
+public class MachineBuilderConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<MachineBuilder>
 {
     public void Configure(EntityTypeBuilder<MachineBuilder> builder)
     {
-        builder.ToTable("MachineBuilder", "dbo");
+        _ = builder.ToTable("MachineBuilder", "dbo");
 
+        _ = builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
+        _ = builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
 
-        builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
-        builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
     }
+}
 }

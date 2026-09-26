@@ -18,6 +18,5 @@ public class AddOrUpdatePasskeyRequest
     {
         get; set;
     }
-
 }
 

@@ -22,5 +22,5 @@ public enum Oll1RegimeType
     /// <summary>
     /// Represents the opt-out OLL1 regime (Art. 73b).
     /// </summary>
-    OptOutArt73b = 3
+    OptOutArt73b = 3,
 }

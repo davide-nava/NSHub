@@ -9,7 +9,7 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Infrastructure.Common;
 
-public sealed class AuditableLookupEntityConfiguration(IRequestContext requestContext)
+public class AuditableLookupEntityConfiguration(IRequestContext requestContext)
     : AuditableEntityConfigurationBase<AuditableLookupEntity>
 {
     public override void Configure(EntityTypeBuilder<AuditableLookupEntity> builder)

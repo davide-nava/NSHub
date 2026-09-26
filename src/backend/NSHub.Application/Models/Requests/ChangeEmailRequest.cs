@@ -24,6 +24,5 @@ public class ChangeEmailRequest
     {
         get; set;
     }
-
 }
 

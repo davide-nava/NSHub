@@ -12,39 +12,39 @@ namespace NSHub.Domain.Entities;
 public class ShipmentArticle : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the shipment notes.
+    /// Gets or sets the shipment notes.
     /// </summary>
-    public string? Notes { get; protected set; }
+    public string? Notes { get; set; }
 
     /// <summary>
-    /// Gets the shipped quantity.
+    /// Gets or sets the shipped quantity.
     /// </summary>
-    public decimal Quantity { get; protected set; }
+    public decimal Quantity { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the article is covered by warranty.
+    /// Gets or sets a value indicating whether the article is covered by warranty.
     /// </summary>
-    public bool IsWarranty { get; protected set; }
+    public bool IsWarranty { get; set; }
 
     /// <summary>
-    /// Gets the shipment identifier.
+    /// Gets or sets the shipment identifier.
     /// </summary>
-    public Guid ShipmentId { get; protected set; }
+    public Guid ShipmentId { get; set; }
 
     /// <summary>
-    /// Gets the article identifier.
+    /// Gets or sets the article identifier.
     /// </summary>
-    public Guid? ArticleId { get; protected set; }
+    public Guid? ArticleId { get; set; }
 
     /// <summary>
-    /// Gets the associated article.
+    /// Gets or sets the associated article.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Article? Article { get; protected set; }
+    public virtual Article? Article { get; set; }
 
     /// <summary>
-    /// Gets the associated shipment.
+    /// Gets or sets the associated shipment.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Shipment? Shipment { get; protected set; }
+    public virtual Shipment? Shipment { get; set; }
 }

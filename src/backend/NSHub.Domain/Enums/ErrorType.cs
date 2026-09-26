@@ -2,7 +2,7 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-namespace NSHub.Domain.Common;
+namespace NSHub.Domain.Enums;
 
 /// <summary>
 /// Categorization of domain and application errors.

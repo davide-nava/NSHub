@@ -4,31 +4,32 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class InterventionConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Intervention>
+public class InterventionConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<Intervention>
 {
     public void Configure(EntityTypeBuilder<Intervention> builder)
     {
-        builder.ToTable("Intervention", "dbo");
+        _ = builder.ToTable("Intervention", "dbo");
 
+        _ = builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
+        _ = builder.Property(e => e.EndDate).HasColumnType("datetime").IsRequired(false);
+        _ = builder.Property(e => e.StartDate).HasColumnType("datetime").IsRequired();
+        _ = builder.Property(e => e.Notes).IsRequired(false);
+        _ = builder.Property(e => e.Operator).IsRequired();
+        _ = builder.Property(e => e.Title).HasMaxLength(256).IsRequired();
+        _ = builder.Property(e => e.MachineId).IsRequired();
 
-        builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
-        builder.Property(e => e.EndDate).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.StartDate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.Notes).IsRequired(false);
-        builder.Property(e => e.Operator).IsRequired();
-        builder.Property(e => e.Title).HasMaxLength(256).IsRequired();
-        builder.Property(e => e.MachineId).IsRequired();
-
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne(e => e.Machine)
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserUpdateId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserDeleteId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne<Tenant>().WithMany().HasForeignKey(e => e.TenantId).OnDelete(DeleteBehavior.Restrict);
+        _ = builder.HasOne(e => e.Machine)
             .WithMany(p => p.Interventions)
             .HasForeignKey(e => e.MachineId)
             .OnDelete(DeleteBehavior.Restrict);

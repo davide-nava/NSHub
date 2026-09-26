@@ -12,32 +12,32 @@ namespace NSHub.Domain.Entities;
 public class Nck : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the NCK configuration.
+    /// Gets or sets the NCK configuration.
     /// </summary>
-    public string Config { get; protected set; } = string.Empty;
+    public string Config { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the current NCK state.
+    /// Gets or sets the current NCK state.
     /// </summary>
-    public string State { get; protected set; } = string.Empty;
+    public string State { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the affair information.
+    /// Gets or sets the affair information.
     /// </summary>
-    public string Affair { get; protected set; } = string.Empty;
+    public string Affair { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the extended NCK state.
+    /// Gets or sets the extended NCK state.
     /// </summary>
-    public string StateEnh { get; protected set; } = string.Empty;
+    public string StateEnh { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the function block name.
+    /// Gets or sets the function block name.
     /// </summary>
-    public string FbName { get; protected set; } = string.Empty;
+    public string FbName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the NCK software version.
+    /// Gets or sets the NCK software version.
     /// </summary>
-    public string Version { get; protected set; } = string.Empty;
+    public string Version { get; set; } = string.Empty;
 }

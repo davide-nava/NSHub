@@ -12,50 +12,50 @@ namespace NSHub.Domain.Entities;
 public class Person : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the first name.
+    /// Gets or sets the first name.
     /// </summary>
-    public string FirstName { get; protected set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the last name.
+    /// Gets or sets the last name.
     /// </summary>
-    public string LastName { get; protected set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the gender.
+    /// Gets or sets the gender.
     /// </summary>
-    public string? Gender { get; protected set; }
+    public string? Gender { get; set; }
 
     /// <summary>
-    /// Gets the birth date.
+    /// Gets or sets the birth date.
     /// </summary>
-    public DateTime? BirthDate { get; protected set; }
+    public DateTime? BirthDate { get; set; }
 
     /// <summary>
-    /// Gets the place of birth.
+    /// Gets or sets the place of birth.
     /// </summary>
-    public string? BirthPlace { get; protected set; }
+    public string? BirthPlace { get; set; }
 
     /// <summary>
-    /// Gets the birth country code.
+    /// Gets or sets the birth country code.
     /// </summary>
-    public string? BirthCountryCode { get; protected set; }
+    public string? BirthCountryCode { get; set; }
 
     /// <summary>
-    /// Gets the civil status.
+    /// Gets or sets the civil status.
     /// </summary>
-    public string? CivilStatus { get; protected set; }
+    public string? CivilStatus { get; set; }
 
     /// <summary>
-    /// Gets the associated party.
+    /// Gets or sets the associated party.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual Party? Party { get; protected set; }
+    public virtual Party? Party { get; set; }
 
     /// <summary>
-    /// Gets the warehouses associated with this person.
+    /// Gets or sets the warehouses associated with this person.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Warehouse> Warehouses { get; protected set; }
-        = new List<Warehouse>();
+    public virtual ICollection<Warehouse> Warehouses { get; set; }
+        = [];
 }

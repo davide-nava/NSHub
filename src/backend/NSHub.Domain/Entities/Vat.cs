@@ -12,17 +12,17 @@ namespace NSHub.Domain.Entities;
 public class Vat : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the VAT description.
+    /// Gets or sets the VAT description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the VAT percentage value.
+    /// Gets or sets the VAT percentage value.
     /// </summary>
-    public decimal Value { get; protected set; }
+    public decimal Value { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether this is the default VAT rate.
+    /// Gets or sets a value indicating whether this is the default VAT rate.
     /// </summary>
-    public bool IsDefault { get; protected set; }
+    public bool IsDefault { get; set; }
 }

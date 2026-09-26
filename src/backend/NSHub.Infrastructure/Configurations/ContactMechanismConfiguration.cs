@@ -4,12 +4,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Interfaces;
 using NSHub.Domain.Entities;
 using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ContactMechanismConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ContactMechanism>
+public class ContactMechanismConfiguration(IRequestContext requestContext)
+    : AuditableTenantEntityConfiguration(requestContext), IEntityTypeConfiguration<ContactMechanism>
 {
     public void Configure(EntityTypeBuilder<ContactMechanism> builder)
     {

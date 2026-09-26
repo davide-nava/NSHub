@@ -9,8 +9,4 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Represents a brand entity in the domain model.
 /// </summary>
-public class Brand : AuditableTenantEntity
-{
-
-
-}
+public class Brand : AuditableTenantEntity;

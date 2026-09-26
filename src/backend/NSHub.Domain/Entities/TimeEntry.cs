@@ -9,53 +9,50 @@ namespace NSHub.Domain.Entities;
 /// <summary>
 /// Domain entity representing a work time entry.
 /// </summary>
-/// <summary>
-/// Represents a time tracking entry for an employee.
-/// </summary>
 public class TimeEntry : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the employee identifier.
+    /// Gets or sets the employee identifier.
     /// </summary>
     public Guid? EmployeeId { get; set; }
 
     /// <summary>
-    /// Gets the work date.
+    /// Gets or sets the work date.
     /// </summary>
     public DateTime WorkDate { get; set; }
 
     /// <summary>
-    /// Gets the clock-in time.
+    /// Gets or sets the clock-in time.
     /// </summary>
     public TimeSpan? StartTime { get; set; }
 
     /// <summary>
-    /// Gets the clock-out time.
+    /// Gets or sets the clock-out time.
     /// </summary>
     public TimeSpan? EndTime { get; set; }
 
     /// <summary>
-    /// Gets the break duration in minutes.
+    /// Gets or sets the break duration in minutes.
     /// </summary>
     public int? BreakDurationMinutes { get; set; }
 
     /// <summary>
-    /// Gets the total number of worked hours.
+    /// Gets or sets the total number of worked hours.
     /// </summary>
     public decimal TotalHoursWorked { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the work was performed during night hours.
+    /// Gets or sets a value indicating whether the work was performed during night hours.
     /// </summary>
     public bool IsNightWork { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether the work was performed on Sunday.
+    /// Gets or sets a value indicating whether the work was performed on Sunday.
     /// </summary>
     public bool IsSundayWork { get; set; }
 
     /// <summary>
-    /// Gets additional notes.
+    /// Gets or sets additional notes.
     /// </summary>
     public string? Notes { get; set; }
 
@@ -67,8 +64,5 @@ public class TimeEntry : AuditableTenantEntity
     /// <summary>
     /// Gets the UTC clock-out date and time.
     /// </summary>
-    public DateTime? ClockOutUtc =>
-        EndTime.HasValue
-            ? WorkDate.Date + EndTime.Value
-            : null;
+    public DateTime? ClockOutUtc => EndTime.HasValue ? WorkDate.Date + EndTime.Value : null;
 }

@@ -12,19 +12,19 @@ namespace NSHub.Domain.Entities;
 public class ArticleType : AuditableTenantEntity
 {
     /// <summary>
-    /// Gets the article type code.
+    /// Gets or sets the article type code.
     /// </summary>
-    public string Code { get; protected set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the article type description.
+    /// Gets or sets the article type description.
     /// </summary>
-    public string Description { get; protected set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the articles associated with this type.
+    /// Gets or sets the articles associated with this type.
     /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual ICollection<Article> Articles { get; protected set; }
-        = new List<Article>();
+    public virtual ICollection<Article> Articles { get; set; }
+        = [];
 }
