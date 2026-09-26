@@ -84,9 +84,9 @@ public static class FilterHelper
                 {
                     tokens = [.. value.Split('-')];
                 }
-                else if (value.Contains("###Progel_split###", StringComparison.InvariantCulture))
+                else if (value.Contains("###NS_split###", StringComparison.InvariantCulture))
                 {
-                    tokens = [.. value.Split("###Progel_split###")];
+                    tokens = [.. value.Split("###NS_split###")];
                 }
                 else
                 {
@@ -134,9 +134,9 @@ public static class FilterHelper
             {
                 tokens = [.. value.Split('-')];
             }
-            else if (value.Contains("###Progel_split###", StringComparison.InvariantCulture))
+            else if (value.Contains("###NS_split###", StringComparison.InvariantCulture))
             {
-                tokens = [.. value.Split("###Progel_split###")];
+                tokens = [.. value.Split("###NS_split###")];
             }
             else
             {
@@ -203,9 +203,9 @@ public static class FilterHelper
                 tokens = [.. value.Split('-')];
             }
             else
-                if (value.Contains("###Progel_split###", StringComparison.InvariantCulture))
+                if (value.Contains("###NS_split###", StringComparison.InvariantCulture))
             {
-                tokens = [.. value.Split("###Progel_split###")];
+                tokens = [.. value.Split("###NS_split###")];
             }
             else
             {
@@ -274,9 +274,9 @@ public static class FilterHelper
                 return false;
             }
 
-            if (value.Contains("###Progel_split###", StringComparison.InvariantCulture))
+            if (value.Contains("###NS_split###", StringComparison.InvariantCulture))
             {
-                var ids = value.Split("###Progel_split###").ToList();
+                var ids = value.Split("###NS_split###").ToList();
 
                 filters = [.. ids.Where(id => Guid.TryParse(id, out _)).Select(Guid.Parse)];
             }

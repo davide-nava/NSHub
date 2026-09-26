@@ -2,7 +2,6 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System;
 using NSHub.Application.Common.Interfaces;
 
 namespace NSHub.Infrastructure.Services;

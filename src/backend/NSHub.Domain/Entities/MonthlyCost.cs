@@ -5,6 +5,7 @@
 using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
+
 /// <summary>
 /// Represents a recurring monthly cost.
 /// </summary>

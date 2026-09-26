@@ -31,7 +31,7 @@ public class CreateEmployeeCommandHandlerTests
         var command = new CreateEmployeeCommand(
             "Mario",
             "Rossi",
-            "mario@openx.ch",
+            "mario@navasoft.ch",
             "Engineering",
             42.0m,
             StatutoryWeeklyLimit.Hours45,
@@ -39,7 +39,7 @@ public class CreateEmployeeCommandHandlerTests
             LanguageCode.It);
 
         _ = employeeRepositoryMock.Setup(r => r.GetByEmailAsync(command.Email, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new Employee(Guid.NewGuid(), "Mario", "Rossi", "mario@openx.ch", "Engineering", 42.0m, StatutoryWeeklyLimit.Hours45, Oll1Regime.StandardRecord, LanguageCode.It));
+            .ReturnsAsync(new Employee(Guid.NewGuid(), "Mario", "Rossi", "mario@navasoft.ch", "Engineering", 42.0m, StatutoryWeeklyLimit.Hours45, Oll1Regime.StandardRecord, LanguageCode.It));
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -57,7 +57,7 @@ public class CreateEmployeeCommandHandlerTests
         var command = new CreateEmployeeCommand(
             "Mario",
             "Rossi",
-            "mario@openx.ch",
+            "mario@navasoft.ch",
             "Engineering",
             42.0m,
             StatutoryWeeklyLimit.Hours45,

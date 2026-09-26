@@ -22,7 +22,7 @@ public class EmployeeTests
             employeeId,
             "Elena",
             "Bernasconi",
-            "elena.bernasconi@openx.ch",
+            "elena.bernasconi@navasoft.ch",
             "Finance",
             40.0m,
             StatutoryWeeklyLimit.Hours45,
@@ -33,7 +33,7 @@ public class EmployeeTests
         _ = employee.Id.Should().Be(employeeId);
         _ = employee.FirstName.Should().Be("Elena");
         _ = employee.LastName.Should().Be("Bernasconi");
-        _ = employee.Email.Should().Be("elena.bernasconi@openx.ch");
+        _ = employee.Email.Should().Be("elena.bernasconi@navasoft.ch");
         _ = employee.Department.Should().Be("Finance");
         _ = employee.ContractualWeeklyHours.Should().Be(40.0m);
         _ = employee.IsActive.Should().BeTrue();
@@ -47,7 +47,7 @@ public class EmployeeTests
             EmployeeId.New(),
             "",
             "Bernasconi",
-            "elena@openx.ch",
+            "elena@navasoft.ch",
             "Finance",
             40.0m,
             StatutoryWeeklyLimit.Hours45,
@@ -67,7 +67,7 @@ public class EmployeeTests
             EmployeeId.New(),
             "Elena",
             "Bernasconi",
-            "elena@openx.ch",
+            "elena@navasoft.ch",
             "Finance",
             40.0m,
             StatutoryWeeklyLimit.Hours45,
@@ -90,7 +90,7 @@ public class EmployeeTests
             EmployeeId.New(),
             "Elena",
             "Bernasconi",
-            "elena@openx.ch",
+            "elena@navasoft.ch",
             "Finance",
             40.0m,
             StatutoryWeeklyLimit.Hours45,
@@ -113,7 +113,7 @@ public class EmployeeTests
             EmployeeId.New(),
             "Elena",
             "Bernasconi",
-            "elena@openx.ch",
+            "elena@navasoft.ch",
             "Finance",
             40.0m,
             StatutoryWeeklyLimit.Hours45,

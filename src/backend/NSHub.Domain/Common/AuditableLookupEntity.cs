@@ -7,7 +7,7 @@ namespace NSHub.Domain.Common;
 /// <summary>
 /// Represents a base class for lookup entities, providing common properties such as description, sort order, and default selection status.
 /// </summary>
-public class AuditableLookupEntity : AuditableEntity, IAuditableLookupEntity
+public class AuditableLookupEntity : AuditableTenantEntity, IAuditableLookupEntity
 {
     /// <summary>
     /// Gets or sets the name of the lookup item.

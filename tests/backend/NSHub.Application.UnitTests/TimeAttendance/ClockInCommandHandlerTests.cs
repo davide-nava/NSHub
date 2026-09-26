@@ -60,7 +60,7 @@ public class ClockInCommandHandlerTests
         // Arrange
         var employeeId = Guid.NewGuid();
         var command = new ClockInCommand(employeeId);
-        var employee = new Employee(employeeId, "Mario", "Rossi", "mario@openx.ch", "IT", 40.0m, StatutoryWeeklyLimit.Hours45, Oll1Regime.StandardRecord, LanguageCode.It);
+        var employee = new Employee(employeeId, "Mario", "Rossi", "mario@navasoft.ch", "IT", 40.0m, StatutoryWeeklyLimit.Hours45, Oll1Regime.StandardRecord, LanguageCode.It);
         var activeEntry = new TimeEntry(Guid.NewGuid(), employeeId, DateTime.UtcNow.AddHours(-2));
 
         _ = employeeRepositoryMock.Setup(r => r.GetByIdAsync(employeeId, It.IsAny<CancellationToken>()))

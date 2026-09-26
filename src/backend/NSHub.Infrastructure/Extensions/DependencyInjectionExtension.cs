@@ -9,14 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Constants;
 using NSHub.Application.Interfaces;
-using NSHub.Application.Models;
-using NSHub.Application.NSHub.Models;
 using NSHub.Application.Services;
-using NSHub.Domain.Entities;
 using NSHub.Infrastructure.DbContexts;
 using NSHub.Infrastructure.Helpers;
 using NSHub.Infrastructure.Interceptors;
-using NSHub.Infrastructure.Providers;
 using NSHub.Infrastructure.Services;
 using Scrutor;
 
@@ -39,16 +35,11 @@ public static class DependencyInjectionExtension
 
         using var scope = provider.CreateScope();
 
-        var nSHubDbContext = scope.ServiceProvider.GetRequiredService<TenantDbContext>();
         var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
         await applicationDbContext.Database.MigrateAsync();
-        await nSHubDbContext.Database.MigrateAsync();
 
         _ = await SeedHelper.CheckSeedsAsync(applicationDbContext);
-        _ = await SeedHelper.CheckSeedsAsync(nSHubDbContext);
-        await SeedHelper.CheckSeedsAsync(applicationDbContext);
-        await SeedHelper.CheckSeedsAsync(nSHubDbContext);
 
         return app;
     }
@@ -193,9 +184,9 @@ public static class DependencyInjectionExtension
         _ = services.AddScoped<ICmsRepository, Infrastructure.Cms.Persistence.Repositories.CmsRepository>();
 
         // Autenticazione JWT
-        var jwtSecret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
-        var jwtIssuer = configuration["Jwt:Issuer"] ?? "OpenXGest";
-        var jwtAudience = configuration["Jwt:Audience"] ?? "OpenXGestClient";
+        var jwtSecret = configuration["Jwt:Secret"] ?? "NSHub_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
+        var jwtIssuer = configuration["Jwt:Issuer"] ?? "NSHub";
+        var jwtAudience = configuration["Jwt:Audience"] ?? "NSHubClient";
 
         _ = services.AddAuthentication(options =>
         {
@@ -223,4 +214,3 @@ public static class DependencyInjectionExtension
         return builder;
     }
 }
-

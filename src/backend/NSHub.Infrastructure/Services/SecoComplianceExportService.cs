@@ -15,35 +15,27 @@ namespace NSHub.Infrastructure.Services;
 /// Export service generating compliance reports for cantonal labor inspectorates and SECO
 /// pursuant to Art. 73 ArGV 1 / OLL 1 (mandatory recording of working hours).
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="SecoComplianceExportService"/> class.
-/// </remarks>
-/// <param name="dateTimeProvider">The date and time provider.</param>
-public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : ISecoComplianceExportService
-/// <param name="dateTimeService">The date and time service.</param>
-public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISecoComplianceExportService
+public sealed class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : ISecoComplianceExportService
 {
-    private readonly SwissWorktimePolicy policy = new SwissWorktimePolicy();
+    private readonly SwissWorktimePolicy _policy = new();
 
     /// <inheritdoc/>
     public Task<byte[]> GenerateCsvReportAsync(
         Employee employee,
-        List<TimeEntry> entries,
         IEnumerable<TimeEntry> entries,
         DateTime startUtc,
         DateTime endUtc,
         string languageCode,
-        string language,
         CancellationToken cancellationToken = default)
     {
-        var sb = new StringBuilder();
+        ArgumentNullException.ThrowIfNull(employee);
+        ArgumentNullException.ThrowIfNull(entries);
 
-        // Intestazione report SECO
+        var sb = new StringBuilder();
         var lang = languageCode.ToLowerInvariant();
-        var lang = language.ToLowerInvariant();
         var headers = GetHeaders(lang);
 
-        _ = sb.AppendLine($"# SECO / Cantonal Labor Inspectorate Compliance Report - Art. 73 OLL 1");
+        _ = sb.AppendLine("# SECO / Cantonal Labor Inspectorate Compliance Report - Art. 73 OLL 1");
         _ = sb.AppendLine($"# Employee: {employee.LastName} {employee.FirstName} ({employee.Email})");
         _ = sb.AppendLine($"# Department: {employee.Department}");
         _ = sb.AppendLine($"# Contractual Weekly Hours: {employee.ContractualWeeklyHours}h | Statutory Ceiling: {(int)employee.StatutoryWeeklyLimit}h (Art. 9 LL)");
@@ -56,23 +48,24 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
         double totalNet = 0;
         double totalNight = 0;
         double totalSunday = 0;
-        int totalBreaks = 0;
+        var totalBreaks = 0;
 
         foreach (var entry in entries.OrderBy(e => e.ClockInUtc))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             var clockInSwiss = dateTimeProvider.ToSwissTime(entry.ClockInUtc);
-            var clockOutSwiss = entry.ClockOutUtc.HasValue ? dateTimeProvider.ToSwissTime(entry.ClockOutUtc.Value) : (DateTime?)null;
-            var clockInSwiss = dateTimeService.ToSwissTime(entry.ClockInUtc);
-            var clockOutSwiss = entry.ClockOutUtc.HasValue ? dateTimeService.ToSwissTime(entry.ClockOutUtc.Value) : (DateTime?)null;
+            var clockOutSwiss = entry.ClockOutUtc.HasValue
+                ? dateTimeProvider.ToSwissTime(entry.ClockOutUtc.Value)
+                : (DateTime?)null;
 
             var endUtcVal = entry.ClockOutUtc ?? dateTimeProvider.UtcNow;
-            var endUtcVal = entry.ClockOutUtc ?? dateTimeService.UtcNow;
             var durationMinutes = (endUtcVal - entry.ClockInUtc).TotalMinutes;
             var netMinutes = Math.Max(0, durationMinutes - entry.BreakDurationMinutes);
             var netHours = Math.Round(netMinutes / 60.0, 2);
 
-            var nightHours = policy.CalculateNightHours(entry.ClockInUtc, endUtcVal);
-            var sundayHours = policy.CalculateSundayHours(entry.ClockInUtc, endUtcVal);
+            var nightHours = _policy.CalculateNightHours(entry.ClockInUtc, endUtcVal);
+            var sundayHours = _policy.CalculateSundayHours(entry.ClockInUtc, endUtcVal);
 
             totalNet += netHours;
             totalNight += nightHours;
@@ -98,22 +91,24 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
             var violationsStr = violationsList.Count > 0 ? string.Join("|", violationsList) : "OK";
 
             var line = string.Join(";",
-                clockInSwiss.ToString("yyyy-MM-dd"),
-                clockInSwiss.ToString("HH:mm:ss"),
-                clockOutSwiss?.ToString("HH:mm:ss") ?? "IN PROGRESS",
-                entry.BreakDurationMinutes.ToString(),
+                clockInSwiss.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                clockInSwiss.ToString("HH:mm:ss", CultureInfo.InvariantCulture),
+                clockOutSwiss?.ToString("HH:mm:ss", CultureInfo.InvariantCulture) ?? "IN PROGRESS",
+                entry.BreakDurationMinutes.ToString(CultureInfo.InvariantCulture),
                 netHours.ToString("F2", CultureInfo.InvariantCulture),
                 nightHours.ToString("F2", CultureInfo.InvariantCulture),
                 sundayHours.ToString("F2", CultureInfo.InvariantCulture),
                 violationsStr,
-                entry.AuditTrail.Count.ToString(),
+                entry.AuditTrail.Count.ToString(CultureInfo.InvariantCulture),
                 entry.Notes?.Replace(";", " ") ?? string.Empty);
 
             _ = sb.AppendLine(line);
         }
 
         _ = sb.AppendLine();
-        _ = sb.AppendLine($"# TOTALS;Net Hours: {totalNet:F2};Breaks (min): {totalBreaks};Night Hours: {totalNight:F2};Sunday Hours: {totalSunday:F2}");
+        _ = sb.AppendLine(string.Create(
+            CultureInfo.InvariantCulture,
+            $"# TOTALS;Net Hours: {totalNet:F2};Breaks (min): {totalBreaks};Night Hours: {totalNight:F2};Sunday Hours: {totalSunday:F2}"));
 
         return Task.FromResult(Encoding.UTF8.GetBytes(sb.ToString()));
     }
@@ -121,15 +116,15 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
     /// <inheritdoc/>
     public Task<byte[]> GenerateInspectionSummaryPdfAsync(
         Employee employee,
-        List<TimeEntry> entries,
         IEnumerable<TimeEntry> entries,
         DateTime startUtc,
         DateTime endUtc,
         string languageCode,
-        string language,
         CancellationToken cancellationToken = default)
     {
-        // Genera un documento testuale formattato conforme ai requisiti dell'ispettorato SECO
+        ArgumentNullException.ThrowIfNull(employee);
+        ArgumentNullException.ThrowIfNull(entries);
+
         var sb = new StringBuilder();
         _ = sb.AppendLine("================================================================================");
         _ = sb.AppendLine("   SCHEDA DI REGISTRAZIONE DELL'ORARIO DI LAVORO (SECO - Art. 73 OLL 1)");
@@ -141,23 +136,25 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
         _ = sb.AppendLine($"Regime OLL 1 applicato: {employee.Oll1Regime}");
         _ = sb.AppendLine($"Periodo di rilevamento: {startUtc:dd.MM.yyyy} - {endUtc:dd.MM.yyyy}");
         _ = sb.AppendLine("--------------------------------------------------------------------------------");
-        _ = sb.AppendLine(string.Format("{0,-12} | {1,-8} | {2,-8} | {3,-6} | {4,-8} | {5,-10} | {6,-15}",
+        _ = sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0,-12} | {1,-8} | {2,-8} | {3,-6} | {4,-8} | {5,-10} | {6,-15}",
             "Data", "Inizio", "Fine", "Pausa", "Netto (h)", "Notturno", "Stato Legale"));
         _ = sb.AppendLine("--------------------------------------------------------------------------------");
 
         double totalNet = 0;
-        int violationsCount = 0;
+        var violationsCount = 0;
 
         foreach (var e in entries.OrderBy(x => x.ClockInUtc))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             var inSwiss = dateTimeProvider.ToSwissTime(e.ClockInUtc);
-            var outSwiss = e.ClockOutUtc.HasValue ? dateTimeProvider.ToSwissTime(e.ClockOutUtc.Value) : (DateTime?)null;
+            var outSwiss = e.ClockOutUtc.HasValue
+                ? dateTimeProvider.ToSwissTime(e.ClockOutUtc.Value)
+                : (DateTime?)null;
+
             var endUtcVal = e.ClockOutUtc ?? dateTimeProvider.UtcNow;
-            var inSwiss = dateTimeService.ToSwissTime(e.ClockInUtc);
-            var outSwiss = e.ClockOutUtc.HasValue ? dateTimeService.ToSwissTime(e.ClockOutUtc.Value) : (DateTime?)null;
-            var endUtcVal = e.ClockOutUtc ?? dateTimeService.UtcNow;
             var netHours = Math.Max(0, (endUtcVal - e.ClockInUtc).TotalHours - (e.BreakDurationMinutes / 60.0));
-            var night = policy.CalculateNightHours(e.ClockInUtc, endUtcVal);
+            var night = _policy.CalculateNightHours(e.ClockInUtc, endUtcVal);
 
             var status = "CONFORME";
             if (e.DailyRestPeriodViolated || e.DailyAmplitudeExceeded)
@@ -168,10 +165,10 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
 
             totalNet += netHours;
 
-            _ = sb.AppendLine(string.Format("{0,-12} | {1,-8} | {2,-8} | {3,-6} | {4,-8:F2} | {5,-10:F2} | {6,-15}",
-                inSwiss.ToString("dd.MM.yyyy"),
-                inSwiss.ToString("HH:mm"),
-                outSwiss?.ToString("HH:mm") ?? "--:--",
+            _ = sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0,-12} | {1,-8} | {2,-8} | {3,-6} | {4,-8:F2} | {5,-10:F2} | {6,-15}",
+                inSwiss.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture),
+                inSwiss.ToString("HH:mm", CultureInfo.InvariantCulture),
+                outSwiss?.ToString("HH:mm", CultureInfo.InvariantCulture) ?? "--:--",
                 $"{e.BreakDurationMinutes}m",
                 netHours,
                 night,
@@ -179,7 +176,7 @@ public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISe
         }
 
         _ = sb.AppendLine("================================================================================");
-        _ = sb.AppendLine($"Totale ore lavorate nel periodo: {totalNet:F2} ore");
+        _ = sb.AppendLine(string.Create(CultureInfo.InvariantCulture, $"Totale ore lavorate nel periodo: {totalNet:F2} ore"));
         _ = sb.AppendLine($"Totale anomalie legali rilevate: {violationsCount}");
         _ = sb.AppendLine("================================================================================");
         _ = sb.AppendLine("Dichiarazione di conformità SECO:");

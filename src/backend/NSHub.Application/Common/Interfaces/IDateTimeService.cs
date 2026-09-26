@@ -2,8 +2,6 @@
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace NSHub.Application.Common.Interfaces;
 
 /// <summary>

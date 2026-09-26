@@ -17,58 +17,7 @@ a:hover {
     text-decoration: none;
     color: white;
 }
-
-.progel-yellow-background-color {
-    background-color: #ffd800;
-}
-
-.progel-yellow-color {
-    color: #ffd800;
-}
-
-.progel-gray-background-color {
-    background-color: #3f3f3f;
-}
-
-.progel-gray-color {
-    color: #3f3f3f;
-}
-
-.progel-white-color {
-    color: white;
-}
-
-.progel-white-background-color {
-    background-color: white;
-}
-
-.progel-black-color {
-    color: black;
-}
-
-.progel-black-background-color {
-    background-color: black;
-}
-
-.progel-azure-color {
-    color: #30a9c1;
-}
-
-.progel-azure-background-color {
-    background-color: #30a9c1;
-}
-
-.progel-blue-color {
-    color: #002d5b;
-}
-
-.progel-blue-background-color {
-    background-color: #002d5b;
-}
-
-
-
-
+ 
 .content {
     padding-top: 1.1rem;
 }
