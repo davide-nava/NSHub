@@ -1,26 +1,21 @@
+// <copyright file="CustomerConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+public class CustomerConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Customer>
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
         builder.ToTable("Customer", "dbo");
 
-        builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.DateInsert).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.DateDelete).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.DateUpdate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.UserInsertId).IsRequired(false);
-        builder.Property(e => e.UserDeleteId).IsRequired(false);
-        builder.Property(e => e.UserUpdateId).IsRequired(false);
-        builder.Property(e => e.TenantId).IsRequired(false);
-        builder.Property(e => e.RowVersion).IsRowVersion();
         builder.Property(e => e.Code).HasMaxLength(256).IsRequired();
         builder.Property(e => e.CompanyName).HasMaxLength(255).IsRequired();
         builder.Property(e => e.VatNumber).HasMaxLength(50).IsRequired(false);

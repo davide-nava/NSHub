@@ -1,18 +1,20 @@
+// <copyright file="ContactMechanismConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class ContactMechanismConfiguration : IEntityTypeConfiguration<ContactMechanism>
+public class ContactMechanismConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<ContactMechanism>
 {
     public void Configure(EntityTypeBuilder<ContactMechanism> builder)
     {
         builder.ToTable("ContactMechanism", "dbo");
 
-        builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id).IsRequired();
         builder.Property(e => e.PartyId).IsRequired();
         builder.Property(e => e.ContactChannelTypeCode).HasMaxLength(20).IsRequired();
         builder.Property(e => e.ContactValue).HasMaxLength(255).IsRequired();

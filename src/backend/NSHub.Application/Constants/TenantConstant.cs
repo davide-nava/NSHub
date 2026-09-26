@@ -8,7 +8,7 @@ namespace NSHub.Application.Constants;
 
 public static class TenantConstant
 {
-    public static ConstantValue Demo => new() { Id = new("39C70B59-72CA-4E63-91B4-3548FEF2AE19"), Name = "Demo" };
+     public static ConstantValue Demo => new() { Id = new("39C70B59-72CA-4E63-91B4-3548FEF2AE19"), Name = "Demo" };
 
     public static ConstantValue Test => new() { Id = new("BB45CC04-1C20-4136-8103-C9334E1F425F"), Name = "Test" };
 
@@ -23,4 +23,3 @@ public static class TenantConstant
 
     public static bool CheckId(Guid id) => tenants.Any(e => e.Id == id);
 }
-

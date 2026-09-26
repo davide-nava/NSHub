@@ -1,18 +1,20 @@
+// <copyright file="OrganizationConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class OrganizationConfiguration : IEntityTypeConfiguration<Organization>
+public class OrganizationConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Organization>
 {
     public void Configure(EntityTypeBuilder<Organization> builder)
     {
         builder.ToTable("Organization", "dbo");
 
-        builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id).IsRequired();
         builder.Property(e => e.LegalName).HasMaxLength(255).IsRequired();
         builder.Property(e => e.TradeName).HasMaxLength(255).IsRequired(false);
         builder.Property(e => e.LegalForm).HasMaxLength(50).IsRequired(false);

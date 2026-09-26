@@ -1,10 +1,15 @@
+// <copyright file="PartyRelationshipConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class PartyRelationshipConfiguration : IEntityTypeConfiguration<PartyRelationship>
+public class PartyRelationshipConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<PartyRelationship>
 {
     public void Configure(EntityTypeBuilder<PartyRelationship> builder)
     {
@@ -12,9 +17,6 @@ public class PartyRelationshipConfiguration : IEntityTypeConfiguration<PartyRela
         builder.ToTable(t => t.HasCheckConstraint("CK_PartyRelationship_ValidityRange", "([ValidTo] IS NULL OR [ValidTo]>=[ValidFrom])"));
         builder.ToTable("PartyRelationship", "dbo");
 
-        builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id).IsRequired();
         builder.Property(e => e.SourcePartyId).IsRequired();
         builder.Property(e => e.TargetPartyId).IsRequired();
         builder.Property(e => e.RelationshipTypeCode).HasMaxLength(30).IsRequired();

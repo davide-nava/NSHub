@@ -1,10 +1,15 @@
+// <copyright file="RelationshipTypeConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class RelationshipTypeConfiguration : IEntityTypeConfiguration<RelationshipType>
+public class RelationshipTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<RelationshipType>
 {
     public void Configure(EntityTypeBuilder<RelationshipType> builder)
     {

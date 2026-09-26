@@ -67,15 +67,9 @@ public static class CodiceFiscaleHelper
         return code[..3];
     }
 
-    private static string ExtractConsonants(string input)
-    {
-        return string.Concat(input.Where(c => char.IsLetter(c) && IsConsonant(c))).ToUpper(CultureInfo.CurrentCulture);
-    }
+    private static string ExtractConsonants(string input) => string.Concat(input.Where(c => char.IsLetter(c) && IsConsonant(c))).ToUpper(CultureInfo.CurrentCulture);
 
-    private static string ExtractVowels(string input)
-    {
-        return string.Concat(input.Where(c => char.IsLetter(c) && IsVowel(c))).ToUpper(CultureInfo.CurrentCulture);
-    }
+    private static string ExtractVowels(string input) => string.Concat(input.Where(c => char.IsLetter(c) && IsVowel(c))).ToUpper(CultureInfo.CurrentCulture);
 
     private static string GenerateDateGenderCode(DateOnly birthDate, string gender)
     {
@@ -120,13 +114,7 @@ public static class CodiceFiscaleHelper
         return ControlCharacters[remainder];
     }
 
-    private static bool IsConsonant(char c)
-    {
-        return "BCDFGHJKLMNPQRSTVWXYZ".Contains(char.ToUpper(c, CultureInfo.CurrentCulture), StringComparison.CurrentCulture);
-    }
+    private static bool IsConsonant(char c) => "BCDFGHJKLMNPQRSTVWXYZ".Contains(char.ToUpper(c, CultureInfo.CurrentCulture), StringComparison.CurrentCulture);
 
-    private static bool IsVowel(char c)
-    {
-        return "AEIOU".Contains(char.ToUpper(c, CultureInfo.CurrentCulture), StringComparison.CurrentCulture);
-    }
+    private static bool IsVowel(char c) => "AEIOU".Contains(char.ToUpper(c, CultureInfo.CurrentCulture), StringComparison.CurrentCulture);
 }

@@ -17,10 +17,7 @@ public class HmacSha256HashService : IHashService
         return Convert.ToHexString(hash);
     }
 
-    public string ComputeHash(string data, string key)
-    {
-        return ComputeHash(Encoding.UTF8.GetBytes(data), key);
-    }
+    public string ComputeHash(string data, string key) => ComputeHash(Encoding.UTF8.GetBytes(data), key);
 
     public bool VerifyHash(byte[] data, string hash, string key)
     {
@@ -28,10 +25,7 @@ public class HmacSha256HashService : IHashService
         return CompareHashes(dataHash, hash);
     }
 
-    public bool VerifyHash(string data, string hash, string key)
-    {
-        return VerifyHash(Encoding.UTF8.GetBytes(data), hash, key);
-    }
+    public bool VerifyHash(string data, string hash, string key) => VerifyHash(Encoding.UTF8.GetBytes(data), hash, key);
 
     private static bool CompareHashes(string computedHash, string originHash)
     {

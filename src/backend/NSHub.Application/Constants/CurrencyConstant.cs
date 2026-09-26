@@ -16,30 +16,13 @@ public static class CurrencyConstant
 
 	public static bool CheckName(string name) => currencies.Any(e => e.Name == name);
 
-	public static ConstantValue CheckOrDefaultName(string name)
-	{
-		if (!CheckName(name))
-		{
-			return Chf;
-		}
+	public static ConstantValue CheckOrDefaultName(string name) => !CheckName(name) ? Chf : currencies.First(e => e.Name == name);
 
-		return currencies.First(e => e.Name == name);
-	}
+    public static ConstantValue CheckOrDefaultId(Guid id) => !CheckId(id) ? Chf : currencies.First(e => e.Id == id);
 
-	public static ConstantValue CheckOrDefaultId(Guid id)
-	{
-		if (!CheckId(id))
-		{
-			return Chf;
-		}
-
-		return currencies.First(e => e.Id == id);
-	}
-
-	private static readonly List<ConstantValue> currencies =
+    private static readonly List<ConstantValue> currencies =
 [
 	Chf,
 		Eur,
 	];
 }
-

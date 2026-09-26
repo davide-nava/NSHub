@@ -1,26 +1,21 @@
+// <copyright file="SupplierConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class SupplierConfiguration : IEntityTypeConfiguration<Supplier>
+public class SupplierConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Supplier>
 {
     public void Configure(EntityTypeBuilder<Supplier> builder)
     {
         builder.ToTable("Supplier", "dbo");
 
-        builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.DateInsert).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.DateDelete).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.DateUpdate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.UserInsertId).IsRequired(false);
-        builder.Property(e => e.UserDeleteId).IsRequired(false);
-        builder.Property(e => e.UserUpdateId).IsRequired(false);
-        builder.Property(e => e.TenantId).IsRequired(false);
-        builder.Property(e => e.RowVersion).IsRowVersion();
         builder.Property(e => e.Name).HasMaxLength(100).IsUnicode(false).IsRequired();
         builder.Property(e => e.Search).IsUnicode(false).IsRequired(false);
         builder.Property(e => e.Number).IsUnicode(false).IsRequired(false);

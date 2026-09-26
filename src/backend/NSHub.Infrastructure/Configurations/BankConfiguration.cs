@@ -1,26 +1,21 @@
+// <copyright file="BankConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class BankConfiguration : IEntityTypeConfiguration<Bank>
+public class BankConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<Bank>
 {
     public void Configure(EntityTypeBuilder<Bank> builder)
     {
         builder.ToTable("Bank", "dbo");
 
-        builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.DateInsert).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.DateDelete).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.DateUpdate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.UserInsertId).IsRequired(false);
-        builder.Property(e => e.UserDeleteId).IsRequired(false);
-        builder.Property(e => e.UserUpdateId).IsRequired(false);
-        builder.Property(e => e.TenantId).IsRequired(false);
-        builder.Property(e => e.RowVersion).IsRowVersion();
         builder.Property(e => e.Name).HasMaxLength(255).IsRequired(false);
         builder.Property(e => e.SwiftBic).HasMaxLength(20).IsRequired(false);
         builder.Property(e => e.Abi).HasMaxLength(10).IsRequired(false);

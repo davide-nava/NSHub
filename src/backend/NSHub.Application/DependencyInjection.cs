@@ -41,8 +41,5 @@ public static class DependencyInjection
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <returns>The modified service collection.</returns>
-    public static IServiceCollection AddApplication(this IServiceCollection services)
-    {
-        return services.AddApplicationServices();
-    }
+    public static IServiceCollection AddApplication(this IServiceCollection services) => services.AddApplicationServices();
 }

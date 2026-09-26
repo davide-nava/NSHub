@@ -20,27 +20,11 @@ public static class LanguageConstant
 
 	public static bool CheckName(string name) => languages.Any(e => e.Name == name);
 
-	public static ConstantValue CheckOrDefaultName(string name)
-	{
-		if (!CheckName(name))
-		{
-			return Italian;
-		}
+	public static ConstantValue CheckOrDefaultName(string name) => !CheckName(name) ? Italian : languages.First(e => e.Name == name);
 
-		return languages.First(e => e.Name == name);
-	}
+    public static ConstantValue CheckOrDefaultId(Guid id) => !CheckId(id) ? Italian : languages.First(e => e.Id == id);
 
-	public static ConstantValue CheckOrDefaultId(Guid id)
-	{
-		if (!CheckId(id))
-		{
-			return Italian;
-		}
-
-		return languages.First(e => e.Id == id);
-	}
-
-	private static readonly List<ConstantValue> languages =
+    private static readonly List<ConstantValue> languages =
 [
 	English,
 		Italian,
@@ -48,4 +32,3 @@ public static class LanguageConstant
 		German,
 	];
 }
-

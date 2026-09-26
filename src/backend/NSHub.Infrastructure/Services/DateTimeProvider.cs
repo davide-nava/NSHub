@@ -1,4 +1,8 @@
-﻿namespace NSHub.Infrastructure.Services;
+﻿// <copyright file="DateTimeProvider.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
+namespace NSHub.Infrastructure.Services;
 
 using NSHub.Application.Common.Interfaces;
 

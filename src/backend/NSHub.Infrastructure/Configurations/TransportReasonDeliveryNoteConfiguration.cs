@@ -1,25 +1,21 @@
+// <copyright file="TransportReasonDeliveryNoteConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class TransportReasonDeliveryNoteConfiguration : IEntityTypeConfiguration<TransportReasonDeliveryNote>
+public class TransportReasonDeliveryNoteConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<TransportReasonDeliveryNote>
 {
     public void Configure(EntityTypeBuilder<TransportReasonDeliveryNote> builder)
     {
         builder.ToTable("TransportReasonDeliveryNote", "dbo");
 
-        builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.DateInsert).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.DateDelete).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.DateUpdate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.UserInsertId).IsRequired(false);
-        builder.Property(e => e.UserDeleteId).IsRequired(false);
-        builder.Property(e => e.UserUpdateId).IsRequired(false);
-        builder.Property(e => e.TenantId).IsRequired(false);
         builder.Property(e => e.Description).HasMaxLength(512).IsRequired();
 
         builder.HasOne<User>().WithMany().HasForeignKey(e => e.UserInsertId).OnDelete(DeleteBehavior.Restrict);

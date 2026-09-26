@@ -1,26 +1,21 @@
+// <copyright file="DressingName1Configuration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class DressingName1Configuration : IEntityTypeConfiguration<DressingName1>
+public class DressingName1Configuration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<DressingName1>
 {
     public void Configure(EntityTypeBuilder<DressingName1> builder)
     {
         builder.ToTable("DressingName1", "dbo");
 
-        builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Id).IsRequired();
-        builder.Property(e => e.DateInsert).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.DateDelete).HasColumnType("datetime").IsRequired(false);
-        builder.Property(e => e.DateUpdate).HasColumnType("datetime").IsRequired();
-        builder.Property(e => e.UserInsertId).IsRequired(false);
-        builder.Property(e => e.UserDeleteId).IsRequired(false);
-        builder.Property(e => e.UserUpdateId).IsRequired(false);
-        builder.Property(e => e.TenantId).IsRequired(false);
-        builder.Property(e => e.RowVersion).IsRowVersion();
         builder.Property(e => e.LanguageId).IsRequired();
         builder.Property(e => e.Pos).IsRequired();
         builder.Property(e => e.Pos2).IsRequired();

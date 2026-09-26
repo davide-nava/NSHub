@@ -1,10 +1,15 @@
+// <copyright file="PartyTypeConfiguration.cs" company="Davide Nava">
+// Copyright (c) Davide Nava. All rights reserved.
+// </copyright>
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NSHub.Domain.Entities;
+using NSHub.Infrastructure.Common;
 
 namespace NSHub.Infrastructure.Configurations;
 
-public class PartyTypeConfiguration : IEntityTypeConfiguration<PartyType>
+public class PartyTypeConfiguration : AuditableTenantEntityConfiguration, IEntityTypeConfiguration<PartyType>
 {
     public void Configure(EntityTypeBuilder<PartyType> builder)
     {
