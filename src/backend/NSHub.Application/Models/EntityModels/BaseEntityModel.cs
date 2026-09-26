@@ -1,4 +1,4 @@
-// <copyright file="BaseEntityModel.cs" company="Davide Nava">
+// <copyright file="AuditableTenantEntityModel.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ using NSHub.Application.Localizations;
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class BaseEntityModel
+public class AuditableTenantEntityModel
 {
     [Display(Name = nameof(SharedResource.Id_Display_Name), ResourceType = typeof(SharedResource), ShortName = nameof(SharedResource.Id_Display_ShortName), Description = nameof(SharedResource.Id_Display_Description), AutoGenerateFilter = true, Prompt = nameof(SharedResource.Id_Display_Prompt))]
     public Guid Id
@@ -40,4 +40,3 @@ public class BaseEntityModel
     }
 
 }
-

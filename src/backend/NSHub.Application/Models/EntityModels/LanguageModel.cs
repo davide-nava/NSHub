@@ -4,8 +4,7 @@
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class LanguageModel : BaseEntityTypeModel
+public class LanguageModel : AuditableTenantEntityTypeModel
 {
 
 }
-

@@ -6,68 +6,119 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a sales or purchase order.
+/// </summary>
 public class Order : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the order number.
+    /// </summary>
     public string OrderNumber { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the order year.
+    /// </summary>
     public int Year { get; protected set; }
+
+    /// <summary>
+    /// Gets the order date.
+    /// </summary>
     public DateTime Date { get; protected set; }
+
+    /// <summary>
+    /// Gets the order type.
+    /// </summary>
     public string OrderType { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the customer identifier.
+    /// </summary>
     public Guid? CustomerId { get; protected set; }
+
+    /// <summary>
+    /// Gets the supplier identifier.
+    /// </summary>
     public Guid? SupplierId { get; protected set; }
+
+    /// <summary>
+    /// Gets the quotation identifier.
+    /// </summary>
     public Guid? QuotationId { get; protected set; }
+
+    /// <summary>
+    /// Gets the payment term identifier.
+    /// </summary>
     public Guid? PaymentId { get; protected set; }
+
+    /// <summary>
+    /// Gets the shipping address identifier.
+    /// </summary>
     public Guid? ShippingAddressId { get; protected set; }
+
+    /// <summary>
+    /// Gets the order currency code.
+    /// </summary>
     public string CurrencyCode { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the exchange rate.
+    /// </summary>
     public decimal ExchangeRate { get; protected set; }
+
+    /// <summary>
+    /// Gets the total net amount.
+    /// </summary>
     public decimal TotalNetAmount { get; protected set; }
+
+    /// <summary>
+    /// Gets the total VAT amount.
+    /// </summary>
     public decimal TotalVatAmount { get; protected set; }
+
+    /// <summary>
+    /// Gets the total gross amount.
+    /// </summary>
     public decimal TotalGrossAmount { get; protected set; }
+
+    /// <summary>
+    /// Gets the order status code.
+    /// </summary>
     public string StatusCode { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated customer.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Customer? Customer { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated payment term.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Payment? Payment { get; protected set; }
+
+    /// <summary>
+    /// Gets the originating quotation.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Quotation? Quotation { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated supplier.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Supplier? Supplier { get; protected set; }
 
-    private readonly List<DeliveryNote> _deliveryNotes = new();
-    public virtual IReadOnlyCollection<DeliveryNote> DeliveryNotes => _deliveryNotes.AsReadOnly();
-    private readonly List<OrderRow> _orderRows = new();
-    public virtual IReadOnlyCollection<OrderRow> OrderRows => _orderRows.AsReadOnly();
-
-    protected Order() { }
-
-    public static Order Create(
-        string orderNumber,
-        int year,
-        DateTime date,
-        string orderType,
-        Guid? customerId,
-        string currencyCode = "EUR",
-        decimal totalGrossAmount = 0m,
-        string statusCode = "Draft")
-    {
-        return new Order
-        {
-            OrderNumber = orderNumber,
-            Year = year,
-            Date = date,
-            OrderType = orderType,
-            CustomerId = customerId,
-            CurrencyCode = currencyCode,
-            TotalGrossAmount = totalGrossAmount,
-            StatusCode = statusCode
-        };
-    }
-
-    public void UpdateStatus(string newStatusCode)
-    {
-        StatusCode = newStatusCode;
-    }
-
-    public void UpdateTotals(decimal net, decimal vat, decimal gross)
-    {
-        TotalNetAmount = net;
-        TotalVatAmount = vat;
-        TotalGrossAmount = gross;
-    }
+    /// <summary>
+    /// Gets the rows associated with this order.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<OrderRow> OrderRows { get; protected set; }
+        = new List<OrderRow>();
 }

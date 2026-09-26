@@ -51,11 +51,11 @@ public static class SeedHelper
     }
 
     private static async Task SeedAsync<T>(DbContext dbContext, IEnumerable<T> list)
-        where T : BaseEntity
+        where T : AuditableTenantEntity
     {
         var setAdd = false;
         where T:
-        BaseEntity<Guid>
+        AuditableTenantEntity<Guid>
     {
             var setAdd = false;
 

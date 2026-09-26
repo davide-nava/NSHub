@@ -4,13 +4,9 @@
 
 using Microsoft.AspNetCore.Identity;
 
-namespace NSHub.Application.Models;
+namespace NSHub.Domain.Entities;
 
-public class ApplicationUser : IdentityUser<Guid>
+public class ApplicationUser : IdentityUser
 {
-	public Guid? TenantId
-	{
-		get; set;
-	}
-}
 
+}

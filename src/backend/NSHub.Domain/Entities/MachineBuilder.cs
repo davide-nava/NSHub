@@ -6,18 +6,20 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a machine builder.
+/// </summary>
 public class MachineBuilder : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the machine builder code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the machine builder description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
 
-    private readonly List<Machine> _machines = new();
-    public virtual IReadOnlyCollection<Machine> Machines => _machines.AsReadOnly();
 
-    protected MachineBuilder() { }
-
-    public static MachineBuilder Create()
-    {
-        return new MachineBuilder();
-    }
 }

@@ -4,6 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using NSHub.Application.Localizations;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Application.Models.Requests;
 

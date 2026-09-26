@@ -6,19 +6,27 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a document type.
+/// </summary>
 public class DocumentType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the document type description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
 
-    private readonly List<Document> _documents = new();
-    public virtual IReadOnlyCollection<Document> Documents => _documents.AsReadOnly();
-    private readonly List<DocumentGroup> _documentGroups = new();
-    public virtual IReadOnlyCollection<DocumentGroup> DocumentGroups => _documentGroups.AsReadOnly();
+    /// <summary>
+    /// Gets the document groups associated with this document type.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<DocumentGroup> DocumentGroups { get; protected set; }
+        = new List<DocumentGroup>();
 
-    protected DocumentType() { }
-
-    public static DocumentType Create()
-    {
-        return new DocumentType();
-    }
+    /// <summary>
+    /// Gets the documents associated with this document type.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Document> Documents { get; protected set; }
+        = new List<Document>();
 }

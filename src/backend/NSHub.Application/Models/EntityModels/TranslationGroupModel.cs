@@ -4,7 +4,7 @@
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class TranslationGroupModel : BaseEntityModel
+public class TranslationGroupModel : AuditableTenantEntityModel
 {
     public ICollection<TranslationModel> Translations { get; set; } = [];
 
@@ -18,4 +18,3 @@ public class TranslationGroupModel : BaseEntityModel
         get; set;
     }
 }
-

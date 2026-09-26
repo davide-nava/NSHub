@@ -4,7 +4,7 @@
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class TranslationModel : BaseEntityModel
+public class TranslationModel : AuditableTenantEntityModel
 {
     public string Text { get; set; } = null!;
 
@@ -28,4 +28,3 @@ public class TranslationModel : BaseEntityModel
         get; set;
     }
 }
-

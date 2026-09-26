@@ -3,10 +3,11 @@
 // </copyright>
 
 using NSHub.Application.Models.EntityModels.JsonModels;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class UserModel : BaseEntityModel
+public class UserModel : AuditableTenantEntityModel
 {
     public string UserName { get; set; } = null!;
 
@@ -47,4 +48,3 @@ public class UserModel : BaseEntityModel
 
     public UserConfigurationJsonModel Configuration { get; set; } = new();
 }
-

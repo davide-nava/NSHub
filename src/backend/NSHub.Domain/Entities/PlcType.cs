@@ -6,18 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a PLC type.
+/// </summary>
 public class PlcType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the PLC type description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the PLC type code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
-
-    private readonly List<Machine> _machines = new();
-    public virtual IReadOnlyCollection<Machine> Machines => _machines.AsReadOnly();
-
-    protected PlcType() { }
-
-    public static PlcType Create()
-    {
-        return new PlcType();
-    }
 }

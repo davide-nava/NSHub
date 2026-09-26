@@ -5,6 +5,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using NSHub.Application.Models;
+using NSHub.Domain.Entities;
 using NSHub.Domain.Enums;
 
 namespace NSHub.Application.Helpers;

@@ -12,6 +12,11 @@ namespace NSHub.Domain.Common;
 public abstract class AuditableEntity : IAuditableEntity, IHasRowVersion
 {
     /// <summary>
+    /// Gets or sets the unique identifier of the entity.
+    /// </summary>
+    public virtual Guid Id { get; set; }
+
+    /// <summary>
     /// Gets or sets the date and time when the entity was inserted (created).
     /// </summary>
     public DateTime DateInsert { get; set; }

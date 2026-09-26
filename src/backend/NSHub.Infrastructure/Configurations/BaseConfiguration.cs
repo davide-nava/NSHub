@@ -12,12 +12,12 @@ using NSHub.Domain.Common;
 namespace NSHub.Infrastructure.Configurations;
 
 /// <summary>
-/// Base entity configuration for entities inheriting from <see cref="BaseEntity"/>.
+/// Base entity configuration for entities inheriting from <see cref="AuditableTenantEntity"/>.
 /// Base entity configuration providing multi-tenancy and soft delete query filters.
 /// </summary>
 /// <typeparam name="T">The entity type.</typeparam>
 public class BaseConfiguration<T>
-    where T : BaseEntity
+    where T : AuditableTenantEntity
     where T : class
 {
     /// <summary>

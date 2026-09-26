@@ -6,20 +6,24 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents an article category.
+/// </summary>
 public class ArticleCategory : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the category code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the category description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
 
-    private readonly List<Article> _articles = new();
-    public virtual IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
-    private readonly List<ArticleCategoryMap> _articleCategoryMaps = new();
-    public virtual IReadOnlyCollection<ArticleCategoryMap> ArticleCategoryMaps => _articleCategoryMaps.AsReadOnly();
-
-    protected ArticleCategory() { }
-
-    public static ArticleCategory Create()
-    {
-        return new ArticleCategory();
-    }
+    /// <summary>
+    /// Gets the articles associated with this category.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Article> Articles { get; protected set; } = [];
 }

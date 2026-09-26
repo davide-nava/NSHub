@@ -6,15 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a machine mechanical assembly.
+/// </summary>
 public class MachineMechanicalAssembly : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the assembly reference.
+    /// </summary>
     public string Ref { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the assembly code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
-
-    protected MachineMechanicalAssembly() { }
-
-    public static MachineMechanicalAssembly Create()
-    {
-        return new MachineMechanicalAssembly();
-    }
 }

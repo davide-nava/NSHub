@@ -6,20 +6,23 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-public class ContactChannelType : BaseEntity<string>
+/// <summary>
+/// Represents a contact channel type.
+/// </summary>
+public class ContactChannelType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets or sets the contact channel type code.
+    /// </summary>
     public string ContactChannelTypeCode { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
     public string Name { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
     public string? Description { get; set; }
-    public override string Id { get => ContactChannelTypeCode; set => ContactChannelTypeCode = value; }
-
-    private readonly List<ContactMechanism> _contactMechanisms = new();
-    public virtual IReadOnlyCollection<ContactMechanism> ContactMechanisms => _contactMechanisms.AsReadOnly();
-
-    protected ContactChannelType() { }
-
-    public static ContactChannelType Create()
-    {
-        return new ContactChannelType();
-    }
 }

@@ -69,10 +69,5 @@ public class RuntimeSystem : AuditableTenantEntity
     public string? NckNrRtsWaitForUserInteraction { get; protected set; }
     public string? RtsWaitForUserInteractionQuestionType { get; protected set; }
 
-    protected RuntimeSystem() { }
 
-    public static RuntimeSystem Create()
-    {
-        return new RuntimeSystem();
-    }
 }

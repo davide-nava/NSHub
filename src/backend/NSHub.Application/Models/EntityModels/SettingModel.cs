@@ -4,7 +4,7 @@
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class SettingModel : BaseEntityModel
+public class SettingModel : AuditableTenantEntityModel
 {
     public string Group { get; set; } = null!;
 
@@ -47,4 +47,3 @@ public class SettingModel : BaseEntityModel
         get; set;
     }
 }
-

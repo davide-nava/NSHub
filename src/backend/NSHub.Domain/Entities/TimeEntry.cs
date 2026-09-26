@@ -3,56 +3,72 @@
 // </copyright>
 
 using NSHub.Domain.Common;
-using NSHub.Domain.Enums;
 
 namespace NSHub.Domain.Entities;
 
 /// <summary>
 /// Domain entity representing a work time entry.
 /// </summary>
+/// <summary>
+/// Represents a time tracking entry for an employee.
+/// </summary>
 public class TimeEntry : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the employee identifier.
+    /// </summary>
     public Guid? EmployeeId { get; set; }
+
+    /// <summary>
+    /// Gets the work date.
+    /// </summary>
     public DateTime WorkDate { get; set; }
+
+    /// <summary>
+    /// Gets the clock-in time.
+    /// </summary>
     public TimeSpan? StartTime { get; set; }
+
+    /// <summary>
+    /// Gets the clock-out time.
+    /// </summary>
     public TimeSpan? EndTime { get; set; }
+
+    /// <summary>
+    /// Gets the break duration in minutes.
+    /// </summary>
     public int? BreakDurationMinutes { get; set; }
+
+    /// <summary>
+    /// Gets the total number of worked hours.
+    /// </summary>
     public decimal TotalHoursWorked { get; set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the work was performed during night hours.
+    /// </summary>
     public bool IsNightWork { get; set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the work was performed on Sunday.
+    /// </summary>
     public bool IsSundayWork { get; set; }
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; set; }
-    public TimeEntryStatus Status { get; set; } = TimeEntryStatus.Active;
-    public ViolationType Violations { get; set; }
-    public virtual Employee? Employee { get; set; }
 
+    /// <summary>
+    /// Gets the UTC clock-in date and time.
+    /// </summary>
     public DateTime ClockInUtc => WorkDate.Date + (StartTime ?? TimeSpan.Zero);
-    public DateTime? ClockOutUtc => EndTime.HasValue ? WorkDate.Date + EndTime.Value : null;
 
-    public static TimeEntry Create(
-        Guid employeeId,
-        DateTime clockInUtc,
-        string? notes = null)
-    {
-        return new TimeEntry
-        {
-            Id = Guid.NewGuid(),
-            EmployeeId = employeeId,
-            WorkDate = clockInUtc.Date,
-            StartTime = clockInUtc.TimeOfDay,
-            Status = TimeEntryStatus.Active,
-            Notes = notes,
-        };
-    }
-
-    public void ClockOut(DateTime clockOutUtc, int breakDurationMinutes)
-    {
-        var endTime = clockOutUtc.TimeOfDay;
-        EndTime = endTime;
-        BreakDurationMinutes = breakDurationMinutes;
-        Status = TimeEntryStatus.Completed;
-
-        var start = StartTime ?? TimeSpan.Zero;
-        var totalMinutes = (endTime - start).TotalMinutes - breakDurationMinutes;
-        TotalHoursWorked = (decimal)Math.Max(0, totalMinutes / 60.0);
-    }
+    /// <summary>
+    /// Gets the UTC clock-out date and time.
+    /// </summary>
+    public DateTime? ClockOutUtc =>
+        EndTime.HasValue
+            ? WorkDate.Date + EndTime.Value
+            : null;
 }

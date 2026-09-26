@@ -6,18 +6,25 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a nation.
+/// </summary>
 public class Nation : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the nation code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the nation name.
+    /// </summary>
     public string? Name { get; protected set; }
 
-    private readonly List<Address> _addresses = new();
-    public virtual IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
-
-    protected Nation() { }
-
-    public static Nation Create()
-    {
-        return new Nation();
-    }
+    /// <summary>
+    /// Gets the addresses associated with this nation.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Address> Addresses { get; protected set; }
+        = new List<Address>();
 }

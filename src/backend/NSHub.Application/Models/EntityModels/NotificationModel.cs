@@ -6,7 +6,7 @@ using NSHub.Domain.Enums;
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class NotificationModel : BaseEntityModel
+public class NotificationModel : AuditableTenantEntityModel
 {
     public string Title { get; set; } = null!;
 
@@ -25,4 +25,3 @@ public class NotificationModel : BaseEntityModel
 
     public NotificationType NotificationType { get; set; } = NotificationType.Info;
 }
-

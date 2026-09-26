@@ -6,18 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents an address type entity in the domain model.
+/// </summary>
 public class AddressType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets or sets the code of the address type.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the description of the address type.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
-
-    private readonly List<Address> _addresses = new();
-    public virtual IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
-
-    protected AddressType() { }
-
-    public static AddressType Create()
-    {
-        return new AddressType();
-    }
 }

@@ -6,7 +6,7 @@ using NSHub.Application.Services;
 
 namespace NSHub.Application.Models.EntityModels;
 
-public class TenantModel : BaseEntityModel
+public class TenantModel : AuditableTenantEntityModel
 {
     public string Name { get; set; } = null!;
 
@@ -32,4 +32,3 @@ public class TenantModel : BaseEntityModel
 
     public string ConnectionString { get => AesService.Decrypt(field); set; } = null!;
 }
-

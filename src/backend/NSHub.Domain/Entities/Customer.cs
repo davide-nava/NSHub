@@ -6,91 +6,151 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a customer.
+/// </summary>
 public class Customer : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the customer code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the company name.
+    /// </summary>
     public string CompanyName { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the VAT number.
+    /// </summary>
     public string? VatNumber { get; protected set; }
+
+    /// <summary>
+    /// Gets the tax code.
+    /// </summary>
     public string? TaxCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the SDI code.
+    /// </summary>
     public string? SdiCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the PEC email address.
+    /// </summary>
     public string? PecEmail { get; protected set; }
+
+    /// <summary>
+    /// Gets the email address.
+    /// </summary>
     public string? Email { get; protected set; }
+
+    /// <summary>
+    /// Gets the phone number.
+    /// </summary>
     public string? Phone { get; protected set; }
+
+    /// <summary>
+    /// Gets the website URL.
+    /// </summary>
     public string? Website { get; protected set; }
+
+    /// <summary>
+    /// Gets the legal address identifier.
+    /// </summary>
     public Guid? LegalAddressId { get; protected set; }
+
+    /// <summary>
+    /// Gets the shipping address identifier.
+    /// </summary>
     public Guid? ShippingAddressId { get; protected set; }
+
+    /// <summary>
+    /// Gets the payment term identifier.
+    /// </summary>
     public Guid? PaymentId { get; protected set; }
+
+    /// <summary>
+    /// Gets the default VAT identifier.
+    /// </summary>
     public Guid? VatId { get; protected set; }
+
+    /// <summary>
+    /// Gets the bank account identifier.
+    /// </summary>
     public Guid? BankAccountId { get; protected set; }
+
+    /// <summary>
+    /// Gets the customer credit limit.
+    /// </summary>
     public decimal? CreditLimit { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the customer is active.
+    /// </summary>
     public bool IsActive { get; protected set; }
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated bank account.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual BankAccount? BankAccount { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated payment term.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Payment? Payment { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated VAT rate.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Vat? Vat { get; protected set; }
 
-    private readonly List<DeliveryNote> _goodsDeliveryNotes = new();
-    public virtual IReadOnlyCollection<DeliveryNote> GoodsDeliveryNotes => _goodsDeliveryNotes.AsReadOnly();
-    private readonly List<DeliveryNote> _invoiceDeliveryNotes = new();
-    public virtual IReadOnlyCollection<DeliveryNote> InvoiceDeliveryNotes => _invoiceDeliveryNotes.AsReadOnly();
-    private readonly List<Document> _documents = new();
-    public virtual IReadOnlyCollection<Document> Documents => _documents.AsReadOnly();
-    private readonly List<Invoice> _invoices = new();
-    public virtual IReadOnlyCollection<Invoice> Invoices => _invoices.AsReadOnly();
-    private readonly List<Machine> _machines = new();
-    public virtual IReadOnlyCollection<Machine> Machines => _machines.AsReadOnly();
-    private readonly List<Order> _orders = new();
-    public virtual IReadOnlyCollection<Order> Orders => _orders.AsReadOnly();
-    private readonly List<Quotation> _quotations = new();
-    public virtual IReadOnlyCollection<Quotation> Quotations => _quotations.AsReadOnly();
-    private readonly List<Shipment> _shipments = new();
-    public virtual IReadOnlyCollection<Shipment> Shipments => _shipments.AsReadOnly();
-    private readonly List<Ticket> _tickets = new();
-    public virtual IReadOnlyCollection<Ticket> Tickets => _tickets.AsReadOnly();
+    /// <summary>
+    /// Gets the legal address.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual Address? LegalAddress { get; protected set; }
 
-    protected Customer() { }
+    /// <summary>
+    /// Gets the shipping address.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual Address? ShippingAddress { get; protected set; }
 
-    public static Customer Create(
-        string code,
-        string companyName,
-        string? vatNumber = null,
-        string? taxCode = null,
-        string? email = null,
-        string? phone = null,
-        decimal? creditLimit = null)
-    {
-        return new Customer
-        {
-            Code = code,
-            CompanyName = companyName,
-            VatNumber = vatNumber,
-            TaxCode = taxCode,
-            Email = email,
-            Phone = phone,
-            CreditLimit = creditLimit,
-            IsActive = true
-        };
-    }
+    /// <summary>
+    /// Gets the quotations associated with this customer.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Quotation> Quotations { get; protected set; }
+        = new List<Quotation>();
 
-    public void UpdateContactInfo(string? email, string? phone, string? website)
-    {
-        Email = email;
-        Phone = phone;
-        Website = website;
-    }
+    /// <summary>
+    /// Gets the orders associated with this customer.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Order> Orders { get; protected set; }
+        = new List<Order>();
 
-    public void UpdateCreditLimit(decimal? creditLimit)
-    {
-        CreditLimit = creditLimit;
-    }
+    /// <summary>
+    /// Gets the shipments associated with this customer.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Shipment> Shipments { get; protected set; }
+        = new List<Shipment>();
 
-    public void Deactivate()
-    {
-        IsActive = false;
-    }
-
-    public void Activate()
-    {
-        IsActive = true;
-    }
+    /// <summary>
+    /// Gets the tickets associated with this customer.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Ticket> Tickets { get; protected set; }
+        = new List<Ticket>();
 }

@@ -12,6 +12,11 @@ namespace NSHub.Domain.Common;
 public interface IAuditableEntity : ISoftDeletable
 {
     /// <summary>
+    /// Gets or sets the unique identifier of the entity.
+    /// </summary>
+    public Guid Id { get; set; }
+
+    /// <summary>
     /// Gets or sets the date and time when the entity was inserted.
     /// </summary>
     public DateTime DateInsert { get; set; }

@@ -6,30 +6,59 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a bank account.
+/// </summary>
 public class BankAccount : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the bank identifier.
+    /// </summary>
     public Guid BankId { get; protected set; }
+
+    /// <summary>
+    /// Gets the account holder name.
+    /// </summary>
     public string? AccountHolder { get; protected set; }
+
+    /// <summary>
+    /// Gets the IBAN.
+    /// </summary>
     public string Iban { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the ABI code.
+    /// </summary>
     public string? Abi { get; protected set; }
+
+    /// <summary>
+    /// Gets the CAB code.
+    /// </summary>
     public string? Cab { get; protected set; }
+
+    /// <summary>
+    /// Gets the CIN code.
+    /// </summary>
     public string? Cin { get; protected set; }
+
+    /// <summary>
+    /// Gets the account number.
+    /// </summary>
     public string? AccountNumber { get; protected set; }
+
+    /// <summary>
+    /// Gets the account currency code.
+    /// </summary>
     public string CurrencyCode { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets a value indicating whether the account belongs to the company.
+    /// </summary>
     public bool IsCompanyAccount { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated bank.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Bank? Bank { get; protected set; }
-
-    private readonly List<Customer> _customers = new();
-    public virtual IReadOnlyCollection<Customer> Customers => _customers.AsReadOnly();
-    private readonly List<PaymentSchedule> _paymentSchedules = new();
-    public virtual IReadOnlyCollection<PaymentSchedule> PaymentSchedules => _paymentSchedules.AsReadOnly();
-    private readonly List<Supplier> _suppliers = new();
-    public virtual IReadOnlyCollection<Supplier> Suppliers => _suppliers.AsReadOnly();
-
-    protected BankAccount() { }
-
-    public static BankAccount Create()
-    {
-        return new BankAccount();
-    }
 }

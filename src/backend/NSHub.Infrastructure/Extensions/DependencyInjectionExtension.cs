@@ -12,6 +12,7 @@ using NSHub.Application.Interfaces;
 using NSHub.Application.Models;
 using NSHub.Application.NSHub.Models;
 using NSHub.Application.Services;
+using NSHub.Domain.Entities;
 using NSHub.Infrastructure.DbContexts;
 using NSHub.Infrastructure.Helpers;
 using NSHub.Infrastructure.Interceptors;

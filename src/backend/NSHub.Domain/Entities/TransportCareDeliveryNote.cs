@@ -6,15 +6,25 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a transport carrier used for delivery notes.
+/// </summary>
 public class TransportCareDeliveryNote : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the carrier description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the carrier notes.
+    /// </summary>
     public string? Notes { get; protected set; }
 
-    protected TransportCareDeliveryNote() { }
-
-    public static TransportCareDeliveryNote Create()
-    {
-        return new TransportCareDeliveryNote();
-    }
+    /// <summary>
+    /// Gets the delivery notes associated with this carrier.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<DeliveryNote> DeliveryNotes { get; protected set; }
+        = new List<DeliveryNote>();
 }

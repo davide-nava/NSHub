@@ -6,13 +6,11 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a brand entity in the domain model.
+/// </summary>
 public class Brand : AuditableTenantEntity
 {
 
-    protected Brand() { }
 
-    public static Brand Create()
-    {
-        return new Brand();
-    }
 }

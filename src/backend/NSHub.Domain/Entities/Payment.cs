@@ -6,26 +6,39 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a payment term.
+/// </summary>
 public class Payment : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the payment term description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the number of days before payment is due.
+    /// </summary>
     public int? Days { get; protected set; }
 
-    private readonly List<Customer> _customers = new();
-    public virtual IReadOnlyCollection<Customer> Customers => _customers.AsReadOnly();
-    private readonly List<Invoice> _invoices = new();
-    public virtual IReadOnlyCollection<Invoice> Invoices => _invoices.AsReadOnly();
-    private readonly List<Order> _orders = new();
-    public virtual IReadOnlyCollection<Order> Orders => _orders.AsReadOnly();
-    private readonly List<Quotation> _quotations = new();
-    public virtual IReadOnlyCollection<Quotation> Quotations => _quotations.AsReadOnly();
-    private readonly List<Supplier> _suppliers = new();
-    public virtual IReadOnlyCollection<Supplier> Suppliers => _suppliers.AsReadOnly();
+    /// <summary>
+    /// Gets the suppliers associated with this payment term.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Supplier> Suppliers { get; protected set; }
+        = new List<Supplier>();
 
-    protected Payment() { }
+    /// <summary>
+    /// Gets the quotations associated with this payment term.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Quotation> Quotations { get; protected set; }
+        = new List<Quotation>();
 
-    public static Payment Create()
-    {
-        return new Payment();
-    }
+    /// <summary>
+    /// Gets the invoices associated with this payment term.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Invoice> Invoices { get; protected set; }
+        = new List<Invoice>();
 }

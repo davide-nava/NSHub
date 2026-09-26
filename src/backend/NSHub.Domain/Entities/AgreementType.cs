@@ -6,18 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents an agreement type entity in the domain model.
+/// </summary>
 public class AgreementType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets or sets the description of the agreement type.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the code of the agreement type.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
-
-    private readonly List<TimeTrackingAgreement> _timeTrackingAgreements = new();
-    public virtual IReadOnlyCollection<TimeTrackingAgreement> TimeTrackingAgreements => _timeTrackingAgreements.AsReadOnly();
-
-    protected AgreementType() { }
-
-    public static AgreementType Create()
-    {
-        return new AgreementType();
-    }
 }

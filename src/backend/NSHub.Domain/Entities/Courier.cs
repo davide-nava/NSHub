@@ -6,20 +6,41 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a courier.
+/// </summary>
 public class Courier : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the address identifier.
+    /// </summary>
     public Guid? AddressId { get; protected set; }
+
+    /// <summary>
+    /// Gets the contact identifier.
+    /// </summary>
     public Guid? ContactId { get; protected set; }
+
+    /// <summary>
+    /// Gets the courier name.
+    /// </summary>
     public string? Name { get; protected set; }
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; protected set; }
 
-    private readonly List<Shipment> _shipments = new();
-    public virtual IReadOnlyCollection<Shipment> Shipments => _shipments.AsReadOnly();
+    /// <summary>
+    /// Gets the courier address.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual Address? Address { get; protected set; }
 
-    protected Courier() { }
-
-    public static Courier Create()
-    {
-        return new Courier();
-    }
+    /// <summary>
+    /// Gets the shipments associated with this courier.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Shipment> Shipments { get; protected set; }
+        = new List<Shipment>();
 }

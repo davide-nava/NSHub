@@ -6,18 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a unit of measure entity in the domain model.
+/// </summary>
 public class UnitOfMeasure : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets or sets the description of the unit of measure.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the code of the unit of measure.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
-
-    private readonly List<Article> _articles = new();
-    public virtual IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
-
-    protected UnitOfMeasure() { }
-
-    public static UnitOfMeasure Create()
-    {
-        return new UnitOfMeasure();
-    }
 }

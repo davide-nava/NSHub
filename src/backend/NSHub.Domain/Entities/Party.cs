@@ -6,34 +6,85 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
-public class Party : BaseEntity
+/// <summary>
+/// Represents a party within the system.
+/// </summary>
+public class Party : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the internal code.
+    /// </summary>
     public string? InternalCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the party type code.
+    /// </summary>
     public string PartyTypeCode { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the display name.
+    /// </summary>
     public string DisplayName { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the tax identification number.
+    /// </summary>
     public string? TaxIdentificationNumber { get; protected set; }
+
+    /// <summary>
+    /// Gets the VAT number.
+    /// </summary>
     public string? VatNumber { get; protected set; }
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the party is active.
+    /// </summary>
     public bool IsActive { get; protected set; }
+
+    /// <summary>
+    /// Gets the creation date.
+    /// </summary>
     public DateTimeOffset CreatedOn { get; protected set; }
+
+    /// <summary>
+    /// Gets the last update date.
+    /// </summary>
     public DateTimeOffset UpdatedOn { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated person.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Person? Person { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated organization.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Organization? Organization { get; protected set; }
+
+    /// <summary>
+    /// Gets the associated party type.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual PartyType? PartyType { get; protected set; }
 
-    private readonly List<Address> _addresses = new();
-    public virtual IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
-    private readonly List<ContactMechanism> _contactMechanisms = new();
-    public virtual IReadOnlyCollection<ContactMechanism> ContactMechanisms => _contactMechanisms.AsReadOnly();
-    private readonly List<PartyRelationship> _sourceRelationships = new();
-    public virtual IReadOnlyCollection<PartyRelationship> SourceRelationships => _sourceRelationships.AsReadOnly();
-    private readonly List<PartyRelationship> _targetRelationships = new();
-    public virtual IReadOnlyCollection<PartyRelationship> TargetRelationships => _targetRelationships.AsReadOnly();
+    /// <summary>
+    /// Gets the relationships where this party is the source.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<PartyRelationship> SourceRelationships { get; protected set; }
+        = new List<PartyRelationship>();
 
-    protected Party() { }
-
-    public static Party Create()
-    {
-        return new Party();
-    }
+    /// <summary>
+    /// Gets the relationships where this party is the target.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<PartyRelationship> TargetRelationships { get; protected set; }
+        = new List<PartyRelationship>();
 }

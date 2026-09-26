@@ -11,16 +11,6 @@ namespace NSHub.Domain.Entities;
 /// </summary>
 public class Language : AuditableTenantEntity
 {
-    private readonly List<DncText> _dncTexts = [];
-    private readonly List<FxText> _fxTexts = [];
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Language"/> class.
-    /// </summary>
-    public Language()
-    {
-    }
-
     /// <summary>
     /// Gets or sets the language code (e.g. "it", "en", "de", "fr").
     /// </summary>
@@ -32,21 +22,30 @@ public class Language : AuditableTenantEntity
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the collection of DNC texts associated with this language.
+    /// Gets the DNC texts associated with this language.
+    /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual IReadOnlyCollection<DncText> DncTexts => _dncTexts.AsReadOnly();
+    public virtual ICollection<DncText> DncTexts { get; protected set; }
+        = new List<DncText>();
 
     /// <summary>
-    /// Gets the collection of FX texts associated with this language.
+    /// Gets the dressing configuration 1 translations associated with this language.
+    /// Virtual navigation property used by EF Core.
     /// </summary>
-    public virtual IReadOnlyCollection<FxText> FxTexts => _fxTexts.AsReadOnly();
+    public virtual ICollection<DressingName1> DressingName1s { get; protected set; }
+        = new List<DressingName1>();
 
     /// <summary>
-    /// Factory method to create a new language instance.
+    /// Gets the dressing configuration 2 translations associated with this language.
+    /// Virtual navigation property used by EF Core.
     /// </summary>
-    /// <returns>A new <see cref="Language"/> instance.</returns>
-    public static Language Create()
-    {
-        return new Language();
-    }
+    public virtual ICollection<DressingName2> DressingName2s { get; protected set; }
+        = new List<DressingName2>();
+
+    /// <summary>
+    /// Gets the dressing configuration 3 translations associated with this language.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<DressingName3> DressingName3s { get; protected set; }
+        = new List<DressingName3>();
 }

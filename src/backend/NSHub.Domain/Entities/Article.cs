@@ -6,113 +6,196 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents an article stored in the system.
+/// </summary>
 public class Article : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the parent article identifier.
+    /// </summary>
     public Guid? ParentArticleId { get; protected set; }
+
+    /// <summary>
+    /// Gets the article brand identifier.
+    /// </summary>
     public Guid? ArticleBrandId { get; protected set; }
+
+    /// <summary>
+    /// Gets the article category identifier.
+    /// </summary>
     public Guid? ArticleCategoryId { get; protected set; }
+
+    /// <summary>
+    /// Gets the warehouse identifier.
+    /// </summary>
     public Guid? WarehouseId { get; protected set; }
+
+    /// <summary>
+    /// Gets the article type identifier.
+    /// </summary>
     public Guid? ArticleTypeId { get; protected set; }
+
+    /// <summary>
+    /// Gets the unit of measure identifier.
+    /// </summary>
     public Guid UnitOfMeasureId { get; protected set; }
+
+    /// <summary>
+    /// Gets the supplier identifier.
+    /// </summary>
     public Guid? SupplierId { get; protected set; }
+
+    /// <summary>
+    /// Gets the article description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the article number.
+    /// </summary>
     public string Number { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the available quantity.
+    /// </summary>
     public decimal Quantity { get; protected set; }
+
+    /// <summary>
+    /// Gets the image path or URL.
+    /// </summary>
     public string Image { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the article amount.
+    /// </summary>
     public decimal? Amount { get; protected set; }
+
+    /// <summary>
+    /// Gets the minimum stock quantity.
+    /// </summary>
     public decimal? MinimumStock { get; protected set; }
+
+    /// <summary>
+    /// Gets the purchase price.
+    /// </summary>
     public decimal? PurchasePrice { get; protected set; }
+
+    /// <summary>
+    /// Gets the sale price.
+    /// </summary>
     public decimal? SalePrice { get; protected set; }
+
+    /// <summary>
+    /// Gets the internal article code.
+    /// </summary>
     public string? InternalArticleCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the supplier article code.
+    /// </summary>
     public string? SupplierArticleCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the file system folder associated with the article.
+    /// </summary>
     public string? FsFolder { get; protected set; }
+
+    /// <summary>
+    /// Gets the website URL.
+    /// </summary>
     public string? Website { get; protected set; }
+
+    /// <summary>
+    /// Gets additional notes.
+    /// </summary>
     public string? Notes { get; protected set; }
+
+    /// <summary>
+    /// Gets the family code.
+    /// </summary>
     public string? FamilyCode { get; protected set; }
+
+    /// <summary>
+    /// Gets the barcode.
+    /// </summary>
     public string? Barcode { get; protected set; }
+
+    /// <summary>
+    /// Gets the storage location.
+    /// </summary>
     public string? Location { get; protected set; }
+
+    /// <summary>
+    /// Gets the related program.
+    /// </summary>
     public string? Program { get; protected set; }
+
+    /// <summary>
+    /// Gets the processing time.
+    /// </summary>
     public string? ProcessingTime { get; protected set; }
+
+    /// <summary>
+    /// Gets the searchable text.
+    /// </summary>
     public string? Search { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether batch management is enabled.
+    /// </summary>
     public bool IsBatchManaged { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether serial number management is enabled.
+    /// </summary>
     public bool IsSerialNumberManaged { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the article is active.
+    /// </summary>
     public bool IsActive { get; protected set; }
+
+    /// <summary>
+    /// Gets the brand associated with the article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual ArticleBrand? ArticleBrand { get; protected set; }
+
+    /// <summary>
+    /// Gets the category associated with the article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual ArticleCategory? ArticleCategory { get; protected set; }
+
+    /// <summary>
+    /// Gets the type associated with the article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual ArticleType? ArticleType { get; protected set; }
+
+    /// <summary>
+    /// Gets the parent article in a self-referencing hierarchy.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Article? ParentArticle { get; protected set; }
+
+    /// <summary>
+    /// Gets the unit of measure associated with the article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual UnitOfMeasure? UnitOfMeasure { get; protected set; }
+
+    /// <summary>
+    /// Gets the warehouse associated with the article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
     public virtual Warehouse? Warehouse { get; protected set; }
 
-    private readonly List<Article> _childArticles = new();
-    public virtual IReadOnlyCollection<Article> ChildArticles => _childArticles.AsReadOnly();
-    private readonly List<ArticleCategoryMap> _articleCategoryMaps = new();
-    public virtual IReadOnlyCollection<ArticleCategoryMap> ArticleCategoryMaps => _articleCategoryMaps.AsReadOnly();
-    private readonly List<ArticleGroupMap> _articleGroupMaps = new();
-    public virtual IReadOnlyCollection<ArticleGroupMap> ArticleGroupMaps => _articleGroupMaps.AsReadOnly();
-    private readonly List<ArticleMachine> _articleMachines = new();
-    public virtual IReadOnlyCollection<ArticleMachine> ArticleMachines => _articleMachines.AsReadOnly();
-    private readonly List<DeliveryNoteRow> _deliveryNoteRows = new();
-    public virtual IReadOnlyCollection<DeliveryNoteRow> DeliveryNoteRows => _deliveryNoteRows.AsReadOnly();
-    private readonly List<InvoiceRow> _invoiceRows = new();
-    public virtual IReadOnlyCollection<InvoiceRow> InvoiceRows => _invoiceRows.AsReadOnly();
-    private readonly List<OrderRow> _orderRows = new();
-    public virtual IReadOnlyCollection<OrderRow> OrderRows => _orderRows.AsReadOnly();
-    private readonly List<PriceListItem> _priceListItems = new();
-    public virtual IReadOnlyCollection<PriceListItem> PriceListItems => _priceListItems.AsReadOnly();
-    private readonly List<QuotationRow> _quotationRows = new();
-    public virtual IReadOnlyCollection<QuotationRow> QuotationRows => _quotationRows.AsReadOnly();
-    private readonly List<ShipmentArticle> _shipmentArticles = new();
-    public virtual IReadOnlyCollection<ShipmentArticle> ShipmentArticles => _shipmentArticles.AsReadOnly();
-    private readonly List<StockMovement> _stockMovements = new();
-    public virtual IReadOnlyCollection<StockMovement> StockMovements => _stockMovements.AsReadOnly();
+    /// <summary>
+    /// Gets the child articles associated with this article.
+    /// Virtual navigation property used by EF Core.
+    /// </summary>
+    public virtual ICollection<Article> ChildArticles { get; protected set; } = [];
 
-    protected Article() { }
-
-    public static Article Create(
-        string number,
-        string description,
-        decimal quantity,
-        string image,
-        Guid unitOfMeasureId,
-        decimal? purchasePrice = null,
-        decimal? salePrice = null,
-        Guid? supplierId = null,
-        Guid? warehouseId = null)
-    {
-        return new Article
-        {
-            Number = number,
-            Description = description,
-            Quantity = quantity,
-            Image = image,
-            UnitOfMeasureId = unitOfMeasureId,
-            PurchasePrice = purchasePrice,
-            SalePrice = salePrice,
-            SupplierId = supplierId,
-            WarehouseId = warehouseId,
-            IsActive = true
-        };
-    }
-
-    public void UpdatePricing(decimal? purchasePrice, decimal? salePrice)
-    {
-        PurchasePrice = purchasePrice;
-        SalePrice = salePrice;
-    }
-
-    public void UpdateStock(decimal quantity)
-    {
-        Quantity = quantity;
-    }
-
-    public void Deactivate()
-    {
-        IsActive = false;
-    }
-
-    public void Activate()
-    {
-        IsActive = true;
-    }
 }

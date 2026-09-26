@@ -6,18 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents an FX text type.
+/// </summary>
 public class FxTextType : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the FX text type title.
+    /// </summary>
     public string Title { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the FX text type description.
+    /// </summary>
     public string Description { get; protected set; } = string.Empty;
-
-    private readonly List<FxText> _fxTexts = new();
-    public virtual IReadOnlyCollection<FxText> FxTexts => _fxTexts.AsReadOnly();
-
-    protected FxTextType() { }
-
-    public static FxTextType Create()
-    {
-        return new FxTextType();
-    }
 }

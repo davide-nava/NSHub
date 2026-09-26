@@ -6,15 +6,18 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Represents a machine motor.
+/// </summary>
 public class MachineMotor : AuditableTenantEntity
 {
+    /// <summary>
+    /// Gets the machine axis.
+    /// </summary>
     public string Axis { get; protected set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the motor code.
+    /// </summary>
     public string Code { get; protected set; } = string.Empty;
-
-    protected MachineMotor() { }
-
-    public static MachineMotor Create()
-    {
-        return new MachineMotor();
-    }
 }
