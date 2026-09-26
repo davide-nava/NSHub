@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Hourly durations across different temporal and calendar units.
 /// </summary>
-
 public enum DayHourType
 {
     /// <summary>

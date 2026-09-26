@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Standard contractual payment terms.
 /// </summary>
-
 public enum PaymentTerm
 {
     /// <summary>

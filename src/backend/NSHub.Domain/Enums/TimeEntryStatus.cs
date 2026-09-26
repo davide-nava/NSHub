@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Status of a time entry record.
 /// </summary>
-
 public enum TimeEntryStatus
 {
     /// <summary>

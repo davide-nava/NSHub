@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NSHub.Application.Common.Interfaces;
 using NSHub.Domain.Entities;
-using NSHub.Domain.Enums;
 
 namespace NSHub.Infrastructure.Services;
 
@@ -25,6 +24,9 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
     /// <inheritdoc/>
     public string GenerateToken(Employee employee, string role)
     {
+        ArgumentNullException.ThrowIfNull(employee);
+        ArgumentException.ThrowIfNullOrEmpty(role);
+
         var secret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
         var issuer = configuration["Jwt:Issuer"] ?? "OpenXGest";
         var audience = configuration["Jwt:Audience"] ?? "OpenXGestClient";
@@ -38,7 +40,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
             new(JwtRegisteredClaimNames.Email, employee.Email),
             new(ClaimTypes.Name, $"{employee.FirstName} {employee.LastName}"),
             new(ClaimTypes.Role, role),
-            new("lang", employee.PreferredLanguage.ToLocaleCode()),
+            new("lang", employee.PreferredLanguage.ToString().ToLowerInvariant()),
             new("regime", ((int)employee.Oll1Regime).ToString()),
         };
 
@@ -47,8 +49,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
             audience: audience,
             claims: claims,
             expires: DateTime.UtcNow.AddDays(7),
-            signingCredentials: creds
-        );
+            signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
@@ -56,6 +57,9 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
     /// <inheritdoc/>
     public string GenerateUserToken(User user, IEnumerable<string> roles)
     {
+        ArgumentNullException.ThrowIfNull(user);
+        ArgumentNullException.ThrowIfNull(roles);
+
         var secret = configuration["Jwt:Secret"] ?? "OpenX_Enterprise_Super_Secret_Key_For_Swiss_TimeTracking_2026_Minimum_32_Bytes!";
         var issuer = configuration["Jwt:Issuer"] ?? "OpenXGest";
         var audience = configuration["Jwt:Audience"] ?? "OpenXGestClient";
@@ -66,8 +70,8 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, user.Email),
-            new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
+            new(ClaimTypes.Name, user.Email ?? user.Id.ToString()),
         };
 
         foreach (var role in roles)
@@ -80,8 +84,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
             audience: audience,
             claims: claims,
             expires: DateTime.UtcNow.AddDays(7),
-            signingCredentials: creds
-        );
+            signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }

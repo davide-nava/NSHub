@@ -4,7 +4,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using NSHub.Application.Interfaces;
+using NSHub.Domain.Common;
 
 namespace NSHub.Infrastructure.Interceptors;
 
@@ -13,26 +13,24 @@ namespace NSHub.Infrastructure.Interceptors;
 /// </summary>
 public sealed class SoftDeleteInterceptor : SaveChangesInterceptor
 {
-	/// <inheritdoc/>
-	public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
-		DbContextEventData eventData,
-		InterceptionResult<int> result,
-		CancellationToken cancellationToken = default)
-	{
-		ArgumentNullException.ThrowIfNull(eventData);
-		if (eventData.Context is null)
-		{
-			return base.SavingChangesAsync(
-				eventData, result, cancellationToken);
-		}
+    /// <inheritdoc/>
+    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
+        DbContextEventData eventData,
+        InterceptionResult<int> result,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(eventData);
+        if (eventData.Context is null)
+        {
+            return base.SavingChangesAsync(eventData, result, cancellationToken);
+        }
 
-		foreach (var softDeletable in eventData.Context.ChangeTracker.Entries<ISoftDeletable>().Where(e => e.State == EntityState.Deleted))
-		{
-			softDeletable.State = EntityState.Modified;
-			softDeletable.Entity.IsDeleted = true;
-			softDeletable.Entity.DateDeleted = DateTime.UtcNow;
-		}
+        foreach (var entry in eventData.Context.ChangeTracker.Entries<ISoftDeletable>().Where(e => e.State == EntityState.Deleted))
+        {
+            entry.State = EntityState.Modified;
+            entry.Entity.DateDelete = DateTime.UtcNow;
+        }
 
-		return base.SavingChangesAsync(eventData, result, cancellationToken);
-	}
+        return base.SavingChangesAsync(eventData, result, cancellationToken);
+    }
 }

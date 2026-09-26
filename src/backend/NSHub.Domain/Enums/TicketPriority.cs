@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Urgency and business impact priority levels for support tickets.
 /// </summary>
-
 public enum TicketPriority
 {
     /// <summary>

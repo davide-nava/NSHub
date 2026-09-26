@@ -3,7 +3,7 @@
 // </copyright>
 
 using NSHub.Application.Constants;
-using NSHub.Application.Entities;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Infrastructure.Seeders;
 
@@ -12,12 +12,12 @@ namespace NSHub.Infrastructure.Seeders;
 /// </summary>
 public static class LanguageSeeder
 {
-    private static readonly (Guid, string, string)[] data =
+    private static readonly (Guid Id, string Code, string Description)[] Seeds =
     [
-        (LanguageConstant.Italian.Id, LanguageConstant.Italian.Description, LanguageConstant.Italian.Name),
-        (LanguageConstant.English.Id, LanguageConstant.English.Description, LanguageConstant.English.Name),
-        (LanguageConstant.French.Id, LanguageConstant.French.Description, LanguageConstant.French.Name),
-        (LanguageConstant.German.Id, LanguageConstant.German.Description, LanguageConstant.German.Name),
+        (LanguageConstant.Italian.Id, LanguageConstant.Italian.Name, "Italian"),
+        (LanguageConstant.English.Id, LanguageConstant.English.Name, "English"),
+        (LanguageConstant.French.Id, LanguageConstant.French.Name, "French"),
+        (LanguageConstant.German.Id, LanguageConstant.German.Name, "German"),
     ];
 
     /// <summary>
@@ -26,17 +26,11 @@ public static class LanguageSeeder
     /// <returns>A sequence of <see cref="Language"/> instances.</returns>
     public static IEnumerable<Language> EnumerateSeeds()
     {
-        var list = new List<Language>();
-
-        foreach (var ele in data)
+        return Seeds.Select(s => new Language
         {
-            list.Add(new Language
-            {
-                Id = ele.Item1,
-                Code = ele.Item2,
-            });
-        }
-
-        return list;
+            Id = s.Id,
+            Code = s.Code,
+            Description = s.Description,
+        });
     }
 }

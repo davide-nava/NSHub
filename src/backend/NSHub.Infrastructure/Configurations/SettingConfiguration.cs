@@ -4,8 +4,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Infrastructure.Configurations;
 
@@ -19,5 +21,6 @@ namespace NSHub.Infrastructure.Configurations;
 public class SettingConfiguration(IRequestContext requestContext) : BaseConfiguration<Setting>, IEntityTypeConfiguration<Setting>
 {
     /// <inheritdoc/>
-    public   void Configure(EntityTypeBuilder<Setting> builder) =>  base.Configure(builder, requestContext);
+    public void Configure(EntityTypeBuilder<Setting> builder) => base.Configure(builder, requestContext);
+    public void Configure(EntityTypeBuilder<Setting> builder) => Configure(builder, requestContext);
 }

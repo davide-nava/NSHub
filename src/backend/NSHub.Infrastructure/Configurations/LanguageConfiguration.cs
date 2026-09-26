@@ -4,8 +4,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NSHub.Application.Entities;
-using NSHub.Application.Interfaces;
+using NSHub.Application.Common.Interfaces;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Infrastructure.Configurations;
 
@@ -19,5 +19,5 @@ namespace NSHub.Infrastructure.Configurations;
 public class LanguageConfiguration(IRequestContext requestContext) : BaseConfiguration<Language>, IEntityTypeConfiguration<Language>
 {
     /// <inheritdoc/>
-    public void Configure(EntityTypeBuilder<Language> builder) =>  base.Configure(builder, requestContext);
+    public void Configure(EntityTypeBuilder<Language> builder) => _ = Configure(builder, requestContext);
 }

@@ -1,45 +1,43 @@
-// <copyright file="TenantDbContext.cs" company="Davide Nava">
+// <copyright file="HubDbContext.cs" company="Davide Nava">
 // Copyright (c) Davide Nava. All rights reserved.
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
-using NSHub.Application.Entities;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Infrastructure.DbContexts;
 
 /// <summary>
-/// Multi-tenant database context for system entities including tenants, settings, languages, and notifications.
+/// Multi-tenant database context for system entities including tenants, settings, languages, and users.
 /// </summary>
 /// <remarks>
 /// Initializes a new instance of the <see cref="TenantDbContext"/> class.
 /// </remarks>
 /// <param name="options">The database context options.</param>
 /// <param name="logger">The logger instance.</param>
-public class TenantDbContext(DbContextOptions<TenantDbContext> options, ILogger logger) : DbContext(options)
+public class TenantDbContext(DbContextOptions<TenantDbContext> options, ILogger<TenantDbContext> logger) : DbContext(options)
 {
     /// <summary>
     /// Gets or sets the database set for languages.
     /// </summary>
-    public virtual DbSet<Language> Languages { get; set; }
+    public virtual DbSet<Language> Languages { get; set; } = null!;
 
-    public virtual DbSet<Tenant> Tenants { get; set; }
+    /// <summary>
+    /// Gets or sets the database set for tenants.
+    /// </summary>
+    public virtual DbSet<Tenant> Tenants { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the database set for settings.
     /// </summary>
-    public virtual DbSet<Setting> Settings { get; set; }
+    public virtual DbSet<Setting> Settings { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the database set for users.
     /// </summary>
-    public virtual DbSet<User> Users { get; set; }
-
-    /// <summary>
-    /// Gets or sets the database set for notifications.
-    /// </summary>
-    public virtual DbSet<Notification> Notifications { get; set; }
+    public virtual DbSet<User> Users { get; set; } = null!;
 
     /// <inheritdoc/>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -65,10 +63,7 @@ public class TenantDbContext(DbContextOptions<TenantDbContext> options, ILogger 
                 }
             })
             .EnableDetailedErrors()
-            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-
-        //.EnableSensitiveDataLogging()
+            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
 
         base.OnConfiguring(optionsBuilder);
     }
@@ -76,6 +71,7 @@ public class TenantDbContext(DbContextOptions<TenantDbContext> options, ILogger 
     /// <inheritdoc/>
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
+        ArgumentNullException.ThrowIfNull(configurationBuilder);
         _ = configurationBuilder.Properties<decimal>().HavePrecision(18, 6);
     }
 }

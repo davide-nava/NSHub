@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorApp1.Migrations;
 
+namespace NSHub.Infrastructure.Migrations;
+
 /// <inheritdoc />
 public partial class CreateIdentitySchema : Migration
 {

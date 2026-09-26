@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Lifecycle statuses for CMS content publishing workflows.
 /// </summary>
-
 public enum PublishingStatus
 {
     /// <summary>

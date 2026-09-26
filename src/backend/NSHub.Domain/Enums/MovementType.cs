@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Operational movement types for inventory tracking.
 /// </summary>
-
 public enum MovementType
 {
     /// <summary>

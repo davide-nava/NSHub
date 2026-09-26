@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// System and user notification severities.
 /// </summary>
-
 public enum NotificationType
 {
     /// <summary>

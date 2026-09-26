@@ -419,6 +419,7 @@ resharper_trailing_comma_in_multiline_lists = true
 
 [*.cs]
 dotnet_diagnostic.ca1707.severity = none
+dotnet_diagnostic.ca1716.severity = none
 
 dotnet_diagnostic.s125.severity = none
 

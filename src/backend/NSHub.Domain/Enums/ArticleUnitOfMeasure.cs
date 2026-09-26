@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Units of measure supported for inventory articles.
 /// </summary>
-
 public enum ArticleUnitOfMeasure
 {
     /// <summary>

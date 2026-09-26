@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Lifecycle statuses of a sales invoice.
 /// </summary>
-
 public enum InvoiceStatus
 {
     /// <summary>

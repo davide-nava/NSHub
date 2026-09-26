@@ -20,6 +20,8 @@ namespace NSHub.Infrastructure.Services;
 /// </remarks>
 /// <param name="dateTimeProvider">The date and time provider.</param>
 public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : ISecoComplianceExportService
+/// <param name="dateTimeService">The date and time service.</param>
+public class SecoComplianceExportService(IDateTimeService dateTimeService) : ISecoComplianceExportService
 {
     private readonly SwissWorktimePolicy policy = new SwissWorktimePolicy();
 
@@ -27,15 +29,18 @@ public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : I
     public Task<byte[]> GenerateCsvReportAsync(
         Employee employee,
         List<TimeEntry> entries,
+        IEnumerable<TimeEntry> entries,
         DateTime startUtc,
         DateTime endUtc,
         string languageCode,
+        string language,
         CancellationToken cancellationToken = default)
     {
         var sb = new StringBuilder();
 
         // Intestazione report SECO
         var lang = languageCode.ToLowerInvariant();
+        var lang = language.ToLowerInvariant();
         var headers = GetHeaders(lang);
 
         _ = sb.AppendLine($"# SECO / Cantonal Labor Inspectorate Compliance Report - Art. 73 OLL 1");
@@ -57,8 +62,11 @@ public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : I
         {
             var clockInSwiss = dateTimeProvider.ToSwissTime(entry.ClockInUtc);
             var clockOutSwiss = entry.ClockOutUtc.HasValue ? dateTimeProvider.ToSwissTime(entry.ClockOutUtc.Value) : (DateTime?)null;
+            var clockInSwiss = dateTimeService.ToSwissTime(entry.ClockInUtc);
+            var clockOutSwiss = entry.ClockOutUtc.HasValue ? dateTimeService.ToSwissTime(entry.ClockOutUtc.Value) : (DateTime?)null;
 
             var endUtcVal = entry.ClockOutUtc ?? dateTimeProvider.UtcNow;
+            var endUtcVal = entry.ClockOutUtc ?? dateTimeService.UtcNow;
             var durationMinutes = (endUtcVal - entry.ClockInUtc).TotalMinutes;
             var netMinutes = Math.Max(0, durationMinutes - entry.BreakDurationMinutes);
             var netHours = Math.Round(netMinutes / 60.0, 2);
@@ -114,9 +122,11 @@ public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : I
     public Task<byte[]> GenerateInspectionSummaryPdfAsync(
         Employee employee,
         List<TimeEntry> entries,
+        IEnumerable<TimeEntry> entries,
         DateTime startUtc,
         DateTime endUtc,
         string languageCode,
+        string language,
         CancellationToken cancellationToken = default)
     {
         // Genera un documento testuale formattato conforme ai requisiti dell'ispettorato SECO
@@ -143,6 +153,9 @@ public class SecoComplianceExportService(IDateTimeProvider dateTimeProvider) : I
             var inSwiss = dateTimeProvider.ToSwissTime(e.ClockInUtc);
             var outSwiss = e.ClockOutUtc.HasValue ? dateTimeProvider.ToSwissTime(e.ClockOutUtc.Value) : (DateTime?)null;
             var endUtcVal = e.ClockOutUtc ?? dateTimeProvider.UtcNow;
+            var inSwiss = dateTimeService.ToSwissTime(e.ClockInUtc);
+            var outSwiss = e.ClockOutUtc.HasValue ? dateTimeService.ToSwissTime(e.ClockOutUtc.Value) : (DateTime?)null;
+            var endUtcVal = e.ClockOutUtc ?? dateTimeService.UtcNow;
             var netHours = Math.Max(0, (endUtcVal - e.ClockInUtc).TotalHours - (e.BreakDurationMinutes / 60.0));
             var night = policy.CalculateNightHours(e.ClockInUtc, endUtcVal);
 

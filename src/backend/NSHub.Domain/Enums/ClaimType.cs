@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Security claim types used throughout user authentication and authorization.
 /// </summary>
-
 public enum ClaimType
 {
     /// <summary>

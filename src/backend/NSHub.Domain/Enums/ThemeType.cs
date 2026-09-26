@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// User interface color theme modes.
 /// </summary>
-
 public enum ThemeType
 {
     /// <summary>

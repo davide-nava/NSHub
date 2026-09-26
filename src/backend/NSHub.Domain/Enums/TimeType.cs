@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Time measurement units.
 /// </summary>
-
 public enum TimeType
 {
     /// <summary>

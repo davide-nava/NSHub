@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Types of model validation errors.
 /// </summary>
-
 public enum ValidationErrorType
 {
     /// <summary>

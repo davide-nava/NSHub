@@ -10,6 +10,7 @@ namespace NSHub.Infrastructure.Services;
 
 /// <summary>
 /// Provides access to the currently authenticated user's claims from the HTTP context.
+/// Provides access to the currently authenticated user's claims and tenant information from the HTTP context.
 /// </summary>
 /// <remarks>
 /// Initializes a new instance of the <see cref="CurrentUserService"/> class.
@@ -24,8 +25,30 @@ public class CurrentUserService(IHttpContextAccessor httpContextAccessor) : ICur
         {
             var claim = httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return Guid.TryParse(claim, out var id) ? id : null;
+            var user = httpContextAccessor.HttpContext?.User;
+            var userIdClaim = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                              ?? user?.FindFirst("sub")?.Value
+                              ?? user?.FindFirst("uid")?.Value;
+
+            return Guid.TryParse(userIdClaim, out var userId) ? userId : null;
         }
     }
+
+    /// <inheritdoc/>
+    public Guid? TenantId
+    {
+        get
+        {
+            var user = httpContextAccessor.HttpContext?.User;
+            var tenantClaim = user?.FindFirst("tenant_id")?.Value
+                              ?? httpContextAccessor.HttpContext?.Request.Headers["X-Tenant-Id"].ToString();
+
+            return Guid.TryParse(tenantClaim, out var tenantId) ? tenantId : null;
+        }
+    }
+
+    /// <inheritdoc/>
+    public bool IsAuthenticated => httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
 
     /// <inheritdoc/>
     public string? Email =>

@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Operational classifications for hour types.
 /// </summary>
-
 public enum HourType
 {
     /// <summary>

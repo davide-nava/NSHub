@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Represents the result type of a sent operation.
 /// </summary>
-
 public enum SentResultType
 {
     /// <summary>

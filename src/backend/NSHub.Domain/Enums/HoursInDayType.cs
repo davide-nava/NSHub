@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Hour counts representation across normal and daylight saving transition days.
 /// </summary>
-
 public enum HoursInDayType
 {
     /// <summary>

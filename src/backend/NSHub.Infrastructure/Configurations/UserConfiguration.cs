@@ -4,8 +4,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Entities;
 using NSHub.Application.Interfaces;
+using NSHub.Domain.Entities;
 
 namespace NSHub.Infrastructure.Configurations;
 
@@ -22,8 +24,10 @@ public class UserConfiguration(IRequestContext requestContext) : BaseConfigurati
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder = base.Configure(builder, requestContext);
+        ArgumentNullException.ThrowIfNull(builder);
 
 
         _ = builder.ComplexProperty(b => b.Configuration, b => b.ToJson());
+        _ = Configure(builder, requestContext);
     }
 }

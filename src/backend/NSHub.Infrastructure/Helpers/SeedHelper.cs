@@ -4,6 +4,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using NSHub.Application.Entities;
+using NSHub.Domain.Common;
 using NSHub.Infrastructure.DbContexts;
 using NSHub.Infrastructure.Seeders;
 
@@ -20,10 +21,15 @@ public static class SeedHelper
     /// <param name="dbContext">The tenant database context.</param>
     /// <returns>A task representing the asynchronous seed operation.</returns>
     public static async Task<Task> CheckSeedsAsync(TenantDbContext dbContext)
-	{
-		ArgumentNullException.ThrowIfNull(dbContext);
+    {
+        ArgumentNullException.ThrowIfNull(dbContext);
+    public static Task CheckSeedsAsync(TenantDbContext dbContext)
+    {
+        ArgumentNullException.ThrowIfNull(dbContext);
 
-		await SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
+        await SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
+        return SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
+    }
 
 		return Task.CompletedTask;
 	}
@@ -34,33 +40,53 @@ public static class SeedHelper
     /// <param name="dbContext">The application database context.</param>
     /// <returns>A task representing the asynchronous seed operation.</returns>
     public static async Task<Task> CheckSeedsAsync(ApplicationDbContext dbContext)
+    public static Task CheckSeedsAsync(ApplicationDbContext dbContext)
     {
         ArgumentNullException.ThrowIfNull(dbContext);
 
         await SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
 
         return Task.CompletedTask;
+        return SeedAsync(dbContext, LanguageSeeder.EnumerateSeeds());
     }
 
     private static async Task SeedAsync<T>(DbContext dbContext, IEnumerable<T> list)
-		where T : BaseEntity
-	{
-		var setAdd = false;
+        where T : BaseEntity
+    {
+        var setAdd = false;
+        where T:
+        BaseEntity<Guid>
+    {
+            var setAdd = false;
 
-		var tmpList = await dbContext.Set<T>().Select(e => e.Id).ToListAsync() ?? [];
-		foreach (var ele in from ele in list
-							where !tmpList.Contains(ele.Id)
-							let tmpEle = dbContext.Set<T>().FirstOrDefault(e => e.Id == ele.Id)
-							where tmpEle is null && tmpEle?.Id != Guid.Empty
-							select ele)
-		{
-            _ = dbContext.Set<T>().Add(ele);
-			setAdd = true;
-		}
+            var tmpList = await dbContext.Set<T>().Select(e => e.Id).ToListAsync() ?? [];
+            foreach (var ele in from ele in list
+                                where !tmpList.Contains(ele.Id)
+                                let tmpEle = dbContext.Set<T>().FirstOrDefault(e => e.Id == ele.Id)
+                                where tmpEle is null && tmpEle?.Id != Guid.Empty
+                                select ele)
+            {
+                _ = dbContext.Set<T>().Add(ele);
+                setAdd = true;
+            }
+            var tmpList = await dbContext.Set<T>().Select(e => e.Id).ToListAsync() ?? [];
+            foreach (var ele in list.Where(ele => !tmpList.Contains(ele.Id)))
+            {
+                var tmpEle = await dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == ele.Id);
+                if (tmpEle is null && ele.Id != Guid.Empty)
+                {
+                    _ = dbContext.Set<T>().Add(ele);
+                    setAdd = true;
+                }
+            }
 
-		if (setAdd)
-		{
-            _ = await dbContext.SaveChangesAsync();
-		}
-	}
+            if (setAdd)
+            {
+                if (setAdd)
+                {
+                    _ = await dbContext.SaveChangesAsync();
+                }
+            }
+        }
+    }
 }

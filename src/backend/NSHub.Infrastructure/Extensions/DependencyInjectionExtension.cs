@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NSHub.Application.Common.Interfaces;
 using NSHub.Application.Constants;
 using NSHub.Application.Interfaces;
+using NSHub.Application.Models;
 using NSHub.Application.NSHub.Models;
 using NSHub.Application.Services;
 using NSHub.Infrastructure.DbContexts;
@@ -44,6 +46,8 @@ public static class DependencyInjectionExtension
 
         _ = await SeedHelper.CheckSeedsAsync(applicationDbContext);
         _ = await SeedHelper.CheckSeedsAsync(nSHubDbContext);
+        await SeedHelper.CheckSeedsAsync(applicationDbContext);
+        await SeedHelper.CheckSeedsAsync(nSHubDbContext);
 
         return app;
     }
@@ -73,11 +77,19 @@ public static class DependencyInjectionExtension
                         _ = optionActions.CommandTimeout(DatabaseConstant.CommandTimeout);
                         _ = optionActions.UseCompatibilityLevel(170);
                     }).AddInterceptors(sp.GetRequiredService<SoftDeleteInterceptor>()));
+        {
+            _ = optionActions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+            _ = optionActions.CommandTimeout(DatabaseConstant.CommandTimeout);
+            _ = optionActions.UseCompatibilityLevel(170);
+        }).AddInterceptors(sp.GetRequiredService<SoftDeleteInterceptor>()));
 
         _ = builder.Services.AddDbContext<TenantDbContext>((sp, options) =>
         options.UseSqlServer(
             connectionString,
             optionActions =>
+            options.UseSqlServer(
+                connectionString,
+                optionActions =>
                 {
                     _ = optionActions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
                     _ = optionActions.CommandTimeout(DatabaseConstant.CommandTimeout);
@@ -91,10 +103,18 @@ public static class DependencyInjectionExtension
         //		"telemetryConverter": "Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
         //	}
         //},
+        _ = builder.Services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
         //services.AddSingleton<Ixxxx, xxxx>();
 
         _ = builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
+        _ = builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+        _ = builder.Services.AddSingleton<IDateTimeService, DateTimeService>();
+        _ = builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+        _ = builder.Services.AddScoped<ISecoComplianceExportService, SecoComplianceExportService>();
+
+        _ = builder.Services.AddScoped<IRequestContext, RequestContext>();
+        _ = builder.Services.AddScoped<NSHub.Application.Interfaces.IRequestContext, RequestContext>();
 
         _ = builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -114,6 +134,9 @@ public static class DependencyInjectionExtension
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddSignInManager()
+        .AddDefaultTokenProviders();
 
         return builder;
     }
@@ -122,11 +145,15 @@ public static class DependencyInjectionExtension
 
     /// <summary>
     /// Adds infrastructure services, repositories, database contexts, and authentication to the service collection.
+    /// Registers infrastructure-specific services on the web application builder.
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="configuration">The configuration instance.</param>
     /// <returns>The updated service collection.</returns>
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    /// <param name="builder">The web application builder.</param>
+    /// <returns>The updated web application builder.</returns>
+    public static WebApplicationBuilder AddInfrastructureBuilder(this WebApplicationBuilder builder)
     {
         _ = services.AddHttpContextAccessor();
 
@@ -191,6 +218,8 @@ public static class DependencyInjectionExtension
         });
 
         return services;
+        ArgumentNullException.ThrowIfNull(builder);
+        return builder;
     }
 }
 

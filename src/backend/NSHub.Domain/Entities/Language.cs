@@ -6,18 +6,45 @@ using NSHub.Domain.Common;
 
 namespace NSHub.Domain.Entities;
 
+/// <summary>
+/// Domain entity representing a supported natural language.
+/// </summary>
 public class Language : AuditableTenantEntity
 {
-    public string Code { get; protected set; } = string.Empty;
-    public string Description { get; protected set; } = string.Empty;
+    private readonly List<DncText> _dncTexts = [];
+    private readonly List<FxText> _fxTexts = [];
 
-    private readonly List<DncText> _dncTexts = new();
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Language"/> class.
+    /// </summary>
+    public Language()
+    {
+    }
+
+    /// <summary>
+    /// Gets or sets the language code (e.g. "it", "en", "de", "fr").
+    /// </summary>
+    public string Code { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the descriptive name of the language.
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the collection of DNC texts associated with this language.
+    /// </summary>
     public virtual IReadOnlyCollection<DncText> DncTexts => _dncTexts.AsReadOnly();
-    private readonly List<FxText> _fxTexts = new();
+
+    /// <summary>
+    /// Gets the collection of FX texts associated with this language.
+    /// </summary>
     public virtual IReadOnlyCollection<FxText> FxTexts => _fxTexts.AsReadOnly();
 
-    protected Language() { }
-
+    /// <summary>
+    /// Factory method to create a new language instance.
+    /// </summary>
+    /// <returns>A new <see cref="Language"/> instance.</returns>
     public static Language Create()
     {
         return new Language();

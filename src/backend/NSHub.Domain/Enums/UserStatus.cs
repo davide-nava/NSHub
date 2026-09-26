@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Lifecycle and security statuses for enterprise users.
 /// </summary>
-
 public enum UserStatus
 {
     /// <summary>

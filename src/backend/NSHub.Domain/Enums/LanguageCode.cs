@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Supported national official languages.
 /// </summary>
-
 public enum LanguageCode
 {
     /// <summary>

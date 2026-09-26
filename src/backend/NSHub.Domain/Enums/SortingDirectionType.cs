@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Represents the sorting direction type for ordering data.
 /// </summary>
-
 public enum SortingDirectionType
 {
     /// <summary>

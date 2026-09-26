@@ -14,11 +14,18 @@ using NSHub.Infrastructure.DbContexts;
 
 #nullable disable
 
-namespace BlazorApp1.Migrations;
+namespace NSHub.Infrastructure.Migrations;
 
+/// <summary>
+/// Entity Framework model snapshot for the application database context.
+/// </summary>
 [DbContext(typeof(ApplicationDbContext))]
 partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 {
+    /// <summary>
+    /// Builds the relational database model for this context.
+    /// </summary>
+    /// <param name="modelBuilder">The model builder.</param>
     protected override void BuildModel(ModelBuilder modelBuilder)
     {
 #pragma warning disable 612, 618
@@ -28,7 +35,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-        modelBuilder.Entity("BlazorApp1.Data.ApplicationUser", b =>
+        modelBuilder.Entity("NSHub.Application.Models.ApplicationUser", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("nvarchar(450)");
@@ -259,7 +266,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.HasOne("BlazorApp1.Data.ApplicationUser", null)
+                b.HasOne("NSHub.Application.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -268,7 +275,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
-                b.HasOne("BlazorApp1.Data.ApplicationUser", null)
+                b.HasOne("NSHub.Application.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -277,7 +284,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserPasskey<string>", b =>
             {
-                b.HasOne("BlazorApp1.Data.ApplicationUser", null)
+                b.HasOne("NSHub.Application.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -343,7 +350,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("BlazorApp1.Data.ApplicationUser", null)
+                b.HasOne("NSHub.Application.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -352,7 +359,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
             {
-                b.HasOne("BlazorApp1.Data.ApplicationUser", null)
+                b.HasOne("NSHub.Application.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)

@@ -9,7 +9,8 @@ namespace NSHub.Infrastructure.Services;
 /// <summary>
 /// Ambient context holding tenant and user identifiers for the current request.
 /// </summary>
-public class RequestContext  : IRequestContext
+public class RequestContext : IRequestContext
+public class RequestContext : IRequestContext
 {
     /// <inheritdoc/>
     public Guid TenantId { get; set; } = Guid.Empty;

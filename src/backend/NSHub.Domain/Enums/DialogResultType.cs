@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Possible user response results from interactive dialog prompts.
 /// </summary>
-
 public enum DialogResultType
 {
     /// <summary>

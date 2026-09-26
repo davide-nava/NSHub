@@ -7,7 +7,6 @@ namespace NSHub.Domain.Enums;
 /// <summary>
 /// Lifecycle statuses for support tickets.
 /// </summary>
-
 public enum TicketStatus
 {
     /// <summary>
