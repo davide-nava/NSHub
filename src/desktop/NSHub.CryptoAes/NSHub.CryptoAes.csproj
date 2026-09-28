@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+        <OutputType>WinExe</OutputType>
+        <UseWPF>true</UseWPF>
+        <Title>NSHub.CryptoAes</Title>
+        <Product>NSHub.CryptoAes</Product>
+        <Description>NSHub.CryptoAes</Description>
+        <PackageId>NSHub.CryptoAes</PackageId>
+        <RootNamespace>NSHub.CryptoAes</RootNamespace>
+        <AssemblyName>NSHub.CryptoAes</AssemblyName>
+        <Namespace>NSHub.CryptoAes</Namespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128"/>
+    </ItemGroup>
+
+</Project>

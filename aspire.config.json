@@ -1,0 +1,5 @@
+{
+    "appHost": {
+        "path": "src\\backend\\NSHub.AppHost\\NSHub.AppHost.csproj"
+    }
+}

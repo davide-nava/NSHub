@@ -1,0 +1,1 @@
+sqlcmd -E -S localhost -i "C:\Backup\bak_db_2017.sql"

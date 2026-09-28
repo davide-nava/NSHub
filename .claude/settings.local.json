@@ -1,0 +1,26 @@
+{
+    "hooks": {
+        "PostToolUse": [
+            {
+                "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "python3 \"%CLAUDE_PROJECT_DIR%/.claude/hooks/post-tool-call.py\""
+                    }
+                ]
+            },
+            {
+                "matcher": "Edit|Write|MultiEdit|apply_patch",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "C:/Users/david/AppData/Local/JetBrains/Rider2026.3/aia/bundledHooks/quality-check.cmd",
+                        "timeout": 30,
+                        "statusMessage": "Rider quality check"
+                    }
+                ]
+            }
+        ]
+    }
+}

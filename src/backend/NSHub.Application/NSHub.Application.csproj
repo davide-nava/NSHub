@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>NSHub.Application</Title>
+    <Product>NSHub.Application</Product>
+    <Description>NSHub.Application</Description>
+    <PackageId>NSHub.Application</PackageId>
+    <RootNamespace>NSHub.Application</RootNamespace>
+    <AssemblyName>NSHub.Application</AssemblyName>
+    <MapperlyAbstractionsScope>runtime</MapperlyAbstractionsScope>
+    <EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
+    <NoWarn>$(NoWarn);1591;SA1600;SA1601;SA1602;SA1611;SA1615;SA1623;SA1629;SA1638;SA1649;IDE0055;SA1027;SA1402;SA1518;SA1009;SA1111;SA1200;SA1210;SA1201;SA1127;SA1202;SA1309;SA1117;SA1505;SA1513;SA1516;SA1503;SA1507;IDE0005;IDE0040;IDE0007;IDE0065;IDE0021;IDE0011;IDE0130;IDE0046;IDE0032;IDE0059;IDE0028;IDE0078;MA0003;MA0011;MA0015;MA0016;MA0018;MA0040;MA0048;MA0051;MA0076;MA0193;MA0206;RCS1089;RCS1118;RCS1141;RCS1194;RCS1251;CA1000;CA1031;CA1062;CA1305;CA1716;CA1819;CA1848;CA1873;CA2016;S4136;S8949;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NSHub.Domain\NSHub.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Riok.Mapperly" Version="5.0.0-next.11" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="MediatR" Version="14.2.0" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localizations\SharedResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localizations\SharedResource.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localizations\SharedResource.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localizations\SharedResource.it.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localizations\SharedResource.resx">
+      <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Title>NSHub.Api</Title>
+    <Product>NSHub.Api</Product>
+    <Description>NSHub.Api</Description>
+    <PackageId>NSHub.Api</PackageId>
+    <RootNamespace>NSHub.Api</RootNamespace>
+    <AssemblyName>NSHub.Api</AssemblyName>
+    <UserSecretsId>b8962ea6-3717-49e1-af22-af58217f3cd4</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <NoWarn>$(NoWarn);1591;SA1600;SA1601;SA1602;SA1611;SA1615;SA1623;SA1629;SA1638;SA1649;IDE0055;SA1027;SA1402;SA1518;SA1009;SA1111;SA1200;SA1210;SA1201;SA1127;SA1202;SA1309;SA1117;SA1505;SA1513;SA1516;SA1503;SA1507;IDE0005;IDE0040;IDE0007;IDE0065;IDE0021;IDE0011;IDE0130;IDE0046;IDE0032;IDE0059;IDE0028;IDE0078;MA0003;MA0011;MA0015;MA0016;MA0018;MA0038;MA0040;MA0048;MA0051;MA0076;MA0193;MA0206;RCS1089;RCS1118;RCS1141;RCS1194;RCS1251;CA1000;CA1031;CA1062;CA1305;CA1716;CA1819;CA1822;CA1848;CA1873;CA2016;S4136;S8949;AsyncFixer01;CA1304;CA1311;CA1725;CA1862;IDE0022;IDISP004;MA0001;MA0028;MA0042;MA0061;MA0089;RCS1168;RCS1197;S1006;S1939;S3267;S927;SA1116;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.2.3" />
+      <PackageReference Include="Scrutor" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="11.0.0-rc.1.26425.128" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.24.2-preview.1" />
+    <PackageReference Include="Microsoft.OpenApi" Version="3.10.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.1-dev-02312" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="11.0.0-rc.1.26425.128">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NSHub.ServiceDefaults\NSHub.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\NSHub.Application\NSHub.Application.csproj" />
+    <ProjectReference Include="..\NSHub.Infrastructure\NSHub.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="_Program.cs" />
+    <None Remove="_Program.cs" />
+    <Compile Remove="Controllers\BaseController.cs" />
+    <None Remove="Controllers\BaseController.cs" />
+    <Compile Remove="Controllers\LanguageController.cs" />
+    <None Remove="Controllers\LanguageController.cs" />
+    <Compile Remove="Controllers\NotificationController.cs" />
+    <None Remove="Controllers\NotificationController.cs" />
+    <Compile Remove="Controllers\UserController.cs" />
+    <None Remove="Controllers\UserController.cs" />
+    <Compile Remove="Controllers\SettingController.cs" />
+    <None Remove="Controllers\SettingController.cs" />
+    <Compile Remove="Controllers\TenantController.cs" />
+    <None Remove="Controllers\TenantController.cs" />
+    <Compile Remove="Controllers\NSHubController.cs" />
+    <None Remove="Controllers\NSHubController.cs" />
+    <Compile Remove="Controllers\AuthenticationController.cs" />
+    <None Remove="Controllers\AuthenticationController.cs" />
+    <Compile Remove="Endpoints\**" />
+    <Compile Remove="ExceptionHandling\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Filters\**" />
+    <Compile Remove="HostedServices\**" />
+    <Compile Remove="Middlewares\**" />
+    <Compile Remove="OperationFilters\**" />
+    <Compile Remove="ServiceFilterAttributes\**" />
+    <Compile Remove="Validators\**" />
+    <Content Remove="ExceptionHandling\**" />
+    <Content Remove="Extensions\**" />
+    <Content Remove="Filters\**" />
+    <Content Remove="HostedServices\**" />
+    <Content Remove="Middlewares\**" />
+    <Content Remove="OperationFilters\**" />
+    <Content Remove="ServiceFilterAttributes\**" />
+    <Content Remove="Validators\**" />
+    <EmbeddedResource Remove="ExceptionHandling\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Filters\**" />
+    <EmbeddedResource Remove="HostedServices\**" />
+    <EmbeddedResource Remove="Middlewares\**" />
+    <EmbeddedResource Remove="OperationFilters\**" />
+    <EmbeddedResource Remove="ServiceFilterAttributes\**" />
+    <EmbeddedResource Remove="Validators\**" />
+    <None Remove="Endpoints\**" />
+    <None Remove="ExceptionHandling\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Filters\**" />
+    <None Remove="HostedServices\**" />
+    <None Remove="Middlewares\**" />
+    <None Remove="OperationFilters\**" />
+    <None Remove="ServiceFilterAttributes\**" />
+    <None Remove="Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100-rc.1.26425.128" />
+    <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
+    <PackageReference Update="Roslynator.CodeFixes" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
